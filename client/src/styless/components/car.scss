@@ -1,0 +1,18 @@
+.carousel{
+
+    .carousel-indicators{
+    
+    
+  
+    [data-bs-target]{
+      width: 10px;
+      border-radius: 14px;
+      height: 3px;
+    }
+    
+    .active{
+      width: 30px;
+
+  }
+  }
+}
