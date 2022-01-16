@@ -1,0 +1,27 @@
+.carousel{
+
+    .carousel-indicators{
+    
+    
+  
+    [data-bs-target]{
+      width: 7px;
+     height: 7px;
+     border-radius: 50%;
+ 
+     
+     
+    }
+    
+    .active{
+      width: 23px;
+      border-radius: 40%;
+    
+     
+  }
+
+  }
+  .carousel-control-prev-icon, .carousel-control-next-icon{
+    display: none;
+  }
+}

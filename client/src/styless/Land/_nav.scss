@@ -1,0 +1,46 @@
+.landnav{
+  
+   width: 100%;
+   border-bottom: solid 1px #e9dad0;
+   padding:19px 5vw 5px 5vw;
+   float: left;
+   font-size: 20px;
+   color: #000;
+   span{
+       vertical-align: text-bottom;
+       font-size: 22px;
+   }
+    .landlist{
+        display: inline-block;
+        transform: rotatex(180deg) !important;
+        width:30px;
+        margin-bottom: -10px;
+    }
+    select{
+        text-align: left;
+        font-size: 14px;
+        font-weight: bold;
+        margin: 0;
+        border: none;
+        outline: none;
+        background: none;
+        margin-left: 25px;
+        option{
+            font-size: 12px;
+
+        }
+        .custom-select {
+            color: red;
+        }
+    }
+    .right{
+        float: $oposite_direction;
+        margin-right: 3px;
+        font-size: 16px;
+        vertical-align: text-bottom;
+        span{
+            vertical-align: text-bottom;
+            margin-left: 17px;
+        }
+    }
+}

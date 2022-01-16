@@ -1,5 +1,11 @@
 
 @import "~bootstrap/scss/bootstrap";
 
+@import "styless/components/diresctions.scss";
+@import "styless/components/layout";
 
-@import "styless/components/car.scss"
+@import "styless/components/car";
+@import "styless/Land/landHead";
+@import "styless/Land/nav";
+@import "styless/Land/first_section";
+@import "styless/Land/product";
