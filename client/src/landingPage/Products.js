@@ -13,10 +13,10 @@ const Products = () => {
                   <Product  productid={1} sale img='/images/products/1.png'/>
                 </Col>
                 <Col md={4}> 
-                  <Product productid={2} img='/images/products/3.png'/>
+                  <Product productid={2} img='/images/products/2.png'/>
                 </Col>
                 <Col md={4}> 
-                  <Product productid={3} img='/images/products/2.png' />
+                  <Product productid={3} img='/images/products/3.png' />
                 </Col>
              
             </Row>

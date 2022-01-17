@@ -1,0 +1,101 @@
+.productPage{
+    background-image: url("../backgrounds/RepeatGrid.png");
+    background-repeat: repeat;
+    background-size: cover;
+   padding-top: 100px;
+  
+    .img{
+        position: relative;
+        width: 100%;
+        border: solid 1px #C97B5F;
+        height: 638px;
+    
+          
+       .heart{
+        position: absolute;
+        top: 0;
+        left: 0%;
+        border: solid 1px #C97B5F;
+        color: #A35604;
+        width: 70px;
+        height: 50px;
+        text-align: center;
+        font-size: 26px;
+        }
+    }
+    .carousel {
+        margin: auto;
+        margin-top: 30px;
+        width: 70%;
+        img{
+        height: 499px;
+       
+        }
+      .carousel-control-prev-icon, .carousel-control-next-icon{
+            display: block;
+            position: absolute;
+            bottom: -65px;
+            background-color: #C94D20;
+            border-radius: 50%;
+            opacity: 100%;
+            padding: 10px;
+        
+          }
+          .carousel-control-prev-icon{
+              left: 180px;
+              
+            
+          }
+          .carousel-control-next-icon{
+              right: 180px;
+          }
+    }
+    .info{
+        font-family: Alegreya;
+        font-weight: bold;
+        font-size: 28px;
+        font-style: italic;
+        .title{
+            color: #000;
+
+        }
+        .price{
+            color: #C94D20;
+            padding-top: 5px;
+        }
+        .colors{
+            color: #545252;
+            border-top: solid 1px #d9d9d9;
+            border-bottom:  solid 1px #d9d9d9;
+            padding: 20px 5px;
+            width: 501px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            .color{
+                width: 28px;
+                height: 27px;
+                display: inline-block;
+                box-shadow: 0px 3px 6px #54525282;
+                margin: 7px;
+               
+                margin-bottom: -7px;
+                cursor: pointer;
+            }
+        }
+        p{
+            padding-bottom: 20px;
+            font-family: Roboto;
+            font-style: normal;
+            font-weight: 600;
+            width: 501px;
+            height: 264px;
+            overflow: hidden;
+            border-bottom:  solid 1px #d9d9d9;
+            &:hover{
+                overflow: visible;
+                height: auto;
+                cursor: pointer;
+            }
+        }
+    }
+}

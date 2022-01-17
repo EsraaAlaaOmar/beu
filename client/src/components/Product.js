@@ -1,12 +1,12 @@
 import React from 'react'
 
 import ProductInfo from './ProductInfo'
-const Product = ({productid, sale, img}) => {
+const Product = ({productid, sale, img,fav}) => {
     return (
         <div className='product'>
             {productid==2  ?
             <>
-            <ProductInfo />
+            <ProductInfo fav={fav} />
            <div className='img_div'>
            <img  src={img} />  
           {sale && <div className='sale'>
@@ -22,7 +22,7 @@ const Product = ({productid, sale, img}) => {
                 SALE
             </div>}
             </div>
-            <ProductInfo />
+            <ProductInfo fav={fav} />
            </>
            }
          
