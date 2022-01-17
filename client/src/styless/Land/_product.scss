@@ -1,5 +1,12 @@
 .products{
-    
+    background-image: url("../../backgrounds/RepeatGrid.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    .choose{
+        height: 100px;
+        width: 100%;
+        background-color: #fff;
+    }
     .explore{
         width: 450px;
        text-align: center;
@@ -15,13 +22,14 @@
          font-style: italic;
          font-weight: 500;
     }
-}
+
 .product{
    margin: auto;
    padding: 12px;
    border:  solid 1px #C97B5F;
-   
+   background-color: #fff;
    width: 90%;
+   margin-bottom: 20px;
    .img_div{
        position: relative;
    img{
@@ -41,9 +49,11 @@
 }
    .product_info{
      
-       padding: 20px 12px;
+       padding: 5px 12px;
+       padding-bottom: 10px;
        font-weight: 500;
        font-size: 18px;
+      
        .color{
            color: #C94D20;
            font-size: 18px;
@@ -53,11 +63,12 @@
                color: #A35604;
                span{
                    position: relative;
+                   margin: 3px;
                    .add{
                        font-size: 10px;
                        position: absolute;
-                       top: -5.2px;
-                       left: 10px;
+                       top: -8px;
+                       left: 7px;
                       
                    }
                }
@@ -66,4 +77,6 @@
        }
        
    }
+}
+
 }

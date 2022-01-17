@@ -1,0 +1,65 @@
+.third{
+    margin-bottom: 50px;
+    .img{
+        position: relative;
+    img{
+        margin: auto;
+        width: 75%;
+        height: 350px;
+        height: 675px;
+        display: block;
+        z-index: 99;
+    }
+    .box{
+        position: absolute;
+        top: -30px;
+        left: 70px;
+        z-index: -1;
+        width: 383px;
+        height: 579px;
+        border: solid 1px #C97B5F;
+    }
+    }
+    .text{
+        background-repeat:no-repeat ;
+        background-size: 100% 100%;
+        max-width: 90%;
+        background-image: url("../../backgrounds/landingpage/sec3.png");
+        background-repeat:no-repeat ;
+        background-size: 100% 100%;
+       padding:50px  20px;
+       width: 506px;
+     //  margin: auto;
+       margin-top: 100px;
+        .title{
+            font-family: Alegreya;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 34px;
+        
+            }
+            p{
+                margin: 15px 0;
+                width: 438px;
+                height: 258px;
+                overflow: hidden;
+                font-size: 25px;
+                font-weight: 500;
+                &:hover{
+                    overflow: visible;
+                    height: auto;
+                    
+                }
+            
+        }
+        .white{
+            color: #fff;
+            font-family: Alegreya;
+            font-style: italic;
+            font-size: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    }
+}

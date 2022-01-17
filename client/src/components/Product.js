@@ -1,16 +1,31 @@
 import React from 'react'
 
 import ProductInfo from './ProductInfo'
-const Product = () => {
+const Product = ({productid, sale, img}) => {
     return (
         <div className='product'>
+            {productid==2  ?
+            <>
+            <ProductInfo />
            <div className='img_div'>
-           <img  src='/images/products/1.png' />  
-           <div className='sale'>
+           <img  src={img} />  
+          {sale && <div className='sale'>
               SALE
+           </div>}
            </div>
-           </div>
-           <ProductInfo />
+           </>
+           :
+           <>
+                <div className='img_div'>
+            <img  src={img} />  
+            {sale && <div className='sale'>
+                SALE
+            </div>}
+            </div>
+            <ProductInfo />
+           </>
+           }
+         
         </div>
     )
 }

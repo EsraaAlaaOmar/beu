@@ -1,0 +1,25 @@
+.search{
+
+    .search_input{
+        width: 40%;
+        height: 62px;
+        display: block;
+        margin: auto;
+        margin-top: 100px;
+        padding-left: 30px;
+        font-size: 20px;
+        font-weight: 500;
+        font-family: Alegreya;
+
+    }
+    
+   .products{
+    background-image: url("../backgrounds/RepeatGrid.png");
+    background-repeat:no-repeat ;
+    background-size: 100% 100%;
+    background-position: top top;
+    height: 100px;
+
+
+   }
+}

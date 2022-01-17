@@ -5,15 +5,18 @@ import Product from '../components/Product'
 const Products = () => {
     return (
         <div className='products'>
+          <div className='choose'>
+
+          </div>
             <Row>
-                <Col md={4}> 
-                  <Product />
+                <Col  md={4} > 
+                  <Product  productid={1} sale img='/images/products/1.png'/>
                 </Col>
                 <Col md={4}> 
-                  <Product />
+                  <Product productid={2} img='/images/products/3.png'/>
                 </Col>
                 <Col md={4}> 
-                  <Product />
+                  <Product productid={3} img='/images/products/2.png' />
                 </Col>
              
             </Row>

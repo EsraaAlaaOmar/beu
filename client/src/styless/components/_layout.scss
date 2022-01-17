@@ -1,8 +1,17 @@
 body{
    direction: $LayoutDirection;
 }
-.right{
-    float: right;
-    display: inline-block;
+.oposite{
+    float: $oposite_direction;
+  
     height: 100%;
 }
+ input{
+    border: none;
+    outline: none;
+    color: #fff;
+    background-color: #C97B5F;
+}
+::placeholder {
+    color: #fff;
+  }
