@@ -9,7 +9,10 @@
         width: 100%;
         border: solid 1px #C97B5F;
         height: 638px;
-    
+        @media screen and (max-width: 991px) {
+          margin: auto;
+          width: 90%;
+        }
           
        .heart{
         position: absolute;
@@ -21,6 +24,7 @@
         height: 50px;
         text-align: center;
         font-size: 26px;
+        z-index: 22;
         }
     }
     .carousel {
@@ -71,6 +75,7 @@
             width: 501px;
             margin-top: 10px;
             margin-bottom: 20px;
+            font-size: 25px;
             .color{
                 width: 28px;
                 height: 27px;
@@ -97,5 +102,74 @@
                 cursor: pointer;
             }
         }
+
+        .order_details{
+            font-size: 20px;
+            font-style: normal;
+            width: 501px;
+            .number{
+                display: inline-block;
+                width: 50%;
+                .action{
+                    color: #C94D20;
+                    font-size: 25px;
+                }
+                .num{
+                    text-decoration: underline;
+                    font-size: 20px;
+                    margin: 7px;
+                    margin-right: 0;
+                }
+                .items{
+                    color: #545252B0;
+                    font-size: 20px;
+                    margin: 7px;
+                    margin-left: 0;
+                }
+            }
+            .sizes{
+                float: $oposite_direction;
+                display: inline-block;
+                border-left: solid 1px #d9d9d9;
+                width: 50%;
+                text-align: $oposite_direction;
+                span{
+                    display: inline-block;
+                    margin: 0 5px;
+                    padding: 1px 5px;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: #C94D20;
+                    }
+    
+                }
+                .active{
+                    background-color: #C94D20;
+                }
+            }
+         
+        }
+        .createorder{
+            width: 501px;
+            .add{
+                display: block;
+                margin: auto;
+                background-color: #A35604;
+                color: #fff;
+                font-size: 18px;
+            padding:0 10px;
+                height: 35px;
+                span{
+                    margin: 5px;
+                }
+                
+        }
     }
+    @media screen and (max-width: 991px) {
+        margin: auto;
+        margin-top: 30px;
+        width: 90%;
+      }
+    }
+  
 }
