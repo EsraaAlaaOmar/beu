@@ -17,8 +17,9 @@ const PhoneConfirmation = () => {
 
                 </div>
                
-                
-                <input className='submit' type='submit' value='Continue' />
+                <Link to='/log/mailconfirmation'>
+                   <input className='submit' type='submit' value='Continue' />
+                </Link>
             </form>
          
     </div>

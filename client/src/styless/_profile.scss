@@ -1,0 +1,162 @@
+.profile{
+    margin-top: 100px;
+    background-image: url("../backgrounds/RepeatGrid.png");
+    background-repeat: repeat;
+    background-size: cover;
+    .first_col{
+        margin: auto;
+        max-width: 95%;
+        font-size: 20px;
+        font-family: Alegreya;
+        font-weight: bold;
+        font-style: italic;
+        width: 507px;
+        min-height: 534px;
+        box-shadow: 0px 3px 6px #00000029;
+        padding: 20px;
+        background-color: #fff;
+        margin-bottom: 20px;
+    .img{
+        direction: ltr;
+        display: block;
+        margin: auto;
+        text-align: center;
+        padding-top: 20px;
+        position: relative;
+        
+
+    img {   height: 185px;
+        width: 185px;
+        border-radius: 50%;
+        border: solid 1.5px #C94D20;
+       
+      
+    }
+    span{
+       vertical-align: top;
+       background-color:#929090;
+       padding: 0 5px 5px 0;
+       border-radius: 10px;
+       color: #fff;
+       margin-left: -18px;
+       font-size: 20px;
+    }
+    .name{
+        margin-top: 10px;
+       
+    }
+     
+    }
+    .main_info{
+        color: #545252;
+        margin-top: 20px;
+        padding: 20px 10px;
+        border-bottom: solid 1px #00000029;
+        border-top: solid 1px #00000029;
+       
+        div{
+            margin-top: 10px;
+        }
+        
+    }
+    .icon{
+        float: $oposite_direction;
+        vertical-align: top;
+        color: #A35604;
+        cursor: pointer;
+    }
+    .account_actions{
+        padding: 20px 10px;
+        .reset{
+            color: #A35604;
+           
+            a{ 
+                color: #A35604;
+               }
+        }
+        .icon{
+            color: #000;
+            font-size: 16px;
+            font-weight: 600;
+            font-style: normal;
+        }
+    }
+}
+.second_col{
+    margin: auto;
+    padding: 20px 0px;
+    max-width: 95%;
+    width: 507px;
+    height: 534px;
+    box-shadow: 0px 3px 6px #00000029;
+    background-color: #fff;
+    font-family: Alegreya;
+    font-weight: bold;
+    font-style: italic;
+    .orders{
+       .header{ 
+           border-bottom: solid 1px #C94D20;
+           padding-bottom: 20px;
+        .your_orders, .your_points{
+            display: inline-block;
+            width: 50%;
+            text-align: center;
+            font-size: 22px;
+            a{
+                color: #545252B0;
+                text-decoration: none;
+                span{
+                    margin: 3px;
+                    margin-bottom: 7;
+                   
+                }
+                .bag{
+                    font-size: 20px;
+                    vertical-align: text-bottom;
+                }
+
+            }
+
+        }
+        .your_active{      
+            a{
+                color: #C94D20;
+                
+            }
+        }
+  
+    }       
+    .satue{
+        .orders_status_header{
+            padding: 20px 0;
+            border-bottom: solid 1px #00000029;
+            font-size: 18px;
+        .section{
+            display: inline-block;
+            width: calc(100%/3);
+            text-align: center;
+            display: inline-block;
+            color: #545252B0;
+            span{
+                font-size: 16px;
+            }
+        }
+        .active{
+            color: #545252;
+        }
+    }
+    .order_details{
+        margin: 20px 0;
+        background-color: #C97B5F33;
+        .one_order{
+            
+        }
+    }
+}
+
+
+    }
+
+
+}
+}
