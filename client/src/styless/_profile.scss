@@ -87,7 +87,6 @@
     padding: 20px 0px;
     max-width: 95%;
     width: 507px;
-    height: 534px;
     box-shadow: 0px 3px 6px #00000029;
     background-color: #fff;
     font-family: Alegreya;
@@ -137,6 +136,7 @@
             text-align: center;
             display: inline-block;
             color: #545252B0;
+            cursor: pointer;
             span{
                 font-size: 16px;
             }
@@ -146,15 +146,74 @@
         }
     }
     .order_details{
-        margin: 20px 0;
+        margin: 20px 0 5px 0;
         background-color: #C97B5F33;
+        padding-bottom: 25px;
         .one_order{
-            
+            padding: 20px 30px;
+            border-bottom: solid 1px #00000029;
+          img{
+            width: 84px;
+            height: 92px;
+            vertical-align: baseline;
+          }
+          .order_info{
+              display: inline-block;
+              margin: 0 15px;
+              font-size: 18px;
+              .price{
+                  color: #C94D20;
+                  .number{
+                      font-size: 16px;
+                      color: #000;
+                      border-bottom: solid 1px #545252B0;
+                      margin: 5px;
+                      width: 5px;
+                  }
+                  .items{
+                      color: #545252B0;
+                  }
+
+              }
+              .color{
+                 color: #545252;
+                 span{
+                     background-color: #7F9CAF;
+                     width: 17px;
+                     height: 16px;
+                     margin-left: 5px;
+                     display: inline-block;
+                     vertical-align: text-bottom;
+                     
+                 }
+              }
+              .size{
+                  color: #545252;
+              }
+          }
         }
     }
 }
 
 
+    }
+    .orderes_info{
+        padding: 10px 30px;
+        font-size: 16px;
+        .payment{
+            display: inline-block;
+
+        }
+        .status{
+            display: inline-block;
+            float: $oposite_direction;
+            color: #00970A;
+            .date{
+                float: $oposite_direction; 
+                color: #545252A3;
+                margin-top: 20px;
+            }
+        }
     }
 
 

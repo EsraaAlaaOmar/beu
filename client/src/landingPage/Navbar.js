@@ -4,10 +4,11 @@ import{BiSearch}from 'react-icons/bi'
 import {AiOutlineUser}from 'react-icons/ai'
 import {BsHeart} from 'react-icons/bs'
 import {FiShoppingCart} from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
     return (
-        <div className='landnav'>
+        <div className='landnav' >
            <span>
                 <span className='landlist'><MdSort /></span>
                 <select>
@@ -16,19 +17,24 @@ const Navbar = () => {
                 </select>
             </span>
             <div className='right'>
-             
-                <span>
-                    <BiSearch />
-                    
-                </span>
+
+                <Link to='/search'>
+                    <span>
+                        <BiSearch />
+                        
+                    </span>
+                </Link>
                 <span>
                     <AiOutlineUser />
                     
                 </span>
-                <span>
-                    <BsHeart />
-                    
-                </span>
+                <Link to='/favourite'>
+                    <span>
+                        <BsHeart />
+                        
+                    </span>
+                </Link>
+                
                 <span>
                     <FiShoppingCart />
                     

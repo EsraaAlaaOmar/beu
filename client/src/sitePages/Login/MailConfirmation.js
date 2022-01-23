@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const MailConfirmation = () => {
     return (
@@ -16,8 +17,9 @@ const MailConfirmation = () => {
 
                 </div>
                
-                
-                <input className='submit' type='submit' value='Confirm' />
+                <Link to='/'>
+                  <input className='submit' type='submit' value='Confirm' />
+                </Link>
             </form>
          
     </div>

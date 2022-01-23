@@ -20,7 +20,9 @@ const SignUp = () => {
                <div className='log_privacy'>
                By signing up, you agree to our <Link to='/'><span> privacy policy <span> &#38;  </span> terms of conditions</span></Link>
                </div>
-               <input className='submit' type='submit' value='Signup' />
+               <Link to='/log/phoneconfirmation'>
+                   <input className='submit' type='submit' value='Signup' />
+               </Link>
                
 
            </form>
