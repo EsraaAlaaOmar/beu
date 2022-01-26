@@ -18,9 +18,11 @@ const Login = () => {
                        <span className='icon'>{ check ?<FiCheckSquare /> :<ImCheckboxUnchecked />}</span>
                        Remember Me !
                        </span> 
+                       <Link to='/log/forget'>
                        <span className='oposite'>
                        Forget Password !
                        </span>
+                       </Link>
                 </div>
               
                 <div className='log_privacy'>
@@ -31,7 +33,7 @@ const Login = () => {
 
             </form>
             <div className='option'>
-                    <Link to='/'>
+                    <Link to='/log/sign'>
                     Don't have Account ? Signup
                     </Link>
             </div>

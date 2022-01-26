@@ -9,6 +9,7 @@ import MailConfirmation from './MailConfirmation'
 import ForgetPassword from './ForgetPassword'
 import ForgetConfirmation from './ForgetConfirmation'
 import ResetPassword from './ResetPassword'
+import ResetCode from './ResetCode'
 const Log = () => {
     return (
         <div className='log'>
@@ -21,6 +22,7 @@ const Log = () => {
             <Route path="/forget" element={<ForgetPassword />} exact />
             <Route path="/forgetconfirmation" element={<ForgetConfirmation />} exact />
             <Route path="/resetpassword" element={<ResetPassword />} exact />
+            <Route path="/resetcode" element={<ResetCode />} exact />
             </Routes>
         </div>
     )
