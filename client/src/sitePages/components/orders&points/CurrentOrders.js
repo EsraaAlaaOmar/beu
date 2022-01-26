@@ -1,20 +1,26 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 import OneOrder from './OneOrder';
 const CurrentOrders = () => {
   return <div className='satue'>
             <div className='orders_status_header'>
-              <div className='section active'>
-              <span>1</span> Current
-              </div>
-              <div className='section'>
-              <span>2</span> Previous
-              </div>
-
-              <div className='section'>
-              <span>3</span> Returned
-              </div>
+              <Link to='/profile'>
+                  <div className='section active'>
+                  <span>1</span> Current
+                  </div>
+              </Link>
+              <Link to='/profile/prev'>
+                    <div className='section '>
+                    <span>2</span> Previous
+                    </div>
+              </Link>
+              <Link to='/profile/returned'>
+                    <div className='section '>
+                    <span>3</span> Returned
+                    </div>
+              </Link>
 
 
            </div>

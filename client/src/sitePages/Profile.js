@@ -15,7 +15,7 @@ const Profile = () => {
       <Container>
           
           <Row>
-              <Col>
+              <Col md={6}>
               <div className='first_col'>
                   <div className='img'>
                       <img
@@ -51,12 +51,12 @@ const Profile = () => {
              
               
               </Col>
-              <Col>
+              <Col md={6}>
               <div className='second_col'>
                 
            
                <Routes>
-               <Route path="/" element={<Orders />} exact />
+               <Route path="/*" element={<Orders />} exact />
                <Route path="/points" element={<Points />} exact />
                </Routes>
                </div>

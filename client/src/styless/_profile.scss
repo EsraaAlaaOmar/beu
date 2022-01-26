@@ -15,7 +15,7 @@
         box-shadow: 0px 3px 6px #00000029;
         padding: 20px;
         background-color: #fff;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     .img{
         direction: ltr;
         display: block;
@@ -87,6 +87,8 @@
     padding: 20px 0px;
     max-width: 95%;
     width: 507px;
+    min-height: 534px;
+    height: auto;
     box-shadow: 0px 3px 6px #00000029;
     background-color: #fff;
     font-family: Alegreya;
@@ -123,8 +125,56 @@
                 
             }
         }
+
+
+
+
+
+   
   
-    }       
+    }  
+      .points{
+      text-align: center;
+        .your_points{
+            padding: 30px;
+            padding-left: 0;
+            border-bottom: solid 1px #00000029;
+            text-align: left;
+            width: 85%;
+            margin: auto;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            span{
+                font-size: 16px;
+            }
+            .yellow{
+              color: #E39800;
+              font-size: 24px;
+              margin-left: 5px;
+            }
+
+        }
+        .buymore{
+          //  width: 260px;
+            max-width: 90%;
+            margin: auto;
+            .title{
+                font-size: 23px;
+                margin-bottom: 10px;
+            }
+            .details{
+                color: #545252;
+                font-size: 18px;
+                font-weight: 500;
+                .my-anchor-css-class{
+                    color: #000;
+                    text-decoration: none;
+                }
+            }
+            
+        }
+    }     
     .satue{
         .orders_status_header{
             padding: 20px 0;
@@ -145,6 +195,7 @@
             color: #545252;
         }
     }
+   
     .order_details{
         margin: 20px 0 5px 0;
         background-color: #C97B5F33;
@@ -152,10 +203,16 @@
         .one_order{
             padding: 20px 30px;
             border-bottom: solid 1px #00000029;
+            width: 100%;
           img{
             width: 84px;
             height: 92px;
             vertical-align: baseline;
+            @media screen and (max-width: 380px) {
+               display: block;
+                margin: auto;
+               
+                }
           }
           .order_info{
               display: inline-block;
@@ -190,29 +247,74 @@
               .size{
                   color: #545252;
               }
+              @media screen and (max-width: 380px) {
+                display: block;
+                margin: auto;
+               margin-top: 5px;
+               
+                }
           }
         }
+    }
+    .order_details_prev{
+        padding-bottom: 40px;
     }
 }
 
 
     }
     .orderes_info{
-        padding: 10px 30px;
+      
+       // padding-bottom: 20px;
         font-size: 16px;
         .payment{
             display: inline-block;
+            padding: 10px 30px;
 
         }
         .status{
+            padding: 10px 30px;
             display: inline-block;
             float: $oposite_direction;
             color: #00970A;
+           .pinding{
+               color: #D8AD01;
+
+           }
+           .Refused{
+               color:#F94200 ;}
             .date{
                 float: $oposite_direction; 
                 color: #545252A3;
                 margin-top: 20px;
             }
+        }
+        .return{
+            text-align: center;
+            color: #C94D20;
+            background-color: #FCD1A3;
+            border-radius: 7px;
+        }
+        .reason{
+            border-top: solid 1px #00000029;
+           padding: 20px 5%;
+            margin: auto;
+            font-size: 18px;
+            font-weight: 550;
+        }
+        .content-css{
+            width: 100%;
+            text-align: center;
+           
+        }
+        .my-anchor-css-class{
+            color: gray;
+            text-decoration: none;
+        }
+        .made_on{
+            color: #545252A3;
+            margin: auto;
+            text-align: center;
         }
     }
 

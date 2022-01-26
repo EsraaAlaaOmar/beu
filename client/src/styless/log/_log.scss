@@ -16,10 +16,11 @@
         margin: auto;
         margin-top: 185px;
         width: 669px;
+
         background-color: rgb(255, 255, 255,.86);
         padding:23px 0;
         padding-bottom: 35px;
-        max-width: 100%;
+        max-width: 90%;
        // opacity: 0.86;
        .title{
            font-family: Alegreya;
@@ -52,6 +53,9 @@
             font-size: 16px;
             font-weight: bold;
             font-family: Alegreya;
+            @media screen and (max-width: 565px) {
+            text-align: center;
+            }
             .remember{
                 cursor: pointer;
                 .icon{
@@ -59,6 +63,18 @@
                     margin-right: 5px;
                     margin-bottom: 5px;
                 }
+               
+             
+
+        }
+        .oposite{
+            text-decoration: underline;
+            @media screen and (max-width: 565px) {
+                display: block;
+                float: none;
+                margin-top: 10px;
+            }
+
         }
 
         }
@@ -115,7 +131,8 @@
             font-weight: bold;
             font-size: 18px;
             display: block;
-            margin-bottom: 27px;
+            margin-bottom: 40px;
+            margin-top: 20px;
         }
         .time{
             margin:auto;
@@ -134,6 +151,28 @@
                 text-decoration: underline;
                 margin-left: 5px;
             }
+        }
+    }
+    .forget{
+        .submit{
+            margin-top:70px;
+            margin-bottom: 70px;
+        }
+        .time{
+            margin-bottom: 0px;
+        }
+
+    }
+    .reset{
+        .submit{
+            margin-top:90px;
+            margin-bottom: 70px;
+        }
+        .title{
+            margin-bottom: 60px;
+        }
+        input{
+            margin-top: 26px;
         }
     }
 }
