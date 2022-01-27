@@ -113,14 +113,17 @@
            
         }
         a{
-            text-decoration: none !important;
+            text-decoration: none ;
+            color:#000;
         }
         .option{
            text-align: center;
             font-size: 18px;
             margin-top: 20px;
+            color:#000;
             a{
                 color: #A35604;
+                text-decoration: underline;
             }
         }
         p{

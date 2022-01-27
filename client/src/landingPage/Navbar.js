@@ -24,10 +24,12 @@ const Navbar = () => {
                         
                     </span>
                 </Link>
-                <span>
-                    <AiOutlineUser />
-                    
-                </span>
+                <Link to='/profile'>
+                    <span>
+                        <AiOutlineUser />
+                        
+                    </span>
+                </Link>
                 <Link to='/favourite'>
                     <span>
                         <BsHeart />

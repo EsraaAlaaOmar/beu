@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ForgetConfirmation = () => {
   return <div>
@@ -17,7 +18,9 @@ const ForgetConfirmation = () => {
                 <span>Resend</span>
 
                 </div>
-                <input className='submit' type='submit' value='Confirm' />
+                <Link to='/log/resetpassword'>
+                   <input className='submit' type='submit' value='Confirm' />
+                </Link>
                 
 
             </form>

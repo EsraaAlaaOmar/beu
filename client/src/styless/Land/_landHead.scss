@@ -9,8 +9,16 @@
     background-repeat:no-repeat ;
     background-size: 100% 100%;
     background-position: top top;
+   
+   
+
 
    //   background-position: top center;
+   .carousel{
+      z-index: -1;
+   }
+
+
    .land_head_buttons{
       text-align: center;
       margin-top: 450px;

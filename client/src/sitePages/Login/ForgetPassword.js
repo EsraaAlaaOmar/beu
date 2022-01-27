@@ -14,9 +14,9 @@ const ForgetPassword = () => {
              
             
               
-               
-                <input className='submit' type='submit' value='Continue' />
-                
+               <Link to='/log/forgetconfirmation'>
+                  <input className='submit' type='submit' value='Continue' />
+                </Link>
 
             </form>
         
