@@ -59,6 +59,7 @@
         font-weight: bold;
         font-size: 28px;
         font-style: italic;
+        width: 501px;
         .title{
             color: #000;
 
@@ -87,20 +88,21 @@
                 cursor: pointer;
             }
         }
-        p{
+        .content-css{
             padding-bottom: 20px;
             font-family: Roboto;
             font-style: normal;
             font-weight: 600;
-            width: 501px;
-            height: 262px;
+           
+            
             overflow: hidden;
             border-bottom:  solid 1px #d9d9d9;
-            &:hover{
-                overflow: visible;
-                height: auto;
-                cursor: pointer;
+            .my-anchor-css-class{
+                color: gray;
+                text-decoration: none;
+                font-size: 20px;
             }
+         
         }
 
         .order_details{

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Col, Container, Row, Carousel } from 'react-bootstrap'
 import { BsFillHeartFill } from 'react-icons/bs'
 import {FiMinusSquare ,FiPlusSquare, FiShoppingCart}  from 'react-icons/fi'
+import ShowMoreText from 'react-show-more-text'
 
 
 const ProductPage = () => {
@@ -58,9 +59,16 @@ const ProductPage = () => {
                          <div className='color' style={{backgroundColor:'#28A304'}}></div>
 
                      </div>
-                     <p>
+                     <ShowMoreText
+                      more="Show more"
+                      less="Show less"
+                      lines={6}
+                      className="content-css"
+                      anchorClass="my-anchor-css-class"
+                     
+                     >
                      Aenean sed nibh a magna posuere tempor. Nunc faucibus pellentesque nunc in aliquet. Donec congue, nunc vel tempor congue, enim sapien lobortis ipsum, in volutpat sem ex in ligula. Nunc purus est, consequat condimentum faucibus sed, iaculis sit amet massa. Fusce ac condimentum turpis. Ut consequat lacinia augue, vitae aliquam sapien ullamcorper at. Donec efficitur, ligula ut lacinia viverra, lorem lacus condimentum leo, eu luctus dolor ex at quam. Fusce a nisi at erat dapibus posuere eget sed nulla. Nam sem odio, hendrerit vel mi ut, pharetra viverra massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nunc placerat ante vel eros semper bibendum. Donec ultricies vestibulum interdum.
-                     </p>
+                     </ShowMoreText>
                      <div className='order_details'>
                         <div className='number'>
                             <span className='action' onClick={()=>setNumber(number+1)}> <FiPlusSquare /></span>
