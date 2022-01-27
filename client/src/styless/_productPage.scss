@@ -96,6 +96,7 @@
            
             
             overflow: hidden;
+            margin-bottom: 20px;
             border-bottom:  solid 1px #d9d9d9;
             .my-anchor-css-class{
                 color: gray;
@@ -115,6 +116,7 @@
                 .action{
                     color: #C94D20;
                     font-size: 25px;
+                    cursor: pointer;
                 }
                 .num{
                     text-decoration: underline;

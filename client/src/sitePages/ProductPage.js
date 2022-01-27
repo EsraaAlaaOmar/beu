@@ -7,6 +7,11 @@ import ShowMoreText from 'react-show-more-text'
 
 const ProductPage = () => {
     const[number,setNumber]=useState(1)
+    const activeSize =(e)=>{
+        e.target.classList.add("active")
+        e.target.nextSibling &&  e.target.nextSibling.classList.remove("active")
+        e.target.previousSibling &&  e.target.previousSibling.classList.remove("active")
+    }
     return (
         <div className='productPage'>
            
@@ -78,11 +83,13 @@ const ProductPage = () => {
 
                         </div>
                         <div className='sizes'>
-                            <span>S</span>
-                            <span>M</span>
-                            <span>L</span>
-                            <span>Xl</span>
-                            <span>XXL</span>
+                            <span className='active' onClick={ (e)=>activeSize(e)  }
+                        
+                            >S</span>
+                            <span  onClick={ (e)=>activeSize(e)  }>M</span>
+                            <span onClick={ (e)=>activeSize(e)  }>L</span>
+                            <span onClick={ (e)=>activeSize(e)  }>Xl</span>
+                            <span onClick={ (e)=>activeSize(e)  }>XXL</span>
                         </div>
                      </div>
                       <br/>
