@@ -257,7 +257,7 @@
         }
     }
     .order_details_prev{
-        padding-bottom: 40px;
+        padding-bottom: 40 px;
     }
 }
 
@@ -320,4 +320,50 @@
 
 
 }
+.edite_box{
+    width: 669px;
+    height: 582px;
+    max-width: 90%;
+    background-color: #fff;
+    opacity: 111;
+    margin: auto;
+    margin-top: 5%;
+    text-align: center;
+    padding: 75px 10px;
+    .inputs{
+    input{
+        width: 382px;
+        height: 46px;
+        margin-top: 26px;
+        border-radius: 34px;
+        padding-left: 25px;
+        max-width: 90%;
+    }}
+    .butn{
+        border: none;
+        border-radius: 0;
+        padding: 0;
+        color: #fff;
+        background-color: #A35604;
+        width: 122px;
+        height: 44px;
+        box-shadow: 0px 3px 6px #A356047D;
+        font-family: Alegreya;
+       font-weight: 500;
+       font-size: 20px;
+       margin-top: 50px;
+       
+    }
+    .discard{
+        background-color: #545252;
+        box-shadow: none;
+        margin-top: 10px;
+    }
+    
+}
+
+
+
+
+
 }

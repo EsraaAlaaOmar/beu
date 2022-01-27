@@ -5,6 +5,7 @@ import {FaRegEdit} from 'react-icons/fa';
 import {IoIosLogOut} from 'react-icons/io';
 
 import { Link, Route, Routes } from 'react-router-dom';
+import EdieProfile from './components/EdieProfile';
 import CurrentOrders from './components/orders&points/CurrentOrders';
 import Orders from './components/orders&points/Orders';
 import Points from './components/orders&points/Points';
@@ -29,7 +30,7 @@ const Profile = () => {
                   <span>
                   Keanue.coleman@gmail.com
                   </span>
-                  <Link to='/'>
+                  <Link to='/profile/edite'>
                     <span className='icon'>
                         <FaRegEdit />
                     </span>
@@ -58,11 +59,15 @@ const Profile = () => {
                <Routes>
                <Route path="/*" element={<Orders />} exact />
                <Route path="/points" element={<Points />} exact />
+              
                </Routes>
                </div>
               </Col>
           </Row>
       </Container>
+               <Routes> 
+                  <Route path="/edite" element={<EdieProfile />} exact />
+               </Routes>
   </div>;
 };
 

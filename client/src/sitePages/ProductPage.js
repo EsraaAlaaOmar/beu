@@ -11,6 +11,7 @@ const ProductPage = () => {
         e.target.classList.add("active")
         e.target.nextSibling &&  e.target.nextSibling.classList.remove("active")
         e.target.previousSibling &&  e.target.previousSibling.classList.remove("active")
+
     }
     return (
         <div className='productPage'>
