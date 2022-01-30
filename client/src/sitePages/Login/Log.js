@@ -10,6 +10,7 @@ import ForgetPassword from './ForgetPassword'
 import ForgetConfirmation from './ForgetConfirmation'
 import ResetPassword from './ResetPassword'
 import ResetCode from './ResetCode'
+import AboutUs from '../components/staticPages/AboutUs'
 const Log = () => {
     return (
         <div className='log'>
@@ -23,6 +24,7 @@ const Log = () => {
             <Route path="/forgetconfirmation" element={<ForgetConfirmation />} exact />
             <Route path="/resetpassword" element={<ResetPassword />} exact />
             <Route path="/resetcode" element={<ResetCode />} exact />
+            <Route path="/aboutus" element={<AboutUs />} exact />
             </Routes>
         </div>
     )
