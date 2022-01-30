@@ -33,7 +33,7 @@ const PrevOrders = () => {
         </div>
         <div className='status'>
           <div>Status : Shipped</div>
-          <div className='return'>Return</div>
+          <Link to='/return'><div className='return'>Return</div> </Link>
           <div className='date'>1/1/2022</div>
         </div>
       </div>
@@ -49,7 +49,7 @@ const PrevOrders = () => {
                </div>
                <div className='status'>
                  <div>Status : Shipped</div>
-                 <div className='return'>Return</div>
+                 <Link to='/return'><div className='return'>Return</div></Link>
                  <div className='date'>1/1/2022</div>
                </div>
              </div>

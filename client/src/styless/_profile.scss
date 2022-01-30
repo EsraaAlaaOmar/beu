@@ -265,7 +265,7 @@
     }
     .orderes_info{
       
-       // padding-bottom: 20px;
+        padding-bottom: 20px;
         font-size: 16px;
         .payment{
             display: inline-block;
@@ -288,6 +288,9 @@
                 color: #545252A3;
                 margin-top: 20px;
             }
+        }
+        a{
+            text-decoration: none;
         }
         .return{
             text-align: center;

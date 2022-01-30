@@ -8,6 +8,7 @@ import ProductPage from './sitePages/ProductPage';
 import Profile from './sitePages/Profile';
 import Card from './sitePages/Card';
 import Category from './sitePages/Category';
+import ReturnForm from './sitePages/ReturnForm';
 function App() {
   return (
     <Router>
@@ -22,6 +23,7 @@ function App() {
          <Route path="/profile/*" element={<Profile />} exact />
          <Route path="/card" element={<Card />} exact />
          <Route path="/category" element={<Category />} exact />
+         <Route path="/return" element={<ReturnForm />} exact />
 
         
      </Routes>
