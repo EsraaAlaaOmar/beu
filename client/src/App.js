@@ -9,6 +9,7 @@ import Profile from './sitePages/Profile';
 import Card from './sitePages/Card';
 import Category from './sitePages/Category';
 import ReturnForm from './sitePages/ReturnForm';
+import Submit from './sitePages/Submit';
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
          <Route path="/card" element={<Card />} exact />
          <Route path="/category" element={<Category />} exact />
          <Route path="/return" element={<ReturnForm />} exact />
+         <Route path="/submitsuccess" element={<Submit />} exact />
 
         
      </Routes>
