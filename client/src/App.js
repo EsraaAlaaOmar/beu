@@ -6,6 +6,7 @@ import Search from './sitePages/Search';
 import Favourite from './sitePages/Favourite';
 import ProductPage from './sitePages/ProductPage';
 import Profile from './sitePages/Profile';
+import Card from './sitePages/Card';
 function App() {
   return (
     <Router>
@@ -18,6 +19,7 @@ function App() {
          <Route path="/favourite" element={<Favourite />} exact />
          <Route path="/product" element={<ProductPage />} exact />
          <Route path="/profile/*" element={<Profile />} exact />
+         <Route path="/card" element={<Card />} exact />
 
         
      </Routes>
