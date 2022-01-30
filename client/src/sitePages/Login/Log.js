@@ -16,7 +16,7 @@ const Log = () => {
             <Navbar />
             <Routes>
             <Route path="/sign" element={<SignUp />} exact />
-            <Route path="/" element={<Login />} exact />
+            <Route path="/login" element={<Login />} exact />
             <Route path="/phoneconfirmation" element={<PhoneConfirmation />} exact />
             <Route path="/mailconfirmation" element={<MailConfirmation />} exact />
             <Route path="/forget" element={<ForgetPassword />} exact />

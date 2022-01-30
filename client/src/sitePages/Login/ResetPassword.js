@@ -14,7 +14,7 @@ const ResetPassword = () => {
              
             
               
-               <Link to='/log'> 
+               <Link to='/log/login'> 
                 <input className='submit' type='submit' value='Confirm' />
                 </Link>
                 

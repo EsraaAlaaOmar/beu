@@ -27,7 +27,7 @@ const SignUp = () => {
 
            </form>
            <div className='option'>
-                <Link to='/log'>
+                <Link to='/log/login'>
                 Have Account ? LOGIN
                 </Link>
            </div>
