@@ -36,11 +36,12 @@ const Navbar = () => {
                         
                     </span>
                 </Link>
-                
-                <span>
-                    <FiShoppingCart />
-                    
-                </span>
+                <Link to='/card'>
+                    <span>
+                        <FiShoppingCart />
+                        
+                    </span>
+                </Link>
 
             </div>
 

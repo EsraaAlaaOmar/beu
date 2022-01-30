@@ -2,6 +2,7 @@ import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
 import ProductInCard from './components/orders&points/ProductInCard';
+import CostInCard from './components/orders&points/CostInCard';
 const Card = () => {
   return <div className='card_page'>
             <div className='title'>
@@ -11,15 +12,15 @@ const Card = () => {
              </div>
              <div>
                  <Row>
-                     <Col>
+                     <Col md={6}>
                        <Container>
                         <ProductInCard />
                         <ProductInCard />
                        </Container>
                      
                      </Col>
-                     <Col>
-                     
+                     <Col md={6}>
+                      <CostInCard />
                      </Col>
                  </Row>
              </div>
