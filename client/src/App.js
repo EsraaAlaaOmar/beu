@@ -10,6 +10,7 @@ import Card from './sitePages/Card';
 import Category from './sitePages/Category';
 import ReturnForm from './sitePages/ReturnForm';
 import Submit from './sitePages/Submit';
+import Payment from './sitePages/components/staticPages/payment/Payment';
 function App() {
   return (
     <Router>
@@ -25,6 +26,7 @@ function App() {
          <Route path="/card" element={<Card />} exact />
          <Route path="/category" element={<Category />} exact />
          <Route path="/return" element={<ReturnForm />} exact />
+         <Route path="/payvisa" element={<Payment />} exact />
          <Route path="/submitsuccess" element={<Submit title='Submitted Successfully' />} exact />
          <Route path="/thanking" element={<Submit 
           title='Thank you for your message'
