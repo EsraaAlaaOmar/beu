@@ -330,9 +330,12 @@
     background-color: #fff;
     opacity: 111;
     margin: auto;
-    margin-top: 5%;
+  //  margin-top: 5%;
     text-align: center;
     padding: 75px 10px;
+    position: relative;
+    top: 50%;
+    transform: translatey(-50%);
     .inputs{
     input{
         width: 382px;

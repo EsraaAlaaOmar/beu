@@ -9,9 +9,12 @@
     font-style: italic;
     font-weight: bold;
     .sub{
-        position: absolute;
-        top:calc(50vh - 83px);
-        left: calc(50% - 281.5px);
+      //  position: absolute;
+     //   top:calc(50vh - 83px);
+      //  left: calc(50% - 281.5px);
+      position: relative;
+      top: 60%;
+      transform: translatey(-50%);
         background-color: #F1DCD8;
         margin: auto;
         width: 563px;
