@@ -19,17 +19,34 @@
         margin: auto;
         width: 563px;
         max-width: 90%;
-        height: 246px;
+      //  height: 246px;
         text-align: center;
         font-size: 20px;
         padding-top: 30px;
+        padding-bottom: 50px;
      
         div{
             color: #000;
             font-size: 34px;
-            padding: 20px;
+            padding-bottom: 15px;
 
         }
+        p{
+            font-size: 25px;
+            width: 367px;
+            display: block;
+            margin: auto;
+            margin-bottom: 10px;
+            span{
+                font-family: 'American Typewriter', Monospace;
+                max-width: 224px;
+                display: block;
+                margin: auto;
+             
+    
+            }
+        }
+        
         a{color: #A35604;}
         
        
