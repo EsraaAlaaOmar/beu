@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import SavedPayment from './SavedPayment';
 
 
 import Visa from './Visa';
@@ -23,7 +24,7 @@ const Payment = () => {
                 </Col>
                 <Col>
                 <div className='saved_payment'>
-    h
+                    <SavedPayment />
                     </div>
                 
                 </Col>
