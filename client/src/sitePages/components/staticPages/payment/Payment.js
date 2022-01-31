@@ -1,5 +1,7 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import ApplePay from './ApplePay';
+import PayPal from './PayPal';
 import SavedPayment from './SavedPayment';
 
 
@@ -17,7 +19,9 @@ const Payment = () => {
             
                 <Col>
                 <div className='payment_method' >
-                   <Visa />
+                   {/* <Visa /> */}
+                   {/* <ApplePay /> */}
+                   <PayPal />
 
                 </div>
                 
