@@ -12,6 +12,8 @@ import ResetPassword from './ResetPassword'
 import ResetCode from './ResetCode'
 import AboutUs from '../components/staticPages/AboutUs'
 import PrivacyPolicy from '../components/staticPages/PrivacyPolicy'
+import LearnMore from '../components/staticPages/LearnMore'
+import Contactus from '../components/staticPages/Contactus'
 const Log = () => {
     return (
         <div className='log'>
@@ -27,6 +29,8 @@ const Log = () => {
             <Route path="/resetcode" element={<ResetCode />} exact />
             <Route path="/aboutus" element={<AboutUs />} exact />
             <Route path="/privacypolicy" element={<PrivacyPolicy />} exact />
+            <Route path="/learnmore" element={<LearnMore />} exact />
+            <Route path="/contactus" element={<Contactus />} exact />
             
             </Routes>
         </div>
