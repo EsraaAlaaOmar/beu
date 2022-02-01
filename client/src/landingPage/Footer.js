@@ -45,29 +45,27 @@ const Footer = () => {
 
      </Col>
     <Col>
-       <div className='title'>Quick Links</div>
+       <div className='title'>Resources</div>
        <div className='link'>
-         <Link to='/'> Search</Link>
+         <Link to='/log/aboutus'> About Us</Link>
        </div>
        <div className='link'>
-         <Link to='/'> Newest</Link>
+         <Link to='/log/learnmore'> Learn More</Link>
        </div>
        <div className='link'>
-         <Link to='/'> Sales</Link>
+         <Link to='/log/contactus'> Contact Us</Link>
        </div>
 
      </Col>
     <Col>
-       <div className='title'>Quick Links</div>
+       <div className='title'>Others</div>
        <div className='link'>
-         <Link to='/'> Search</Link>
+         <Link to='/'> Terms of Conditions</Link>
        </div>
        <div className='link'>
-         <Link to='/'> Newest</Link>
+         <Link to='/log/privacypolicy'>Privacy Policy</Link>
        </div>
-       <div className='link'>
-         <Link to='/'> Sales</Link>
-       </div>
+      
 
      </Col>
      </Row>
