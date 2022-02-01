@@ -3,6 +3,7 @@ import LandHeader from './LandHeader';
 import FirstSection from './FirstSection';
 import Products from './Products';
 import ThirdSection from './ThirdSection';
+import Footer from './Footer';
 const Land = () => {
     return (
         <div>
@@ -10,6 +11,7 @@ const Land = () => {
             <FirstSection />
             <Products />
             <ThirdSection />
+            <Footer />
 
         </div>
     )
