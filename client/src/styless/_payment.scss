@@ -30,6 +30,8 @@ $oposite_direction:right;
         box-shadow: 0px 3px 6px #00000029;
         background-color: #fff;
         padding-bottom: 50px;
+        margin: auto;
+        margin-bottom: 30px;
         .header{
             text-align: center;
             border-bottom:  solid 1px #d9d9d9;
@@ -165,6 +167,7 @@ $oposite_direction:right;
         box-shadow: 0px 3px 6px #00000029;
         background-color: #fff;
         padding-bottom: 50px;
+        margin: auto;
         .header{
             padding: 30px 40px;
             font-size: 22px;
@@ -176,6 +179,7 @@ $oposite_direction:right;
         .saved_method{
             margin: auto;
             width: 461px;
+            max-width: 90%;
            padding-bottom: 10px;
             background-color: #F9DACF;
             border-radius: 10px;
