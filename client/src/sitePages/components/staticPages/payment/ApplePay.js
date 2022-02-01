@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 const ApplePay = () => {
   return <div>
       <div className='header'>
-     <Link to='/'>visa</Link>
-     <Link to='/'>paypal</Link>
-     <Link to='/'>pay</Link>
+    <Link to='/pay'>visa</Link>
+     <Link to='/pay/paypal'>paypal</Link>
+     <Link to='/pay/applepay'>pay</Link>
 
    </div>
      <div className='cost'>

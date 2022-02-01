@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { Route, Routes } from 'react-router-dom';
 import ApplePay from './ApplePay';
 import PayPal from './PayPal';
 import SavedPayment from './SavedPayment';
@@ -19,9 +20,14 @@ const Payment = () => {
             
                 <Col>
                 <div className='payment_method' >
-                   {/* <Visa /> */}
+                <Routes>
+         <Route path="/" element={ <Visa />} exact />
+         <Route path="/paypal" element={ <PayPal />} exact />
+         <Route path="/Applepay" element={ <ApplePay />} exact />
+         </Routes>
+                   {/* */}
                    {/* <ApplePay /> */}
-                   <PayPal />
+                
 
                 </div>
                 

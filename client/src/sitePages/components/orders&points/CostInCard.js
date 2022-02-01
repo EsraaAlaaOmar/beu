@@ -35,7 +35,7 @@ const CostInCard = () => {
            <div className='phone'>Phone number</div>
 
        </div>
-       <Link to='/payvisa'>
+       <Link to='/pay'>
         <button>Continue to Payment</button>
        </Link>
 
