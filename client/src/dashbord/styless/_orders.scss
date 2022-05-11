@@ -1,6 +1,7 @@
 .box{
     margin-left: 300px;
     margin-top: 70px;
+    padding-bottom: 40px;
     .opacity{
        // padding:0;
     }
@@ -59,6 +60,9 @@
     
        
     }
+    .no-butons{
+        padding-top:1px;
+    }
     .check{
        
         font-size: 24px;
@@ -72,6 +76,14 @@
     }
     .nospace{
         text-align:left;
+    }
+    .alert{
+        width: 95%;
+        color: red;
+        background-color: #fff;
+        text-align: center;
+        
+        
     }
 }
 .collections{

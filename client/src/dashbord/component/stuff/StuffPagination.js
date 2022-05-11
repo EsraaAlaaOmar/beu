@@ -43,7 +43,7 @@ const StuffPagination = ({maplist}) => {
             <thead>
             <tr className="head">
                 <th>Employee</th>
-                <th>PASSWORD</th>
+                <th>POSITION</th>
                 <th>USER NAME</th>
                 <th></th>
                 <th></th>

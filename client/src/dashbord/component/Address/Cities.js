@@ -1,21 +1,16 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import{getCities} from '../../store/Address/CitiesSlice'
 import {AiFillPlusCircle} from 'react-icons/ai'
 import {BiEditAlt} from 'react-icons/bi'
 import {RiDeleteBin5Line} from 'react-icons/ri'
-const Cities = () => {
-  const {citiesList} =useSelector((state)=>state.cities)
-  const dispatch = useDispatch()
+import { Link } from 'react-router-dom';
+const Cities = ({countryCities,getActiveCity,countryId }) => {
+  const [activeIndex,setActiveIndex]=useState('')
 
-  useEffect(() =>{
-    dispatch(getCities())
-  
-
-  },[dispatch])
-  const renderedcities = citiesList.map((city)=>{
+ const renderedcities =  countryCities &&  countryCities.map((city,index)=>{
+    const  className = activeIndex === index ? 'active' : ''; 
     return(
-        <div className="category">
+        <div className={`category ${className} `} key={index} onClick={()=>{ setActiveIndex(index);getActiveCity(city.id)}}>
            {city.name}
             <span className="oposite" >
               <span className="delet icon"> <RiDeleteBin5Line /> </span>  
@@ -26,8 +21,8 @@ const Cities = () => {
 })
   return (
     <div className="category-box">
-    Cities:&nbsp; {citiesList.length}
-    <span className="oposite add" > <AiFillPlusCircle /> </span>
+    Cities:&nbsp; {countryCities && countryCities.length}
+   <Link to='/dashbord/addresses/addCity' state={{countryId:countryId}}> <span className="oposite add" > <AiFillPlusCircle /> </span></Link>
     {renderedcities}
   </div>
   )

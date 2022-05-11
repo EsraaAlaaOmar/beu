@@ -15,7 +15,7 @@ import Circle from '../Dashbord/Circle';
 const Finance = () => {
   return (
     <>
-       < Nav first_link='finance' second_link='Charts' />
+       < Nav first_link='finance' second_link='Charts'  first_link_url='/finance'   second_link_url='/finance'/>
        <div className="box  dashbord ">  
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
         <span className="title-text">Finance</span>

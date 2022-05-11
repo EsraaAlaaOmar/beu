@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import axios from 'axios';
 
 
 export const getCities = createAsyncThunk ('cities/get',  async(_ ,thunkAPI) =>{
@@ -28,6 +28,7 @@ export const getCities = createAsyncThunk ('cities/get',  async(_ ,thunkAPI) =>{
   }
   
   })
+
   const citiesSlice= createSlice({
     name:'discounts',
     initialState : {citiesList:[], isLoading:false,addLoading:false, error:null},
@@ -57,6 +58,7 @@ export const getCities = createAsyncThunk ('cities/get',  async(_ ,thunkAPI) =>{
            
         }, 
         // ............. end getCities ......................
+ 
      
        
     }

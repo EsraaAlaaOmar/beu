@@ -30,6 +30,7 @@
         border-radius: 6px;
         font-size:16px;
         overflow: hidden;
+        cursor: pointer;
         .icon{
             font-size: 20px;
             cursor: pointer;
@@ -40,6 +41,14 @@
         .edit{
             color:#2D62ED;
         }
+    }
+    .active{
+        background-color: #000;
+        color: #fff;
+        .edit{
+            color: #abadaf;
+        }
+
     }
 
 }

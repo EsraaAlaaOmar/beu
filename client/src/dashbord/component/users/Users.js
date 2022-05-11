@@ -9,19 +9,20 @@ import Nav from '../reusable/Nav';
 import AddUser from './AddUser';
 
 const Users = () => {
-  const {usersList } =useSelector((state)=> state.users)
+  const {usersList,error } =useSelector((state)=> state.users)
   const dispatch = useDispatch()
  
-  useEffect(() =>{
-    dispatch(getUseres())
+  // useEffect(() =>{
+  //   dispatch(getUseres())
   
 
-  },[dispatch])
+  // },[dispatch])
   const[multiple,setMultiple] =useState(false)
     return(
       <>
-        <Nav  first_link='Active' second_link='All' />
+        <Nav  first_link='Active' second_link='All'  first_link_url='/users'   second_link_url='/users' />
         <div className="box">  
+        {error&& <div className='error-notify'>{error}</div>}  
             <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
             <span className="title-text">Users</span>
             <div className="table-box">

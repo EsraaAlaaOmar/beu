@@ -58,7 +58,7 @@ h4{
         margin:0 5px;
          
     }
-    select,input,.colorList{
+    select,input,.colorList,.img-box{
         width: 360px;
         height: 40px;
         font-size: 14px;
@@ -68,11 +68,34 @@ h4{
         box-shadow: 0px 4px 8px #2C27380A;
         border: 1px solid #DBE2EA;
         border-radius: 6px;
-        color: #756F86;
+        color: #756F86 ;
         option{
             margin:20px 0;
         }
        
+    }
+    .checkbox{
+        width:auto;
+        height:auto;
+        display: inline-block;
+        vertical-align: text-bottom;
+        margin:0 3px;
+        cursor: pointer;
+    }
+    .check-label{
+        display: inline-block;
+    }
+    .none{
+        display:none;
+    }
+    .img-box{
+        padding: 10px;
+        padding-bottom:12px;
+        .oposite{
+            padding: 0;
+            color: #000;
+            cursor: pointer;
+        }
     }
       textarea{
         width: 360px;
@@ -110,6 +133,7 @@ h4{
     .colorList{
        
         padding-top: 7px;
+        padding-bottom: 7px;
         height: auto;
         .oposite{
             padding: 0;

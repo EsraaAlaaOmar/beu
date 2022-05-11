@@ -4,23 +4,25 @@ import {AiFillPlusCircle} from 'react-icons/ai'
 import {BiEditAlt} from 'react-icons/bi'
 import {RiDeleteBin5Line} from 'react-icons/ri'
 import { useSelector, useDispatch } from 'react-redux';
-import{getSizes} from '../../store/sizesSlice'
+import{getSizes, deleteSize} from '../../store/sizesSlice'
 import Nav from '../reusable/Nav';
+import AddSize from './AddSize';
+import { Link, Route, Routes } from 'react-router-dom';
 const Sizes = () => {
-  const {sizsList} =useSelector((state)=>state.sizes)
+  const {sizsList,error} =useSelector((state)=>state.sizes)
   const dispatch = useDispatch()
 
-  useEffect(() =>{
-    dispatch(getSizes())
+  // useEffect(() =>{
+  //   dispatch(getSizes())
   
 
-  },[dispatch])
+  // },[dispatch])
   const renderedSizes= sizsList.map((size)=>{
     return(
       <div className="category">
       {size.size}
       <span className="oposite" >
-        <span className="delet icon"> <RiDeleteBin5Line /> </span>  
+        <span className="delet icon" onClick={(e)=>dispatch(deleteSize({size_id: size.id}))}> <RiDeleteBin5Line /> </span>  
         <span className="edit icon"> <BiEditAlt /> </span> 
       </span>
     </div>
@@ -30,17 +32,22 @@ const Sizes = () => {
     <>
      <Nav />
      <div className="box"> 
+     {error&& <div className='error-notify'>{error}</div>}  
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
         <span className="title-text"> Sizes </span>
         <div className="category-box">
           sizes:&nbsp;{sizsList.length} 
-          <span className="oposite add" > <AiFillPlusCircle /> </span>
+         <Link to='/dashbord/sizes/add'><span className="oposite add" > <AiFillPlusCircle /> </span></Link> 
           {renderedSizes}
          
 
         </div>
+      
 
     </div>
+    <Routes>
+        <Route path="/add" element={<AddSize />} exact /> 
+    </Routes>
     </>
     
   )

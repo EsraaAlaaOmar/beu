@@ -30,7 +30,7 @@ const CollectionPagination = ({maplist}) => {
         return (
         
               <>
-                 <CollectionsRow collection={collection} />
+                 <CollectionsRow collection={collection}  />
               </>
          
        

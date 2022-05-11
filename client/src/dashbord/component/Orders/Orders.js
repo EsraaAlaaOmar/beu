@@ -10,8 +10,13 @@ const Orders = () => {
   
   return (
     <>
-      <Nav  first_link='Active' second_link='All'/>
+      <Nav  first_link='Active' second_link='All'  first_link_url='/orders'   second_link_url='/orders' />
+     
       <div className="box">  
+      <div className='alert'>
+        This Page not implemented yet because no payment gateway integrated
+        the content below is just a demo content to show the screen design
+              </div>
           <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
           <span className="title-text">Orders</span>
           <div className="table-box">

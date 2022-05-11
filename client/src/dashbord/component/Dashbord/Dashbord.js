@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
 import Sidebar from './Sidebar';
 import {BsFillArrowUpRightCircleFill, BsThreeDotsVertical} from 'react-icons/bs'
@@ -14,6 +15,7 @@ import Orders from './Orders';
 import Transaction from './Transaction';
 import MonthlyIncome from './MonthlyIncome';
 import Nav from '../reusable/Nav';
+import Login from '../Auth/Login'
 
 // const StyledPoint = styled.circle`
 //   fill: ${(props) => props.color};
@@ -22,17 +24,20 @@ import Nav from '../reusable/Nav';
 
 
 const Dashbord = () => {
-  
+  const {loggedIn} =useSelector((state)=> state.auth)
+  const {name } =useSelector((state)=> state.logedDetails)
 
   return (
-    <>
+ <>
       <Nav />
+     
+   {    sessionStorage.token   ?   
       <div className="box dashbord">
           <div className="title-text">Dashboard</div>
         
         <Row>
           <Col sm={12} lg={8}>
-          <Welcome />
+          <Welcome name={name}/>
           <Row>
             <Col sm={12} md={7}>
               <LineChart />
@@ -82,7 +87,10 @@ const Dashbord = () => {
           
         
       </div>
-    </>
+    :<Login />    
+    }
+     
+    </> 
   )
 };
 

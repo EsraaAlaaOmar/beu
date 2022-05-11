@@ -12,7 +12,7 @@ const UserLine = ({user,multiple,all}) => {
           
             <td className='nospace'> {multiple && <div className="check" onClick={()=>setSelected(!selected)}> {selected ? <div className="checked"> <RiCheckboxCircleFill /> </div>: <RiCheckboxBlankCircleLine /> }</div>}
                <img 
-                    src={user.img}
+                    src={user.avatar}
                 />
             </td>
             

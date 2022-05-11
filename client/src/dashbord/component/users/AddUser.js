@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import {adminRegister} from '../../store/authslice'
+import {userRegister} from '../../store/authslice'
 
 const AddUser = () => {
     const navigate = useNavigate()
@@ -21,8 +21,8 @@ const AddUser = () => {
             alert('password do not match', 'danger')
         }
         else{
-           dispatch(adminRegister(formData))
-           navigate("/users")
+           dispatch(userRegister(formData))
+           navigate("/dashbord/users")
           
         }
     }
@@ -35,7 +35,7 @@ const AddUser = () => {
         <div className='input-div'>
             <label> User Name</label>
             <input type='text' placeholder='User Name' name='name' value={name} onChange={e=>onChange(e)} required/>
-            <span className='validation'>Validation success message</span>
+           
         </div>
         <div className='input-div'>
             <label> User Email </label>

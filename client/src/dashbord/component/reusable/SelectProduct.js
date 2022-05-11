@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import Box from '../reusable/Box'
 
-const SelectProduct = ({title='Product Title', p='Supporting description for the card goes here like a breeze.', }) => {
+const SelectProduct = ({product, addProduct}) => {
+  const [number,setNumber]=useState(0)
    const [activeIndex,setActiveIndex]=useState(0)
    const [activecolor,setActivecolor]=useState(0)
    const handleClick=(index) =>{
@@ -35,12 +36,12 @@ const SelectProduct = ({title='Product Title', p='Supporting description for the
          src='https://img.freepik.com/free-photo/galaxy-system-millions-billions-stars-together-with-gas-dust_39386-369.jpg?w=1060'
           />
           <div className='box-title'>
-          {title}
+          {product.title}
           </div>
           <p>
-              {p}
+              {product.description}
               <br/>
-              Price : 100 $
+              Price : {product.unit_price} $
           </p>
           <div className='yello'>
               <div className='sizes'>Sizes : 
@@ -51,9 +52,9 @@ const SelectProduct = ({title='Product Title', p='Supporting description for the
               <div className='colors'> Colors : 
                 {renderedColors}
               </div>
-              <div className='num'> <span > +</span> 1 Items <span> - </span></div>
+              <div className='num'> <span onClick={()=>setNumber(number+1)} > +</span> {number} Items <span onClick={()=>setNumber(number-1)}> - </span></div>
           </div>
-           <button>ADD</button>
+           <button onClick={()=>addProduct(product.id)}>ADD</button>
     </div>
   )
 }

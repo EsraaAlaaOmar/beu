@@ -21,7 +21,7 @@ const onSubmit=async e=>{
     e.preventDefault()
    
     dispatch(addDiscount(formData))
-    navigate("/discount")
+    navigate("/dashbord/discount")
 
    
     

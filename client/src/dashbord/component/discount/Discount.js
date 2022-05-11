@@ -7,9 +7,10 @@ import discounts from '../../data/discount.json'
 import DiscountPagination from './DiscountPagination';
 import AddDiscount from './AddDiscount';
 import Nav from '../reusable/Nav';
+import EditeDiscount from './EditeDiscount';
 
 const Discount = () => {
-  const {discountList } =useSelector((state)=> state.discount)
+  const {discountList, error } =useSelector((state)=> state.discount)
   const dispatch = useDispatch()
 
   useEffect(() =>{
@@ -21,11 +22,14 @@ const Discount = () => {
   return (
     <>
     
-      <Nav  first_link='Active' second_link='All' />
+      <Nav  first_link='Active' second_link='All'   first_link_url='/discount'   second_link_url='/discount'/>
       
       <div className="box">  
-          <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
+      {error&& <div className='error-notify'>{error}</div>}  
+          <span className="icon"><Logo  style= {{fill:'#000'}} /></span>  
+        
           <span className="title-text">Discounts</span>
+         
           <div className="table-box">
               <div className="oposite">
                   <Link to='/dashbord/discount/add' >
@@ -38,6 +42,7 @@ const Discount = () => {
               <DiscountPagination maplist={discountList} />
               <Routes>
                 <Route path="/add" element={<AddDiscount  />} exact /> 
+                <Route path="/edite" element={<EditeDiscount />} exact/> 
             </Routes>
 
       </div>

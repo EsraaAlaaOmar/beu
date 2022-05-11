@@ -1,36 +1,49 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import axios from 'axios';
 export const adminRegister = createAsyncThunk ('auth/adminregister', 
     async(adminData ,thunkAPI) =>{
     const {rejectWithValue, getState} = thunkAPI
     try{
       const token= getState().auth.token
-      const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/admin/users/admins/create/",
+      const body= JSON.stringify(adminData)
+      const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/users/admins/create/", body, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, 
+          
+        }})
+        return ({...adminData, ...response.data}) 
+       
+    }
+    catch (e) {
+      return rejectWithValue(e.message);
+  }
+    //   const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/admin/users/admins/create/",
       
-        {
-            method: "POST",
-            body: JSON.stringify(adminData),
+    //     {
+    //         method: "POST",
+    //         body: JSON.stringify(adminData),
             
-            headers: {
-                'Content-Type': 'application/json', 
-                 'Authorization': `Bearer ${token}`,
+    //         headers: {
+    //             'Content-Type': 'application/json', 
+    //              'Authorization': `Bearer ${token}`,
            
-            }
-        }
-        )
+    //         }
+    //     }
+    //     )
         
 
         
-        return adminData
-        // await res.json();               
-      //  return data
-    }
-    catch(e){
-      console.log(e)
-      return rejectWithValue(e.message)
+    //     return adminData
+    //     // await res.json();               
+    //   //  return data
+    // }
+    // catch(e){
+    //   console.log(e)
+    //   return rejectWithValue(e.message)
       
-    }
+    // }
 
 })
 export const userRegister = createAsyncThunk ('auth/userregister', 
@@ -59,7 +72,7 @@ export const userRegister = createAsyncThunk ('auth/userregister',
       //  return data
     }
     catch(e){
-      console.log(e)
+      
       return rejectWithValue(e.message)
       
     }
@@ -70,42 +83,44 @@ export const login = createAsyncThunk ('auth/login',
     async(loginData ,thunkAPI) =>{
     const {rejectWithValue} = thunkAPI
     try{
-        console.log(loginData)
-      const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/login/",
-        {
-            method: "POST",
-            body: JSON.stringify(loginData),
-            
-            headers: {
-                'Content-Type': 'application/json', 
-               
-            }
-        }
-        )
-      console.log(res)
-       return  await res.json()
+      const body= JSON.stringify(loginData)
+      const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/login/", body, {
+        headers: {
+          'Content-Type': 'application/json', 
+          
+        }})
+      
+        return  await response.data
+      }
+      
+      catch (e) {
+        return rejectWithValue(e.message);
     }
-    catch(e){
-      return rejectWithValue
-    }
-
 })
+
 
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: { loggedIn: false, isLoading:false, error:null, token:''},
-    reducer:{}
+    initialState: { loggedIn: false, isLoading:false, error:null, adminDetailsdata:{}, token:sessionStorage.getItem('token'),},
+    reducers:{
+      logOut:(state)=>{
+        state.token='';
+       
+    
+       
+      },
+    }
     ,
     extraReducers:{
         [adminRegister.pending]:(state,action)=>{
-            state.loggedIn=false
+           
             state.isLoading = true
             state.error = null
     
         },
         [adminRegister.fulfilled]:(state,action)=>{
-            state.loggedIn=false
+         
             state.isLoading = false
             state.error= null
          
@@ -113,7 +128,7 @@ const authSlice = createSlice({
         },
         [adminRegister.rejected]:(state,action)=>{
             state.isLoading = false
-            state.loggedIn=false
+        
             state.error = action.payload
             
     
@@ -149,6 +164,7 @@ const authSlice = createSlice({
           state.isLoading = false
           state.error= null
           state.token=action.payload.access
+          sessionStorage.setItem('token', action.payload.access)
          
          
        
@@ -162,7 +178,11 @@ const authSlice = createSlice({
   
       },
 
+  
+
     }
   });
+  export const { logOut } = authSlice.actions;
+
 
   export default authSlice.reducer

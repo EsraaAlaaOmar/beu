@@ -32,10 +32,10 @@ const AddOrder = () => {
                          
                        </div>
                         <div className='buttons'>
-                            <Link to='/dashbord/offers'>
+                            <Link to='/dashbord/orders'>
                                 <button className='confrim'>Confirm</button>
                             </Link>
-                            <Link to='/dashbord/offers'>
+                            <Link to='/dashbord/orders'>
                                 <button className='discard'>Discard</button>
                             </Link>
                         </div>

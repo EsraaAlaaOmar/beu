@@ -1,19 +1,13 @@
 import React,{useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import{getAreas} from '../../store/Address/areaSlice'
 import {AiFillPlusCircle} from 'react-icons/ai'
 import {BiEditAlt} from 'react-icons/bi'
 import {RiDeleteBin5Line} from 'react-icons/ri'
-const Areas = () => {
-  const {AreasList} =useSelector((state)=>state.areas)
-  const dispatch = useDispatch()
+import { Link } from 'react-router-dom';
+const Areas = ({cityAreas}) => {
+ 
 
-  useEffect(() =>{
-    dispatch(getAreas())
-  
-
-  },[dispatch])
-  const renderedAreas = AreasList.map((area)=>{
+  const renderedAreas = cityAreas.map((area)=>{
     return(
         <div className="category">
            {area.name}
@@ -26,8 +20,8 @@ const Areas = () => {
 })
   return (
     <div className="category-box">
-    Areas:&nbsp; {AreasList.length}
-    <span className="oposite add" > <AiFillPlusCircle /> </span>
+    Areas:&nbsp; {cityAreas.length}
+    <Link to="/addresses/addarea"><span className="oposite add" > <AiFillPlusCircle /> </span></Link> 
     {renderedAreas}
   </div>
   )

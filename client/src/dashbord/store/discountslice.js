@@ -1,32 +1,24 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import axios from 'axios';
 export const getDiscounts = createAsyncThunk ('discounts/get',  async(_ ,thunkAPI) =>{
   const {rejectWithValue , getState} = thunkAPI
+///................................................................
+const token= getState().auth.token
+
 
 try{
   const token= getState().auth.token
+  let res = await axios.get("https://test-beau-wow.herokuapp.com/api/v1/admin/discounts/",{
+  headers: {
+'Content-Type': 'application/json', 
+ 'Authorization': `Bearer ${token}`,}
 
-  
-  const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/admin/discounts/",
-  
-    {
-        method: "GET",
-        headers: {
-            'Content-Type': 'application/json', 
-             'Authorization': `bearer ${token}`,
-        
-        }
-    }
-    )
-    
-
-    
-    return res.json() 
-    // await res.json();               
-  //  return data
+})
+  return res.data
 }
-catch(e){
-  return rejectWithValue(e.message)
+catch (e) {
+     
+  return rejectWithValue(e.message);
 }
 
 })
@@ -34,30 +26,52 @@ export const addDiscount = createAsyncThunk ('discounts/add',  async(discountDat
   const {rejectWithValue , getState} = thunkAPI
   const token= getState().auth.token
 //const token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ2ODk0MzQ0LCJpYXQiOjE2NDYwMzAzNDQsImp0aSI6ImNlZGRmZjA0OTU2MDQ3NGZhNzAyOGM2MmJmNzJlNDRlIiwidXNlcl9pZCI6MX0.EJUZC1FE4XldJ8syppkdNHuuEyeDD8VeLHsOxUoM-lU'
-
 try{
+ let  body= JSON.stringify(discountData)
+  const res= await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/discounts/update/",body, {headers: {
+          'Content-Type': 'application/json', 
+           'Authorization': `Bearer ${token}`,
+      }
+      })
+
+  if(res.status == 201) {
+    return {...discountData , ...res.data}
+  }  
+   
   
-  const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/admin/discounts/create/",
-  
-    {
-        method: "POST",
-        body: JSON.stringify(discountData),
-        headers: {
-            'Content-Type': 'application/json', 
-             'Authorization': `Bearer ${token}`,
-        
-        }
-    }
-    )
-    return (discountData)
-    // await res.json();               
-  //  return data
+
 }
-catch(e){
-  console.log(e)
-  return rejectWithValue(e.message)
-  
+catch (e) {
+     
+  return rejectWithValue(e.message);
 }
+
+})
+
+export const editeDiscount = createAsyncThunk ('discount/update',  async(editedDiscountData,thunkAPI) =>{
+  const {rejectWithValue , getState} = thunkAPI
+  const token= getState().auth.token
+  const config = {     
+    headers: { 'content-type': 'application/json',
+               'Authorization': `Bearer ${token}`,
+  }}
+try{
+
+let body= JSON.stringify(editedDiscountData)
+let response = await axios.put("https://test-beau-wow.herokuapp.com/api/v1/admin/discounts/update/", body, config)
+
+  if(response.status == 200) {
+    return  ({...editedDiscountData, ...response.data}) 
+  }
+
+
+ 
+}
+catch (e) {
+     
+  return rejectWithValue(e.message);
+}
+
 
 })
 const discountSlice= createSlice({
@@ -110,6 +124,32 @@ const discountSlice= createSlice({
          console.log(action)
          
       }, 
+      [ editeDiscount.pending ] :(state,action)=>{
+
+        state.isLoading = true
+        state.error = null
+     
+      
+   },
+   [ editeDiscount.fulfilled ] :(state,action)=>{
+    state.isLoading = true;
+    state.error= null;
+    console.log(action.payload)
+    const index = state.discountList.findIndex(discount => discount.id == action.payload.discount_id);                                                            
+    const newArray = [...state.discountList]; 
+    if(index)
+    {  newArray[index] = action.payload;}
+   state.discountList=newArray ;
+
+    
+    },
+
+    [ editeDiscount.rejected ] :(state,action)=>{
+         state.isLoading = false
+         state.error = action.payload
+       console.log(action)
+       
+    }, 
     }
 
 

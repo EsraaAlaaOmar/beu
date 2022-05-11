@@ -32,7 +32,7 @@ const DiscountPagination = ({maplist}) => {
         return (
         
               
-               <DiscountRow discont={discont}  />
+              discont.percentage ? <DiscountRow discont={discont}  /> :<div>Error</div> 
          
        
     
@@ -49,7 +49,8 @@ const DiscountPagination = ({maplist}) => {
                 <th>END DATE</th>
                 <th>PERCENTAGE %</th>
                 <th>PROMO-CODE</th>
-                <th>AVAILABILITY</th>
+                {/* <th>AVAILABILITY</th> */}
+                <th>Limit</th>
                 <th>ARCHIEVE</th>
                 <th></th>
                 <th></th>

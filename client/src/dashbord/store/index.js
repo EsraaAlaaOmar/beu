@@ -10,10 +10,13 @@ import sizes from './sizesSlice'
 import countries from './Address/counteriesSlice'
 import cities from './Address/CitiesSlice'
 import areas from './Address/areaSlice'
+import product from './productSlice'
+import logedDetails from './logedDetailsSlice'
 
 export default   configureStore({
   reducer: {
       auth,
+      logedDetails,
       discount,
       offers, 
       admins, 
@@ -24,6 +27,7 @@ export default   configureStore({
       countries,
       cities, 
       areas,
+      product
 
   },
 })

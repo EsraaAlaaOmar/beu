@@ -1,31 +1,28 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {userRegister} from './authslice'
-
+import axios from 'axios';
 
 export const getUseres = createAsyncThunk ('users/get',  async(_ ,thunkAPI) =>{
     const {rejectWithValue , getState} = thunkAPI
   
-  try{
+ try{
     const token= getState().auth.token
-  
+    let res = await axios.get("https://test-beau-wow.herokuapp.com/api/v1/admin/users/customers/",{
+      headers: {
+    'Content-Type': 'application/json', 
+     'Authorization': `Bearer ${token}`,}
     
-    const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/admin/users/admins/",
+    })
     
-      {
-          method: "GET",
-          headers: {
-              'Content-Type': 'application/json', 
-               'Authorization': `Bearer ${token}`,
-          
-          }
-      }
-      )
+    
 
-      return res.json() 
+      return res.data
   }
-  catch(e){
-    return rejectWithValue(e.message)
-  }
+  
+  catch (e) {
+     
+    return rejectWithValue(e.message);
+}
   
   })
   const usersSlice= createSlice({
@@ -57,10 +54,18 @@ export const getUseres = createAsyncThunk ('users/get',  async(_ ,thunkAPI) =>{
            
         }, 
         // ............. end getUseres ......................
+        [userRegister.pending]:(state,action)=>{
+          
+          state.error =null
+      },
         [userRegister.fulfilled]:(state,action)=>{
           
           state.usersList= [...state.usersList, action.payload]
       },
+      [userRegister.rejected]:(state,action)=>{
+          
+        state.error = action.payload
+    },
      
        
     }

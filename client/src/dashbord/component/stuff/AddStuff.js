@@ -11,10 +11,12 @@ const AddStuff = () => {
       email: '',
       password: '',
       confirm_password:'',
+      is_superuser:''
    
   })
-  const {name, email, password, confirm_password}=formData
+  const {name, email,is_superuser, password, confirm_password}=formData
   const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
+  const onCheckChange=e=>setFormData({...formData, [e.target.name]: e.target.checked})
   const onSubmit= async e => {
       e.preventDefault()
       if(password !== confirm_password){
@@ -22,7 +24,7 @@ const AddStuff = () => {
       }
       else{
          dispatch(adminRegister(formData))
-         navigate("/stuff")
+         navigate("/dashbord/stuff")
         
       }
   }
@@ -35,12 +37,13 @@ const AddStuff = () => {
             <div className='input-div'>
                 <label> Stuff Name</label>
                 <input type='text' placeholder='Stuff Name' name='name' value={name} onChange={e=>onChange(e)} required/>
-                <span className='validation'>Validation success message</span>
             </div>
             <div className='input-div'>
                 <label> User Email </label>
                 <input type='email'  placeholder='admin@mail'  name='email' value={email} onChange={e=>onChange(e)} required/>
             </div>
+         
+            
             <div className='input-div'>
                 <label>Password </label>
                 <input type='password'  minLength="6"  name='password' value={password} placeholder='●●●●●●●' onChange={e=>onChange(e)} required/>
@@ -49,7 +52,12 @@ const AddStuff = () => {
                 <label>Confirm Password </label>
                 <input type='password'  minLength="6"  name='confirm_password' value={confirm_password} placeholder='●●●●●●●' onChange={e=>onChange(e)} required/>
             </div>
-
+            <div className='input-div'>
+               
+               <input type='checkbox' className='checkbox' placeholder='Stuff Name' name='is_superuser' value={is_superuser} onChange={e=>onCheckChange(e)} required/>
+               <label className='check-label'>superuser</label>        
+           </div>
+              
             <div className='buttons'>
                 
                     <input type='submit' className='confrim' value='Confirm' />

@@ -7,19 +7,21 @@ import useres from '../../data/users.json'
 import StuffPagination from './StuffPagination';
 import AddStuff from './AddStuff';
 import Nav from '../reusable/Nav';
+import EditeAdmin from './EditeAdmin';
 const Stuff = () => {
-  const {adminsList } =useSelector((state)=> state.admins)
+  const {adminsList, error} =useSelector((state)=> state.admins)
   const dispatch = useDispatch()
  
-  useEffect(() =>{
-    dispatch(getAdmins())
+  // useEffect(() =>{
+  //   dispatch(getAdmins())
   
 
-  },[dispatch])
+  // },[dispatch])
     return (
     <>
-        <Nav  first_link='Active' second_link='All' />
+        <Nav  first_link='Active' second_link='All'   first_link_url='/stuff'   second_link_url='/stuff'/>
         <div className="box">  
+        {error&& <div className='error-notify'>{error}</div>}  
     <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
     <span className="title-text">Stuff</span>
     <div className="table-box">
@@ -37,6 +39,7 @@ const Stuff = () => {
           <StuffPagination maplist={adminsList} />
           <Routes>
                <Route path="/add" element={<AddStuff />} exact /> 
+               <Route path="/edite" element={<EditeAdmin />} exact /> 
           </Routes>
 
   </div>

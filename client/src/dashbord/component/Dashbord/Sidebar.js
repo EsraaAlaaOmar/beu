@@ -59,7 +59,7 @@ const Sidebar = ({showtoggle}) => {
         //  {
         //     icon:'/images/dashbordsidebar/colors.svg',
         //     name:'Colors',
-        //     link: '/',
+        //     link: '/dashbord/',
 
         //  },
          {
@@ -72,6 +72,18 @@ const Sidebar = ({showtoggle}) => {
             icon:'/images/dashbordsidebar/address.svg',
             name:'Addresses',
             link: '/dashbord/addresses',
+
+         },
+         {
+            icon:'/',
+            name:'Feedback',
+            link:'/dashbord/feedback' ,
+
+         },
+         {
+            icon:'/',
+            name:'Sell in Beau',
+            link:'/dashbord/sell' ,
 
          },
            {

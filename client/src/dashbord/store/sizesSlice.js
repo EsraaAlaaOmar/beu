@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-
+import axios from 'axios';
 
 
 export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
@@ -28,6 +28,40 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
   }
   
   })
+  export const addSize = createAsyncThunk ('sizes/add',  async(size ,thunkAPI) =>{
+    const {rejectWithValue , getState} = thunkAPI
+    const token= getState().auth.token
+    try {
+      const body= JSON.stringify(size)
+      const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/sizes/create/", body, {
+        headers: {
+          'Content-Type': 'application/json', 
+          'Authorization': `Bearer ${token}`,
+        }})
+        {return {...size, ...response.data}}
+      }
+      catch (e) {
+      return rejectWithValue(e.message);
+    }
+    })
+   export const deleteSize=   createAsyncThunk ('sizes/delete',  async(id ,thunkAPI) =>{
+      const {rejectWithValue , getState} = thunkAPI
+      const token= getState().auth.token
+      try {
+        const body= JSON.stringify(id)
+        const response = await axios.delete("https://test-beau-wow.herokuapp.com/api/v1/admin/sizes/delete/", {
+          headers: {
+            'Content-Type': 'application/json', 
+            'Authorization': `Bearer ${token}`,
+          },data: body})
+          if(response.status==200)
+         return id 
+        }
+        catch (e) {
+        return rejectWithValue(e.message);
+      }
+      })
+   
   const sizesSlice= createSlice({
     name:'discounts',
     initialState : {sizsList:[], isLoading:false,addLoading:false, error:null},
@@ -57,6 +91,55 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
            
         }, 
         // ............. end getSizes ......................
+        //.......addSize .........................
+        [ addSize.pending ] :(state,action)=>{
+
+          state.isLoading = true
+          state.error = null
+          
+        
+     },
+     [ addSize.fulfilled ] :(state,action)=>{
+      state.isLoading = false
+      state.error= null
+      state.sizsList  = [...state.sizsList, action.payload]
+    
+  
+      
+      },
+      [ addSize.rejected ] :(state,action)=>{
+           state.isLoading = false
+           state.error = action.payload
+           console.log(`esraa ${action.payload}`)
+        
+         
+      }, 
+
+      //....... delete size .........
+      [ deleteSize.pending ] :(state,action)=>{
+
+        state.isLoading = true
+        state.error = null
+        
+      
+   },
+   [ deleteSize.fulfilled ] :(state,action)=>{
+    state.isLoading = false
+    state.error= null
+    state.sizsList  = state.sizsList.filter((size)=>size.id != action.payload.size_id)
+    
+  
+
+    
+    },
+    [ deleteSize.rejected ] :(state,action)=>{
+         state.isLoading = false
+         state.error = action.payload
+         console.log(`esraa ${action.payload}`)
+      
+       
+    }, 
+
      
        
     }
