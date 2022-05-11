@@ -1,0 +1,28 @@
+.App{
+   
+    background-color: #F6F6F6;
+    min-height: 100vh;
+}
+@import "~bootstrap/scss/bootstrap";
+
+
+@import "styless/nav";
+//dashbord
+@import "styless/dashbord";
+@import "styless/sidebar";
+@import "styless/orders";
+
+@import "styless/compoents/table";
+@import "styless/compoents/oposite-button";
+@import "styless/box";
+@import "styless/finance";
+@import "styless/compoents/persentagecircle";
+@import "styless/sizes";
+@import "styless/addStuff";
+@import "styless/chooseproduct"
+
+
+
+
+
+

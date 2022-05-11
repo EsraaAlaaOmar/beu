@@ -1,0 +1,55 @@
+.box_component{
+    padding:15px;
+    padding-bottom:20px;
+    background-color: #fff;
+    width: 260px;
+    border-radius:20px;
+    font-family: IBMPlexSans-Bold;
+    color: #000;
+    margin:20px  0;
+    img{
+        width:100%;
+        border-radius:15px;
+        height: 200px;
+    }
+    .box-title{
+        font-size: 22px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-weight: bold;
+       
+    }
+    p{
+        margin-bottom: 5px;
+    }
+    .yello{
+    color: #FFA200;
+    .color{
+        width: 26px;
+        height: 20px;
+        background-color: #000;
+        display: inline-block;
+        margin: 0 5px;
+         margin-bottom: -6px;
+      
+        
+    }
+    }
+    .Active{
+        color: #5fdba7;
+        font-weight: bold;
+    }
+    .actions{
+        margin: auto;
+        margin-top: 20px;
+
+        span{
+            color:#7C9CBF;
+            padding:4px 5px;
+            box-shadow: 0px 3px 6px #272D3B33;
+            margin:5px;
+            cursor: pointer;
+
+        }
+    }
+}

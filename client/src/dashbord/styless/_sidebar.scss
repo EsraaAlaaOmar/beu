@@ -1,0 +1,118 @@
+.sidebar{
+    
+    width: 256px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: #2D62ED;
+    color: #fff;
+    border-radius: 0px 16px 16px 0px;
+    text-align: center;
+    font-family: Montserrat;
+    z-index: 2;
+    @media screen and (max-width: 1078px)  {
+       display: none;
+        
+    }
+    a{
+        text-decoration: none;
+        color: #fff;
+    }
+    .title{
+        margin-top: 4vh;
+        margin-bottom: 0vh;
+        font-size: 22px;
+        font-weight: 500;
+        max-height: 3vh;
+        img{
+            width: 33px;
+            height: 27px;
+            margin-right: 8px;
+        }
+    }
+    .links{
+        text-align:start;
+        padding:2vh 37px;
+ 
+        .link{
+            margin: 20px 0;
+            padding-left:20px;
+            height:3.5vh;
+            cursor:pointer;
+            opacity: .5;
+            font-size: 16px;
+            font-weight: 500;
+            &:hover{
+                opacity: calc( .1 + .9);
+            }
+            
+            img{
+                width: 32px;
+                height:30px;
+                margin-right:25px;
+                vertical-align: text-bottom;
+                max-height: 4vh;
+            }
+        }
+        .active{
+            opacity:calc(.9 + .1);
+            border-left: solid 3px #fff;
+          //  line-height:50px;
+        }
+    }
+}
+.show-sidebar{
+    display:none;
+    background-color:#2D62ED;
+    color: #fff;
+    border: solid 1px #fff;
+    padding: 20px;
+    cursor: pointer;
+    @media screen and (max-width: 1078px)  {
+        display: block;
+         
+     }
+}
+.sidebar-list{
+    display:none;
+    background-color:#2D62ED;
+    margin-top:-15px;
+    color: #fff;
+    position: absolute;
+    top: 85px;
+    z-index: 99999;
+    padding:10px 30px;
+    @media screen and (max-width: 1078px)  {
+        display: block;
+         
+     }
+    a{
+        text-decoration: none;
+        color: #fff;
+    }
+    .link{
+        margin: 20px 0;
+       
+       
+        cursor:pointer;
+        opacity: .5;
+        font-size: 16px;
+        font-weight: 500;
+        &:hover{
+            opacity: calc( .1 + .9);
+        }
+        
+        img{
+            width: 32px;
+            height:30px;
+            margin-right:10px;
+            vertical-align: text-bottom;
+            max-height: 4vh;
+        }
+    }
+    .active{
+        opacity:calc(.9 + .1);
+        
+    }
+}

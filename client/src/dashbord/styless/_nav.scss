@@ -1,0 +1,121 @@
+.navbar{
+   width:100%; 
+   
+    min-height: 70px;
+    background-color: #fff;
+    box-shadow: 0px 3px 6px #272D3B33;
+    padding:0 20px;
+    padding-left: 300px;
+    
+    @media screen and (max-width: 1078px)  {
+       padding-left: 0;
+         
+     }
+     .link{
+         font-size:18px;
+         font-weight: 500;
+         margin:0 20px;
+         cursor: pointer;
+         margin-bottom: 20px;
+         @media screen and (max-width: 1168px)  {
+           display: inline-block;
+            margin-top:20px;
+            margin-bottom: 0px;
+              
+          }
+     }
+     .active{
+         border-bottom: solid 3px #2D62ED;
+     }
+    .opposite{
+        
+       
+        float: right;
+        color:red;
+        line-height:80%;
+      
+     
+       
+    }
+    .search-div{
+        display: inline-block;
+        position: relative;
+        margin-right: 12vw;
+        input{
+            width: 339px;
+            height: 45px;
+            border-radius: 25px;
+            border: 1px solid #272D3B;
+            padding-left: 50px;
+            outline: none;
+        }
+        span{
+            position: absolute;
+            left: 15px;
+            top: 5px;
+            font-size: 20px;
+            opacity: 0.5;
+            &:hover{
+                cursor: pointer;
+                opacity: 1.0;
+            }
+        }
+    }
+  
+    .admin{
+        display:inline-block;
+        margin-right: 20px;
+     
+        @media screen and (max-width: 655px)  {
+            padding-left: 0;
+            margin-top:20px;
+              
+          }
+        
+            .nk{
+                    color:#fff;
+                    background-color: #7C9CBF;
+                    width: 46px;
+                    height: 40px;
+                    vertical-align: middle;
+                    text-align: center;
+                    padding-top:8px;
+                    border-radius:50%;
+                    display: inline-block;
+                }
+                .info{
+                    display: inline-block;
+                    vertical-align: middle;
+                    margin-left: 10px;
+                    .name{
+                        margin-top: 5px;
+                        font-size: 16px;
+                        font-weight: 500 ;
+                        line-height: .7;
+
+                    }
+                    .position{
+                        font-size: 14px;
+                        color: #7C9CBF;
+                    }
+                }
+    }
+    .logout{
+        font-size: 26px;
+        margin-left: 40px;
+        position: absolute;
+        right: 30px;
+        @media screen and (max-width: 655px)  {
+           
+            margin-top:20px;
+              
+          }
+        
+        &:hover{
+            cursor: pointer;
+            opacity:.5;
+        }
+    }
+
+
+}

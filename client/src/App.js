@@ -1,5 +1,6 @@
 
 import { Route, Routes ,BrowserRouter as Router} from 'react-router-dom'
+import './App.scss';
 import Log from './sitePages/Login/Log';
 import Land from "./landingPage/Land";
 import Search from './sitePages/Search';
@@ -11,13 +12,15 @@ import Category from './sitePages/Category';
 import ReturnForm from './sitePages/ReturnForm';
 import Submit from './sitePages/Submit';
 import Payment from './sitePages/components/staticPages/payment/Payment';
+// import Dashbord from './dashbord/App'
 function App() {
   return (
-    <Router>
+  
 
    
     <Routes>
          <Route path="/" element={<Land />} exact />
+         {/* <Route path="/dashbord/*" element={<Dashbord />} exact /> */}
          <Route path="/log/*" element={<Log />} exact />
          <Route path="/search" element={<Search />} exact />
          <Route path="/favourite" element={<Favourite />} exact />
@@ -40,7 +43,7 @@ function App() {
         
      </Routes>
 
- </Router>
+
   );
 }
 

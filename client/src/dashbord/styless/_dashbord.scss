@@ -1,0 +1,329 @@
+.dashbord{
+ font-family:sans-serif;
+ padding-bottom: 50px;
+    .welcome{
+        position: relative;
+        font-family: Montserrat;
+        padding: 20px 60px;
+        background-color:#fff;
+        width:98%;
+        margin: 20px auto;
+        box-shadow: 0px 3px 6px #272D3B33;
+        border-radius: 20px;
+        img{
+            width: 183px;
+            height: 173px;
+            position: absolute;
+            right: 20px;
+            top: -50px;
+            &:hover{
+                right: 100px;
+            }
+            @media screen and (max-width:700px)  {
+                display: none;
+                 
+             }
+        }
+        
+        .msg{
+            font-size: 26px ;
+            font-weight: bold;
+            margin-bottom:15px;
+        }
+        .info{
+            font-size: 18px;
+            .dot{
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color:#FF007C;
+                display: inline-block;
+            }
+        }
+    }
+    .chart{
+        
+        width: 98%;
+        margin:10px auto;
+        background-color:#fff;
+        box-shadow: 0px 3px 6px #272D3B33;
+        border-radius: 20px;
+        position: relative;
+
+
+
+        h5{
+            display: inline-block;
+            padding:20px;
+            padding-bottom: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .oposite{
+            cursor: pointer;
+        }
+        .arrow{
+            bottom:4px;
+        }
+    
+    }
+
+.line{
+    height: 300px;
+    .graph{
+        height: 100%;
+        width: 100%;
+      
+    }
+svg{
+    padding-bottom: 39px !important;
+    g{
+     
+line{
+    stroke:#272D3B33 !important;
+    stroke-dasharray:0 !important;
+}
+
+ 
+
+    }
+}
+}
+.linewcircle{
+    height:300px;
+    padding-bottom: 70px;
+    svg{
+        padding-right: 15%;
+        g{
+    line{
+        stroke:#fff !important;
+        stroke-dasharray:0 !important;
+    }
+
+}
+}
+}
+.natural{
+    background-color:#FF007C;
+    color: #fff;
+    height: 200px;
+    margin: 20px auto;
+    border-radius: 20px;
+    padding:0.1px;
+    .graph{
+        height: 90px;
+        width: 100%;
+        max-width: 450px;
+        margin:auto;
+        border-radius: 20px;
+        margin-top: 20px;
+    }
+    .num{
+     margin: 15px 40px  -10px 40px;
+     font-size: 28px;
+     font-weight: bold;
+    }
+    .duration{
+        padding: 0 40px ;
+    }
+}
+
+.earned{
+    background-color: #fff;
+    width: 98%;
+    height: 90px;
+    box-shadow: 0px 3px 6px #272D3B33;
+    border-radius: 20px;
+    margin:10px auto;
+    padding:20px;
+    position: relative;
+    div{
+       font-size: 18px;
+       font-weight: bold;
+        
+    }
+    p{
+        font-size: 14px;
+    }
+}
+.orders{
+    width: 98%;
+    min-width: 310px;
+    max-width: 380px;
+    margin:10px auto;
+  
+    height: auto;
+    background-color: #fff;
+    box-shadow: 0px 3px 6px #272D3B33;
+    border-radius: 20px;
+    padding: 10px;
+    padding-bottom: 50px;
+    position: relative;
+    .title{
+        font-size:18px;
+        font-weight: bold;
+        margin: 10px;
+        display: inline-block;
+    }
+    .oposite{
+        padding:0;
+        margin: 10px;
+        margin-top: 10px;
+        
+        div{
+            margin:-10px 0;
+            cursor: pointer;
+        }
+    }
+    .oneorder{
+        margin:25px 5px;
+        .uerimg{
+            width: 40px;
+            height: 40px;
+            border-radius:50%;
+            
+        }
+        .name{
+            font-size: 14px;
+           color:gray;
+           margin: 0 3px;
+        }
+        .itemimg{
+            width: 45px;
+            height: 45px;
+            border-radius: 10%;
+            padding:0 !important;
+           display: inline-block;
+        
+           margin-top:-10px;
+          
+        }
+        .oposite{
+            margin:0;
+        }
+        .item-info{
+            font-size: 14px;
+            
+        }
+    }
+    .arrow{
+       bottom:10px;
+       right:10px;
+    }
+}
+.precentage-div{
+    background-color: #fff;
+    width: 98%;
+    height: 232px;
+    box-shadow: 0px 3px 6px #272D3B33;
+    border-radius: 20px;
+    position: relative;
+   
+    margin:20px auto;
+    .circle-div{
+        margin: auto;
+        width: 150px;
+        height: 100px;
+    }
+    .information{
+       width:100%;
+        position:absolute;
+        left: 0;
+        top: 130px;
+        padding: 0 20px;
+        font-size: 14px;
+        .oposite{
+            padding: 0;
+        }
+        .top{
+           width: 100%;
+            margin-top: 10px;
+            
+        }
+        .bold{
+            font-size: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+    }
+}
+.arrow{
+    color: #00CCF2;
+    position: absolute;
+    bottom:25px;
+    right: 15px;
+    font-size: 28px;
+    cursor: pointer;
+}
+.monthly-income{
+    background-color: #7D00B5;
+    color: #fff;
+    width: 130px;
+    height: 118px;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 3px 6px #272D3B33;
+    @media screen and (max-width: 920px)  {
+        margin: auto;
+         
+     }
+    h5{
+        font-weight: bold;
+        margin:  7px 0;
+    }
+    div{
+        font-size: 13px;
+    }
+}
+.transiction{
+margin-top: 20px;
+
+    .title-text{
+        display:block;
+        font-size: 24px;
+        padding-bottom: 30px;
+    }
+    .info-div{
+        margin:  10px 0px;
+        background-color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        button{
+            color: #2D62ED;
+            width: 77px;
+            height: 33px;
+            border: solid 1px #2D62ED;
+            background-color: #fff;
+            margin:10px;
+            float: right;
+            font-size: 16px;
+          }
+          .yello{
+              color: #FFA200;
+              margin:10px;
+          }
+          svg{
+              margin:0 10px;
+              width: 34px;
+              height: 28px;
+          }
+        .order{
+            padding: 20px;
+           
+            border-bottom: solid 1px #0000001A;
+
+            img{
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin: 10px;
+            }
+        }
+        .payment{
+            padding: 20px; 
+        }
+    }
+}
+
+}
