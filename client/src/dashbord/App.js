@@ -25,7 +25,7 @@ import Login from './component/Auth/Login';
 function App() {
 const [showSide,setShowSide]=useState(false)
   return (
-    <div className="App" 
+    <div className="App dashbord-side" 
     onClick={(e)=>
       { if(e.target !== document.getElementById('list')   ){
         setShowSide(false)
