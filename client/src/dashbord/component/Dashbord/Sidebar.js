@@ -89,7 +89,7 @@ const Sidebar = ({showtoggle}) => {
          {
             icon:'/',
             name:'Land page',
-            link:'/dashbord/landpage' ,
+            link:'/dashbord/landingpage' ,
 
          },
            {

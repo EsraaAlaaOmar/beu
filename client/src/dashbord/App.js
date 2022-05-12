@@ -22,6 +22,7 @@ import Sizes from './component/Sizes/Sizes';
 import Address from './component/Address/Address';
 import Register from './component/Auth/Register';
 import Login from './component/Auth/Login';
+import LandingPage from './component/landingPage/LandingPage';
 function App() {
 const [showSide,setShowSide]=useState(false)
   return (
@@ -55,6 +56,7 @@ const [showSide,setShowSide]=useState(false)
      <Route path="/addresses" element={<Address />} exact />
      <Route path="/register" element={<Register />} exact />
      <Route path="/login" element={<Login />} exact />
+     <Route path="/landingpage" element={<LandingPage />} exact />
 
 
 
