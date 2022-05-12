@@ -31,7 +31,7 @@ const Dashbord = () => {
  <>
       <Nav />
      
-   {    sessionStorage.token   ?   
+   
       <div className="box dashbord">
           <div className="title-text">Dashboard</div>
         
@@ -87,8 +87,8 @@ const Dashbord = () => {
           
         
       </div>
-    :<Login />    
-    }
+    <Login />    
+    
      
     </> 
   )

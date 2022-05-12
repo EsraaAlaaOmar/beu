@@ -86,6 +86,12 @@ const Sidebar = ({showtoggle}) => {
             link:'/dashbord/sell' ,
 
          },
+         {
+            icon:'/',
+            name:'Land page',
+            link:'/dashbord/landpage' ,
+
+         },
            {
             icon:'/images/dashbordsidebar/finance.svg',
             name:'Finance',
