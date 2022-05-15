@@ -56,7 +56,7 @@ const [showSide,setShowSide]=useState(false)
      <Route path="/addresses" element={<Address />} exact />
      <Route path="/register" element={<Register />} exact />
      <Route path="/login" element={<Login />} exact />
-     <Route path="/landingpage" element={<LandingPage />} exact />
+     <Route path="/landingpage/*" element={<LandingPage />} exact />
 
 
 

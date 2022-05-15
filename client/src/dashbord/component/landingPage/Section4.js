@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Col, Container, Row } from 'react-bootstrap'
 import {BsFillCameraFill} from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 const Section4 = () => {
   return (
     <div className="section-4 section">
@@ -16,7 +17,7 @@ const Section4 = () => {
                 
                 <div className='overlayer'>   </div>
                 <div className='img-text'>
-                    <BsFillCameraFill />
+                    <Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  
                     <div>385 * 478</div>
                 </div>
                     <img  alt='section 1 image'
@@ -35,7 +36,7 @@ const Section4 = () => {
                 
                 <div className='overlayer'>   </div>
                 <div className='img-text'>
-                    <BsFillCameraFill />
+                    <Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  
                     <div>385 * 478</div>
                 </div>
                     <img  alt='section 1 image'
@@ -54,7 +55,7 @@ const Section4 = () => {
                 
                 <div className='overlayer'>   </div>
                 <div className='img-text'>
-                    <BsFillCameraFill />
+                    <Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  
                     <div>385 * 478</div>
                 </div>
                     <img  alt='section 1 image'
@@ -73,7 +74,7 @@ const Section4 = () => {
                 
                 <div className='overlayer'>   </div>
                 <div className='img-text'>
-                    <BsFillCameraFill />
+                    <Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  
                     <div>385 * 478</div>
                 </div>
                     <img  alt='section 1 image'

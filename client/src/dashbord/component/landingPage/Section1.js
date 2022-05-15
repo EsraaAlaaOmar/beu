@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import {BsFillCameraFill} from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 const Section1 = () => {
   return (
     <div className="section-1 section">
@@ -13,8 +14,9 @@ const Section1 = () => {
                 <div className='img'>
                  
                   <div className='overlayer'>   </div>
+                  
                   <div className='img-text'>
-                    <BsFillCameraFill />
+                  <Link to='/dashbord/landingpage/uploadimage'><Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  </Link>  
                     <div>385 * 478</div>
                   </div>
                     <img  alt='section 1 image'
@@ -29,7 +31,7 @@ const Section1 = () => {
                  
                   <div className='overlayer'>   </div>
                   <div className='img-text'>
-                    <BsFillCameraFill />
+                    <Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  
                     <div>385 * 478</div>
                   </div>
                     <img  alt='section 1 image'
@@ -44,7 +46,7 @@ const Section1 = () => {
                  
                   <div className='overlayer'>   </div>
                   <div className='img-text'>
-                    <BsFillCameraFill />
+                    <Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  
                     <div>385 * 478</div>
                   </div>
                     <img  alt='section 1 image'

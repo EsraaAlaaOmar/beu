@@ -87,7 +87,7 @@ const Sidebar = ({showtoggle}) => {
 
          },
          {
-            icon:'/',
+            icon:'/images/dashbordsidebar/contact.svg',
             name:'Land page',
             link:'/dashbord/landingpage' ,
 
