@@ -227,11 +227,12 @@
       .img-container{
           position: relative;
           width: 384px;
-          padding:10px;
+          height: 476px;
+        
       img{
           max-width: 100% !important;
          
-          height: 476px;
+          max-height: 100%;
       }   
       .box-border{
           width:15vh;
@@ -267,6 +268,15 @@
       }
     
     }
+    }
+    .controls{
+    
+        width:384px;
+   
+        input{
+            margin: 10px auto;
+            display:block;
+        }
     }
     .buttons{
         text-align:left !important;
