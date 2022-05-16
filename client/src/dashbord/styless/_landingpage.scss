@@ -285,5 +285,14 @@
     }
 
     }
+    .change-image{
+     cursor: pointer;
+     color: #1c6bc8;
+     font-size: 18px;
+     &:hover{
+         opacity: .5;
+     }
+    }
 }
+
 }

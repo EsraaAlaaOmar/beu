@@ -12,9 +12,9 @@ const QuestionswithAnswers = () => {
     const {loggedIn} =useSelector((state)=> state.auth)
     return (
       <>
-      <Nav first_link='Questions & Answers'  second_link='Feedback' first_link_url='/questions'   second_link_url='/feedback' />
+      <Nav first_link='Questions & Answers'  second_link='Feedback' first_link_url='/dashbord/questions'   second_link_url='/dashbord/feedback' />
       
-      { sessionStorage.token    ?   
+     
            <div className="box">
            <div className="title-text">Questions & Answers</div>
            <div className="table-box no-butons">
@@ -56,7 +56,7 @@ const QuestionswithAnswers = () => {
              <Route path="/edite" element={<EditeQuestion />} exact />
              </Routes>
   
-          </div> : <Login />}
+          </div>
     </>
     )
 }

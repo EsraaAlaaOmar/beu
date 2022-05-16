@@ -9,7 +9,7 @@ const Sell = () => {
     <>
       <Nav first_link='All' />
       
-      { sessionStorage.token    ?   
+    
            <div className="box">
               <div className="title-text">Sell in Beau Wow</div>
               <div className="table-box no-butons">
@@ -38,7 +38,7 @@ const Sell = () => {
                    
              </div>
 
-          </div> : <Login />}
+          </div> 
     </>
   )
 }

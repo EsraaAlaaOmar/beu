@@ -10,9 +10,8 @@ const FeedBack = () => {
 const {loggedIn} =useSelector((state)=> state.auth)
   return (
     <>
-    <Nav first_link='Feedback' second_link='Questions & Answers' first_link_url='/feedback' second_link_url='/questions'/>
+    <Nav first_link='Feedback' second_link='Questions & Answers' first_link_url='/dashbord/feedback' second_link_url='/dashbord/questions'/>
     
-    { sessionStorage.token    ?   
          <div className="box">
             <div className="title-text">Feedback</div>
             <div className="table-box no-butons">
@@ -40,7 +39,7 @@ const {loggedIn} =useSelector((state)=> state.auth)
              <Route path="/view" element={<ViewFeedBacks />} exact />
           </Routes>
 
-        </div> : <Login />}
+        </div> 
   </>
   )
 }
