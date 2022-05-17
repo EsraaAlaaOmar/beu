@@ -41,7 +41,7 @@ const DiscountRow = ({discont}) => {
             <td>{discont.ARCHIEVE === "Yes" ? 'archived' : 'unarchived'}</td>
             <td></td>
             <td>
-            { showlist && <div className='hiddenlist'>
+           { showlist && <div className='hiddenlist' ref={wrapperRef}>
                <Link to='/dashbord/discount/edite' state={{discont:discont}}> <div className='border-inlist'>Update Discount</div></Link>
                 <div className='delete-inlist'>Delete</div>
             </div>}

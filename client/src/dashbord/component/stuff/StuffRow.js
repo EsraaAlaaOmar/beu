@@ -40,7 +40,7 @@ const StuffRow = ({user}) => {
     <td></td>
     <td></td>
      <td>
-        { showlist && <div className='hiddenlist'>
+       { showlist && <div className='hiddenlist' ref={wrapperRef}>
                 <Link to='/dashbord/stuff/edite' state={{ user: user }}><div className='border-inlist'>Edit Employee</div> </Link>
                 <div className='delete-inlist'>Delete</div>
             </div>}

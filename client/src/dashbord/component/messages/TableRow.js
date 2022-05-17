@@ -44,7 +44,7 @@ const TableRow = ({user}) => {
     <td></td>
     
     <td>
-       { showlist && <div className='hiddenlist'>
+      { showlist && <div className='hiddenlist' ref={wrapperRef}>
             <div className='border-inlist'>Add Response</div>
             <div className='delete-inlist'>Delete</div>
         </div>}

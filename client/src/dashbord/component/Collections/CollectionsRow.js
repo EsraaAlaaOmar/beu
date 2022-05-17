@@ -47,7 +47,7 @@ const CollectionsRow = ({collection}) => {
         <td></td>
         
         <td>
-            { showlist && <div className='hiddenlist'>
+           { showlist && <div className='hiddenlist' ref={wrapperRef}>
           
                 <Link to={`/products/${collection.id}`}> <div className='border-inlist' >View Products</div> </Link>
                 <div className='delete-inlist' onClick={()=>dispatch(deleteCollection({category_id:collection.id}))}>Delete</div>

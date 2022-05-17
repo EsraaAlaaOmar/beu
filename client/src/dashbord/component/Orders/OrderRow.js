@@ -46,7 +46,7 @@ const OrderRow = ({user}) => {
     <td>visa </td>
     
           <td>
-                { showlist && <div className='hiddenlist'>
+                { showlist && <div className='hiddenlist' ref={wrapperRef}>
                    <Link to='/dashbord/products'> <div className='border-inlist' >View Order</div> </Link>
                     <div className='delete-inlist'>Delete</div>
                 </div>}

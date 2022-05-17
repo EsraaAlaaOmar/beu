@@ -35,7 +35,7 @@ const FeedbackRow = () => {
                     <td></td>
                     <td></td>      
                     <td>
-                  { showlist && <div className='hiddenlist' >
+                  { showlist && <div className='hiddenlist' ref={wrapperRef}>
               
                       <Link to='/dashbord/feedback/view'><div className='border-inlist' >View Feedback</div></Link>
                       <div className='delete-inlist'>Delete</div>

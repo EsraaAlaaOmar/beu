@@ -1,10 +1,31 @@
-import React,{useState} from 'react'
+import React,{useState, useRef, useEffect} from 'react'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import {RiCheckboxBlankCircleLine, RiCheckboxCircleFill} from 'react-icons/ri'
 import { Link } from 'react-router-dom'
+
+// use ref  function 
+function useOutsideAlerter(ref,setShowlist) {
+    useEffect(() =>{
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+            setShowlist(false)
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      
+    }}, [ref]);
+  }
 const UserLine = ({user,multiple,all}) => {
     const [selected, setSelected] =useState({all})
     const [showlist,setShowlist] =useState(false)
+
+           // close list when click any where
+   const wrapperRef = useRef(null);
+   useOutsideAlerter(wrapperRef,setShowlist);
     return (
      
             <tr>
@@ -28,7 +49,7 @@ const UserLine = ({user,multiple,all}) => {
             <td></td>
             
             <td>
-                { showlist && <div className='hiddenlist'>
+               { showlist && <div className='hiddenlist' ref={wrapperRef}>
             
                     <Link to='/dashbord/orders/add'> <div className='border-inlist' >Add Order</div> </Link>
                     <div className='border-inlist' >View cart</div>
@@ -36,7 +57,7 @@ const UserLine = ({user,multiple,all}) => {
                     <div className='border-inlist' >System rate</div>
                     <div className='delete-inlist'>Delete</div>
                 </div>}
-                <span className='icon' onClick={()=>setShowlist(!showlist)}><BsThreeDotsVertical /></span>
+                <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span>
             
             </td>
         </tr>
