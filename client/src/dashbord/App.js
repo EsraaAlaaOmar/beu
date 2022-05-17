@@ -62,7 +62,7 @@ const [showSide,setShowSide]=useState(false)
      <Route path="/landingpage/*" element={<LandingPage />} exact />
      <Route path="/feedback/*" element={<FeedBack />} exact />
      <Route path="/questions/*" element={<QuestionswithAnswers />} exact />
-     <Route path="/sell/" element={<Sell />} exact />
+     <Route path="/sell" element={<Sell />} exact />
      
 
 

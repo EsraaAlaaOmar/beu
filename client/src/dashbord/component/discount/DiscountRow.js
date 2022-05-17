@@ -1,12 +1,31 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import {editeDiscount} from '../../store/discountslice'
 import{useDispatch} from 'react-redux';
 import { Link } from 'react-router-dom';
+
+// use ref  function 
+function useOutsideAlerter(ref,setShowlist) {
+  useEffect(() =>{
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+          setShowlist(false)
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    
+  }}, [ref]);
+}
 const DiscountRow = ({discont}) => {
     const dispatch = useDispatch()
     const [showlist,setShowlist] =useState(false)
-    // const [avaliable,setAvaliavle] =useState(discont.avaliabil)
+    // close list when click any where
+    const wrapperRef = useRef(null);
+    useOutsideAlerter(wrapperRef,setShowlist);
 
   return (
     <tr>
@@ -26,7 +45,7 @@ const DiscountRow = ({discont}) => {
                <Link to='/dashbord/discount/edite' state={{discont:discont}}> <div className='border-inlist'>Update Discount</div></Link>
                 <div className='delete-inlist'>Delete</div>
             </div>}
-            <span className='icon' onClick={()=>setShowlist(!showlist)}><BsThreeDotsVertical /></span>
+            <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span>
             </td>
     </tr>
   )

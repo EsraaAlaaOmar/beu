@@ -1,11 +1,34 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect,useRef} from 'react'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import {useDispatch } from 'react-redux';
 import {deleteCollection} from '../../store/collectionsSlice'
+
+// use ref  function 
+function useOutsideAlerter(ref,setShowlist) {
+  useEffect(() =>{
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+          setShowlist(false)
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    
+  }}, [ref]);
+}
+
+
 const CollectionsRow = ({collection}) => {
     const [showlist,setShowlist] =useState(false)
     const dispatch = useDispatch()
+
+   // close list when click any where
+   const wrapperRef = useRef(null);
+   useOutsideAlerter(wrapperRef,setShowlist);
   return (
     <tr key={collection.id}>
         <td >
@@ -29,7 +52,7 @@ const CollectionsRow = ({collection}) => {
                 <Link to={`/products/${collection.id}`}> <div className='border-inlist' >View Products</div> </Link>
                 <div className='delete-inlist' onClick={()=>dispatch(deleteCollection({category_id:collection.id}))}>Delete</div>
             </div>}
-            <span className='icon' onClick={()=>setShowlist(!showlist)}><BsThreeDotsVertical /></span></td>
+            <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span></td>
 </tr>
   )
 }
