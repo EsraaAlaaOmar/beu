@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux'
 import Login from '../Auth/Login'
 import Nav from '../reusable/Nav'
 import SellRow from './SellRow'
-const Sell = () => {
+const Sell = ({setActiveIndex}) => {
+  setActiveIndex()
     const {loggedIn} =useSelector((state)=> state.auth)
   return (
     <>

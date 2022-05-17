@@ -13,7 +13,8 @@ import { Route, Routes } from 'react-router-dom';
 import AddCountry from './AddCountry';
 import AddCity from './AddCity';
 import AddArea from './AddArea';
-const Address = () => {
+const Address = ({setActiveIndex}) => {
+  setActiveIndex()
   const dispatch = useDispatch()
   // useEffect(() =>{
 

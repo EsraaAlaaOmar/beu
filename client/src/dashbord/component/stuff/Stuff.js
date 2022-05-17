@@ -8,7 +8,8 @@ import StuffPagination from './StuffPagination';
 import AddStuff from './AddStuff';
 import Nav from '../reusable/Nav';
 import EditeAdmin from './EditeAdmin';
-const Stuff = () => {
+const Stuff = ({setActiveIndex}) => {
+  setActiveIndex()
   const {adminsList, error} =useSelector((state)=> state.admins)
   const dispatch = useDispatch()
  

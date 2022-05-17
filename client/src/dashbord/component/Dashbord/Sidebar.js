@@ -1,10 +1,14 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 
 import { Link } from 'react-router-dom';
 import {BsList} from 'react-icons/bs'
-const Sidebar = ({showtoggle}) => {
+const Sidebar = ({showtoggle,active}) => {
     const [show,setShow]=useState(false);
     const [activeIndex,setActiveIndex]=useState(0)
+    useEffect(() =>{
+         setActiveIndex(active)
+         console.log(active)
+    },[active])
     const list=[
         {
             icon:'/images/dashbordsidebar/house.svg',

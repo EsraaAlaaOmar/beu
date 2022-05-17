@@ -6,7 +6,8 @@ import Nav from '../reusable/Nav'
 import FeedbackRow from './FeedbackRow'
 import ViewFeedBacks from './ViewFeedBacks'
 
-const FeedBack = () => {
+const FeedBack = ({setActiveIndex}) => {
+   setActiveIndex()
 const {loggedIn} =useSelector((state)=> state.auth)
   return (
     <>

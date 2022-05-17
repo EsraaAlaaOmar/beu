@@ -28,6 +28,7 @@ import QuestionswithAnswers from './component/questions and answers/Questionswit
 import Sell from './component/Sell/Sell';
 function App() {
 const [showSide,setShowSide]=useState(false)
+const[activeIndex,setActiveIndex] = useState(0)
   return (
     <div className="App dashbord-side" 
     onClick={(e)=>
@@ -42,27 +43,27 @@ const [showSide,setShowSide]=useState(false)
     }
         >
 
-      <Sidebar showtoggle={showSide}/>
+      <Sidebar showtoggle={showSide} active={activeIndex}/>
 <Routes>
-     <Route path="/" element={<Dashbord />} exact /> 
-     <Route path="/orders/*" element={<Orders />} exact />
-     <Route path="/collections" element={<Collections />} exact />
-     <Route path="/offersproducts" element={<Offersproducts />} exact />
-     <Route path="/users/*" element={<Users />} exact />
-     <Route path="/stuff/*" element={<Stuff />} exact />
-     <Route path="/discount/*" element={<Discount />} exact />
-     <Route path="/offers/*" element={<Offers />} exact />
-     <Route path="/products/*" element={<Products />} exact />
-     <Route path="/finance" element={<Finance />} exact />
-     <Route path="/messages" element={<Messages />} exact />
-     <Route path="/sizes" element={<Sizes />} exact />
-     <Route path="/addresses" element={<Address />} exact />
-     <Route path="/register" element={<Register />} exact />
-     <Route path="/login" element={<Login />} exact />
-     <Route path="/landingpage/*" element={<LandingPage />} exact />
-     <Route path="/feedback/*" element={<FeedBack />} exact />
-     <Route path="/questions/*" element={<QuestionswithAnswers />} exact />
-     <Route path="/sell" element={<Sell />} exact />
+     <Route path="/" element={<Dashbord setActiveIndex={()=>setActiveIndex(0)} />} exact /> 
+     <Route path="/orders/*" element={<Orders setActiveIndex={()=>setActiveIndex(1)} />} exact />
+     <Route path="/collections" element={<Collections setActiveIndex={()=>setActiveIndex(2)} />} exact />
+     <Route path="/offersproducts" element={<Offersproducts setActiveIndex={()=>setActiveIndex(3)}/>} exact />
+     <Route path="/users/*" element={<Users setActiveIndex={()=>setActiveIndex(5)} />} exact />
+     <Route path="/stuff/*" element={<Stuff setActiveIndex={()=>setActiveIndex(6)} />} exact />
+     <Route path="/discount/*" element={<Discount setActiveIndex={()=>setActiveIndex(4)} />} exact />
+     <Route path="/offers/*" element={<Offers setActiveIndex={()=>setActiveIndex(3)} />} exact />
+     <Route path="/products/*" element={<Products setActiveIndex={()=>setActiveIndex()} />} exact />
+     <Route path="/finance" element={<Finance setActiveIndex={()=>setActiveIndex(13)} />} exact />
+     <Route path="/messages" element={<Messages setActiveIndex={()=>setActiveIndex(7)} />} exact />
+     <Route path="/sizes" element={<Sizes setActiveIndex={()=>setActiveIndex(8)} />} exact />
+     <Route path="/addresses" element={<Address setActiveIndex={()=>setActiveIndex(9)} />} exact />
+     <Route path="/register" element={<Register setActiveIndex={()=>setActiveIndex()} />} exact />
+     <Route path="/login" element={<Login setActiveIndex={()=>setActiveIndex()} />} exact />
+     <Route path="/landingpage/*" element={<LandingPage setActiveIndex={()=>setActiveIndex(12)} />} exact />
+     <Route path="/feedback/*" element={<FeedBack setActiveIndex={()=>setActiveIndex(10)} />} exact />
+     <Route path="/questions/*" element={<QuestionswithAnswers setActiveIndex={()=>setActiveIndex(10)} />} exact />
+     <Route path="/sell" element={<Sell setActiveIndex={()=>setActiveIndex(11)} />} exact />
      
 
 

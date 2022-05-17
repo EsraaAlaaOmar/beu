@@ -6,8 +6,8 @@ import useres from '../../data/users.json'
 import Pagination from '../reusable/Pagination';
 import AddOrder from './AddOrder';
 import Nav from '../reusable/Nav'
-const Orders = () => {
-  
+const Orders = ({setActiveIndex}) => {
+  setActiveIndex()
   return (
     <>
       <Nav  first_link='Active' second_link='All'  first_link_url='/orders'   second_link_url='/orders' />

@@ -6,7 +6,8 @@ import{getMessages} from '../../store/messagesSlice'
 import useres from '../../data/users.json'
 import { Link } from 'react-router-dom';
 import Nav from '../reusable/Nav';
-const Messages = () => {
+const Messages = ({setActiveIndex}) => {
+  setActiveIndex()
   const {error,messagesList} =useSelector((state)=>state.messages)
   const dispatch = useDispatch()
 

@@ -8,7 +8,8 @@ import Box from '../reusable/Box'
 import AddOffer from './AddOffer';
 import Nav from '../reusable/Nav';
 import EditeOffer from './EditeOffer';
-const Offers = () => {
+const Offers = ({setActiveIndex}) => {
+  setActiveIndex()
   const {offersList, error } =useSelector((state)=> state.offers)
   // const dispatch = useDispatch()
   {console.log(offersList)}

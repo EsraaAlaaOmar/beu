@@ -8,7 +8,8 @@ import UsersPagination from './UsersPagination';
 import Nav from '../reusable/Nav';
 import AddUser from './AddUser';
 
-const Users = () => {
+const Users = ({setActiveIndex}) => {
+  setActiveIndex()
   const {usersList,error } =useSelector((state)=> state.users)
   const dispatch = useDispatch()
  

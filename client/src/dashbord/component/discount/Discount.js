@@ -9,7 +9,8 @@ import AddDiscount from './AddDiscount';
 import Nav from '../reusable/Nav';
 import EditeDiscount from './EditeDiscount';
 
-const Discount = () => {
+const Discount = ({setActiveIndex}) => {
+  setActiveIndex()
   const {discountList, error } =useSelector((state)=> state.discount)
   const dispatch = useDispatch()
 

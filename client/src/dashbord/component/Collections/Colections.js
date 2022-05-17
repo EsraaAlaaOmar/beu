@@ -9,7 +9,7 @@ import CollectionPagination from './CollectionPagination'
 import Nav from '../reusable/Nav';
 import AddCollection from './AddCollection';
 
-const Colections = () => {
+const Colections = ({setActiveIndex}) => {
   const {collectionsList, error} =useSelector((state)=>state.collections)
   const dispatch = useDispatch()
 
@@ -18,6 +18,7 @@ const Colections = () => {
   
 
   // },[dispatch])
+  setActiveIndex()
   return (
   <>
    <Nav  first_link='Newest' second_link='All'  first_link_url='/collections'   second_link_url='/collections' />

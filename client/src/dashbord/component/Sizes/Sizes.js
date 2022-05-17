@@ -8,7 +8,8 @@ import{getSizes, deleteSize} from '../../store/sizesSlice'
 import Nav from '../reusable/Nav';
 import AddSize from './AddSize';
 import { Link, Route, Routes } from 'react-router-dom';
-const Sizes = () => {
+const Sizes = ({setActiveIndex}) => {
+  setActiveIndex()
   const {sizsList,error} =useSelector((state)=>state.sizes)
   const dispatch = useDispatch()
 

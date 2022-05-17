@@ -8,7 +8,8 @@ import { Link, Route, Routes } from 'react-router-dom'
 import NewQuestion from './NewQuestion'
 import EditeQuestion from './EditeQuestion'
 
-const QuestionswithAnswers = () => {
+const QuestionswithAnswers = ({setActiveIndex}) => {
+   setActiveIndex()
     const {loggedIn} =useSelector((state)=> state.auth)
     return (
       <>

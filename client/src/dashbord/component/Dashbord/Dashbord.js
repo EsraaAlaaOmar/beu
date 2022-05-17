@@ -23,10 +23,10 @@ import Login from '../Auth/Login'
 
 
 
-const Dashbord = () => {
+const Dashbord = ({setActiveIndex}) => {
   const {loggedIn} =useSelector((state)=> state.auth)
   const {name } =useSelector((state)=> state.logedDetails)
-
+  setActiveIndex()
   return (
  <>
       <Nav />
