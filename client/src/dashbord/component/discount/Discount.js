@@ -23,7 +23,7 @@ const Discount = ({setActiveIndex}) => {
   return (
     <>
     
-      <Nav  first_link='Active' second_link='All'   first_link_url='/discount'   second_link_url='/discount'/>
+      <Nav  first_link='Active' second_link='All'   first_link_url='/dashbord/discount'   second_link_url='/dashbord/discount'/>
       
       <div className="box">  
       {error&& <div className='error-notify'>{error}</div>}  

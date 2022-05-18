@@ -10,7 +10,7 @@ const Orders = ({setActiveIndex}) => {
   setActiveIndex()
   return (
     <>
-      <Nav  first_link='Active' second_link='All'  first_link_url='/orders'   second_link_url='/orders' />
+      <Nav  first_link='Active' second_link='All'  first_link_url='/dashbord/orders'   second_link_url='/dashbord/orders' />
      
       <div className="box">  
       <div className='alert'>

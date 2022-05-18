@@ -20,7 +20,7 @@ const Stuff = ({setActiveIndex}) => {
   // },[dispatch])
     return (
     <>
-        <Nav  first_link='Active' second_link='All'   first_link_url='/stuff'   second_link_url='/stuff'/>
+        <Nav  first_link='Active' second_link='All'   first_link_url='/dashbord/stuff'   second_link_url='/dashbord/stuff'/>
         <div className="box">  
         {error&& <div className='error-notify'>{error}</div>}  
     <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    

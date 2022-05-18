@@ -7,7 +7,7 @@ function useOutsideAlerter(ref,navigate) {
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           
-            navigate('/dashbord/users')
+            navigate('/dashbord/collections')
         }
       }
       // Bind the event listener
@@ -18,7 +18,7 @@ function useOutsideAlerter(ref,navigate) {
       
     }}, [ref]);
   }
-const FilterUseres = () => {
+const Filter = () => {
     const navigate = useNavigate()
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef, navigate);
@@ -26,12 +26,12 @@ const FilterUseres = () => {
     <div className='addpage filter'>
     <div className='opacity'>
         <div className='add'  ref={wrapperRef}>
-            <h4>Filter Users</h4>
+            <h4>Filter on Collection</h4>
       
         <form>
             <div className='input-div'>
-                <label>User Name</label>
-                <input type='text' placeholder='Name' required/>
+                <label>Collection Title</label>
+                <input type='text' placeholder='Title' required/>
             
             </div>
             <div className='choose'>
@@ -51,36 +51,20 @@ const FilterUseres = () => {
                 <Row>
                     <Col>
                         <input id='much' type="radio" name="productsQuan" value="much" />
-                        <label for="much">&nbsp; Much Orders</label><br/>
+                        <label for="much">&nbsp; Much Product</label><br/>
                     </Col>
                     <Col>
                         <input id='less' type="radio" name="productsQuan" value="less"/>
-                        <label for="less">&nbsp; Less Orders</label><br/>
+                        <label for="less">&nbsp; Less Products</label><br/>
                     </Col>
             
                 </Row>
-            </div>
-            
-            <div className='input-div'>
-                <label>Country</label>
-                <input type='text' placeholder='Country' required/>
-            
-            </div>
-            <div className='input-div'>
-                <label>City</label>
-                <input type='text' placeholder='City' required/>
-            
-            </div>
-            <div className='input-div'>
-                <label>Neighbourhood</label>
-                <input type='text' placeholder='Neighbourhood' required/>
-            
             </div>
             <div className='buttons'>
                 
                     <input className='confrim' type='submit' value='Confirm' />
             
-                <Link to='/dashbord/users'>
+                <Link to='/dashbord/collections'>
                     <button className='discard'>Discard</button>
                 </Link>
             </div>
@@ -91,4 +75,4 @@ const FilterUseres = () => {
   )
 }
 
-export default FilterUseres
+export default Filter

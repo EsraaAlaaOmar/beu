@@ -2,13 +2,21 @@
 {.add-question{
     .input-div {
         input{
-            width: 68%;
+            width: 100%;
          
         }
         .priority{
-            width:30%;
+            width:100%;
             margin:0 1%;
             display: inline-block;
         }
+    }
+    .small-input{
+        width:30%;
+        
+        
+    }
+    .big-input{
+        width: 68%;
     }
 }}

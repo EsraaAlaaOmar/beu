@@ -16,7 +16,7 @@ const Finance = ({setActiveIndex}) => {
   setActiveIndex()
   return (
     <>
-       < Nav first_link='finance' second_link='Charts'  first_link_url='/finance'   second_link_url='/finance'/>
+       < Nav first_link='finance' second_link='Charts'  first_link_url='/dashbord/finance'   second_link_url='/dashbord/finance'/>
        <div className="box  dashbord ">  
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
         <span className="title-text">Finance</span>

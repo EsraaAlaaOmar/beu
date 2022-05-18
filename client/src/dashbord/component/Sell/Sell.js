@@ -8,7 +8,7 @@ const Sell = ({setActiveIndex}) => {
     const {loggedIn} =useSelector((state)=> state.auth)
   return (
     <>
-      <Nav first_link='All' />
+      <Nav first_link='All'  first_link_url='/dashbord/sell' />
       
     
            <div className="box">

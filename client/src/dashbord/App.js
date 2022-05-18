@@ -47,7 +47,7 @@ const[activeIndex,setActiveIndex] = useState(0)
 <Routes>
      <Route path="/" element={<Dashbord setActiveIndex={()=>setActiveIndex(0)} />} exact /> 
      <Route path="/orders/*" element={<Orders setActiveIndex={()=>setActiveIndex(1)} />} exact />
-     <Route path="/collections" element={<Collections setActiveIndex={()=>setActiveIndex(2)} />} exact />
+     <Route path="/collections/*" element={<Collections setActiveIndex={()=>setActiveIndex(2)} />} exact />
      <Route path="/offersproducts" element={<Offersproducts setActiveIndex={()=>setActiveIndex(3)}/>} exact />
      <Route path="/users/*" element={<Users setActiveIndex={()=>setActiveIndex(5)} />} exact />
      <Route path="/stuff/*" element={<Stuff setActiveIndex={()=>setActiveIndex(6)} />} exact />
@@ -57,7 +57,7 @@ const[activeIndex,setActiveIndex] = useState(0)
      <Route path="/finance" element={<Finance setActiveIndex={()=>setActiveIndex(13)} />} exact />
      <Route path="/messages" element={<Messages setActiveIndex={()=>setActiveIndex(7)} />} exact />
      <Route path="/sizes" element={<Sizes setActiveIndex={()=>setActiveIndex(8)} />} exact />
-     <Route path="/addresses" element={<Address setActiveIndex={()=>setActiveIndex(9)} />} exact />
+     <Route path="/addresses/*" element={<Address setActiveIndex={()=>setActiveIndex(9)} />} exact />
      <Route path="/register" element={<Register setActiveIndex={()=>setActiveIndex()} />} exact />
      <Route path="/login" element={<Login setActiveIndex={()=>setActiveIndex()} />} exact />
      <Route path="/landingpage/*" element={<LandingPage setActiveIndex={()=>setActiveIndex(12)} />} exact />

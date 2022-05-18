@@ -7,6 +7,7 @@ import useres from '../../data/users.json'
 import UsersPagination from './UsersPagination';
 import Nav from '../reusable/Nav';
 import AddUser from './AddUser';
+import FilterUseres from './FilterUseres';
 
 const Users = ({setActiveIndex}) => {
   setActiveIndex()
@@ -21,7 +22,7 @@ const Users = ({setActiveIndex}) => {
   const[multiple,setMultiple] =useState(false)
     return(
       <>
-        <Nav  first_link='Active' second_link='All'  first_link_url='/users'   second_link_url='/users' />
+        <Nav  first_link='Active' second_link='All'  first_link_url='/dashbord/users'   second_link_url='/dashbord/users' />
         <div className="box">  
         {error&& <div className='error-notify'>{error}</div>}  
             <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
@@ -37,7 +38,7 @@ const Users = ({setActiveIndex}) => {
                         <span className='small-sizes'> + Add </span>
                        </button>
                     </Link>
-                    <Link to='/dashbord/users'>
+                    <Link to='/dashbord/users/filter'>
                       <button>Filter</button>
                     </Link>
 
@@ -49,6 +50,7 @@ const Users = ({setActiveIndex}) => {
           </div>
           <Routes>
                <Route path="/add" element={<AddUser />} exact /> 
+               <Route path="/filter" element={<FilterUseres />} exact /> 
           </Routes>
         </div>
       </>

@@ -1,0 +1,27 @@
+form{
+    .input-field{
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        .mark{
+            position: absolute;
+            right: 10px;
+            top: 0;
+            background-color: inherit;
+        }
+        .validation-error{
+            color: #b41212;
+            cursor: pointer;
+        }
+   
+    }
+    .error-text{
+       
+        color: #b41212;
+       
+        margin: 5px 0;
+       
+        
+      
+    }
+}

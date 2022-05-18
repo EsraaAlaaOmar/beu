@@ -8,6 +8,7 @@ import collections from '../../data/collections.json'
 import CollectionPagination from './CollectionPagination'
 import Nav from '../reusable/Nav';
 import AddCollection from './AddCollection';
+import Filter from './Filter';
 
 const Colections = ({setActiveIndex}) => {
   const {collectionsList, error} =useSelector((state)=>state.collections)
@@ -20,8 +21,8 @@ const Colections = ({setActiveIndex}) => {
   // },[dispatch])
   setActiveIndex()
   return (
-  <>
-   <Nav  first_link='Newest' second_link='All'  first_link_url='/collections'   second_link_url='/collections' />
+  <> 
+   <Nav  first_link='Newest' second_link='All'  first_link_url='/dashbord/collections'   second_link_url='/dashbord/collections' />
     <div className="box collections">  
     {error&& <div className='error-notify'>{error}</div>}
           <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
@@ -29,7 +30,7 @@ const Colections = ({setActiveIndex}) => {
           <div className="table-box">
             <span className="box-title">Collections</span>
               <div className="oposite">
-                  <Link to='/dashbord/collections'>
+                  <Link to='/dashbord/collections/filter'>
                   <button>Filter</button>
                   </Link>
                   <Link to='/dashbord/collections/add'>
@@ -42,6 +43,7 @@ const Colections = ({setActiveIndex}) => {
               <CollectionPagination maplist={collectionsList} />
               <Routes>
                <Route path="/add" element={<AddCollection />} exact /> 
+               <Route path="/filter" element={<Filter />} exact />
           </Routes>
 
     </div>

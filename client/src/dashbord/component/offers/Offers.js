@@ -42,7 +42,7 @@ const Offers = ({setActiveIndex}) => {
  )
   return (
     <>
-      <Nav  first_link='Active' second_link='All'  first_link_url='/offers'   second_link_url='/offers' />
+      <Nav  first_link='Active' second_link='All'  first_link_url='/dashbord/offers'   second_link_url='/dashbord/offers' />
       <div className="box"> 
       {error&& <div className='error-notify'>{error}</div>}
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
