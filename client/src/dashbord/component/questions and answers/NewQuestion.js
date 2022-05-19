@@ -10,14 +10,14 @@ import * as yup from 'yup';
 const NewQuestion = () => {
     // yup validation
     let schema = yup.object().shape({
-      question:yup.string().required('Package title is required'),
-      questionPriority: yup.number().typeError('Price must be a number'),
-      answer1:yup.string().required('Package title is required'),
-      prioritya1: yup.number().typeError('Price must be a number'),
-      answer2:yup.string().required('Package title is required'),
-      prioritya2: yup.number().typeError('Price must be a number'),
-      answer3:yup.string().required('Package title is required'),
-      prioritya3: yup.number().typeError('Price must be a number'),
+      question:yup.string().required('Question required'),
+      questionPriority: yup.number().typeError('Priority must be a number'),
+      answer1:yup.string().required('Answer 1 is required'),
+      prioritya1: yup.number().typeError('Priority must be a number'),
+      answer2:yup.string().required('Answer 2 is required'),
+      prioritya2: yup.number().typeError('Priority must be a number'),
+      answer3:yup.string().required('Answer 3 is required'),
+      prioritya3: yup.number().typeError('Priority must be a number'),
       
      });
 
@@ -67,7 +67,7 @@ const NewQuestion = () => {
               }}
               validationSchema={schema}
               onSubmit ={(values)=>{
-                onSubmit(values);
+                console.log(values);
              
                
              
@@ -80,21 +80,25 @@ const NewQuestion = () => {
         <div className='input-div'>
             <label> Question ..?</label>
             <div className='input-field  big-input'>
-            <Field type='text' placeholder='Question ..?' name='question'   required/>
+            <Field type='text' placeholder='Question ..?' name='question'   />
+            { touched.question && <div className='mark'>{errors.question ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'question')} /></span>: <FcCheckmark />}</div>}
             </div>
             < div className='input-field  small-input'>
-             <Field className='priority' type='number' min={1} placeholder='priority1' name='priority'  required />
+             <Field className='priority' type='number' min={1} placeholder='priority1' name='questionPriority'   />
+             { touched.questionPriority && <div className='mark'>{errors.questionPriority ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'questionPriority')} /></span>: <FcCheckmark />}</div>}
              </div>
+             {errors.question && touched.question && <><div className='error-text'> {errors.question}</div></> }
+            {errors.questionPriority && touched.questionPriority && <><div className='error-text'> {errors.questionPriority}</div></> }
         </div>
         <div className='input-div '>
             <label> Answer 1 </label>
             <div className='input-field  big-input'>
-            <Field type='text'  placeholder='Answer 1'  name='answer1'   required/>
+            <Field type='text'  placeholder='Answer 1'  name='answer1'   />
             { touched.answer1 && <div className='mark'>{errors.answer1 ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'answer1')} /></span>: <FcCheckmark />}</div>}
          
             </div>
            < div className='input-field  small-input'>
-            <Field className='priority' type='number' min={1} placeholder='priority' name='prioritya1'  required />
+            <Field className='priority' type='number' min={1} placeholder='priority' name='prioritya1'   />
             { touched.prioritya1 && <div className='mark'>{errors.prioritya1 ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'prioritya1')} /></span>: <FcCheckmark />}</div>}
            
             </div>
@@ -104,20 +108,28 @@ const NewQuestion = () => {
         <div className='input-div '>
             <label>Answer 2 </label>
             <div className='input-field  big-input'>
-            <Field type='text'  name='answer2'  placeholder='Answer'  required/>
+            <Field type='text'  name='answer2'  placeholder='Answer'  />
+            { touched.answer2 && <div className='mark'>{errors.answer2 ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'answer2')} /></span>: <FcCheckmark />}</div>}
             </div>
             < div className='input-field  small-input'>
-            <Field className='priority' type='number' min={1} placeholder='priority' name='prioritya2'  required />
+            <Field className='priority' type='number' min={1} placeholder='priority' name='prioritya2'   />
+            { touched.prioritya2 && <div className='mark'>{errors.prioritya2 ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'prioritya2')} /></span>: <FcCheckmark />}</div>}
             </div>
+            {errors.answer2 && touched.answer2 && <><div className='error-text'> {errors.answer2}</div></> }
+            {errors.prioritya2 && touched.prioritya2 && <><div className='error-text'> {errors.prioritya2}</div></> }
         </div>
         <div className='input-div'>
             <label>Answer 3</label>
             <div className='input-field  big-input'>
-            <Field type='text'  name='answer3'  placeholder='Answer'  required/>
+            <Field type='text'  name='answer3'  placeholder='Answer'  />
+            { touched.answer3 && <div className='mark'>{errors.answer3 ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'answer3')} /></span>: <FcCheckmark />}</div>}
             </div>
             < div className='input-field  small-input'>
-               <Field  className='priority'  type='number' min={1} placeholder='priority' name='prioritya3'  required />
+               <Field  className='priority'  type='number' min={1} placeholder='priority' name='prioritya3'   />
+               { touched.prioritya3 && <div className='mark'>{errors.prioritya3 ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'prioritya3')} /></span>: <FcCheckmark />}</div>}
             </div>
+            {errors.answer3 && touched.answer3 && <><div className='error-text'> {errors.answer3}</div></> }
+            {errors.prioritya3 && touched.prioritya3 && <><div className='error-text'> {errors.prioritya3}</div></> }
         </div>
 
         <div className='buttons'>
