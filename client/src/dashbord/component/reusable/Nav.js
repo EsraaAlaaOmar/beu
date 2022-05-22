@@ -9,16 +9,10 @@ import {logOut} from '../../store/authslice'
 const Nav = ({first_link,first_link_url='/', second_link, second_link_url='/'}) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  useEffect(() =>{
-   
-  
-  
-  
- 
- 
- },[dispatch])
+
   const {loggedIn} =useSelector((state)=> state.auth)
   const {name, staff, } =useSelector((state)=> state.logedDetails)
+  console.log(name)
   const [activeIndex,setActiveIndex]=useState(0)
   const handleClick=(index) =>{
     setActiveIndex(index);

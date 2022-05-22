@@ -11,11 +11,11 @@ const Messages = ({setActiveIndex}) => {
   const {error,messagesList} =useSelector((state)=>state.messages)
   const dispatch = useDispatch()
 
-  // useEffect(() =>{
-  //   dispatch(getMessages())
+  useEffect(() =>{
+    dispatch(getMessages())
   
 
-  // },[dispatch])
+  },[dispatch])
   return (
     <>
        < Nav first_link='Active' second_link='All' first_link_url='/messages'   second_link_url='/messages' />

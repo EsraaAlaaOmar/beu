@@ -20,8 +20,10 @@ const Areas = ({cityAreas}) => {
 })
   return (
     <div className="category-box">
-    Areas:&nbsp; {cityAreas.length}
-    <Link to="/addresses/addarea"><span className="oposite add" > <AiFillPlusCircle /> </span></Link> 
+     <div className="header">
+        Areas:&nbsp; {cityAreas.length}
+        <Link to="/dashbord/addresses/addarea"><span className="oposite add" > <AiFillPlusCircle /> </span></Link> 
+    </div>
     {renderedAreas}
   </div>
   )

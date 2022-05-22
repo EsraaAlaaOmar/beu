@@ -1,11 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import './App.scss';
 
 import { Route, Routes ,BrowserRouter as Router} from 'react-router-dom'
 
 import Nav from './component/reusable/Nav';
-
-
+import {adminDetils} from './store/logedDetailsSlice'
+import {useDispatch} from 'react-redux';
 import Dashbord from "./component/Dashbord/Dashbord";
 import Sidebar from './component/Dashbord/Sidebar';
 import Orders from './component/Orders/Orders';
@@ -26,9 +26,19 @@ import LandingPage from './component/landingPage/LandingPage';
 import FeedBack from './component/feedback/FeedBack';
 import QuestionswithAnswers from './component/questions and answers/QuestionswithAnswers';
 import Sell from './component/Sell/Sell';
+import OffersProducts from './component/offers/OffersProducts';
 function App() {
 const [showSide,setShowSide]=useState(false)
 const[activeIndex,setActiveIndex] = useState(0)
+const dispatch = useDispatch()
+useEffect(() =>{
+   
+  dispatch(adminDetils())
+
+
+
+
+},[dispatch])
   return (
     <div className="App dashbord-side" 
     onClick={(e)=>
@@ -64,6 +74,7 @@ const[activeIndex,setActiveIndex] = useState(0)
      <Route path="/feedback/*" element={<FeedBack setActiveIndex={()=>setActiveIndex(10)} />} exact />
      <Route path="/questions/*" element={<QuestionswithAnswers setActiveIndex={()=>setActiveIndex(10)} />} exact />
      <Route path="/sell" element={<Sell setActiveIndex={()=>setActiveIndex(11)} />} exact />
+     <Route path="/offerproducts" element={<OffersProducts />} exact />
      
 
 

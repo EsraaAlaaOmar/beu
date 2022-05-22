@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import { Link, Route, Routes } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/collections.svg';
 import { useSelector, useDispatch } from 'react-redux';
-//import{getCollections} from '../../store/collectionsSlice'
+import{getCollections} from '../../store/collectionsSlice'
 import collections from '../../data/collections.json'
 
 import CollectionPagination from './CollectionPagination'
@@ -14,11 +14,11 @@ const Colections = ({setActiveIndex}) => {
   const {collectionsList, error} =useSelector((state)=>state.collections)
   const dispatch = useDispatch()
 
-  // useEffect(() =>{
-  //   dispatch(getCollections())
+  useEffect(() =>{
+    dispatch(getCollections())
   
 
-  // },[dispatch])
+  },[dispatch])
   setActiveIndex()
   return (
   <> 

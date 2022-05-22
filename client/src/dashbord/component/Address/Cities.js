@@ -21,8 +21,10 @@ const Cities = ({countryCities,getActiveCity,countryId }) => {
 })
   return (
     <div className="category-box">
-    Cities:&nbsp; {countryCities && countryCities.length}
-   <Link to='/dashbord/addresses/addCity' state={{countryId:countryId}}> <span className="oposite add" > <AiFillPlusCircle /> </span></Link>
+      <div className="header">
+          Cities:&nbsp; {countryCities && countryCities.length}
+        <Link to='/dashbord/addresses/addCity' state={{countryId:countryId}}> <span className="oposite add" > <AiFillPlusCircle /> </span></Link>
+    </div>
     {renderedcities}
   </div>
   )

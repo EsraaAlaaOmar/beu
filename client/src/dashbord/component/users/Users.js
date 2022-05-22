@@ -14,11 +14,11 @@ const Users = ({setActiveIndex}) => {
   const {usersList,error } =useSelector((state)=> state.users)
   const dispatch = useDispatch()
  
-  // useEffect(() =>{
-  //   dispatch(getUseres())
+  useEffect(() =>{
+    dispatch(getUseres())
   
 
-  // },[dispatch])
+  },[dispatch])
   const[multiple,setMultiple] =useState(false)
     return(
       <>

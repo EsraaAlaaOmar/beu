@@ -11,13 +11,13 @@ import EditeOffer from './EditeOffer';
 const Offers = ({setActiveIndex}) => {
   setActiveIndex()
   const {offersList, error } =useSelector((state)=> state.offers)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   {console.log(offersList)}
-  // useEffect(() =>{
-  //   dispatch(getOffers())
+  useEffect(() =>{
+    dispatch(getOffers())
   
 
-  // },[dispatch])
+  },[dispatch])
  const renderedOffers= offersList.map((offer)=>
                <Col sm={6} md={4} >
                     {/* <Box  title='Offer Title' p='Supporting description for the card goes here like a breeze.' yello='133 product'/> */}

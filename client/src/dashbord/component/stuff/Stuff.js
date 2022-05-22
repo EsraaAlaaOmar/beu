@@ -13,11 +13,11 @@ const Stuff = ({setActiveIndex}) => {
   const {adminsList, error} =useSelector((state)=> state.admins)
   const dispatch = useDispatch()
  
-  // useEffect(() =>{
-  //   dispatch(getAdmins())
+  useEffect(() =>{
+    dispatch(getAdmins())
   
 
-  // },[dispatch])
+  },[dispatch])
     return (
     <>
         <Nav  first_link='Active' second_link='All'   first_link_url='/dashbord/stuff'   second_link_url='/dashbord/stuff'/>

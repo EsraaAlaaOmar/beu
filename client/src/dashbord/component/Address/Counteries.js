@@ -32,9 +32,18 @@ const Counteries = ({getActiveCountry}) => {
     })
   return (
     <div className="category-box">
+      <div className="header">
           Countries:&nbsp;{countriesList.length}
          <Link to='/dashbord/addresses/addCountry'><span className="oposite add" > <AiFillPlusCircle /> </span></Link> 
+         </div>
          {renderedCountries}
+         <div className={`category  `} >
+                 country.name
+                  <span className="oposite" >
+                    <span className="delet icon" ><RiDeleteBin5Line /> </span>  
+                    <span className="edit icon"> <BiEditAlt /> </span> 
+                  </span>
+            </div>
          
 
     </div>

@@ -13,11 +13,11 @@ const Sizes = ({setActiveIndex}) => {
   const {sizsList,error} =useSelector((state)=>state.sizes)
   const dispatch = useDispatch()
 
-  // useEffect(() =>{
-  //   dispatch(getSizes())
+  useEffect(() =>{
+    dispatch(getSizes())
   
 
-  // },[dispatch])
+  },[dispatch])
   const renderedSizes= sizsList.map((size)=>{
     return(
       <div className="category">
@@ -37,8 +37,10 @@ const Sizes = ({setActiveIndex}) => {
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
         <span className="title-text"> Sizes </span>
         <div className="category-box">
-          sizes:&nbsp;{sizsList.length} 
-         <Link to='/dashbord/sizes/add'><span className="oposite add" > <AiFillPlusCircle /> </span></Link> 
+        <div className="header">
+              sizes:&nbsp;{sizsList.length} 
+            <Link to='/dashbord/sizes/add'><span className="oposite add" > <AiFillPlusCircle /> </span></Link> 
+         </div>
           {renderedSizes}
          
 

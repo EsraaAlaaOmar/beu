@@ -12,6 +12,7 @@ import cities from './Address/CitiesSlice'
 import areas from './Address/areaSlice'
 import product from './productSlice'
 import logedDetails from './logedDetailsSlice'
+import sell from './sellinbowslice'
 
 export default   configureStore({
   reducer: {
@@ -27,7 +28,8 @@ export default   configureStore({
       countries,
       cities, 
       areas,
-      product
+      product,
+      sell,
 
   },
 })
