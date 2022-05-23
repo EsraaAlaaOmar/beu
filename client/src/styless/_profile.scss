@@ -28,7 +28,7 @@
     img {   height: 185px;
         width: 185px;
         border-radius: 50%;
-        border: solid 1.5px #C94D20;
+       
        
       
     }
@@ -68,10 +68,9 @@
     .account_actions{
         padding: 20px 10px;
         .reset{
-            color: #A35604;
-           
+         
             a{ 
-                color: #A35604;
+                color: #000;
                }
         }
         .icon{
@@ -96,7 +95,7 @@
     font-style: italic;
     .orders{
        .header{ 
-           border-bottom: solid 1px #C94D20;
+           border-bottom: solid 1px #000;
            padding-bottom: 20px;
         .your_orders, .your_points{
             display: inline-block;
@@ -121,7 +120,7 @@
         }
         .your_active{      
             a{
-                color: #C94D20;
+                color: #000;
                 
             }
         }
@@ -218,14 +217,16 @@
               display: inline-block;
               margin: 0 15px;
               font-size: 18px;
+            .title{
+                color: #545252B0;;
+            }
               .price{
-                  color: #C94D20;
+                  color: #000;
                   .number{
                       font-size: 16px;
-                      color: #000;
-                      border-bottom: solid 1px #545252B0;
                       margin: 5px;
                       width: 5px;
+                      color: #545252B0;
                   }
                   .items{
                       color: #545252B0;
@@ -233,7 +234,7 @@
 
               }
               .color{
-                 color: #545252;
+                 color: #545252B0;
                  span{
                      background-color: #7F9CAF;
                      width: 17px;
@@ -245,7 +246,7 @@
                  }
               }
               .size{
-                  color: #545252;
+                color: #545252B0;
               }
               @media screen and (max-width: 380px) {
                 display: block;
@@ -256,6 +257,7 @@
           }
         }
     }
+
     .order_details_prev{
         padding-bottom: 40 px;
     }
@@ -268,6 +270,7 @@
         padding-bottom: 20px;
         font-size: 16px;
         .payment{
+            font-size: 18px;
             display: inline-block;
             padding: 10px 30px;
 
@@ -307,7 +310,7 @@
         }
         .content-css{
             width: 100%;
-            text-align: center;
+           
            
         }
         .my-anchor-css-class{

@@ -9,7 +9,7 @@ const Orders = () => {
   return <div className='orders'>
          <div className='header'>
                 <div className='your_orders your_active' > <Link to='/profile'> <span className='bag'><FaShoppingBag /></span> Your Orders</Link> </div> 
-                <div className='your_points' >  <Link to='/profile/points'><span>$</span> Your Points</Link> </div>
+             
           </div>
               <Routes>
                 <Route path="/" element={<CurrentOrders />} exact />
