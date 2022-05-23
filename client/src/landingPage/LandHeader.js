@@ -7,29 +7,7 @@ const LandHeader = () => {
     return (
 
         <div>
-            <Navbar />
-
-              <Carousel >
-                <Carousel.Item>
-                <div className='land_head'>
-                
-                <HeaderButtons />
-               </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                <div className='land_head'>
-                
-                <HeaderButtons />
-                </div>
-                   
-                </Carousel.Item>
-                <Carousel.Item>
-                <div className='land_head'>
-                
-                <HeaderButtons />
-               </div>
-                </Carousel.Item>
-            </Carousel>
+        
         </div>
        
     )

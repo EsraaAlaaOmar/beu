@@ -5,42 +5,107 @@ import {AiOutlineUser}from 'react-icons/ai'
 import {BsHeart} from 'react-icons/bs'
 import {FiShoppingCart} from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import { Dropdown } from 'react-bootstrap'
 
 const Navbar = () => {
     return (
         <div className='landnav' >
-           <span>
-                <span className='landlist'><MdSort /></span>
-                <select>
-                    <option>ENG</option>
-                    <option>عربي</option>
-                </select>
-            </span>
-            <div className='right'>
+            <img src='/images/Landingpage/navicon.png' alt='navicon' />
+            <div className='dropdowns'>
+            <Dropdown>
+                <Dropdown.Toggle  id="dropdown-basic">
+                  New In
+                </Dropdown.Toggle>
 
-                <Link to='/search'>
-                    <span>
-                        <BiSearch />
-                        
-                    </span>
-                </Link>
+                <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Perfumes</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Abayas</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown>
+                <Dropdown.Toggle  id="dropdown-basic">
+                Sale
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Perfumes</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Abayas</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown>
+                <Dropdown.Toggle  id="dropdown-basic">
+                Gifts
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Perfumes</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Abayas</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+            <Dropdown>
+                <Dropdown.Toggle  id="dropdown-basic">
+                Shop All
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Perfumes</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Abayas</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
+
+            </div>
+            
+            <div className='right'>
+            <Dropdown>
+                <Dropdown.Toggle  id="dropdown-basic">
+                <img src='/images/Landingpage/en.png' alt='navicon' /> &nbsp;ENG
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1"> <img src='/images/Landingpage/en.png' alt='navicon' /> &nbsp; ENG</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">العربية</Dropdown.Item>
+                    
+                </Dropdown.Menu>
+            </Dropdown>
+
+                    
+             
                 <Link to='/profile'>
-                    <span>
+                    <div className='icon-div'>
                         <AiOutlineUser />
-                        
-                    </span>
+                        <div>My Account</div>
+                    </div>
                 </Link>
                 <Link to='/favourite'>
-                    <span>
+                    <div className='icon-div'>
                         <BsHeart />
+                        <div>Favourite</div>
                         
-                    </span>
+                    </div>
+                </Link>
+                <Link to='/search'>
+                    <div className='icon-div'>
+                        <BiSearch />
+                       <div>Favourite</div>
+                        
+                        
+                        
+                    </div>
                 </Link>
                 <Link to='/card'>
-                    <span>
-                        <FiShoppingCart />
+                    <div className='icon-div'>
+                        <FiShoppingCart /><span>3</span>
+                        <div>Cart (3)</div>
                         
-                    </span>
+                    </div>
                 </Link>
 
             </div>
