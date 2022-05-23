@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect , useMemo} from 'react'
 import { useTable, usePagination } from 'react-table'
 
 import { useDispatch,useSelector } from 'react-redux'
@@ -12,7 +12,21 @@ import {getSellList} from'../../store/sellinbowslice'
 const Sell = ({setActiveIndex}) => {
   setActiveIndex()
   const {isLoading, sellList,error } =useSelector((state)=> state.sell)
-  let data=sellList
+  let data=useMemo(()=>  [...sellList],[sellList]) 
+  const tableHooks = (hooks) => {
+    hooks.visibleColumns.push((columns) => [
+      ...columns,
+      {
+        id: "Edit",
+        Header: "Edit",
+        Cell: ({ row }) => (
+          <button onClick={() => alert("Editing: " + row.values.price)}>
+            Edit
+          </button>
+        ),
+      },
+    ]);
+  };
   console.log(sellList)
   const dispatch = useDispatch()
     useEffect(() =>{
@@ -80,6 +94,7 @@ const Sell = ({setActiveIndex}) => {
     {
       columns,
       data,
+      tableHooks
      
     },
     usePagination
