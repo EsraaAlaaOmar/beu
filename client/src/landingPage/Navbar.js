@@ -10,7 +10,7 @@ import { Dropdown } from 'react-bootstrap'
 const Navbar = () => {
     return (
         <div className='landnav' >
-            <img src='/images/Landingpage/navicon.png' alt='navicon' />
+            <img className='logo' src='/images/Landingpage/navicon.png' alt='navicon' />
             <div className='dropdowns'>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
@@ -110,7 +110,7 @@ const Navbar = () => {
 
             </div>
 
-            
+            <br/>
         </div>
     )
 }

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ForgetConfirmation = () => {
   return <div>
         <div className='log_box forget'>
-                <div className='title'>Forget your Password</div>
+                <div className='title'>FORGET YOUR PASSWORD</div>
                 <p>Enter the confirmation code sent to your email</p>
             <form>
                 <input placeholder='6 digit numbers' />

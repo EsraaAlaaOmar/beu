@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const ResetPassword = () => {
   return <div>
        <div className='log_box reset'>
-                <div className='title'>Reset your Password</div>
+                <div className='title'>RESET YOUR PASSWORD</div>
                
             <form>
                 <input placeholder='Password' type='password' />

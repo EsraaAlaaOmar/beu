@@ -5,7 +5,7 @@ const PhoneConfirmation = () => {
   
     return (
         <div className='log_box'>
-                <div className='title'>Confirm your phone number</div>
+                <div className='title'>CONFIRM YOUR PHONE NUMBER</div>
                 <p>
                 Enter the confirmation code sent to your phone number
                 </p>

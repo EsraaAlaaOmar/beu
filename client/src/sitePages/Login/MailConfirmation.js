@@ -5,7 +5,7 @@ const MailConfirmation = () => {
     return (
         <div>
               <div className='log_box'>
-                <div className='title'>Confirm your email</div>
+                <div className='title'>CONFIRM YOUR EMAIL</div>
                 <p>
                 Enter the confirmation code sent to your email
                 </p>

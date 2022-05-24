@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const ResetCode = () => {
   return <div>
@@ -17,7 +18,9 @@ const ResetCode = () => {
                 <span>Resend</span>
 
                 </div>
+                <Link to='/log/resetpassword'> 
                 <input className='submit' type='submit' value='Confirm' />
+                </Link>
                 
 
             </form>

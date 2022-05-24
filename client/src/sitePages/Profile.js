@@ -5,14 +5,17 @@ import {FaRegEdit} from 'react-icons/fa';
 import {IoIosLogOut} from 'react-icons/io';
 
 import { Link, Route, Routes } from 'react-router-dom';
+import Navbar from '../landingPage/Navbar';
 import EdieProfile from './components/EdieProfile';
 import CurrentOrders from './components/orders&points/CurrentOrders';
 import Orders from './components/orders&points/Orders';
 import Points from './components/orders&points/Points';
 
 const Profile = () => {
-  return <div className='profile'>
-
+    return <>
+     <Navbar />
+     <div className='profile'>
+      
       <Container>
           
           <Row>
@@ -41,7 +44,7 @@ const Profile = () => {
 
               </div>
               <div className='account_actions'>
-              <span className='reset' > <Link to='/'>Reset Password</Link></span>
+              <span className='reset' > <Link to='/log/resetcode'>Reset Password</Link></span>
                     <span className='icon'>
                     Logout <IoIosLogOut />
                     </span>
@@ -58,7 +61,7 @@ const Profile = () => {
            
                <Routes>
                <Route path="/*" element={<Orders />} exact />
-               <Route path="/points" element={<Points />} exact />
+              
               
                </Routes>
                </div>
@@ -68,7 +71,9 @@ const Profile = () => {
                <Routes> 
                   <Route path="/edite" element={<EdieProfile />} exact />
                </Routes>
-  </div>;
+  </div>
+    </>
+ 
 };
 
 export default Profile;

@@ -16,8 +16,10 @@ import LearnMore from '../components/staticPages/LearnMore'
 import Contactus from '../components/staticPages/Contactus'
 const Log = () => {
     return (
-        <div className='log'>
-            <Navbar />
+        <>
+       
+          <div className='log'>
+          <Navbar />
             <Routes>
             <Route path="/sign" element={<SignUp />} exact />
             <Route path="/login" element={<Login />} exact />
@@ -34,6 +36,9 @@ const Log = () => {
             
             </Routes>
         </div>
+        
+        </>
+      
     )
 }
 

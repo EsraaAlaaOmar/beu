@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const SignUp = () => {
     return (
         <div className='log_box'>
-            <div className='title'>Signup</div>
+            <div className='title'>SIGN UP</div>
            <form>
                <input placeholder='Full name' type='text' />
                <br/>

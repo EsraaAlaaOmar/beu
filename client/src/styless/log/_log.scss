@@ -1,47 +1,46 @@
 .log{
-    background-image: url("../../backgrounds/logimg.png");
+    background-image: url("../../backgrounds/log-background.png");
     background-repeat:no-repeat ;
     background-size: 100% 100%;
     background-position: top top;
-    height: 1360px;
+    min-height: 100vh;
   
     width: 100%;
-    margin-top: -320px;
-    padding-top: 320px;
+ 
     padding-bottom: 50px;
     .landnav{
         border: none;
     }
     .log_box{
         margin: auto;
-        margin-top: 185px;
+     
         width: 669px;
-
-        background-color: rgb(255, 255, 255,.86);
+        margin-top: 100px;
+        background-color: #FDF3ED;
         padding:23px 0;
         padding-bottom: 35px;
         max-width: 90%;
        // opacity: 0.86;
        .title{
-           font-family: Alegreya;
+           font-family: Adobe Arabic;
            font-weight: bold;
-           font-style: italic;
-           font-size: 34px;
+           font-size: 30px;
            margin: auto;
            margin-bottom: 20px;
            text-align: center;
+           font-style: normal;
        }
         input{
             border: none;
             outline: none;
-            background-color: #C97B5F;
+            background-color: #fff;
             width: 382px;
             height: 46px;
             display: block;
             margin: auto;
             margin-top: 10px;
             border-radius: 34px;
-            color: #fff;
+            color: #000;
             padding-left: 30px;
             max-width: 80%;
         }
@@ -51,14 +50,14 @@
             height: 194px;
             max-width: 80%;       
            // color: #fff;
-            background-color: #C97B5F;
+            background-color: #fff;
             margin: auto;
             margin-bottom: 34px;
             border: none;
             outline: none;
             border-radius: 24px;
             padding: 15px 20px;
-            color: #e9dad0;
+            color: #000;
             font-size: 16px;
         }
         .action{
@@ -85,7 +84,8 @@
 
         }
         .oposite{
-            text-decoration: underline;
+           
+            padding: 0;
             @media screen and (max-width: 565px) {
                 display: block;
                 float: none;
@@ -96,19 +96,19 @@
 
         }
         .log_privacy{
-            color:#545252 ;
-            font-size: 14px;
+            color:#000 ;
+            font-size: 16px;
             font-family: Alegreya;
-            font-weight: 500;
+           font-weight: bold;
             text-align: center;
-            width: 179px;
+            width: 215px;
             margin: auto;
             margin-top: 30px;
             a{
                 text-decoration: none;
             }
             span{
-                color:#A35604 ;
+                color:#BB5D51 ;
                 span{
                     color:#545252 ;
                 }
@@ -119,13 +119,13 @@
             border: none;
             border-radius: 0;
             padding: 0;
-            color: #fff;
-            background-color: #A35604;
+            color: #000;
+            background-color: #DCB4A7;
             width: 122px;
             height: 44px;
-            box-shadow: 0px 3px 6px #A356047D;
+           
             font-family: Alegreya;
-           font-weight: 500;
+           font-weight: bold;
            font-size: 20px;
            
         }
@@ -139,8 +139,9 @@
             margin-top: 20px;
             color:#000;
             a{
-                color: #A35604;
-                text-decoration: underline;
+                color: #BB5D51;
+                font-weight: bold;
+                font-size: 16px;
             }
         }
         p{
@@ -151,8 +152,8 @@
             font-weight: bold;
             font-size: 18px;
             display: block;
-            margin-bottom: 40px;
-            margin-top: 20px;
+            margin-bottom: 25px;
+            margin-top: 34px;
         }
         .time{
             margin:auto;
