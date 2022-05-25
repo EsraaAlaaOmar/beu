@@ -15,51 +15,51 @@ const Favourite = () => {
 
            <div className='products'>
           <Row>
-                <Col md={6} lg={4} > 
+                <Col md={4} lg={3} > 
                   <Link to='/product'>
-                      <Product  fav  productid={1} sale img='/images/products/4.png'/>
+                      <Product  fav  productid={1}  img='/images/products/4.png'/>
                   </Link>
                 </Col>
-                <Col md={6} lg={4}> 
+                <Col md={4} lg={3}> 
                   <Link to='/product'>
-                       <Product  fav productid={2} img='/images/products/5.png'/>
+                       <Product  fav productid={1} img='/images/products/5.png'/>
                   </Link>
                 </Col>
-                <Col md={6} lg={4}> 
+                <Col md={4} lg={3}> 
                  <Link to='/product'>
                      <Product  fav productid={3} img='/images/products/6.png' />
                   </Link>
                 </Col>
 
-                <Col md={6} lg={4} > 
+                <Col md={4} lg={3} > 
                   <Link to='/product'>
-                    <Product  fav  productid={1} sale img='/images/products/1.png'/>
+                    <Product  fav  productid={1}  img='/images/products/1.png'/>
                   
                   </Link>
                 </Col>
-                <Col md={6} lg={4}> 
+                <Col md={4} lg={3}> 
                   <Link to='/product'>
-                      <Product  fav productid={2} img='/images/products/2.png'/>
+                      <Product  fav productid={1} img='/images/products/2.png'/>
                   </Link>
                 </Col>
-                <Col md={6} lg={4}> 
+                <Col md={4} lg={3}> 
                   <Link to='/product'>
                       <Product  fav productid={3} img='/images/products/3.png' />
                   </Link>
                 </Col>
              
 
-                <Col md={6} lg={4} > 
+                <Col md={4} lg={3} > 
                    <Link to='/product'>
-                      <Product  fav  productid={1} sale img='/images/products/4.png'/>
+                      <Product  fav  productid={1}  img='/images/products/4.png'/>
                   </Link>
                 </Col>
-                <Col md={6} lg={4}> 
+                <Col md={4} lg={3}> 
                   <Link to='/product'>
-                    <Product  fav productid={2} img='/images/products/5.png'/>
+                    <Product  fav productid={1} img='/images/products/5.png'/>
                   </Link>
                 </Col>
-                <Col md={6} lg={4}> 
+                <Col md={4} lg={3}> 
                   <Link to='/product'>
                        <Product  fav productid={3} img='/images/products/6.png' />
                   </Link>
@@ -73,17 +73,17 @@ const Favourite = () => {
           <div className='products'>
           <Row>
 
-                <Col md={6} lg={4} > 
+                <Col md={4} lg={3} > 
                   <Link to='/product'>
-                     <Product  fav  productid={1} sale img='/images/products/1.png'/>
+                     <Product  fav  productid={1}  img='/images/products/1.png'/>
                   </Link>
                 </Col>
-                <Col md={6} lg={4}> 
+                <Col md={4} lg={3}> 
                   <Link to='/product'>
-                      <Product  fav productid={2} img='/images/products/2.png'/>
+                      <Product  fav productid={1} img='/images/products/2.png'/>
                   </Link>
                 </Col>
-                <Col md={6} lg={4}> 
+                <Col md={4} lg={3}> 
                   <Link to='/product'>
                      <Product  fav productid={3} img='/images/products/3.png' />
                   </Link>

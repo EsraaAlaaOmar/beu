@@ -9,7 +9,7 @@ const ProductInfo = ({fav}) => {
             <div>
             Product title goes here ..
             </div>
-            <div className='color'>
+            <div className='last-line'>
             150 $
             <span className='oposite_direction' >
             { fav ? <span> <BsFillHeartFill /> </span>:<span> <BsHeart /> </span>}
