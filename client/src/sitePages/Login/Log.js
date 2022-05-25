@@ -14,6 +14,7 @@ import AboutUs from '../components/staticPages/AboutUs'
 import PrivacyPolicy from '../components/staticPages/PrivacyPolicy'
 import LearnMore from '../components/staticPages/LearnMore'
 import Contactus from '../components/staticPages/Contactus'
+import TermsOfConditions from '../components/staticPages/TermsOfConditions'
 const Log = () => {
     return (
         <>
@@ -33,6 +34,7 @@ const Log = () => {
             <Route path="/privacypolicy" element={<PrivacyPolicy />} exact />
             <Route path="/learnmore" element={<LearnMore />} exact />
             <Route path="/contactus" element={<Contactus />} exact />
+            <Route path="/terms" element={<TermsOfConditions />} exact />
             
             </Routes>
         </div>

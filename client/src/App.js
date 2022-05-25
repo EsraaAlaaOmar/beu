@@ -20,7 +20,7 @@ function App() {
    <div className="clientSide">
       <Routes>
           <Route path="/" element={<Land />} exact />
-          {/* <Route path="/dashbord/*" element={<Dashbord />} exact /> */}
+       
           <Route path="/log/*" element={<Log />} exact />
           <Route path="/search" element={<Search />} exact />
           <Route path="/favourite" element={<Favourite />} exact />
