@@ -48,7 +48,7 @@ const EditeQuestion = () => {
     <div className='addpage add-question'>
     <div className='opacity'>
       <div className='add'>
-        <h4>New Question</h4>
+        <h4>Edite Question</h4>
         <Formik
              initialValues={{
                

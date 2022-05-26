@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React,{useEffect} from 'react'
+
 import Login from '../Auth/Login'
 import Nav from '../reusable/Nav'
 import FeedbackRow from '../feedback/FeedbackRow'
@@ -7,15 +7,26 @@ import QuestionRow from './QuestionRow'
 import { Link, Route, Routes } from 'react-router-dom'
 import NewQuestion from './NewQuestion'
 import EditeQuestion from './EditeQuestion'
+import { useSelector, useDispatch } from 'react-redux';
+import {getQuestions} from'../../store/questionSlice'
 
 const QuestionswithAnswers = ({setActiveIndex}) => {
    setActiveIndex()
-    const {loggedIn} =useSelector((state)=> state.auth)
+   const dispatch = useDispatch()
+   useEffect(() =>{
+      dispatch(getQuestions())
+    
+  
+    },[dispatch])
+    const {questionList,isLoading, error } =useSelector((state)=> state.question)
+    const renderedQuestions= questionList&& questionList.map((question)=>  <QuestionRow question={question} />)
     return (
       <>
       <Nav first_link='Questions & Answers'  second_link='Feedback' first_link_url='/dashbord/questions'   second_link_url='/dashbord/feedback' />
       
-     
+      {isLoading ? 
+    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+    :
            <div className="box">
            <div className="title-text">Questions & Answers</div>
            <div className="table-box no-butons">
@@ -47,7 +58,7 @@ const QuestionswithAnswers = ({setActiveIndex}) => {
                  </tr>
                  </thead>
                     <tbody>
-                       <QuestionRow />
+                      {renderedQuestions}
                     </tbody>
                 </table>
                    
@@ -58,6 +69,7 @@ const QuestionswithAnswers = ({setActiveIndex}) => {
              </Routes>
   
           </div>
+}
     </>
     )
 }

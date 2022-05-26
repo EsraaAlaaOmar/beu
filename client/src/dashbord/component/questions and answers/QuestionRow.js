@@ -18,7 +18,7 @@ function useOutsideAlerter(ref,setShowlist) {
     
   }}, [ref]);
 }
-const QuestionRow = () => {
+const QuestionRow = ({question}) => {
     const [showlist,setShowlist] =useState(false)
 
            // close list when click any where
@@ -27,16 +27,16 @@ const QuestionRow = () => {
   return (
         <tr >
                             
-            <td>USER</td>
+            <td>{question&&question.question}</td>
             <td></td>
-            <td>4</td>
+            <td>{question.available_answers[0]&&question.available_answers[0].answer}</td>
             <td></td>
 
 
             
-            <td>e</td>
+            <td>{question.available_answers[1]&&question.available_answers[1].answer}</td>
             <td></td>
-            <td>e</td>    
+            <td>{question.available_answers[2]&&question.available_answers[2].answer}</td>    
             <td></td>  
             <td>
            { showlist && <div className='hiddenlist' ref={wrapperRef}>
