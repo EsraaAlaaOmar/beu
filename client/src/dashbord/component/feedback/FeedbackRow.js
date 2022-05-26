@@ -18,7 +18,7 @@ function useOutsideAlerter(ref,setShowlist) {
       
     }}, [ref]);
   }
-const FeedbackRow = () => {
+const FeedbackRow = ({feedback}) => {
     const [showlist,setShowlist] =useState(false)
  
     // close list when click any where
@@ -27,8 +27,8 @@ const FeedbackRow = () => {
     return (
                <tr >
                          
-                          <td>USER</td>
-                          <td>4</td>
+                          <td><img src={feedback.customer.avatar} /> {feedback.customer.name}</td>
+                          <td>{feedback.feedbacks.length}</td>
                       
                       
                          
@@ -37,7 +37,7 @@ const FeedbackRow = () => {
                     <td>
                   { showlist && <div className='hiddenlist' ref={wrapperRef}>
               
-                      <Link to='/dashbord/feedback/view'><div className='border-inlist' >View Feedback</div></Link>
+                      <Link to='/dashbord/feedback/view' state={{feeddback:feedback.feedbacks}}><div className='border-inlist' >View Feedback</div></Link>
                       <div className='delete-inlist'>Delete</div>
                   </div>}
                   <span className='icon' onClick={()=>setShowlist(!showlist)}  ref={wrapperRef}><BsThreeDotsVertical /></span>

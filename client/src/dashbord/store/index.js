@@ -13,6 +13,7 @@ import areas from './Address/areaSlice'
 import product from './productSlice'
 import logedDetails from './logedDetailsSlice'
 import sell from './sellinbowslice'
+import feedback from './feedbackSlice'
 
 export default   configureStore({
   reducer: {
@@ -30,6 +31,7 @@ export default   configureStore({
       areas,
       product,
       sell,
+      feedback,
 
   },
 })
