@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { Link, useNavigate,useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import {updateQuestion} from'../../store/questionSlice'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose} from "react-icons/ai"
 //formik
@@ -11,17 +12,18 @@ const EditeQuestion = () => {
     // yup validation
     let schema = yup.object().shape({
       question:yup.string().required('Question required'),
-      questionPriority: yup.number().typeError('Priority must be a number'),
+      questionPriority: yup.number().typeError('Priority must be a number').required(' periority  is required'),
       answer1:yup.string().required('Answer 1 is required'),
-      prioritya1: yup.number().typeError('Priority must be a number'),
+      prioritya1: yup.number().typeError('Priority must be a number').required(' periority  is required'),
       answer2:yup.string().required('Answer 2 is required'),
-      prioritya2: yup.number().typeError('Priority must be a number'),
+      prioritya2: yup.number().typeError('Priority must be a number').required(' periority  is required'),
       answer3:yup.string().required('Answer 3 is required'),
-      prioritya3: yup.number().typeError('Priority must be a number'),
+      prioritya3: yup.number().typeError('Priority must be a number').required(' periority  is required'),
       
      });
 
      // end  yup 
+     let location = useLocation()
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({
@@ -34,10 +36,30 @@ const EditeQuestion = () => {
     })
     const {question,priority, email, password, confirm_password}=formData
     //const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
-    const onSubmit= async e => {
-        e.preventDefault()
-       
+    console.log(location.state)
+    const onSubmit= data => {
+      
+       dispatch(updateQuestion({question:data.question,
+        question_id:location.state.question.id,
+         priority:data.questionPriority,
+         answers : [{
+          answer:data.answer1,
+          priority:data.prioritya1
+        },
+        {
+          answer:data.answer2,
+          priority:data.prioritya2
+        },
+        {
+          answer:data.answer3,
+          priority:data.prioritya3
+        }
+      
+      ]}
+      ))
     }
+           
+    
      //remove validation error 
   const removeError=(setFieldValue,setFieldTouched, name)=>{
     setFieldValue(name, '', false);
@@ -51,15 +73,30 @@ const EditeQuestion = () => {
         <h4>Edite Question</h4>
         <Formik
              initialValues={{
-               
-              question: '',
-              questionPriority: '',
-              answer1:'',
-              prioritya1:'',
-              answer2:'',
-              prioritya2:'',
-              answer3:'',
-              prioritya3:'',
+              
+              question: location.state.question.question,
+              questionPriority:location.state.question.priority,
+              answer1:location.state.question.available_answers[0]?
+                      location.state.question.available_answers[0].answer
+                      :''
+                      ,
+              prioritya1:location.state.question.available_answers[0]?
+                         location.state.question.available_answers[0].priority
+                         :''
+                         ,
+              answer2:location.state.question.available_answers[1]?
+                      location.state.question.available_answers[1].answer 
+                      :''
+              ,
+              prioritya2: location.state.question.available_answers[1]?
+                          location.state.question.available_answers[1].priority
+                        
+                          :''
+                         ,
+              answer3:location.state.question.available_answers[2]?
+                      location.state.question.available_answers[2].answer:'',
+              prioritya3:location.state.question.available_answers[2]?
+                         location.state.question.available_answers[2].priority:'',
              
                 
                
@@ -67,7 +104,7 @@ const EditeQuestion = () => {
               }}
               validationSchema={schema}
               onSubmit ={(values)=>{
-                console.log(values);
+                onSubmit(values);
              
                
              
@@ -149,6 +186,7 @@ const EditeQuestion = () => {
 </div>
   )
 }
+
 
 export default EditeQuestion
 

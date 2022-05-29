@@ -29,19 +29,19 @@ const QuestionRow = ({question}) => {
                             
             <td>{question&&question.question}</td>
             <td></td>
-            <td>{question.available_answers[0]&&question.available_answers[0].answer}</td>
+            <td>{question.answers[0]&&question.answers[0].answer}</td>
             <td></td>
 
 
             
-            <td>{question.available_answers[1]&&question.available_answers[1].answer}</td>
+            <td>{question.answers[1]&&question.answers[1].answer}</td>
             <td></td>
-            <td>{question.available_answers[2]&&question.available_answers[2].answer}</td>    
+            <td>{question.answers[2]&&question.answers[2].answer}</td>    
             <td></td>  
             <td>
            { showlist && <div className='hiddenlist' ref={wrapperRef}>
 
-            <Link to='/dashbord/questions/edite'> <div className='border-inlist' >Edit Question</div> </Link>
+            <Link to='/dashbord/questions/edite' state={{question:question}}> <div className='border-inlist'  >Edit Question</div> </Link>
             <div className='delete-inlist'>Delete</div>
             </div>}
             <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span>

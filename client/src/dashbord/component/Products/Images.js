@@ -58,7 +58,7 @@ const Images = ({colors,collectionId,addImg, galleries}) => {
                             
     <input type='submit' className='confrim' value='Confirm' />
                                 
-                                <Link to={`/products/${collectionId}`}>
+                                <Link to={`/dashbord/products/${collectionId}`}>
                                     <button className='discard'>Discard</button>
                                 </Link>
                             </div>

@@ -18,7 +18,7 @@ const Products = () => {
     console.log(product.size)
     return(
     <Col sm={12} md={6} lg={4} >
-      <Box  products= {false} product={product} editeLink={`/products/${id}/edite/${product.id}`} yello={
+      <Box  products= {false} product={product} editeLink={`/dashbord/products/${id}/edite/${product.id}`} yello={
       <>
         <div>Price : {product.unit_price} $</div>
        <div>Sizes :{sizes}</div>
@@ -37,7 +37,7 @@ const Products = () => {
           <span className="title-text"> Products on {collection.title} <span className="prodcts-num">{collection.products&&collection.products.length} <span>Product</span></span></span> 
           <div className="oposite">
                   
-                    <Link to={`/products/${id}/add`}>
+                    <Link to={`/dashbord/products/${id}/add`}>
                       <button>+ Add New</button>
                     </Link>
           </div>

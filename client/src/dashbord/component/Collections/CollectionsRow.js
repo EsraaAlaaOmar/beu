@@ -49,7 +49,7 @@ const CollectionsRow = ({collection}) => {
         <td>
            { showlist && <div className='hiddenlist' ref={wrapperRef}>
           
-                <Link to={`/products/${collection.id}`}> <div className='border-inlist' >View Products</div> </Link>
+                <Link to={`/dashbord/products/${collection.id}`}> <div className='border-inlist' >View Products</div> </Link>
                 <div className='delete-inlist' onClick={()=>dispatch(deleteCollection({category_id:collection.id}))}>Delete</div>
             </div>}
             <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span></td>

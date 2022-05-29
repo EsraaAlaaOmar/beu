@@ -84,7 +84,7 @@ export const login = createAsyncThunk ('auth/login',
     const {rejectWithValue} = thunkAPI
     try{
       const body= JSON.stringify(loginData)
-      const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/login/", body, {
+      const response = await axios.post("https://thebeauwow.me/api/v1/login/", body, {
         headers: {
           'Content-Type': 'application/json', 
           
