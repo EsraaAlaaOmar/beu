@@ -10,7 +10,7 @@ import Nav from '../reusable/Nav';
 import EditeOffer from './EditeOffer';
 const Offers = ({setActiveIndex}) => {
   setActiveIndex()
-  const {offersList, error } =useSelector((state)=> state.offers)
+  const {offersList,isLoading, error } =useSelector((state)=> state.offers)
   const dispatch = useDispatch()
   {console.log(offersList)}
   useEffect(() =>{
@@ -43,6 +43,9 @@ const Offers = ({setActiveIndex}) => {
   return (
     <>
       <Nav  first_link='Active' second_link='All'  first_link_url='/dashbord/offers'   second_link_url='/dashbord/offers' />
+      {isLoading ? 
+    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+    :
       <div className="box"> 
       {error&& <div className='error-notify'>{error}</div>}
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
@@ -63,6 +66,7 @@ const Offers = ({setActiveIndex}) => {
               <Route path="/edite" element={<EditeOffer />} exact /> 
           </Routes>
       </div>
+      }
     </>
   )
 }

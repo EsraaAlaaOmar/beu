@@ -11,7 +11,7 @@ import AddCollection from './AddCollection';
 import Filter from './Filter';
 
 const Colections = ({setActiveIndex}) => {
-  const {collectionsList, error} =useSelector((state)=>state.collections)
+  const {collectionsList,isLoading, error} =useSelector((state)=>state.collections)
   const dispatch = useDispatch()
 
   useEffect(() =>{
@@ -23,8 +23,9 @@ const Colections = ({setActiveIndex}) => {
   return (
   <> 
    <Nav  first_link='Newest' second_link='All'  first_link_url='/dashbord/collections'   second_link_url='/dashbord/collections' />
-    <div className="box collections">  
-    {error&& <div className='error-notify'>{error}</div>}
+   {isLoading ? 
+    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+    :<div className="box collections">  
           <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
           <span className="title-text">Collections</span>
           <div className="table-box">
@@ -48,6 +49,7 @@ const Colections = ({setActiveIndex}) => {
 
     </div>
   </div>
+}
 </>
   )
 }

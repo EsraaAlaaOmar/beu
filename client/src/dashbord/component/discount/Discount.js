@@ -11,7 +11,7 @@ import EditeDiscount from './EditeDiscount';
 
 const Discount = ({setActiveIndex}) => {
   setActiveIndex()
-  const {discountList, error } =useSelector((state)=> state.discount)
+  const {discountList, isLoading, error } =useSelector((state)=> state.discount)
   const dispatch = useDispatch()
 
   useEffect(() =>{
@@ -24,7 +24,9 @@ const Discount = ({setActiveIndex}) => {
     <>
     
       <Nav  first_link='Active' second_link='All'   first_link_url='/dashbord/discount'   second_link_url='/dashbord/discount'/>
-      
+      {isLoading ? 
+    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+    :
       <div className="box">  
       {error&& <div className='error-notify'>{error}</div>}  
           <span className="icon"><Logo  style= {{fill:'#000'}} /></span>  
@@ -48,6 +50,7 @@ const Discount = ({setActiveIndex}) => {
 
       </div>
   </div>
+  }
  </>
   )
 }
