@@ -7,7 +7,7 @@ export const getAdmins = createAsyncThunk ('admins/get',  async(_ ,thunkAPI) =>{
   
   try{
     const token= getState().auth.token
-    let res = await axios.get("https://test-beau-wow.herokuapp.com/api/v1/admin/users/admins/",{
+    let res = await axios.get("https://thebeauwow.me/api/v1/admin/users/admins/",{
       headers: {
     'Content-Type': 'application/json', 
      'Authorization': `Bearer ${token}`,}
@@ -30,7 +30,7 @@ export const getAdmins = createAsyncThunk ('admins/get',  async(_ ,thunkAPI) =>{
   try{
   
   let body= JSON.stringify(editedadminData)
-  let response = await axios.put("https://test-beau-wow.herokuapp.com/api/v1/admin/users/admins/update/", body, config)
+  let response = await axios.put("https://thebeauwow.me/api/v1/admin/users/admins/update/", body, config)
   
     if(response.status == 200) {
       return  ({...editedadminData, ...response.data}) 
@@ -52,7 +52,7 @@ export const deleteAdmin=   createAsyncThunk ('admin/delete',  async(id ,thunkAP
   const token= getState().auth.token
   try {
     const body= JSON.stringify(id)
-    const response = await axios.delete("https://test-beau-wow.herokuapp.com/api/v1/admin/categories/delete/", {
+    const response = await axios.delete("https://thebeauwow.me/api/v1/admin/categories/delete/", {
       headers: {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}`,

@@ -5,7 +5,7 @@ async(_ ,thunkAPI) =>{
 const {rejectWithValue, getState} = thunkAPI
 try{
  const token= getState().auth.token
- let res = await axios.get(`https://test-beau-wow.herokuapp.com/api/v1/users/detail/`,{
+ let res = await axios.get(`https://thebeauwow.me/api/v1/users/detail/`,{
       headers: {
     'Content-Type': 'application/json', 
      'Authorization': `Bearer ${token}`,}

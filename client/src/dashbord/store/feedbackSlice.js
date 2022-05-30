@@ -8,7 +8,7 @@ export const getFeedbacks = createAsyncThunk ('feedback/get',  async(_ ,thunkAPI
     
     try{
       const token= getState().auth.token
-      let res = await axios.get("https://test-beau-wow.herokuapp.com/api/v1/admin/feedbacks/",{
+      let res = await axios.get("https://thebeauwow.me/api/v1/admin/feedbacks/",{
       headers: {
     'Content-Type': 'application/json', 
      'Authorization': `Bearer ${token}`,}

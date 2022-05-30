@@ -9,7 +9,7 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
     const token= getState().auth.token
   
     
-    const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/admin/sizes/",
+    const  res= await fetch("https://thebeauwow.me/api/v1/admin/sizes/",
     
       {
           method: "GET",
@@ -33,7 +33,7 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
     const token= getState().auth.token
     try {
       const body= JSON.stringify(size)
-      const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/sizes/create/", body, {
+      const response = await axios.post("https://thebeauwow.me/api/v1/admin/sizes/create/", body, {
         headers: {
           'Content-Type': 'application/json', 
           'Authorization': `Bearer ${token}`,
@@ -49,7 +49,7 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
       const token= getState().auth.token
       try {
         const body= JSON.stringify(id)
-        const response = await axios.delete("https://test-beau-wow.herokuapp.com/api/v1/admin/sizes/delete/", {
+        const response = await axios.delete("https://thebeauwow.me/api/v1/admin/sizes/delete/", {
           headers: {
             'Content-Type': 'application/json', 
             'Authorization': `Bearer ${token}`,

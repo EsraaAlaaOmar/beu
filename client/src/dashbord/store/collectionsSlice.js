@@ -7,7 +7,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
   
   try{
     const token= getState().auth.token
-    let res = await axios.get("https://test-beau-wow.herokuapp.com/api/v1/admin/categories/",{
+    let res = await axios.get("https://thebeauwow.me/api/v1/admin/categories/",{
       headers: {
     'Content-Type': 'application/json', 
      'Authorization': `Bearer ${token}`,}
@@ -29,7 +29,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
     const token= getState().auth.token
     try {
       const body= JSON.stringify(id)
-      const response = await axios.delete("https://test-beau-wow.herokuapp.com/api/v1/admin/categories/delete/", {
+      const response = await axios.delete("https://thebeauwow.me/api/v1/admin/categories/delete/", {
         headers: {
           'Content-Type': 'application/json', 
           'Authorization': `Bearer ${token}`,
@@ -52,7 +52,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
     const body= JSON.stringify(collectionData)
     formData.append('title', collectionData.title);
     formData.append(`image`, collectionData.image);
-    const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/categories/create/", formData, {
+    const response = await axios.post("https://thebeauwow.me/api/v1/admin/category/create/", formData, {
       headers: {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}`,
@@ -68,7 +68,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
   
   const collectionsSlice= createSlice({
     name:'discounts',
-    initialState : {collectionsList:[],collection:{}, isLoading:false,addLoading:false, error:null},
+    initialState : {collectionsList:[],collection:{},collectionadded:false, isLoading:false,addLoading:false, error:null},
     reducers:{
 
     },
@@ -84,7 +84,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
        [ getCollections.fulfilled ] :(state,action)=>{
         state.isLoading = false
         state.error= null
-        state.collectionsList = action.payload
+        state.collectionsList = action.payload.results
       
        
       
@@ -95,14 +95,13 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
         [ getCollections.rejected ] :(state,action)=>{
              state.isLoading = false
              state.error = action.payload
-           console.log(action)
-           
+        
         }, 
         // ............. end getCollections ......................
 
         //.......addCollection ..........
         [ addCollection.pending ] :(state,action)=>{
-
+          state.collectionadded=false
           state.isLoading = true
           state.error = null
           
@@ -112,6 +111,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
     
       state.isLoading = false
       state.error= null
+      state.collectionadded=true
       state.collectionsList = [...state.collectionsList, action.payload]
      
     
@@ -121,6 +121,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
       [ addCollection.rejected ] :(state,action)=>{
            state.isLoading = false
            state.error = action.payload
+           state.collectionadded=false
          console.log(action)
          
       },

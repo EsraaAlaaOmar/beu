@@ -1,13 +1,15 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import Cookies from "universal-cookie";
 import axios from 'axios';
+const cookies = new Cookies();
 export const adminRegister = createAsyncThunk ('auth/adminregister', 
     async(adminData ,thunkAPI) =>{
     const {rejectWithValue, getState} = thunkAPI
     try{
       const token= getState().auth.token
       const body= JSON.stringify(adminData)
-      const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/users/admins/create/", body, {
+      const response = await axios.post("https://thebeauwow.me/api/v1/admin/users/admins/create/", body, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`, 
@@ -19,7 +21,7 @@ export const adminRegister = createAsyncThunk ('auth/adminregister',
     catch (e) {
       return rejectWithValue(e.message);
   }
-    //   const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/admin/users/admins/create/",
+    //   const  res= await fetch("https://thebeauwow.me/api/v1/admin/users/admins/create/",
       
     //     {
     //         method: "POST",
@@ -51,7 +53,7 @@ export const userRegister = createAsyncThunk ('auth/userregister',
     const {rejectWithValue, getState} = thunkAPI
     try{
       const token= getState().auth.token
-      const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/users/create/",
+      const  res= await fetch("https://thebeauwow.me/api/v1/users/create/",
       
         {
             method: "POST",
@@ -102,10 +104,17 @@ export const login = createAsyncThunk ('auth/login',
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: { loggedIn: false, isLoading:false, error:null, adminDetailsdata:{}, token:sessionStorage.getItem('token'),},
+    initialState: { loggedIn: cookies.get("login")?cookies.get("login"):false, userInfo:cookies.get("userinfo")?cookies.get("userinfo"):null, isLoading:false, error:null, adminDetailsdata:{}, token:cookies.get("token")? cookies.get("token"):"",},
     reducers:{
       logOut:(state)=>{
-        state.token='';
+        cookies.set("login",false)
+        cookies.set("token",null)
+        cookies.set("userDetails", null)
+        cookies.set("workshop", null)
+        localStorage.clear();
+        state.token=null;
+        state.loggedIn=false;
+       
        
     
        
@@ -123,6 +132,11 @@ const authSlice = createSlice({
          
             state.isLoading = false
             state.error= null
+            cookies.remove("login")
+            cookies.remove("token")
+            cookies.remove("userinfo")
+             cookies.set("token", action.payload.access)
+             cookies.set("login", true)
          
     
         },
@@ -164,7 +178,15 @@ const authSlice = createSlice({
           state.isLoading = false
           state.error= null
           state.token=action.payload.access
-          sessionStorage.setItem('token', action.payload.access)
+          // state.userInfo=action.payload
+          let date= new Date()
+          let expire = new Date(new Date().setDate(date.getDate()+1))
+         console.log(action.payload)
+         cookies.remove("login")
+         cookies.remove("token")
+          cookies.set("token", action.payload.access, {expires : expire})
+          cookies.set("login", true,{expires :expire})
+          cookies.set("userinfo",action.payload)
          
          
        

@@ -1,11 +1,12 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux';
 import {addProduct} from '../../store/productSlice'
 import { Link , useNavigate} from 'react-router-dom'
 import Images from './Images';
-
+import{getSizes} from '../../store/sizesSlice'
 const AddProduct = ({collectionId}) => {
+    
     let navigate =useNavigate()
     const dispatch = useDispatch()
     const {sizsList} =useSelector((state)=> state.sizes)
@@ -16,7 +17,7 @@ const AddProduct = ({collectionId}) => {
         title: '',
         description : '',
         unit_price:'', 
-        overall_quantity:'',
+        quantity:'',
         galleries : [],
         sizes : [{size_id:1}],
         gain_points : '',
@@ -25,20 +26,25 @@ const AddProduct = ({collectionId}) => {
       
     })
     
-    const { title, description, unit_price, overall_quantity, galleries,sizes, gain_points}=formData
+    const { title, description, unit_price, quantity, galleries,sizes, gain_points}=formData
     const renderedColors=colors.map((color) =><span className="color" style={{backgroundColor:color}}></span>)
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
     const addImg=data=>setFormData({...formData, galleries: [...galleries , data]})
     const onSubmit=async e=>{
         e.preventDefault()
         dispatch(addProduct(formData))
-        navigate(`/products/${collectionId}`)
+        navigate(`/dashbord/products/${collectionId}`)
     
 
 
    
     
 }
+useEffect(() =>{
+    dispatch(getSizes())
+  
+
+  },[dispatch])
   return (
         <div className='addpage'>
         <div className='opacity'>
@@ -62,7 +68,7 @@ const AddProduct = ({collectionId}) => {
                             </div>
                             <div className='input-div'>
                                 <label> Quantity</label>
-                                <input type='number' min={1} placeholder='Quantity' name='overall_quantity' value={overall_quantity} onChange={e=>onChange(e)} required />
+                                <input type='number' min={1} placeholder='Quantity' name='quantity' value={quantity} onChange={e=>onChange(e)} required />
                                
                             </div>
                             <div className='input-div'>

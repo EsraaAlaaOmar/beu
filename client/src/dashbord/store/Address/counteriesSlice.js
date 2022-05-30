@@ -8,7 +8,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
     const token= getState().auth.token
    
   
-    let res = await axios.get(`https://test-beau-wow.herokuapp.com/api/v1/admin/addresses/`,{
+    let res = await axios.get(`https://thebeauwow.me/api/v1/admin/addresses/`,{
       headers: {
     'Content-Type': 'application/json', 
      'Authorization': `Bearer ${token}`,}
@@ -30,7 +30,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
     const token= getState().auth.token
     try {
       const body= JSON.stringify(country)
-      const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/countries/create/", body, {
+      const response = await axios.post("https://thebeauwow.me/api/v1/admin/countries/create/", body, {
         headers: {
           'Content-Type': 'application/json', 
           'Authorization': `Bearer ${token}`,
@@ -47,7 +47,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
       const token= getState().auth.token
       try {
         const body= JSON.stringify(id)
-        const response = await axios.delete("https://test-beau-wow.herokuapp.com/api/v1/admin/countries/delete/", {
+        const response = await axios.delete("https://thebeauwow.me/api/v1/admin/countries/delete/", {
           headers: {
             'Content-Type': 'application/json', 
             'Authorization': `Bearer ${token}`,
@@ -64,7 +64,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
         const token= getState().auth.token
         try {
           const body= JSON.stringify(city)
-          const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/cities/create/", body, {
+          const response = await axios.post("https://thebeauwow.me/api/v1/admin/cities/create/", body, {
             headers: {
               'Content-Type': 'application/json', 
               'Authorization': `Bearer ${token}`,

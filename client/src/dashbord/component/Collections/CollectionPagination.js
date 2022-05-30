@@ -25,7 +25,8 @@ const CollectionPagination = ({maplist}) => {
        }
  
     const {page,  pages} = state;
-       let items = state.list.slice(page * perPage, (page + 1) * perPage);
+      //  let items = state.list.slice(page * perPage, (page + 1) * perPage);
+      {console.log(maplist.results)}
        const Collections = maplist.map((collection)=>{
         return (
         

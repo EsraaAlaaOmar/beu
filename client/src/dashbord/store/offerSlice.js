@@ -7,7 +7,7 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
   try{
     const token= getState().auth.token
   
-    let res = await axios.get("https://test-beau-wow.herokuapp.com/api/v1/admin/offers/",{
+    let res = await axios.get("https://thebeauwow.me/api/v1/admin/offers/",{
       headers: {
     'Content-Type': 'application/json', 
      'Authorization': `Bearer ${token}`,}
@@ -28,7 +28,7 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
     const token= getState().auth.token
     try {
       const body= JSON.stringify(offer)
-      const response = await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/offers/create/", body, {
+      const response = await axios.post("https://thebeauwow.me/api/v1/admin/offers/create/", body, {
         headers: {
           'Content-Type': 'application/json', 
           'Authorization': `Bearer ${token}`,
@@ -52,7 +52,7 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
     try{
     
     let body= JSON.stringify(editedOfferData)
-    let response = await axios.put("https://test-beau-wow.herokuapp.com/api/v1/admin/offers/update/", body, config)
+    let response = await axios.put("https://thebeauwow.me/api/v1/admin/offers/update/", body, config)
     
       if(response.status == 200) {
         return  {...editedOfferData }

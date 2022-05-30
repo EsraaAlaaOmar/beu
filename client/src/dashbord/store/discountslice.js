@@ -8,7 +8,7 @@ const token= getState().auth.token
 
 try{
   const token= getState().auth.token
-  let res = await axios.get("https://test-beau-wow.herokuapp.com/api/v1/admin/discounts/",{
+  let res = await axios.get("https://thebeauwow.me/api/v1/admin/discounts/",{
   headers: {
 'Content-Type': 'application/json', 
  'Authorization': `Bearer ${token}`,}
@@ -28,7 +28,7 @@ export const addDiscount = createAsyncThunk ('discounts/add',  async(discountDat
 //const token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ2ODk0MzQ0LCJpYXQiOjE2NDYwMzAzNDQsImp0aSI6ImNlZGRmZjA0OTU2MDQ3NGZhNzAyOGM2MmJmNzJlNDRlIiwidXNlcl9pZCI6MX0.EJUZC1FE4XldJ8syppkdNHuuEyeDD8VeLHsOxUoM-lU'
 try{
  let  body= JSON.stringify(discountData)
-  const res= await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/discounts/update/",body, {headers: {
+  const res= await axios.post("https://thebeauwow.me/api/v1/admin/discounts/create/",body, {headers: {
           'Content-Type': 'application/json', 
            'Authorization': `Bearer ${token}`,
       }
@@ -58,7 +58,7 @@ export const editeDiscount = createAsyncThunk ('discount/update',  async(editedD
 try{
 
 let body= JSON.stringify(editedDiscountData)
-let response = await axios.put("https://test-beau-wow.herokuapp.com/api/v1/admin/discounts/update/", body, config)
+let response = await axios.put("https://thebeauwow.me/api/v1/admin/discounts/update/", body, config)
 
   if(response.status == 200) {
     return  ({...editedDiscountData, ...response.data}) 
@@ -81,19 +81,19 @@ const discountSlice= createSlice({
 
     },
     extraReducers:{
-        //get books 
+     
         [ getDiscounts.pending ] :(state,action)=>{
 
             state.isLoading = true
             state.error = null
             
-          //  console.log(action)
+       
        },
        [ getDiscounts.fulfilled ] :(state,action)=>{
         state.isLoading = false
         state.error= null
         state.discountList = action.payload
-     //  console.log(state.books)
+    
         
         },
         [ getDiscounts.rejected ] :(state,action)=>{

@@ -8,7 +8,7 @@ const token= getState().auth.token
 
 try{
   const token= getState().auth.token
-  let res = await axios.get("https://test-beau-wow.herokuapp.com/api/v1/feedback",{
+  let res = await axios.get("https://thebeauwow.me/api/v1/feedback",{
   headers: {
 'Content-Type': 'application/json', 
  'Authorization': `Bearer ${token}`,}
@@ -58,7 +58,7 @@ export const updateQuestion = createAsyncThunk ('question/update',  async(edited
 try{
 
 let body= JSON.stringify(editedQuestionData)
-let response = await axios.put("https://test-beau-wow.herokuapp.com/api/v1/admin/feedbacks/update_question/", body, config)
+let response = await axios.put("https://thebeauwow.me/api/v1/admin/feedbacks/update_question/", body, config)
 
   if(response.status == 200) {
     return  ({...editedQuestionData, ...response.data}) 

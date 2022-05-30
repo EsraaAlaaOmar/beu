@@ -1,19 +1,26 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { ReactComponent as Logo } from '../../images/collections.svg';
 import {Col, Row} from 'react-bootstrap'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Box from '../reusable/Box'
 import { Link, Route, Routes, useParams } from 'react-router-dom';
 import AddProduct from './AddProduct';
 import Nav from '../reusable/Nav';
 import EditeProduct from './EditeProduct';
-
+import {getProducts} from '../../store/productSlice'
 const Products = () => {
+  const dispatch = useDispatch()
+  const {products, isLoading} =useSelector((state)=>state.product)
   const {collectionsList} =useSelector((state)=>state.collections)
   let { id }  = useParams();
   const collection = collectionsList.find(x => x.id == id)
+  useEffect(() =>{
+    dispatch(getProducts(id ))
   
-  const renderedProducts= collection.products && collection.products.map((product)=>{
+
+  },[dispatch])
+  
+  const renderedProducts=  products.map((product)=>{
      let sizes = product.size? product.size.map(s=>{return( <span key={product.id}>   &nbsp; {s.size} </span>)}) : product.sizes.map(s=>{return( <>  &nbsp; {s.size} </>)})
     console.log(product.size)
     return(
@@ -32,9 +39,12 @@ const Products = () => {
   return (
     <>
       <Nav />
+      {isLoading ? 
+    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+    :
         <div className="box"> 
           <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
-          <span className="title-text"> Products on {collection.title} <span className="prodcts-num">{collection.products&&collection.products.length} <span>Product</span></span></span> 
+          <span className="title-text"> Products on {collection?collection.title:'this collection'} <span className="prodcts-num">{products.length} <span>Product</span></span></span> 
           <div className="oposite">
                   
                     <Link to={`/dashbord/products/${id}/add`}>
@@ -53,6 +63,7 @@ const Products = () => {
               <Route path={`/edite/:id`}  element={<EditeProduct collectionId={id} />} exact/>
           </Routes>
   </div>
+   }
       
     </>
     

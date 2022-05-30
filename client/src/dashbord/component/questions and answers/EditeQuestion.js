@@ -75,28 +75,19 @@ const EditeQuestion = () => {
              initialValues={{
               
               question: location.state.question.question,
-              questionPriority:location.state.question.priority,
-              answer1:location.state.question.available_answers[0]?
-                      location.state.question.available_answers[0].answer
-                      :''
+              questionPriority:location.state.question.questionPriority,
+              answer1:location.state.question.answer1
+                      
                       ,
-              prioritya1:location.state.question.available_answers[0]?
-                         location.state.question.available_answers[0].priority
-                         :''
+              prioritya1:location.state.question.prioritya1
                          ,
-              answer2:location.state.question.available_answers[1]?
-                      location.state.question.available_answers[1].answer 
-                      :''
+              answer2:location.state.question.answer2
+                 
               ,
-              prioritya2: location.state.question.available_answers[1]?
-                          location.state.question.available_answers[1].priority
-                        
-                          :''
+              prioritya2: location.state.question.prioritya2
                          ,
-              answer3:location.state.question.available_answers[2]?
-                      location.state.question.available_answers[2].answer:'',
-              prioritya3:location.state.question.available_answers[2]?
-                         location.state.question.available_answers[2].priority:'',
+              answer3:location.state.question.answer3 ,
+              prioritya3:location.state.question.prioritya3,
              
                 
                
@@ -112,8 +103,11 @@ const EditeQuestion = () => {
              
             
            >
- {({errors, touched,setFieldTouched,  handleSubmit,setFieldValue})=> (
+ {({errors, touched,setFieldTouched,values,  handleSubmit,setFieldValue})=> (
+  
             <form onSubmit={(e)=>{e.preventDefault(); handleSubmit()}}  autoComplete="off">
+              { console.log(values)}
+              { console.log(location.state.question)}
         <div className='input-div'>
             <label> Question ..?</label>
             <div className='input-field  big-input'>

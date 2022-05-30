@@ -9,7 +9,7 @@ export const getAreas = createAsyncThunk ('areas/get',  async(_ ,thunkAPI) =>{
     const token= getState().auth.token
   
     
-    const  res= await fetch("https://test-beau-wow.herokuapp.com/api/v1/admin/areas/",
+    const  res= await fetch("https://thebeauwow.me/api/v1/admin/areas/",
     
       {
           method: "GET",

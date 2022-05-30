@@ -4,6 +4,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import SelectProduct from '../reusable/SelectProduct'
 import { useSelector, useDispatch } from 'react-redux';
 import {addOffer} from '../../store/offerSlice'
+import{getCollections} from '../../store/collectionsSlice'
 const AddOffer = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -17,16 +18,16 @@ const AddOffer = () => {
       
     })
     const { start_at, end_at, percentage, products}=formData
-    //const [products, setProducts] = useState()
-     //add new product to this offer 
+
+
      const addProduct=(newid)=>
      {let data={product_id : newid}
       setFormData({...formData, products:[...products , data ] })
        
         }
     const {collectionsList} =useSelector((state)=>state.collections)
-  
-    const [selectedCollection,setSelectedCollection]= useState(collectionsList[0])
+  //selecte  Collection  to see its products 
+    const [selectedCollection,setSelectedCollection]= useState()
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
     const onSubmit=async e=>{
         e.preventDefault()
@@ -45,12 +46,12 @@ const AddOffer = () => {
             )
    })
    const collection = collectionsList.find(collection => collection.id == selectedCollection)
+  console.log(collection)
+   useEffect(() =>{
+    dispatch(getCollections())
   
-    useEffect(() =>{
-   
-    
-  
-    },[])
+ 
+  },[dispatch])
   return (
     <div className='addpage'>
         <div className='opacity'>
@@ -100,9 +101,9 @@ const AddOffer = () => {
                     <Col sm={12} md={6} lg={8}>
                        {collection && <div className='select'>
                             <span className='black-title'>Products on  {collection.title}</span> 
-                            <span className='yello-title'>&nbsp;  {collection.products.length}  &nbsp; Product</span>
+                            <span className='yello-title'>&nbsp;  {collection.products&&collection.products.length}  &nbsp; Product</span>
                             <Row>
-                                {collection.products.map(product =>{
+                                {collection.products&&collection.products.map(product =>{
                                     return(
                                         <Col sm={12} lg={6}>
                                             <SelectProduct product={product}  addProduct={addProduct}/>

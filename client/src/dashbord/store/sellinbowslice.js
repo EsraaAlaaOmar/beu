@@ -8,7 +8,7 @@ export const getSellList = createAsyncThunk ('sell/get',  async(_ ,thunkAPI) =>{
 
 try{
   const token= getState().auth.token
-  let res = await axios.get("https://test-beau-wow.herokuapp.com/api/v1/admin/sell_in_beau_wow/",{
+  let res = await axios.get("https://thebeauwow.me/api/v1/admin/sell_in_beau_wow/",{
   headers: {
 'Content-Type': 'application/json', 
  'Authorization': `Bearer ${token}`,}

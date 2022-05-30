@@ -2,6 +2,30 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 let formData = new FormData(); 
 
+export const getProducts = createAsyncThunk ('products/get',  async(collectionId ,thunkAPI) =>{
+  const {rejectWithValue , getState} = thunkAPI
+///................................................................
+
+
+
+try{
+  const token= getState().auth.token
+  let res = await axios.get(`https://thebeauwow.me/api/v1/admin/category/detail/${collectionId}/`,{
+  headers: {
+'Content-Type': 'application/json', 
+ 'Authorization': `Bearer ${token}`,}
+
+})
+  return res.data.results
+}
+catch (e) {
+     
+  return rejectWithValue(e.message);
+}
+
+})
+
+
 export const addProduct = createAsyncThunk ('product/add',  async(productData ,thunkAPI) =>{
   const {rejectWithValue , getState} = thunkAPI
   const token= getState().auth.token
@@ -12,7 +36,7 @@ try{
   formData.append('title', productData.title);
   formData.append('description', productData.description);
   formData.append('unit_price', productData.unit_price);
-  formData.append('overall_quantity', productData.overall_quantity);
+  formData.append('quantity', productData.quantity);
   formData.append('sizes', productData.sizes);
   formData.append('gain_points', productData.gain_points);
   for (let i = 0; i < productData.galleries.length; i++) {
@@ -30,7 +54,7 @@ try{
                'Authorization': `Bearer ${token}`,
   }
 }
-const response =await axios.post("https://test-beau-wow.herokuapp.com/api/v1/admin/products/create/", formData, config)
+const response =await axios.post("https://thebeauwow.me/api/v1/admin/products/create/", formData, config)
  console.log(response.data)
  console.log(productData)
    return {...productData, ...response.data}
@@ -53,7 +77,7 @@ catch(e){
     formData.append('title', productData.title);
     formData.append('description', productData.description);
     formData.append('unit_price', productData.unit_price);
-    formData.append('overall_quantity', productData.overall_quantity);
+    formData.append('quantity', productData.quantity);
     formData.append('gain_points', productData.gain_points);
     formData.append('product_id', productData.product_id);
     
@@ -71,7 +95,7 @@ catch(e){
                  'Authorization': `Bearer ${token}`,
     }
   }
-  const response = await axios.put("https://test-beau-wow.herokuapp.com/api/v1/admin/products/update/", formData, config)
+  const response = await axios.put("https://thebeauwow.me/api/v1/admin/products/update/", formData, config)
   
     if(response.status == 200) {
     
@@ -91,10 +115,33 @@ catch(e){
 
 const productSlice= createSlice({
     name:'product',
-    initialState : { product:'', isLoading:false,addLoading:false, error:null},
+    initialState : { products:[], isLoading:false,addLoading:false, error:null},
     reducers:{
 
     },
+    extraReducers:{
+     
+      [ getProducts.pending ] :(state,action)=>{
+
+          state.isLoading = true
+          state.error = null
+          
+     
+     },
+     [ getProducts.fulfilled ] :(state,action)=>{
+      state.isLoading = false
+      state.error= null
+      state.products = action.payload
+  
+      
+      },
+      [ getProducts.rejected ] :(state,action)=>{
+           state.isLoading = false
+           state.error = action.payload
+       
+         
+      }, 
+    }
  
 
 })

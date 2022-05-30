@@ -66,7 +66,7 @@ useEffect(() =>{
      <Route path="/products/:id/*" element={<Products setActiveIndex={()=>setActiveIndex()} />} exact />
      <Route path="/finance" element={<Finance setActiveIndex={()=>setActiveIndex(13)} />} exact />
      <Route path="/messages" element={<Messages setActiveIndex={()=>setActiveIndex(7)} />} exact />
-     <Route path="/sizes" element={<Sizes setActiveIndex={()=>setActiveIndex(8)} />} exact />
+     <Route path="/sizes/*" element={<Sizes setActiveIndex={()=>setActiveIndex(8)} />} exact />
      <Route path="/addresses/*" element={<Address setActiveIndex={()=>setActiveIndex(9)} />} exact />
      <Route path="/register" element={<Register setActiveIndex={()=>setActiveIndex()} />} exact />
      <Route path="/login" element={<Login setActiveIndex={()=>setActiveIndex()} />} exact />

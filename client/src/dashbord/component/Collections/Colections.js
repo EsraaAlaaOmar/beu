@@ -11,14 +11,14 @@ import AddCollection from './AddCollection';
 import Filter from './Filter';
 
 const Colections = ({setActiveIndex}) => {
-  const {collectionsList,isLoading, error} =useSelector((state)=>state.collections)
+  const {collectionsList, collectionadded,isLoading, error} =useSelector((state)=>state.collections)
   const dispatch = useDispatch()
 
   useEffect(() =>{
     dispatch(getCollections())
   
-
-  },[dispatch])
+ 
+  },[collectionadded])
   setActiveIndex()
   return (
   <> 
