@@ -10,6 +10,7 @@ const AddProduct = ({collectionId}) => {
     let navigate =useNavigate()
     const dispatch = useDispatch()
     const {sizsList} =useSelector((state)=> state.sizes)
+    const {prodectAdded} =useSelector((state)=> state.product)
     const [color, setColor] = useState(null);
     const [colors, setColors]=useState([])
     const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ const AddProduct = ({collectionId}) => {
         unit_price:'', 
         quantity:'',
         galleries : [],
-        sizes : [{size_id:1}],
+        sizes : [],
         gain_points : '',
        
     
@@ -27,19 +28,36 @@ const AddProduct = ({collectionId}) => {
     })
     
     const { title, description, unit_price, quantity, galleries,sizes, gain_points}=formData
+    //rendered colors 
     const renderedColors=colors.map((color) =><span className="color" style={{backgroundColor:color}}></span>)
+    //on input change
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
+    //add image 
     const addImg=data=>setFormData({...formData, galleries: [...galleries , data]})
+    //submit
     const onSubmit=async e=>{
         e.preventDefault()
         dispatch(addProduct(formData))
-        navigate(`/dashbord/products/${collectionId}`)
+       
     
 
 
    
     
 }
+
+//add or remove  sizes to size array  from checkbox
+const changeSizes=(e,size)=>{
+if(e.target.checked){
+    setFormData({...formData, sizes: [...sizes, {id:size.id}] })
+}
+else{
+    setFormData({...formData, sizes:  sizes.filter((sizeElement)=>sizeElement.id != size.id)})
+    console.log(size.id)
+   
+}
+}
+
 useEffect(() =>{
     dispatch(getSizes())
   
@@ -71,11 +89,7 @@ useEffect(() =>{
                                 <input type='number' min={1} placeholder='Quantity' name='quantity' value={quantity} onChange={e=>onChange(e)} required />
                                
                             </div>
-                            <div className='input-div'>
-                                <label> Points</label>
-                                <input type='number' min={1} placeholder='points' name='gain_points' value={gain_points} onChange={e=>onChange(e)} required />
-                               
-                            </div>
+  
                             <div className='input-div'>
                                 <label>Colors</label>
                                 <div className='colorList'>
@@ -98,15 +112,22 @@ useEffect(() =>{
                             </div>
                             <div className='input-div'>
                                 <label>Sizes</label>
-                                
-                                <select className='sizes' name="sizes"   onChange={e=>{setFormData({...formData, sizes:{size_id : e.target.value}})}} required>
+                                <Row>
+                           
                                     { 
-                                       sizsList.map(size=>{return(<option value={size.id}>{size.size} </option>)})
-                                    }
+                                       sizsList.map(size=>{return(
+                                       <Col>
+                                          <input  className='check-box' type="checkbox" id={size.size} name={size.size} value={size.id} onClick={(e)=>changeSizes(e,size)}/>
+                                          <label className='check-box-label' for={size.size}>{size.size}</label>
+                                       </Col>
+                                       
+                                       )}
+                                      )}
                                     
                                     
                                  
-                                </select>
+                                
+                                </Row>
                             
                             </div>
                             <div className='input-div'>
@@ -120,7 +141,7 @@ useEffect(() =>{
 
                     </Col>
                     <Col sm={12} md={6} lg={8}>
-                        <Images colors={colors} collectionId={collectionId} addImg={addImg} galleries={galleries}/>
+                        <Images colors={colors} collectionId={collectionId}  addImg={addImg} galleries={galleries}/>
                     </Col>
                    
                     </Row>
@@ -128,7 +149,7 @@ useEffect(() =>{
                 
               </div>
         </div>
-
+{prodectAdded && navigate(`/dashbord/products/${collectionId}`)}
     </div>
   )
 }

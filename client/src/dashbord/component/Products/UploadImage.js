@@ -4,13 +4,15 @@ const UploadImage = ({color,index,galleries,addImg}) => {
     const [imgInfo, setImgInfo] = useState(
        { image:'',
         priority :'',
-        color_hex:color
+        color_hex:color,
+        imageUrl:''
       }
     )
     const {image, priority}=imgInfo
+console.log(imgInfo)
 
     const onChange=e=>setImgInfo({...imgInfo, [e.target.name]: e.target.value})
-    const imgChange=e=>setImgInfo({...imgInfo, [e.target.name]: e.target.files[0]})
+    const imgChange=e=>setImgInfo({...imgInfo, [e.target.name]: e.target.files[0],imageUrl:URL.createObjectURL(e.target.files[0])})
     const addimage=(e)=>{
       e.preventDefault()
       addImg(imgInfo) 
@@ -32,7 +34,7 @@ const UploadImage = ({color,index,galleries,addImg}) => {
                                 
 
                                 
-                                  <img src={image} /> 
+                                
                             </span>
                             <button onClick={(e)=>addimage(e)}>Add</button>
                            

@@ -125,71 +125,72 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
          console.log(action)
          
       },
-      [ addProduct.pending ] :(state,action)=>{
-        state.isLoading = false
-        state.error= null
-      },
-      [ addProduct.fulfilled ] :(state,action)=>{
-            const currentState = current(state)
-        state.isLoading = false
-        state.error= null
-        const index = currentState.collectionsList.findIndex(collection => collection.id == action.payload.category_id);       
-        // console.log(currentState.collectionsList.map(collection => console.log(typeof collection.id)))                                   
-         const newArray = [...currentState.collectionsList]; 
+      //veery important for update inside array
+  //     [ addProduct.pending ] :(state,action)=>{
+  //       state.isLoading = false
+  //       state.error= null
+  //     },
+  //     [ addProduct.fulfilled ] :(state,action)=>{
+  //           const currentState = current(state)
+  //       state.isLoading = false
+  //       state.error= null
+  //       const index = currentState.collectionsList.findIndex(collection => collection.id == action.payload.category_id);       
+  //       // console.log(currentState.collectionsList.map(collection => console.log(typeof collection.id)))                                   
+  //        const newArray = [...currentState.collectionsList]; 
          
-        // console.log(typeof action.payload.category_id )
-        // console.log(index)
-        // console.log(currentState.collectionsList)
+  //       // console.log(typeof action.payload.category_id )
+  //       // console.log(index)
+  //       // console.log(currentState.collectionsList)
        
-      //   if(index)
-      //   { let  esrray = {...newArray[index], products :[...newArray[index].products, action.payload]};
-      //   console.log(esrray)
-      // }
-      newArray[index] = {...newArray[index], products :[...newArray[index].products, action.payload]}
-        console.log(newArray)
-        console.log([...newArray[index].products,action.payload])
-        state.collectionsList=newArray;
-        // let collection= state.collectionsList.find((collection)=> collection.id === action.payload.category_id)
-        // state.collectionsList.find((collection)=> collection.id==action.payload.category_id).push(action.payload)
+  //     //   if(index)
+  //     //   { let  esrray = {...newArray[index], products :[...newArray[index].products, action.payload]};
+  //     //   console.log(esrray)
+  //     // }
+  //     newArray[index] = {...newArray[index], products :[...newArray[index].products, action.payload]}
+  //       console.log(newArray)
+  //       console.log([...newArray[index].products,action.payload])
+  //       state.collectionsList=newArray;
+  //       // let collection= state.collectionsList.find((collection)=> collection.id === action.payload.category_id)
+  //       // state.collectionsList.find((collection)=> collection.id==action.payload.category_id).push(action.payload)
 
-      //  state.products=[...state.products ,action.payload]
+  //     //  state.products=[...state.products ,action.payload]
     
-      },
-      [ addProduct.rejected ] :(state,action)=>{
-        state.isLoading = false
-        state.error=action.payload
+  //     },
+  //     [ addProduct.rejected ] :(state,action)=>{
+  //       state.isLoading = false
+  //       state.error=action.payload
        
     
-      },
-       //....... delete collection .........
-       [ deleteCollection.pending ] :(state,action)=>{
+  //     },
+  //      //....... delete collection .........
+  //      [ deleteCollection.pending ] :(state,action)=>{
 
-        state.isLoading = true
-        state.error = null
+  //       state.isLoading = true
+  //       state.error = null
         
       
-   },
-      [ editeProduct.pending ] :(state,action)=>{
-        state.isLoading = false
-        state.error= null
-      },
-     [ editeProduct.fulfilled ] :(state,action)=>{
-        const currentState = current(state)
-        state.isLoading = false
-        state.error= null
-        const index = currentState.collectionsList.findIndex(collection => collection.id == action.payload.category_id); 
-        const productIndex = currentState.collectionsList[index].products.findIndex(product => product.id == action.payload.product_id);       
-              {console.log(productIndex)}                          
-       const newArray = [...currentState.collectionsList]; 
-       newArray[index] = {...newArray[index], products : Object.assign([...newArray[index].products], {[productIndex]: action.payload})}
-       state.collectionsList=newArray;
-      },
-      [ editeProduct.rejected ] :(state,action)=>{
-        state.isLoading = false
-        state.error=action.payload
+  //  },
+  //     [ editeProduct.pending ] :(state,action)=>{
+  //       state.isLoading = false
+  //       state.error= null
+  //     },
+  //    [ editeProduct.fulfilled ] :(state,action)=>{
+  //       const currentState = current(state)
+  //       state.isLoading = false
+  //       state.error= null
+  //       const index = currentState.collectionsList.findIndex(collection => collection.id == action.payload.category_id); 
+  //       const productIndex = currentState.collectionsList[index].products.findIndex(product => product.id == action.payload.product_id);       
+  //             {console.log(productIndex)}                          
+  //      const newArray = [...currentState.collectionsList]; 
+  //      newArray[index] = {...newArray[index], products : Object.assign([...newArray[index].products], {[productIndex]: action.payload})}
+  //      state.collectionsList=newArray;
+  //     },
+  //     [ editeProduct.rejected ] :(state,action)=>{
+  //       state.isLoading = false
+  //       state.error=action.payload
        
     
-      },
+  //     },
 
 
 

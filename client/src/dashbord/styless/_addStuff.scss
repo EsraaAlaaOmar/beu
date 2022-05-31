@@ -157,7 +157,18 @@ h4{
         }
 
     }
- 
+ .check-box{
+    width: 20px;
+    height: 20px; 
+    display: inline-block;
+    cursor: pointer;
+ }
+ .check-box-label{
+     display: inline-block ;
+     vertical-align: super;
+     margin-left: 5px;
+     cursor: pointer;
+ }
    
 }
 

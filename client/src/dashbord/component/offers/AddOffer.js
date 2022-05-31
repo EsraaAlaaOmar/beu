@@ -5,6 +5,7 @@ import SelectProduct from '../reusable/SelectProduct'
 import { useSelector, useDispatch } from 'react-redux';
 import {addOffer} from '../../store/offerSlice'
 import{getCollections} from '../../store/collectionsSlice'
+import {getProducts} from '../../store/productSlice'
 const AddOffer = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -45,8 +46,16 @@ const AddOffer = () => {
                <option key={collection.id} value={collection.id} >{collection.title}</option>
             )
    })
-   const collection = collectionsList.find(collection => collection.id == selectedCollection)
-  console.log(collection)
+   const {prodectAdded,productupdated, isLoading} =useSelector((state)=>state.product)
+   const productdata =useSelector((state)=>state.product)
+   const productsList =  productdata.products
+console.log(productsList)
+  useEffect(() =>{
+      if(selectedCollection)
+   { getProducts( selectedCollection)}
+  
+ 
+  },[selectedCollection])
    useEffect(() =>{
     dispatch(getCollections())
   
@@ -99,11 +108,11 @@ const AddOffer = () => {
 
                     </Col>
                     <Col sm={12} md={6} lg={8}>
-                       {collection && <div className='select'>
-                            <span className='black-title'>Products on  {collection.title}</span> 
-                            <span className='yello-title'>&nbsp;  {collection.products&&collection.products.length}  &nbsp; Product</span>
+                       {productsList && <div className='select'>
+                            <span className='black-title'>Products on  selected collection</span> 
+                            <span className='yello-title'>&nbsp;  {productsList.length}  &nbsp; Product</span>
                             <Row>
-                                {collection.products&&collection.products.map(product =>{
+                                {productsList.map(product =>{
                                     return(
                                         <Col sm={12} lg={6}>
                                             <SelectProduct product={product}  addProduct={addProduct}/>

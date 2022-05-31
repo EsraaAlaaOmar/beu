@@ -37,7 +37,8 @@ try{
   formData.append('description', productData.description);
   formData.append('unit_price', productData.unit_price);
   formData.append('quantity', productData.quantity);
-  formData.append('sizes', productData.sizes);
+  // formData.append('sizes', productData.sizes);
+  console.log( productData.sizes)
   formData.append('gain_points', productData.gain_points);
   for (let i = 0; i < productData.galleries.length; i++) {
     formData.append(`galleries[${i}]image`, productData.galleries[i].image);
@@ -45,7 +46,7 @@ try{
     formData.append(`galleries[${i}]priority`, productData.galleries[i].priority);
   }
   for (let i = 0; i < productData.sizes.length; i++) {
-    formData.append(`sizes[${i}]size_id`, productData.sizes[i].size_id);
+    formData.append(`sizes[${i}]size_id`, productData.sizes[i].id);
   }
 
  
@@ -78,7 +79,7 @@ catch(e){
     formData.append('description', productData.description);
     formData.append('unit_price', productData.unit_price);
     formData.append('quantity', productData.quantity);
-    formData.append('gain_points', productData.gain_points);
+
     formData.append('product_id', productData.product_id);
     
     for (let i = 0; i < productData.galleries.length; i++) {
@@ -87,9 +88,9 @@ catch(e){
       formData.append(`galleries[${i}]priority`, productData.galleries[i].priority);
     }
     for (let i = 0; i < productData.sizes.length; i++) {
-      formData.append(`sizes[${i}]size_id`, productData.sizes[i].size_id);
+      formData.append(`sizes[${i}]size_id`, productData.sizes[i].id);
     }
-  
+    // formData.append('sizes', productData.sizes);
     const config = {     
       headers: { 'content-type': 'multipart/form-data',
                  'Authorization': `Bearer ${token}`,
@@ -115,9 +116,12 @@ catch(e){
 
 const productSlice= createSlice({
     name:'product',
-    initialState : { products:[], isLoading:false,addLoading:false, error:null},
+    initialState : { products:[], isLoading:false,prodectAdded:false, productupdated:false, error:null},
     reducers:{
-
+      clearstate:(state)=>{
+        state.prodectAdded= false
+        state.productupdated= false
+      }
     },
     extraReducers:{
      
@@ -125,11 +129,13 @@ const productSlice= createSlice({
 
           state.isLoading = true
           state.error = null
-          
+         
+          // state.productupdated=false
      
      },
      [ getProducts.fulfilled ] :(state,action)=>{
       state.isLoading = false
+      
       state.error= null
       state.products = action.payload
   
@@ -138,11 +144,60 @@ const productSlice= createSlice({
       [ getProducts.rejected ] :(state,action)=>{
            state.isLoading = false
            state.error = action.payload
-       
+          
+          //  state.productupdated=false
          
       }, 
+      [ addProduct.pending ] :(state,action)=>{
+
+        state.isLoading = true
+        state.error = null
+        state.prodectAdded=false
+        state.productupdated=false
+   
+   },
+   [ addProduct.fulfilled ] :(state,action)=>{
+    state.isLoading = false
+    state.prodectAdded=true
+    state.productupdated=false
+    state.error= null
+ 
+
+    
+    },
+    [ addProduct.rejected ] :(state,action)=>{
+         state.isLoading = false
+         state.error = action.payload
+         state.prodectAdded=false
+         state.productupdated=false
+     
+       
+    },
+    [ editeProduct.pending ] :(state,action)=>{
+
+      state.isLoading = true
+      state.error = null
+      state.productupdated=false
+ 
+ },
+ [ editeProduct.fulfilled ] :(state,action)=>{
+  state.isLoading = false
+  state.productupdated=true
+  state.error= null
+
+
+  
+  },
+  [ editeProduct.rejected ] :(state,action)=>{
+       state.isLoading = false
+       state.error = action.payload
+       state.productupdated=false
+   
+     
+  },
     }
  
 
 })
+export const {clearstate} = productSlice.actions
 export default productSlice.reducer

@@ -6,47 +6,63 @@ import { Link ,useParams, useLocation, useNavigate} from 'react-router-dom'
 import Images from './Images';
 import{getSizes} from '../../store/sizesSlice'
 
-const EditeProduct = ({collectionId}) => {
+const EditeProduct = ({collectionId, clearstate}) => {
     let { id }  = useParams();
     let location = useLocation()
     let navigate= useNavigate()
     const dispatch = useDispatch()
     const {sizsList} =useSelector((state)=> state.sizes)
+    const {productupdated} =useSelector((state)=> state.product)
     const [color, setColor] = useState(null);
-    const [colors, setColors]=useState([])
+    const selectedsizes =location.state.product.size.map(s=>({id: s.id}))
     const [formData, setFormData] = useState({
         category_id: collectionId,
         title:location.state.product.title,
         description : location.state.product.description,
         unit_price:location.state.product.unit_price, 
         quantity:location.state.product.quantity,
-        galleries : [],
-        sizes : [{size_id:1}],
-        gain_points :location.state.product.gain_points,
+        galleries : location.state.product.galleries,
+        sizes : selectedsizes,
+      
         id : location.state.product.id,
         product_id:location.state.product.id
       
     })
-    
-    const { title, description, unit_price, quantity, galleries,sizes, gain_points}=formData
-    const renderedColors=colors.map((color) =><span className="color" style={{backgroundColor:color}}></span>)
+    console.log(formData.sizes)
+    const { title, description, unit_price, quantity, galleries,sizes}=formData
+   //set colors array  
+    const [colors, setColors]=useState(galleries.map((galary) =>galary.color_hex))
+   
+    const renderedColors=galleries.map((galary) =><span className="color" style={{backgroundColor:galary.color_hex}}></span>)
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
     const addImg=data=>setFormData({...formData, galleries: [...galleries , data]})
     const onSubmit=async e=>{
         e.preventDefault()
        dispatch(editeProduct(formData))
-       navigate(`/products/${collectionId}`)
+     
     
 
 
     
 }
-
+//add or remove  sizes to size array  from checkbox
+const changeSizes=(e,size)=>{
+    if(e.target.checked){
+        setFormData({...formData, sizes: [...sizes, {id:size.id}] })
+    }
+    else{
+        setFormData({...formData, sizes:  sizes.filter((sizeElement)=>sizeElement.id != size.id)})
+        console.log(size.id)
+       
+    }
+    }
+    
 useEffect(() =>{
     dispatch(getSizes())
-  
+    dispatch(clearstate())
 
   },[dispatch])
+
   return (
         <div className='addpage'>
         <div className='opacity'>
@@ -73,11 +89,7 @@ useEffect(() =>{
                                 <input type='number' min={1} placeholder='Quantity' name='quantity' value={quantity} onChange={e=>onChange(e)} required />
                                
                             </div>
-                            <div className='input-div'>
-                                <label> Points</label>
-                                <input type='number' min={1} placeholder='points' name='gain_points' value={gain_points} onChange={e=>onChange(e)} required />
-                               
-                            </div>
+                         
                             <div className='input-div'>
                                 <label>Colors</label>
                                 <div className='colorList'>
@@ -101,13 +113,22 @@ useEffect(() =>{
                             <div className='input-div'>
                                 <label>Sizes</label>
                                 
-                                <select className='' name="sizes" value={sizes}   onChange={e=>{setFormData({...formData, sizes:{size_id : e.target.value}})}}  required>
-                                    { 
-                                       sizsList.map(size=>{return(<option value={size.id}>{size.size} </option>)})
-                                    }
-                                       
-                                 
-                                </select>
+                                <Row>
+                           
+                           { 
+                              sizsList.map(sizeitem=>{return(
+                              <Col>
+                                 <input  className='check-box' type="checkbox" id={sizeitem.size} name={sizeitem.size} checked={sizes.find(s=>s.id == sizeitem.id) && true} onClick={(e)=>changeSizes(e,sizeitem)}/>
+                                 <label className='check-box-label' for={sizeitem.size}>{sizeitem.size}</label>
+                              </Col>
+                              
+                              )}
+                             )}
+                           
+                           
+                        
+                       
+                       </Row>
                             
                             </div>
                             <div className='input-div'>
@@ -129,7 +150,7 @@ useEffect(() =>{
                 
               </div>
         </div>
-
+        {productupdated && navigate(`/dashbord/products/${collectionId}`)}
     </div>
   )
 }

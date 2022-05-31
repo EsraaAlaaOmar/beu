@@ -9,6 +9,17 @@ const Images = ({colors,collectionId,addImg, galleries}) => {
       return(<UploadImage color={color} index={index} setViewed={setViewed}  addImg={addImg} galleries={galleries} />)
 
     })
+    const renderedImagesforCarousel= galleries.map(galary=>{
+        return(  <Carousel.Item interval={1000}>
+            <img
+            className="d-block w-100"
+            src={galary.imageUrl}
+            alt="first slide"
+            
+            />
+           
+        </Carousel.Item>)
+    })
   return (
     <div className='add-dev'>
         <div className='add-images'>
@@ -27,7 +38,7 @@ const Images = ({colors,collectionId,addImg, galleries}) => {
             
     <div className='img'>
             <Carousel>
-                <Carousel.Item interval={1000}>
+                {/* <Carousel.Item interval={1000}>
                     <img
                     className="d-block w-100"
                     src="holder.js/800x400?text=First slide&bg=373940"
@@ -51,7 +62,8 @@ const Images = ({colors,collectionId,addImg, galleries}) => {
                     alt="Third slide"
                     />
 
-                </Carousel.Item>
+                </Carousel.Item> */}
+                {renderedImagesforCarousel}
         </Carousel>
     </div>
     <div className='buttons'>

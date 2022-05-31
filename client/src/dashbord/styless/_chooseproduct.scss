@@ -214,8 +214,18 @@
             background-color:#272D3B33;
             margin:10px auto;
             font-size: 36px;
-            padding-top:150px;
+            // padding-top:150px;
             border: 1px solid #707070;
+
+            // carousel icons
+            .carousel-control-next-icon,.carousel-control-prev-icon{
+                margin-top: 150px;
+            }
+            img{
+               height: 365px;
+            }
+
+
         }
     }
 }
