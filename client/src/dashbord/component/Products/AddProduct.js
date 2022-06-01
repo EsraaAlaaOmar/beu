@@ -1,11 +1,31 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect ,useRef} from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux';
 import {addProduct} from '../../store/productSlice'
 import { Link , useNavigate} from 'react-router-dom'
 import Images from './Images';
 import{getSizes} from '../../store/sizesSlice'
-import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg'
+
+
+// use ref  function 
+function useOutsideAlerter(ref,navigate,id) {
+    useEffect(() =>{
+      function handleClickOutside(event) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          
+            navigate(`/dashbord/products/${id}`)
+        }
+      }
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      
+    }}, [ref]);
+  }
+
+
 const AddProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
     
     let navigate =useNavigate()
@@ -68,10 +88,13 @@ useEffect(() =>{
   
 
   },[dispatch])
+// call useref function
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, navigate, collectionId);
   return (
         <div className='addpage'>
         <div className='opacity'>
-            <div className='choose-product'>
+            <div className='choose-product'  ref={wrapperRef}>
              
             <form  onSubmit={(e)=> onSubmit(e)}>
                 <Row>
