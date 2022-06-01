@@ -18,7 +18,7 @@ const Products = () => {
     dispatch(getProducts(id ))
   
 
-  },[prodectAdded, productupdated])
+  },[dispatch, prodectAdded])
   
   const renderedProducts=  products.map((product)=>{
      let sizes = product.size? product.size.map(s=>{return( <span key={product.id}>   &nbsp; {s.size} </span>)}) : product.sizes.map(s=>{return( <>  &nbsp; {s.size} </>)})
@@ -48,7 +48,7 @@ const Products = () => {
           <div className="oposite">
                   
                     <Link to={`/dashbord/products/${id}/add`}>
-                      <button>+ Add New</button>
+                      <button onClick={()=>  dispatch(clearstate())}>+ Add New</button>
                     </Link>
           </div>
          

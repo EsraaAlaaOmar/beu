@@ -72,7 +72,7 @@ catch(e){
  export const editeProduct = createAsyncThunk ('product/Edite',  async(productData ,thunkAPI) =>{
   const {rejectWithValue , getState} = thunkAPI
   const token= getState().auth.token
-  try{
+  
     let formData = new FormData(); 
     formData.append('category_id', productData.category_id);   //append the values with key, value pair
     formData.append('title', productData.title);
@@ -96,20 +96,20 @@ catch(e){
                  'Authorization': `Bearer ${token}`,
     }
   }
+  try{
   const response = await axios.put("https://thebeauwow.me/api/v1/admin/products/update/", formData, config)
   
-    if(response.status == 200) {
+   
     
       return productData
+      }
    
-    }
-  
-  
-   }
-  catch(e){
-    return rejectWithValue(e.message)
     
-  }
+      catch(e){
+        return rejectWithValue(e.response.data)
+      }
+    
+  
  
 
 })
@@ -130,7 +130,7 @@ const productSlice= createSlice({
           state.isLoading = true
           state.error = null
          
-          // state.productupdated=false
+          
      
      },
      [ getProducts.fulfilled ] :(state,action)=>{
@@ -145,7 +145,7 @@ const productSlice= createSlice({
            state.isLoading = false
            state.error = action.payload
           
-          //  state.productupdated=false
+       
          
       }, 
       [ addProduct.pending ] :(state,action)=>{
@@ -161,6 +161,7 @@ const productSlice= createSlice({
     state.prodectAdded=true
     state.productupdated=false
     state.error= null
+    state.products = [...state.products, action.payload]
  
 
     
@@ -178,12 +179,18 @@ const productSlice= createSlice({
       state.isLoading = true
       state.error = null
       state.productupdated=false
+     
  
  },
  [ editeProduct.fulfilled ] :(state,action)=>{
   state.isLoading = false
   state.productupdated=true
   state.error= null
+  const index = state.products.findIndex(product => product.id == action.payload.product_id);                                                            
+  const newArray = [...state.products]; 
+  if(index)
+  {  newArray[index] = action.payload;}
+ state.products=newArray ;
 
 
   

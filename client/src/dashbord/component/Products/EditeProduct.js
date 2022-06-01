@@ -6,7 +6,7 @@ import { Link ,useParams, useLocation, useNavigate} from 'react-router-dom'
 import Images from './Images';
 import{getSizes} from '../../store/sizesSlice'
 
-const EditeProduct = ({collectionId, clearstate}) => {
+const EditeProduct = ({collectionId}) => {
     let { id }  = useParams();
     let location = useLocation()
     let navigate= useNavigate()
@@ -59,7 +59,7 @@ const changeSizes=(e,size)=>{
     
 useEffect(() =>{
     dispatch(getSizes())
-    dispatch(clearstate())
+  
 
   },[dispatch])
 
