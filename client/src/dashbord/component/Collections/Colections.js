@@ -11,6 +11,7 @@ import AddCollection from './AddCollection';
 import Filter from './Filter';
 
 const Colections = ({setActiveIndex}) => {
+  setActiveIndex()
   const {collectionsList, collectionadded,isLoading, error} =useSelector((state)=>state.collections)
   const dispatch = useDispatch()
 
@@ -19,7 +20,7 @@ const Colections = ({setActiveIndex}) => {
   
  
   },[collectionadded])
-  setActiveIndex()
+ 
   return (
   <> 
    <Nav  first_link='Newest' second_link='All'  first_link_url='/dashbord/collections'   second_link_url='/dashbord/collections' />

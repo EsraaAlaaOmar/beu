@@ -18,9 +18,8 @@ try{
 })
   return res.data.results
 }
-catch (e) {
-     
-  return rejectWithValue(e.message);
+catch(e){
+  return rejectWithValue(e.response.data)
 }
 
 })
@@ -31,7 +30,7 @@ export const addProduct = createAsyncThunk ('product/add',  async(productData ,t
   const token= getState().auth.token
 //const token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ2ODk0MzQ0LCJpYXQiOjE2NDYwMzAzNDQsImp0aSI6ImNlZGRmZjA0OTU2MDQ3NGZhNzAyOGM2MmJmNzJlNDRlIiwidXNlcl9pZCI6MX0.EJUZC1FE4XldJ8syppkdNHuuEyeDD8VeLHsOxUoM-lU'
 let galleries=[]
-try{
+
   formData.append('category_id', productData.category_id);   //append the values with key, value pair
   formData.append('title', productData.title);
   formData.append('description', productData.description);
@@ -55,18 +54,22 @@ try{
                'Authorization': `Bearer ${token}`,
   }
 }
+try{
 const response =await axios.post("https://thebeauwow.me/api/v1/admin/products/create/", formData, config)
  console.log(response.data)
  console.log(productData)
    return {...productData, ...response.data}
+
    
     
 
  }
-catch(e){
-  return rejectWithValue(e.message)
-  
+ catch(e){
+  return rejectWithValue(e.response.data)
 }
+
+
+
 
 })
  export const editeProduct = createAsyncThunk ('product/Edite',  async(productData ,thunkAPI) =>{
@@ -121,6 +124,8 @@ const productSlice= createSlice({
       clearstate:(state)=>{
         state.prodectAdded= false
         state.productupdated= false
+        state.error= false
+
       }
     },
     extraReducers:{
@@ -150,7 +155,7 @@ const productSlice= createSlice({
       }, 
       [ addProduct.pending ] :(state,action)=>{
 
-        state.isLoading = true
+        // state.isLoading = true
         state.error = null
         state.prodectAdded=false
         state.productupdated=false
@@ -161,7 +166,7 @@ const productSlice= createSlice({
     state.prodectAdded=true
     state.productupdated=false
     state.error= null
-    state.products = [...state.products, action.payload]
+    // state.products = [...state.products, action.payload]
  
 
     

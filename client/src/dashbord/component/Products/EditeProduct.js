@@ -5,16 +5,22 @@ import {editeProduct} from '../../store/productSlice'
 import { Link ,useParams, useLocation, useNavigate} from 'react-router-dom'
 import Images from './Images';
 import{getSizes} from '../../store/sizesSlice'
+import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
 
-const EditeProduct = ({collectionId}) => {
+const EditeProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
     let { id }  = useParams();
     let location = useLocation()
     let navigate= useNavigate()
     const dispatch = useDispatch()
+    //Api data from redux
     const {sizsList} =useSelector((state)=> state.sizes)
-    const {productupdated} =useSelector((state)=> state.product)
+    const {productupdated, error} =useSelector((state)=> state.product)
+    //page state
     const [color, setColor] = useState(null);
     const selectedsizes =location.state.product.size.map(s=>({id: s.id}))
+
+     
+      //form data state
     const [formData, setFormData] = useState({
         category_id: collectionId,
         title:location.state.product.title,
@@ -40,7 +46,7 @@ const EditeProduct = ({collectionId}) => {
         e.preventDefault()
        dispatch(editeProduct(formData))
      
-    
+       setErrorFlashmsg(true)
 
 
     
@@ -67,6 +73,7 @@ useEffect(() =>{
         <div className='addpage'>
         <div className='opacity'>
             <div className='choose-product'>
+           
             <form  onSubmit={(e)=> onSubmit(e)}>
                 <Row>
         {console.log(formData)}
@@ -142,7 +149,7 @@ useEffect(() =>{
 
                     </Col>
                     <Col sm={12} md={6} lg={8}>
-                        <Images colors={colors} collectionId={collectionId} addImg={addImg} galleries={galleries}/>
+                        <Images colors={colors} collectionId={collectionId} clearstate={clearstate} addImg={addImg} galleries={galleries}/>
                     </Col>
                    
                     </Row>

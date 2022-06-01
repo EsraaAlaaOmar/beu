@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
 import {Carousel} from 'react-bootstrap'
 import {AiFillCamera} from 'react-icons/ai'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import UploadImage from './UploadImage'
-const Images = ({colors,collectionId,addImg, galleries}) => {
+const Images = ({colors,collectionId,addImg, galleries, clearstate}) => {
+    const dispatch = useDispatch()
     const [viewd,setViewed] = useState(null)
    const renderedColors=colors.map((color,index)=>{
       return(<UploadImage color={color} index={index} setViewed={setViewed}  addImg={addImg} galleries={galleries} />)
@@ -71,7 +73,7 @@ const Images = ({colors,collectionId,addImg, galleries}) => {
     <input type='submit' className='confrim' value='Confirm' />
                                 
                                 <Link to={`/dashbord/products/${collectionId}`}>
-                                    <button className='discard'>Discard</button>
+                                    <button className='discard' onClick={() =>dispatch(clearstate()) } >Discard</button>
                                 </Link>
                             </div>
             

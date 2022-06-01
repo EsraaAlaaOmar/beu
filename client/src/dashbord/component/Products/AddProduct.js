@@ -5,14 +5,18 @@ import {addProduct} from '../../store/productSlice'
 import { Link , useNavigate} from 'react-router-dom'
 import Images from './Images';
 import{getSizes} from '../../store/sizesSlice'
-const AddProduct = ({collectionId}) => {
+import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg'
+const AddProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
     
     let navigate =useNavigate()
     const dispatch = useDispatch()
+    //Api data from redux
     const {sizsList} =useSelector((state)=> state.sizes)
-    const {prodectAdded} =useSelector((state)=> state.product)
+    const {prodectAdded, error} =useSelector((state)=> state.product)
+    //page state
     const [color, setColor] = useState(null);
     const [colors, setColors]=useState([])
+   
     const [formData, setFormData] = useState({
         category_id: collectionId,
         title: '',
@@ -21,7 +25,7 @@ const AddProduct = ({collectionId}) => {
         quantity:'',
         galleries : [],
         sizes : [],
-        gain_points : '',
+        
        
     
       
@@ -38,6 +42,7 @@ const AddProduct = ({collectionId}) => {
     const onSubmit=async e=>{
         e.preventDefault()
         dispatch(addProduct(formData))
+        setErrorFlashmsg(true)
        
     
 
@@ -57,7 +62,7 @@ else{
    
 }
 }
-
+ 
 useEffect(() =>{
     dispatch(getSizes())
   
@@ -67,6 +72,7 @@ useEffect(() =>{
         <div className='addpage'>
         <div className='opacity'>
             <div className='choose-product'>
+             
             <form  onSubmit={(e)=> onSubmit(e)}>
                 <Row>
         
@@ -141,7 +147,7 @@ useEffect(() =>{
 
                     </Col>
                     <Col sm={12} md={6} lg={8}>
-                        <Images colors={colors} collectionId={collectionId}  addImg={addImg} galleries={galleries}/>
+                        <Images colors={colors} collectionId={collectionId} clearstate={clearstate} addImg={addImg} galleries={galleries}/>
                     </Col>
                    
                     </Row>
