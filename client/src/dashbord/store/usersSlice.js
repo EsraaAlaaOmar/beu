@@ -7,7 +7,7 @@ export const getUseres = createAsyncThunk ('users/get',  async(_ ,thunkAPI) =>{
   
  try{
     const token= getState().auth.token
-    let res = await axios.get("https://thebeauwow.me/api/v1/admin/users/customers/",{
+    let res = await axios.get("https://thebeauwow.me/api/v1/admin/customers/",{
       headers: {
     'Content-Type': 'application/json', 
      'Authorization': `Bearer ${token}`,}
@@ -16,19 +16,25 @@ export const getUseres = createAsyncThunk ('users/get',  async(_ ,thunkAPI) =>{
     
     
 
-      return res.data
+      return res.data.results
   }
   
   catch (e) {
      
-    return rejectWithValue(e.message);
+    return rejectWithValue(e.response.data);
 }
   
   })
   const usersSlice= createSlice({
     name:'discounts',
-    initialState : {usersList:[], isLoading:false,addLoading:false, error:null},
+    initialState : {usersList:[], isLoading:false, added:false ,addLoading:false, error:null},
     reducers:{
+      clearstate:(state)=>{
+        state.added= false
+        state.updated= false
+        state.error= false
+
+      }
 
     },
     extraReducers:{
@@ -57,14 +63,17 @@ export const getUseres = createAsyncThunk ('users/get',  async(_ ,thunkAPI) =>{
         [userRegister.pending]:(state,action)=>{
           
           state.error =null
+          state.added = false
       },
         [userRegister.fulfilled]:(state,action)=>{
           
           state.usersList= [...state.usersList, action.payload]
+           state.added = true
       },
       [userRegister.rejected]:(state,action)=>{
           
         state.error = action.payload
+        state.added = false
     },
      
        
@@ -72,4 +81,5 @@ export const getUseres = createAsyncThunk ('users/get',  async(_ ,thunkAPI) =>{
 
 
 })
+export const {clearstate} = usersSlice.actions
 export default usersSlice.reducer

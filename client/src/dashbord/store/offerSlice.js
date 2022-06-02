@@ -19,7 +19,7 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
       return res.data
   }
   catch(e){
-    return rejectWithValue(e.message)
+    return rejectWithValue(e.response.data)
   }
   
   })
@@ -38,7 +38,7 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
       }
       catch (e) {
      
-        return rejectWithValue(e.message);
+        return rejectWithValue(e.response.data);
     }
     })
 
@@ -63,7 +63,7 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
     }
     catch (e) {
      
-      return rejectWithValue(e.message);
+      return rejectWithValue(e.response.data);
   }
    
   

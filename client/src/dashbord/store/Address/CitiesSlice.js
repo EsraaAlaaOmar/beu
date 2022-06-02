@@ -24,7 +24,7 @@ export const getCities = createAsyncThunk ('cities/get',  async(_ ,thunkAPI) =>{
       return res.json() 
   }
   catch(e){
-    return rejectWithValue(e.message)
+    return rejectWithValue(e.response.data)
   }
   
   })

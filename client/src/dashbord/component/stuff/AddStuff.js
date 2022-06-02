@@ -11,7 +11,7 @@ const AddStuff = () => {
       email: '',
       password: '',
       confirm_password:'',
-      is_superuser:''
+      is_superuser:false
    
   })
   const {name, email,is_superuser, password, confirm_password}=formData
@@ -54,7 +54,7 @@ const AddStuff = () => {
             </div>
             <div className='input-div'>
                
-               <input type='checkbox' className='checkbox' placeholder='Stuff Name' name='is_superuser' value={is_superuser} onChange={e=>onCheckChange(e)} required/>
+               <input type='checkbox' className='checkbox' placeholder='Stuff Name' name='is_superuser' value={is_superuser} onChange={e=>onCheckChange(e)} />
                <label className='check-label'>superuser</label>        
            </div>
               

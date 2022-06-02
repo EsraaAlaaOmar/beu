@@ -18,7 +18,7 @@ export const getFeedbacks = createAsyncThunk ('feedback/get',  async(_ ,thunkAPI
     }
     catch (e) {
          
-      return rejectWithValue(e.message);
+      return rejectWithValue(e.response.data);
     }
     
     })

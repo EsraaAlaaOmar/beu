@@ -9,7 +9,7 @@ export const adminRegister = createAsyncThunk ('auth/adminregister',
     try{
       const token= getState().auth.token
       const body= JSON.stringify(adminData)
-      const response = await axios.post("https://thebeauwow.me/api/v1/admin/users/admins/create/", body, {
+      const response = await axios.post("https://thebeauwow.me/api/v1/admin/create_admin/", body, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`, 
@@ -19,7 +19,7 @@ export const adminRegister = createAsyncThunk ('auth/adminregister',
        
     }
     catch (e) {
-      return rejectWithValue(e.message);
+      return rejectWithValue(e.response.data);
   }
     //   const  res= await fetch("https://thebeauwow.me/api/v1/admin/users/admins/create/",
       
@@ -43,7 +43,7 @@ export const adminRegister = createAsyncThunk ('auth/adminregister',
     // }
     // catch(e){
     //   console.log(e)
-    //   return rejectWithValue(e.message)
+    //   return rejectWithValue(e.response.data)
       
     // }
 
@@ -53,7 +53,7 @@ export const userRegister = createAsyncThunk ('auth/userregister',
     const {rejectWithValue, getState} = thunkAPI
     try{
       const token= getState().auth.token
-      const  res= await fetch("https://thebeauwow.me/api/v1/users/create/",
+      const  res= await fetch("https://thebeauwow.me/api/v1/admin/create_customer/",
       
         {
             method: "POST",
@@ -75,7 +75,7 @@ export const userRegister = createAsyncThunk ('auth/userregister',
     }
     catch(e){
       
-      return rejectWithValue(e.message)
+      return rejectWithValue(e.response.data)
       
     }
 
@@ -96,7 +96,7 @@ export const login = createAsyncThunk ('auth/login',
       }
       
       catch (e) {
-        return rejectWithValue(e.message);
+        return rejectWithValue(e.response.data);
     }
 })
 
@@ -132,11 +132,7 @@ const authSlice = createSlice({
          
             state.isLoading = false
             state.error= null
-            cookies.remove("login")
-            cookies.remove("token")
-            cookies.remove("userinfo")
-             cookies.set("token", action.payload.access)
-             cookies.set("login", true)
+        
          
     
         },

@@ -20,7 +20,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
 }
 
   catch(e){
-    return rejectWithValue(e.message)
+    return rejectWithValue(e.response.data)
   }
   
   })
@@ -39,7 +39,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
        return {...country, ...response.data, cities:[]}
       }
       catch (e) {
-        return rejectWithValue(e.message);
+        return rejectWithValue(e.response.data);
     }
     })
     export const deleteCountry=   createAsyncThunk ('country/delete',  async(id ,thunkAPI) =>{
@@ -56,7 +56,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
         {  return id}
         }
         catch (e) {
-          return rejectWithValue(e.message);
+          return rejectWithValue(e.response.data);
       }
       })
       export const addCity = createAsyncThunk ('cities/add',  async(city ,thunkAPI) =>{
@@ -73,7 +73,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
            return {...city, ...response.data}
           }
           catch (e) {
-            return rejectWithValue(e.message);
+            return rejectWithValue(e.response.data);
         }
         })
   const countriesSlice= createSlice({

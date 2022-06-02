@@ -3,7 +3,7 @@ import React,{useState, useEffect} from 'react'
 import ReactPaginate from 'react-paginate';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import DiscountRow from './DiscountRow';
-const DiscountPagination = ({maplist}) => {
+const DiscountPagination = ({maplist, setInfoFlashmsg,clearstate}) => {
   const {isLoading ,discountList } =useSelector((state)=> state.discount)
     const [state, setState] =useState({
         list: discountList,
@@ -32,7 +32,7 @@ const DiscountPagination = ({maplist}) => {
         return (
         
               
-              discont.percentage ? <DiscountRow discont={discont}  /> :<div>Error</div> 
+              discont.percentage ? <DiscountRow discont={discont} clearstate={clearstate}  setInfoFlashmsg={setInfoFlashmsg} /> :<div>Error</div> 
          
        
     

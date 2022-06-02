@@ -24,7 +24,7 @@ export const getdetailedAddres = createAsyncThunk ('detailed/get',  async(_ ,thu
       return res.json() 
   }
   catch(e){
-    return rejectWithValue(e.message)
+    return rejectWithValue(e.response.data)
   }
   
   })

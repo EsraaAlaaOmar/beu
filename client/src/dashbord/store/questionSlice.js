@@ -18,7 +18,7 @@ try{
 }
 catch (e) {
      
-  return rejectWithValue(e.message);
+  return rejectWithValue(e.response.data);
 }
 
 })
@@ -43,7 +43,7 @@ try{
 }
 catch (e) {
      
-  return rejectWithValue(e.message);
+  return rejectWithValue(e.response.data);
 }
 
 })
@@ -69,7 +69,7 @@ let response = await axios.put("https://thebeauwow.me/api/v1/admin/feedbacks/upd
 }
 catch (e) {
      
-  return rejectWithValue(e.message);
+  return rejectWithValue(e.response.data);
 }
 
 

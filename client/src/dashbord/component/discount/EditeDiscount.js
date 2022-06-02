@@ -1,13 +1,16 @@
 import React,{useState} from 'react'
-import { Link ,useNavigate, useLocation} from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { Link ,Navigate, useLocation} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import { addDiscount } from '../../store/discountslice';
 import {editeDiscount} from '../../store/discountslice'
 
-const EditeDiscount = () => {
+const EditeDiscount = ({setFlashmsg}) => {
   let location = useLocation()
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+
+
+  const {updated } =useSelector((state)=> state.discount)
+
   const [formData, setFormData] = useState({
     start_at: location.state.discont.start_at,
     end_at: location.state.discont.end_at,
@@ -25,7 +28,8 @@ const onSubmit=async e=>{
     e.preventDefault()
    
     dispatch(editeDiscount(formData))
-    navigate("/dashbord/discount")
+    setFlashmsg(true)
+ 
 
    
     
@@ -71,6 +75,8 @@ const onSubmit=async e=>{
             </Link>
         </div>
       </form> 
+      { updated&&  <Navigate to="/dashbord/discount" /> }
+      { console.log(updated)}
       </div>
     </div>
 

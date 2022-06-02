@@ -11,7 +11,7 @@ import FilterUseres from './FilterUseres';
 
 const Users = ({setActiveIndex}) => {
   setActiveIndex()
-  const {usersList,error } =useSelector((state)=> state.users)
+  const {usersList,isLoading ,error } =useSelector((state)=> state.users)
   const dispatch = useDispatch()
  
   useEffect(() =>{
@@ -23,7 +23,9 @@ const Users = ({setActiveIndex}) => {
     return(
       <>
         <Nav  first_link='Active' second_link='All'  first_link_url='/dashbord/users'   second_link_url='/dashbord/users' />
-        <div className="box">  
+        {isLoading ? 
+    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+      : <div className="box">  
         {error&& <div className='error-notify'>{error}</div>}  
             <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
             <span className="title-text">Users</span>
@@ -52,7 +54,7 @@ const Users = ({setActiveIndex}) => {
                <Route path="/add" element={<AddUser />} exact /> 
                <Route path="/filter" element={<FilterUseres />} exact /> 
           </Routes>
-        </div>
+        </div>}
       </>
     ) ;
 };

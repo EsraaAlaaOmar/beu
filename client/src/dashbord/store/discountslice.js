@@ -18,7 +18,7 @@ try{
 }
 catch (e) {
      
-  return rejectWithValue(e.message);
+ return rejectWithValue(e.response.data)
 }
 
 })
@@ -43,7 +43,7 @@ try{
 }
 catch (e) {
      
-  return rejectWithValue(e.message);
+ return rejectWithValue(e.response.data)
 }
 
 })
@@ -69,15 +69,21 @@ let response = await axios.put("https://thebeauwow.me/api/v1/admin/discounts/upd
 }
 catch (e) {
      
-  return rejectWithValue(e.message);
+ return rejectWithValue(e.response.data)
 }
 
 
 })
 const discountSlice= createSlice({
     name:'discounts',
-    initialState : {discountList:[], isLoading:false,addLoading:false, error:null},
+    initialState : {discountList:[], isLoading:false,added:false,updated:false, error:null},
     reducers:{
+      clearstate:(state)=>{
+        state.added= false
+        state.updated= false
+        state.error= false
+
+      }
 
     },
     extraReducers:{
@@ -104,24 +110,24 @@ const discountSlice= createSlice({
         }, 
         [ addDiscount.pending ] :(state,action)=>{
 
-          state.addLoading = true
+          state.isLoading = true
           state.error = null
           
         //  console.log(action)
      },
      [ addDiscount.fulfilled ] :(state,action)=>{
-      state.addLoading = false
+      state.isLoading = false
       state.error= null
       state.discountList= [...state.discountList, action.payload]
-      
+      state.added=true
       
    
       
       },
       [ addDiscount.rejected ] :(state,action)=>{
-           state.addLoading = false
+           state.isLoading = false
            state.error = action.payload
-         console.log(action)
+
          
       }, 
       [ editeDiscount.pending ] :(state,action)=>{
@@ -132,8 +138,9 @@ const discountSlice= createSlice({
       
    },
    [ editeDiscount.fulfilled ] :(state,action)=>{
-    state.isLoading = true;
+    state.isLoading = false;
     state.error= null;
+    state.updated=true
     console.log(action.payload)
     const index = state.discountList.findIndex(discount => discount.id == action.payload.discount_id);                                                            
     const newArray = [...state.discountList]; 
@@ -154,4 +161,5 @@ const discountSlice= createSlice({
 
 
 })
+export const {clearstate} = discountSlice.actions
 export default discountSlice.reducer

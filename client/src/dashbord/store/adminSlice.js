@@ -7,16 +7,17 @@ export const getAdmins = createAsyncThunk ('admins/get',  async(_ ,thunkAPI) =>{
   
   try{
     const token= getState().auth.token
-    let res = await axios.get("https://thebeauwow.me/api/v1/admin/users/admins/",{
+    let res = await axios.get("https://thebeauwow.me/api/v1/admin/admins_list/",{
       headers: {
     'Content-Type': 'application/json', 
      'Authorization': `Bearer ${token}`,}
     
     })
-      return res.data
+      return res.data.results
   }
   catch(e){
-    return rejectWithValue(e.message)
+    return rejectWithValue(e.response.data)
+
   }
   
   })
@@ -30,7 +31,7 @@ export const getAdmins = createAsyncThunk ('admins/get',  async(_ ,thunkAPI) =>{
   try{
   
   let body= JSON.stringify(editedadminData)
-  let response = await axios.put("https://thebeauwow.me/api/v1/admin/users/admins/update/", body, config)
+  let response = await axios.put("https://thebeauwow.me/api/v1/admin/update_admin/", body, config)
   
     if(response.status == 200) {
       return  ({...editedadminData, ...response.data}) 
@@ -40,7 +41,7 @@ export const getAdmins = createAsyncThunk ('admins/get',  async(_ ,thunkAPI) =>{
    
   }
   catch(e){
-    return rejectWithValue(e.message)
+    return rejectWithValue(e.response.data)
     
   }
  
@@ -67,8 +68,14 @@ export const deleteAdmin=   createAsyncThunk ('admin/delete',  async(id ,thunkAP
   
   const adminSlice= createSlice({
     name:'discounts',
-    initialState : {adminsList:[], isLoading:false,addLoading:false, error:null},
+    initialState : {adminsList:[], isLoading:false,added:false, updated:false ,addLoading:false, error:null},
     reducers:{
+      clearstate:(state)=>{
+        state.added= false
+        state.updated= false
+        state.error= false
+
+      }
 
     },
     extraReducers:{
@@ -98,16 +105,19 @@ export const deleteAdmin=   createAsyncThunk ('admin/delete',  async(id ,thunkAP
         [adminRegister.pending]:(state,action)=>{
           
           state.error=null;
+          state.added = false
 
       },
         [adminRegister.fulfilled]:(state,action)=>{
           
             state.adminsList= [...state.adminsList, action.payload]
+            state.added = true
 
         },
         [adminRegister.rejected]:(state,action)=>{
           
           state.error = action.payload
+          state.added = false
 
       },
         //edite admin
@@ -115,18 +125,19 @@ export const deleteAdmin=   createAsyncThunk ('admin/delete',  async(id ,thunkAP
 
           state.isLoading = true
           state.error = null
+          state.updated = false
        
         
      },
      [ editeAdmin.fulfilled ] :(state,action)=>{
-      state.isLoading = true;
+      state.isLoading = false;
       state.error= null;
       const index = state.adminsList.findIndex(admin => admin.id == action.payload.admin_id);                                                            
       const newArray = [...state.adminsList]; 
       if(index)
       {  newArray[index] = action.payload;}
      state.adminsList=newArray ;
-  
+     state.updated = true
       
       },
 
@@ -134,6 +145,7 @@ export const deleteAdmin=   createAsyncThunk ('admin/delete',  async(id ,thunkAP
            state.isLoading = false
            state.error = action.payload
          console.log(action)
+         state.updated = false
          
       }, 
 
@@ -165,4 +177,6 @@ export const deleteAdmin=   createAsyncThunk ('admin/delete',  async(id ,thunkAP
 
 
 })
+
+export const {clearstate} = adminSlice.actions
 export default adminSlice.reducer

@@ -24,7 +24,7 @@ export const getAreas = createAsyncThunk ('areas/get',  async(_ ,thunkAPI) =>{
       return res.json() 
   }
   catch(e){
-    return rejectWithValue(e.message)
+    return rejectWithValue(e.response.data)
   }
   
   })

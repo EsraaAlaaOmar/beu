@@ -18,7 +18,7 @@ export const getMessages = createAsyncThunk ('messages/get',  async(_ ,thunkAPI)
     }
     catch (e) {
          
-      return rejectWithValue(e.message);
+      return rejectWithValue(e.response.data);
     }
     
 

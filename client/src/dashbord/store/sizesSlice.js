@@ -24,7 +24,7 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
       return res.json() 
   }
   catch(e){
-    return rejectWithValue(e.message)
+    return rejectWithValue(e.response.data)
   }
   
   })
@@ -41,7 +41,7 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
         {return {...size, ...response.data}}
       }
       catch (e) {
-      return rejectWithValue(e.message);
+      return rejectWithValue(e.response.data);
     }
     })
    export const deleteSize=   createAsyncThunk ('sizes/delete',  async(id ,thunkAPI) =>{
@@ -58,7 +58,7 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
          return id 
         }
         catch (e) {
-        return rejectWithValue(e.message);
+        return rejectWithValue(e.response.data);
       }
       })
    

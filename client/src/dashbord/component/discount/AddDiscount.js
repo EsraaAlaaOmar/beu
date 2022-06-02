@@ -1,11 +1,12 @@
 import React,{useState} from 'react'
-import { Link ,useNavigate} from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { Link ,Navigate} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import { addDiscount } from '../../store/discountslice';
-
-const AddDiscount = () => {
+ 
+const AddDiscount = ({setFlashmsg}) => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  
+  const {added } =useSelector((state)=> state.discount)
   const [formData, setFormData] = useState({
     start_at: '',
     end_at: '',
@@ -14,14 +15,16 @@ const AddDiscount = () => {
     percentage:''
   
 })
-
 const {start_at, end_at, code,limit, percentage}=formData
+
+
 const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
 const onSubmit=async e=>{
     e.preventDefault()
    
     dispatch(addDiscount(formData))
-    navigate("/dashbord/discount")
+    setFlashmsg(true)
+  
 
    
     
@@ -67,9 +70,11 @@ const onSubmit=async e=>{
             </Link>
         </div>
       </form> 
+      {added && <Navigate to="/dashbord/discount" />}
+      { console.log(added) }
       </div>
     </div>
-
+ 
 </div>
   )
 }

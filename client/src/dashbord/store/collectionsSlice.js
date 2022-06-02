@@ -19,7 +19,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
       return res.data
   }
   catch(e){
-    return rejectWithValue(e.message)
+    return rejectWithValue(e.response.data)
   }
   
   })
@@ -39,7 +39,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
       }
       catch (e) {
      
-       return rejectWithValue(e.message);
+       return rejectWithValue(e.response.data);
     }
     })
   export const addCollection = createAsyncThunk ('collections/add',  async(collectionData ,thunkAPI) =>{
@@ -61,7 +61,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
     }
     catch (e) {
      
-     return rejectWithValue(e.message);
+     return rejectWithValue(e.response.data);
   }
   })
  

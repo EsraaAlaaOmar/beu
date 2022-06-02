@@ -17,7 +17,7 @@ try{
 }
 
 catch(e){
-  return rejectWithValue(e.message)
+  return rejectWithValue(e.response.data)
 }
 
 })
