@@ -53,31 +53,20 @@ export const userRegister = createAsyncThunk ('auth/userregister',
     const {rejectWithValue, getState} = thunkAPI
     try{
       const token= getState().auth.token
-      const  res= await fetch("https://thebeauwow.me/api/v1/admin/create_customer/",
-      
-        {
-            method: "POST",
-            body: JSON.stringify(userData),
-            
-            headers: {
-                'Content-Type': 'application/json', 
-                 'Authorization': `Bearer ${token}`,
-           
-            }
-        }
-        )
-        
-
-        
-        return userData
-        // await res.json();               
-      //  return data
+      const body= JSON.stringify(userData)
+      const response = await axios.post("https://thebeauwow.me/api/v1/admin/create_customer/", body, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`, 
+          
+        }})
+        return ({...userData, ...response.data}) 
+       
     }
-    catch(e){
-      
-      return rejectWithValue(e.response.data)
-      
-    }
+    catch (e) {
+      return rejectWithValue(e.response.data);
+  }
+ 
 
 })
 
@@ -143,26 +132,26 @@ const authSlice = createSlice({
             
     
         },
-          [userRegister.pending]:(state,action)=>{
-              state.loggedIn=false
-              state.isLoading = true
-              state.error = null
+          // [userRegister.pending]:(state,action)=>{
+          //     state.loggedIn=false
+          //     state.isLoading = true
+          //     state.error = null
       
-          },
-          [userRegister.fulfilled]:(state,action)=>{
-              state.loggedIn=false
-              state.isLoading = false
-              state.error= null
+          // },
+          // [userRegister.fulfilled]:(state,action)=>{
+          //     state.loggedIn=false
+          //     state.isLoading = false
+          //     state.error= null
            
       
-          },
-          [userRegister.rejected]:(state,action)=>{
-              state.isLoading = false
-              state.loggedIn=false
-              state.error = action.payload
+          // },
+          // [userRegister.rejected]:(state,action)=>{
+          //     state.isLoading = false
+          //     state.loggedIn=false
+          //     state.error = action.payload
               
       
-          },
+          // },
         [login.pending]:(state,action)=>{
           state.loggedIn=false
           state.isLoading = true

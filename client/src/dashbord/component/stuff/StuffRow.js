@@ -19,7 +19,7 @@ function useOutsideAlerter(ref,setShowlist) {
   }}, [ref]);
 }
 
-const StuffRow = ({user}) => {
+const StuffRow = ({user,setInfoFlashmsg}) => {
     const [showlist,setShowlist] =useState(false)
            // close list when click any where
    const wrapperRef = useRef(null);
@@ -42,7 +42,7 @@ const StuffRow = ({user}) => {
      <td>
        { showlist && <div className='hiddenlist' ref={wrapperRef}>
                 <Link to='/dashbord/stuff/edite' state={{ user: user }}><div className='border-inlist'>Edit Employee</div> </Link>
-                <div className='delete-inlist'>Delete</div>
+                <div className='delete-inlist' onClick={() =>setInfoFlashmsg(true)}>Delete</div>
             </div>}
             <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span>
             

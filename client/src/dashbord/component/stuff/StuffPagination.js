@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import UserLine from '../users/UserLine';
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import StuffRow from './StuffRow';
-const StuffPagination = ({maplist}) => {
+const StuffPagination = ({maplist,setInfoFlashmsg}) => {
     const [state, setState] =useState({
         list: maplist,
         perPage: 4,
@@ -30,7 +30,7 @@ const StuffPagination = ({maplist}) => {
         return (
         
               
-         <StuffRow user={user} />
+         <StuffRow user={user} setInfoFlashmsg={setInfoFlashmsg}/>
        
     
         )

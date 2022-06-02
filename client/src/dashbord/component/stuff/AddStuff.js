@@ -1,11 +1,12 @@
 import React,{useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom'
+import { useDispatch,useSelector } from 'react-redux';
 import {adminRegister} from '../../store/authslice'
 
-const AddStuff = () => {
-  const navigate = useNavigate()
+const AddStuff = ({setFlashmsg}) => {
+
   const dispatch = useDispatch()
+  const {added} =useSelector((state)=> state.admins)
   const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -19,12 +20,13 @@ const AddStuff = () => {
   const onCheckChange=e=>setFormData({...formData, [e.target.name]: e.target.checked})
   const onSubmit= async e => {
       e.preventDefault()
+      setFlashmsg(true)
       if(password !== confirm_password){
           alert('password do not match', 'danger')
       }
       else{
          dispatch(adminRegister(formData))
-         navigate("/dashbord/stuff")
+      
         
       }
   }
@@ -67,6 +69,7 @@ const AddStuff = () => {
                 
             </div>
             </form>
+            {added && <Navigate to='/dashbord/stuff' />}
           </div>
         </div>
 

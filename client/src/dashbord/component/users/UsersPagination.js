@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import {RiCheckboxBlankCircleLine, RiCheckboxCircleFill} from 'react-icons/ri'
 
 import UserLine from './UserLine'
-const UsersPagination =({maplist,multiple}) => {
+const UsersPagination =({maplist,multiple, setInfoFlashmsg}) => {
   const[all, setAll]=useState(false)  
   const [state, setState] =useState({
         list: maplist,
@@ -30,7 +30,7 @@ const UsersPagination =({maplist,multiple}) => {
        const users = maplist.map((user)=>{
            
         return (
-        <UserLine multiple={multiple} user={user} all={all} />
+        <UserLine multiple={multiple} user={user} all={all} setInfoFlashmsg={setInfoFlashmsg} />
          
        
     

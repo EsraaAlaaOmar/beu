@@ -41,7 +41,7 @@ const Stuff = ({setActiveIndex}) => {
               />}
         
                {flashmsg && added && <FlashMsg 
-                    title={`discount Added successfully`}
+                    title={`Admin Added successfully`}
                     img={'/images/msgIcons/success.svg'}
                     setFlashmsg={setFlashmsg}
 
@@ -50,7 +50,7 @@ const Stuff = ({setActiveIndex}) => {
               />}
              
                {flashmsg && updated && <FlashMsg 
-                     title={`A discount has been updated successfully`}
+                     title={`An Admin has been updated successfully`}
                      img={'/images/msgIcons/success.svg'}
                      setFlashmsg={setFlashmsg}
                      icontype='success-icon'
@@ -75,10 +75,10 @@ const Stuff = ({setActiveIndex}) => {
         </div>
         <br/>
          
-          <StuffPagination maplist={adminsList} />
+          <StuffPagination maplist={adminsList} setInfoFlashmsg={setInfoFlashmsg} />
           <Routes>
-               <Route path="/add" element={<AddStuff />} exact /> 
-               <Route path="/edite" element={<EditeAdmin />} exact /> 
+               <Route path="/add" element={<AddStuff setFlashmsg={setFlashmsg} />} exact /> 
+               <Route path="/edite" element={<EditeAdmin setFlashmsg={setFlashmsg} />} exact /> 
           </Routes>
 
   </div>

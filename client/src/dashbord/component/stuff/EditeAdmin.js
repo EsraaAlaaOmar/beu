@@ -1,12 +1,13 @@
 import React,{useState} from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { Link, useNavigate, useLocation, Navigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import {editeAdmin} from '../../store/adminSlice'
 
-const EditeAdmin = () => {
+const EditeAdmin = ({setFlashmsg}) => {
   let location = useLocation()
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const {updated} =useSelector((state)=> state.admins)
   const [formData, setFormData] = useState({
       name:location.state.user.name,
       // email:location.state.user.email,
@@ -22,12 +23,13 @@ const EditeAdmin = () => {
   const onCheckChange=e=>setFormData({...formData, [e.target.name]: e.target.checked})
   const onSubmit= async e => {
       e.preventDefault()
+      setFlashmsg(true)
       if(password !== confirm_password){
           alert('password do not match')
       }
       else{
          dispatch(editeAdmin(formData))
-         navigate("/dashbord/stuff")
+        
         
       }
   }
@@ -71,6 +73,9 @@ const EditeAdmin = () => {
                 
             </div>
             </form>
+            {updated && <Navigate to='/dashbord/stuff' />}
+    
+
           </div>
         </div>
 

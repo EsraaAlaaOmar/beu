@@ -19,7 +19,7 @@ function useOutsideAlerter(ref,setShowlist) {
       
     }}, [ref]);
   }
-const UserLine = ({user,multiple,all}) => {
+const UserLine = ({user,multiple,all,setInfoFlashmsg}) => {
     const [selected, setSelected] =useState({all})
     const [showlist,setShowlist] =useState(false)
 
@@ -55,7 +55,7 @@ const UserLine = ({user,multiple,all}) => {
                     <div className='border-inlist' >View cart</div>
                     <div className='border-inlist' >View favourite</div>
                     <div className='border-inlist' >System rate</div>
-                    <div className='delete-inlist'>Delete</div>
+                    <div className='delete-inlist' onClick={() =>setInfoFlashmsg(true)}>Delete</div>
                 </div>}
                 <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span>
             
