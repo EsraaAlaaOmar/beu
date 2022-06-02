@@ -9,7 +9,7 @@ export const getdetailedAddres = createAsyncThunk ('detailed/get',  async(_ ,thu
     const token= getState().auth.token
   
     
-    const  res= await fetch("https://thebeauwow.me/api/v1/delivery_locations/",
+    const  res= await fetch("https://thebeauwow.me/api/v1/admin/addresses/",
     
       {
           method: "GET",

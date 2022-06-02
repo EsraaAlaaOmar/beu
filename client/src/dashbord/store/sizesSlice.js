@@ -26,7 +26,7 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
   catch(e){
     return rejectWithValue(e.response.data)
   }
-  
+   
   })
   export const addSize = createAsyncThunk ('sizes/add',  async(size ,thunkAPI) =>{
     const {rejectWithValue , getState} = thunkAPI
@@ -44,6 +44,34 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
       return rejectWithValue(e.response.data);
     }
     })
+ 
+    export const editeSize = createAsyncThunk ('size/update',  async(editedSizetData,thunkAPI) =>{
+      const {rejectWithValue , getState} = thunkAPI
+      const token= getState().auth.token
+      const config = {     
+        headers: { 'content-type': 'application/json',
+                   'Authorization': `Bearer ${token}`,
+      }}
+    try{
+    
+    let body= JSON.stringify(editedSizetData)
+    let response = await axios.put("https://thebeauwow.me/api/v1/admin/sizes/update/", body, config)
+    
+      if(response.status == 200) {
+        return  ({...editedSizetData, ...response.data}) 
+      }
+    
+    
+     
+    }
+    catch (e) {
+         
+     return rejectWithValue(e.response.data)
+    }
+    
+    
+    })
+
    export const deleteSize=   createAsyncThunk ('sizes/delete',  async(id ,thunkAPI) =>{
       const {rejectWithValue , getState} = thunkAPI
       const token= getState().auth.token
@@ -64,9 +92,15 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
    
   const sizesSlice= createSlice({
     name:'discounts',
-    initialState : {sizsList:[], isLoading:false,addLoading:false, error:null},
+    initialState : {sizsList:[], isLoading:false,addLoading:false,added:false, updated:false,deleted:false, error:null},
     reducers:{
+      clearstate:(state)=>{
+        state.added= false
+        state.updated= false
+        state.error= false
+        state.deleted=false
 
+      }
     },
     extraReducers:{
          // ............. start getSizes ......................
@@ -96,6 +130,9 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
 
           state.isLoading = true
           state.error = null
+          state.added= false
+          state.deleted=false
+          state.updated=false
           
         
      },
@@ -103,6 +140,9 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
       state.isLoading = false
       state.error= null
       state.sizsList  = [...state.sizsList, action.payload]
+      state.added= true
+      state.deleted=false
+      state.updated=false
     
   
       
@@ -111,6 +151,9 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
            state.isLoading = false
            state.error = action.payload
            console.log(`esraa ${action.payload}`)
+           state.added= false
+           state.deleted=false
+           state.updated=false
         
          
       }, 
@@ -120,13 +163,19 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
 
         state.isLoading = true
         state.error = null
+        state.deleted=false
+        state.updated=false
+        state.added=false
         
       
    },
    [ deleteSize.fulfilled ] :(state,action)=>{
     state.isLoading = false
     state.error= null
+    state.deleted=true
     state.sizsList  = state.sizsList.filter((size)=>size.id != action.payload.size_id)
+    state.updated=false
+        state.added=false
     
   
 
@@ -136,14 +185,52 @@ export const getSizes = createAsyncThunk ('sizes/get',  async(_ ,thunkAPI) =>{
          state.isLoading = false
          state.error = action.payload
          console.log(`esraa ${action.payload}`)
+         state.deleted=false
+         state.updated=false
+        state.added=false
       
        
     }, 
+    [ editeSize.pending ] :(state,action)=>{
 
+      state.isLoading = true
+      state.error = null
+  state.updated=false
+  state.added= false
+  state.deleted=false
+   
+    
+ },
+ [ editeSize.fulfilled ] :(state,action)=>{
+  state.isLoading = false;
+  state.error= null;
+  state.updated=true
+  state.added= false
+  state.deleted=false
+  
+  const index = state.sizsList.findIndex(size => size.id == action.payload.size_id);                                                            
+  const newArray = [...state.sizsList]; 
+  if(index)
+  {  newArray[index] = action.payload;}
+ state.sizsList=newArray ;
+
+  
+  },
+
+  [ editeSize.rejected ] :(state,action)=>{
+       state.isLoading = false
+       state.error = action.payload
+       state.updated=false
+       state.added= false
+       state.deleted=false
+   
+     
+  }, 
      
        
     }
 
 
 })
+export const {clearstate} = sizesSlice.actions
 export default sizesSlice.reducer

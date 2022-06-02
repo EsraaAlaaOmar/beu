@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useDispatch,useSelector } from 'react-redux';
-import {addSize} from '../../store/sizesSlice'
-const AddSize = ({setFlashmsg}) => {
+import { Link, useNavigate,Navigate, useLocation } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import {editeSize} from '../../store/sizesSlice'
+
+const UpdateSize = ({setFlashmsg}) => {
+    let location = useLocation()
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {added} =useSelector((state)=>state.sizes)
-    const [size, setSize]=useState('')
+    
+  const {updated} =useSelector((state)=>state.sizes)
+    const [size, setSize]=useState(location.state.size.size)
     const onChange=e=>setSize(e.target.value)
     const onSubmit= async e => {
         e.preventDefault()
-       dispatch(addSize({size:size}))
-       setFlashmsg(true)
+        setFlashmsg(true)
+       dispatch(editeSize({size:size,size_id:location.state.size.id}))
+      
        
     }
   return (
@@ -19,7 +23,7 @@ const AddSize = ({setFlashmsg}) => {
         <div className='addpage'>
         <div className='opacity'>
           <div className='add'>
-          <h4>New Sizes</h4>
+          <h4>Update Size</h4>
             <form  onSubmit = {e=>onSubmit(e)}>
             <div className='input-div'>
                 <label>Size</label>
@@ -35,7 +39,7 @@ const AddSize = ({setFlashmsg}) => {
                 
             </div>
             </form>
-            {added&&<Navigate to='/dashbord/sizes' />}
+            {updated&&<Navigate to='/dashbord/sizes' />}
           </div>
         </div>
 
@@ -44,4 +48,4 @@ const AddSize = ({setFlashmsg}) => {
   )
 }
 
-export default AddSize
+export default UpdateSize
