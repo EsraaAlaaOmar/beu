@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import Nav from '../reusable/Nav';
 const Messages = ({setActiveIndex}) => {
   setActiveIndex()
-  const {error,messagesList} =useSelector((state)=>state.messages)
+  const {error,messagesList,isLoading } =useSelector((state)=>state.messages)
   const dispatch = useDispatch()
 
   useEffect(() =>{
@@ -19,7 +19,10 @@ const Messages = ({setActiveIndex}) => {
   return (
     <>
        < Nav first_link='Active' second_link='All' first_link_url='/messages'   second_link_url='/messages' />
-       <div className="box"> 
+       {isLoading ? 
+    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+    :
+     <div className="box"> 
        {error&& <div className='error-notify'>{error}</div>}  
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
         <span className="title-text"> User Messages</span>
@@ -31,7 +34,7 @@ const Messages = ({setActiveIndex}) => {
 
     </div>
        
-    </div>
+    </div>}
     </>
     
   )
