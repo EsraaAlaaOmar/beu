@@ -12,6 +12,14 @@
     @media screen and (max-width: 638px)  {
         display: block;
         margin: auto;
+        font-size: 18px;
+    }
+    @media screen and (max-width: 1250px)  {
+       text-align: center;
+    }
+    @media screen and (max-width: 500px)  {
+        
+        font-size: 10px !important;
     }
    }
    span{

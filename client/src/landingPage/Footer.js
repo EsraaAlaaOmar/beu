@@ -34,7 +34,7 @@ const Footer = () => {
      <Col>
        <div className='title'>Quick Links</div>
        <div className='link'>
-         <Link to='/'> Search</Link>
+         <Link to='/search'> Search</Link>
        </div>
        <div className='link'>
          <Link to='/'> Newest</Link>

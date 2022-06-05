@@ -94,7 +94,7 @@ const Navbar = () => {
                 <Link to='/search'>
                     <div className='icon-div'>
                         <BiSearch />
-                       <div>Favourite</div>
+                       <div>Search</div>
                         
                         
                         
