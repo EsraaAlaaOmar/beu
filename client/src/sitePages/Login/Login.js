@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import {FiCheckSquare} from 'react-icons/fi'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose} from "react-icons/ai";
@@ -23,7 +23,7 @@ const Login = () => {
           });
     
           // end  yup 
-    const {sizsList,error,added,updated,deleted , isLoading} =useSelector((state)=>state.sizes)
+    const {userInfo} =useSelector((state)=> state.auth)
     const dispatch = useDispatch()
     const[check,setCheck]=useState(false)
     const onSubmit= async( data )=> {
@@ -57,7 +57,7 @@ const Login = () => {
              initialValues={{
                 email: '',
                 password: '',
-                remember:false
+                remember:check
                
                
               }}
@@ -66,6 +66,7 @@ const Login = () => {
               validationSchema={schema}
               onSubmit ={(values)=>{
                 onSubmit(values);
+                console.log(values);
              
               }}
              
@@ -75,11 +76,17 @@ const Login = () => {
             <form onSubmit={(e)=>{e.preventDefault(); handleSubmit()}}  autoComplete="off">
                 {/* <input placeholder='@ email' type='email' />
                 <br/> */}
+                <div className='input-div'>
                 <Field type='email' placeholder='handel@example.com'  name="email" autoComplete="off"   />
                        { touched.email && <div className='mark'>{errors.email ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'email')} /></span>: <FcCheckmark />}</div>}
                        {errors.email && touched.email && <><div className='error-text'> {errors.email}</div></> }
-               
-                <input placeholder='Password' type='password' />
+                </div>
+                <div className='input-div'>
+                <Field type='password' placeholder='Type your password'  name="password" autoComplete="off"/>
+                        {touched.password && <div className='mark'>{errors.password  ? <span className='validation-error'><AiOutlineClose  onClick={()=> removeError(setFieldValue,setFieldTouched,'password')}/></span>: <FcCheckmark />}</div>} 
+                        {errors.password && touched.password && <div className='error-text'> {errors.password}</div> }
+                        
+                </div>
                 <div className='action'>
                    <span className='remember' onClick={()=>setCheck(!check)}>
                        <span className='icon'>{ check ?<FiCheckSquare /> :<ImCheckboxUnchecked />}</span>
@@ -95,14 +102,15 @@ const Login = () => {
                 <div className='log_privacy'>
                 By signing up, you agree to our <br/><Link to='/'><span> privacy policy <span> &#38;  </span> terms of conditions</span></Link>
                 </div>
-                <Link to='/'>
+                
                 <input className='submit' type='submit' value='Login' />
-                </Link>
+            
                 
 
             </form>
             )}
                 </Formik>
+                {userInfo&&userInfo.is_staff && <Navigate to='/dashbord' />}
             <div className='option'>
                     <Link to='/log/sign'>
                     Don't have Account ? Signup

@@ -30,15 +30,8 @@ import OffersProducts from './component/offers/OffersProducts';
 function App() {
 const [showSide,setShowSide]=useState(false)
 const[activeIndex,setActiveIndex] = useState(0)
-const dispatch = useDispatch()
-useEffect(() =>{
-   
-  dispatch(adminDetils())
 
 
-
-
-},[dispatch])
   return (
     <div className="App dashbord-side" 
     onClick={(e)=>

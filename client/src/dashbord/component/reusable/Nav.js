@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import {MdOutlineLogout} from 'react-icons/md'
 import {FiSearch} from 'react-icons/fi'
 import { useSelector } from 'react-redux';
-import { Link, useNavigate  } from 'react-router-dom';
+import { Link, Navigate, useNavigate  } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {logOut} from '../../store/authslice'
 const Nav = ({first_link,first_link_url='/', second_link, second_link_url='/'}) => {
@@ -55,12 +55,16 @@ const Nav = ({first_link,first_link_url='/', second_link, second_link_url='/'}) 
 </span>
 </div>
 <span className="logout" onClick={()=> {dispatch(logOut());  
-                                        sessionStorage.removeItem('token');
-                                        sessionStorage.removeItem('loggedName'); 
-                                        navigate('/');
+                                      
+                                         
+                                        
                                         }}>
 <MdOutlineLogout />
+
+
 </span>
+{userInfo&&!userInfo.is_staff && <Navigate to='/log/login' />}
+{!loggedIn&& <Navigate to='/log/login' />}
 </div>
   </div>
     );

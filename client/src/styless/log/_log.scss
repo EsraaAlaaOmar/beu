@@ -42,8 +42,22 @@
             border-radius: 34px;
             color: #000;
             padding-left: 30px;
-            max-width: 80%;
+          
         }
+        .input-div{
+            position: relative;
+            width: 382px;
+            max-width: 80%;
+            margin: auto;
+
+            .mark{
+               position: absolute;
+               right: 5px;
+               top: 10px;
+            }
+
+        }
+      
         textarea{
             display: block;
             width: 382px;

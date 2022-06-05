@@ -100,9 +100,11 @@ const authSlice = createSlice({
         cookies.set("token",null)
         cookies.set("userDetails", null)
         cookies.set("workshop", null)
+        //  cookies.set("workshop", null)
         localStorage.clear();
         state.token=null;
         state.loggedIn=false;
+     state.userInfo=false;
        
        
     
@@ -163,7 +165,7 @@ const authSlice = createSlice({
           state.isLoading = false
           state.error= null
           state.token=action.payload.access
-          // state.userInfo=action.payload
+           state.userInfo=action.payload
           let date= new Date()
           let expire = new Date(new Date().setDate(date.getDate()+1))
          console.log(action.payload)
