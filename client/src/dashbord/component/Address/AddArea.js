@@ -1,23 +1,26 @@
 import React,{useState} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
+import { addArea } from '../../store/Address/counteriesSlice';
 
-const AddArea = () => {
+const AddArea = ({cityId,countryId}) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const [formData, setFormData] = useState({
       name: '',
-      country_id: '',  
+      country_id: countryId,  
+      city_id: cityId,  
   })
 
-  const {name, country_id }=formData
+  const {name  }=formData
   const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
   const onSubmit= async e => {
       e.preventDefault()
-    //  dispatch(addCity(formData))
-       navigate("/dashbord/addresses")
+     dispatch( addArea(formData))
+    
   }
+
   return (
     <div className='addpage'>
         {console.log(`id is`)}

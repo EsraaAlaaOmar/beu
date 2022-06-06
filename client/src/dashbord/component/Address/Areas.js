@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 const Areas = ({cityAreas}) => {
  
 
-  const renderedAreas = cityAreas.map((area)=>{
+  const renderedAreas = cityAreas&&cityAreas.map((area)=>{
     return(
         <div className="category">
            {area.name}
@@ -21,10 +21,14 @@ const Areas = ({cityAreas}) => {
   return (
     <div className="category-box">
      <div className="header">
-        Areas:&nbsp; {cityAreas.length}
-        <Link to="/dashbord/addresses/addarea"><span className="oposite add" > <AiFillPlusCircle /> </span></Link> 
+        Areas:&nbsp; {cityAreas&&cityAreas.length}
+       {cityAreas?
+          <Link to="/dashbord/addresses/addarea"><span className="oposite add" > <AiFillPlusCircle /> </span></Link>
+          : <span className="oposite add" > <AiFillPlusCircle /> </span>
+       }
     </div>
-    {renderedAreas}
+   { console.log(true&& {cityAreas})}
+    {cityAreas ? renderedAreas:'You dont select a city'}
   </div>
   )
 }

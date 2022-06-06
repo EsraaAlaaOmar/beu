@@ -6,25 +6,31 @@ import {BiEditAlt} from 'react-icons/bi'
 import {RiDeleteBin5Line} from 'react-icons/ri'
 import { Link } from 'react-router-dom';
 
-const Counteries = ({getActiveCountry}) => {
+const Counteries = ({getActiveCountry, setInfoFlashmsg,setFlashmsg, setDeleted}) => {
   
-    const {countriesList} =useSelector((state)=>state.countries)
+    const {countriesList,error} =useSelector((state)=>state.countries)
     const dispatch = useDispatch()
     const [activeIndex,setActiveIndex]=useState('')
   
-    useEffect(() =>{
-      dispatch(getCountries())
+   const deleteCountry=(country)=>{ 
+    setDeleted(
+     { id:{country_id: country.id},
+      name:country.name,
+      type:'country'
+    })
+   // dispatch(deleteCountry({country_id : country.id}));
+    setInfoFlashmsg(true);
+    setFlashmsg(true)
+      
     
-  
-    },[dispatch])
-
+   }
     const renderedCountries = countriesList.map((country,index )=>{
       const  className = activeIndex === index ? 'active' : ''; 
           return(
               <div className={`category ${className} `} onClick={()=>{ setActiveIndex(index);getActiveCountry(country.id)}}>
                  {country.name}
                   <span className="oposite" >
-                    <span className="delet icon" onClick={(e)=> {e.preventDefault(); dispatch(deleteCountry({country_id : country.id}));}}><RiDeleteBin5Line /> </span>  
+                    <span className="delet icon" onClick={(e)=> {e.preventDefault();deleteCountry(country)}}><RiDeleteBin5Line /> </span>  
                     <span className="edit icon"> <BiEditAlt /> </span> 
                   </span>
             </div>)
@@ -37,13 +43,6 @@ const Counteries = ({getActiveCountry}) => {
          <Link to='/dashbord/addresses/addCountry'><span className="oposite add" > <AiFillPlusCircle /> </span></Link> 
          </div>
          {renderedCountries}
-         <div className={`category  `} >
-                 country.name
-                  <span className="oposite" >
-                    <span className="delet icon" ><RiDeleteBin5Line /> </span>  
-                    <span className="edit icon"> <BiEditAlt /> </span> 
-                  </span>
-            </div>
          
 
     </div>

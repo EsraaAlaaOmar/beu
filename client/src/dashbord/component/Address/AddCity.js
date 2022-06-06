@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import{addCity} from '../../store/Address/counteriesSlice'
-import { Link, useNavigate,useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { Link, useNavigate,useLocation, Navigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 
-const AddCity = () => {
+const AddCity = ({setCountryCities}) => {
   let location = useLocation()
     const navigate = useNavigate()
     const dispatch = useDispatch()
+    const {cityadded} =useSelector((state)=>state.countries)
   //  const[countryIdd,setCountryIdd] =useState(countryId.countryId)
     const [formData, setFormData] = useState({
         name: '',
@@ -18,7 +19,7 @@ const AddCity = () => {
     const onSubmit= async e => {
         e.preventDefault()
        dispatch(addCity(formData))
-        navigate("/dashbord/addresses")
+  
     }
   return (
     <div className='addpage'>
@@ -41,6 +42,7 @@ const AddCity = () => {
                 
             </div>
             </form>
+            {cityadded && <Navigate to='/dashbord/addresses' />}
           </div>
         </div>
 

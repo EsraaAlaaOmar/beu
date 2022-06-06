@@ -81,7 +81,7 @@ export const login = createAsyncThunk ('auth/login',
           
         }})
       
-        return  await response.data
+        return  await {...response.data , ['remember']:loginData.remember}
       }
       
       catch (e) {
@@ -166,14 +166,15 @@ const authSlice = createSlice({
           state.error= null
           state.token=action.payload.access
            state.userInfo=action.payload
+           let remember=action.payload.remember
           let date= new Date()
-          let expire = new Date(new Date().setDate(date.getDate()+1))
+          let expire =remember? new Date(new Date().setDate(date.getDate()+6)) :0
          console.log(action.payload)
          cookies.remove("login")
          cookies.remove("token")
           cookies.set("token", action.payload.access, {expires : expire})
           cookies.set("login", true,{expires :expire})
-          cookies.set("userinfo",action.payload)
+          cookies.set("userinfo",action.payload,{expires : expire})
          
          
        

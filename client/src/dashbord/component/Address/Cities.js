@@ -6,8 +6,9 @@ import {RiDeleteBin5Line} from 'react-icons/ri'
 import { Link } from 'react-router-dom';
 const Cities = ({countryCities,getActiveCity,countryId }) => {
   const [activeIndex,setActiveIndex]=useState('')
-
- const renderedcities =  countryCities &&  countryCities.map((city,index)=>{
+  const {countriesList} =useSelector((state)=>state.countries)
+  const selectedCountry=countriesList?countriesList.find((country)=>country.id==countryId):null
+ const renderedcities =  selectedCountry &&  selectedCountry.cities.map((city,index)=>{
     const  className = activeIndex === index ? 'active' : ''; 
     return(
         <div className={`category ${className} `} key={index} onClick={()=>{ setActiveIndex(index);getActiveCity(city.id)}}>
@@ -19,13 +20,19 @@ const Cities = ({countryCities,getActiveCity,countryId }) => {
       </div>)
 
 })
+
+console.log(countriesList)
   return (
     <div className="category-box">
       <div className="header">
           Cities:&nbsp; {countryCities && countryCities.length}
-        <Link to='/dashbord/addresses/addCity' state={{countryId:countryId}}> <span className="oposite add" > <AiFillPlusCircle /> </span></Link>
+      { selectedCountry?
+          <Link to='/dashbord/addresses/addCity' state={{countryId:countryId}}> <span className="oposite add" > <AiFillPlusCircle /> </span></Link>
+             :     <span className="oposite add" > <AiFillPlusCircle /> </span>
+      
+      }
     </div>
-    {renderedcities}
+    {selectedCountry ? renderedcities:'You dont select a country'}
   </div>
   )
 }

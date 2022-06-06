@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI) =>{
@@ -30,7 +30,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
     const token= getState().auth.token
     try {
       const body= JSON.stringify(country)
-      const response = await axios.post("https://thebeauwow.me/api/v1/admin/countries/create/", body, {
+      const response = await axios.post("https://thebeauwow.me/api/v1/admin/country/create/", body, {
         headers: {
           'Content-Type': 'application/json', 
           'Authorization': `Bearer ${token}`,
@@ -47,7 +47,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
       const token= getState().auth.token
       try {
         const body= JSON.stringify(id)
-        const response = await axios.delete("https://thebeauwow.me/api/v1/admin/countries/delete/", {
+        const response = await axios.delete("https://thebeauwow.me/api/v1/admin/country/delete/", {
           headers: {
             'Content-Type': 'application/json', 
             'Authorization': `Bearer ${token}`,
@@ -64,23 +64,80 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
         const token= getState().auth.token
         try {
           const body= JSON.stringify(city)
-          const response = await axios.post("https://thebeauwow.me/api/v1/admin/cities/create/", body, {
+          const response = await axios.post("https://thebeauwow.me/api/v1/admin/city/create/", body, {
             headers: {
               'Content-Type': 'application/json', 
               'Authorization': `Bearer ${token}`,
             }})
-            if(response.status==201)
-           return {...city, ...response.data}
+          
+           return response.data
           }
           catch (e) {
             return rejectWithValue(e.response.data);
         }
         })
+        export const addArea = createAsyncThunk ('areas/add',  async(area ,thunkAPI) =>{
+          const {rejectWithValue , getState} = thunkAPI
+          const token= getState().auth.token
+          try {
+            const body= JSON.stringify(area)
+            const response = await axios.post("https://thebeauwow.me/api/v1/admin/area/create/", body, {
+              headers: {
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${token}`,
+              }})
+            
+             return area
+            }
+            catch (e) {
+              return rejectWithValue(e.response.data);
+          }
+          })
+
+        export const deleteCity=   createAsyncThunk ('city/delete',  async(id ,thunkAPI) =>{
+          const {rejectWithValue , getState} = thunkAPI
+          const token= getState().auth.token
+          try {
+            const body= JSON.stringify(id)
+            const response = await axios.delete("https://thebeauwow.me/api/v1/admin/city/delete/", {
+              headers: {
+                'Content-Type': 'application/json', 
+                'Authorization': `Bearer ${token}`,
+              },data: body})
+              if(response.status==200)
+            {  return id}
+            }
+            catch (e) {
+              return rejectWithValue(e.response.data);
+          }
+          })
+          export const deleteArea=   createAsyncThunk ('area/delete',  async(id ,thunkAPI) =>{
+            const {rejectWithValue , getState} = thunkAPI
+            const token= getState().auth.token
+            try {
+              const body= JSON.stringify(id)
+              const response = await axios.delete("https://thebeauwow.me/api/v1/admin/area/delete/", {
+                headers: {
+                  'Content-Type': 'application/json', 
+                  'Authorization': `Bearer ${token}`,
+                },data: body})
+                if(response.status==200)
+              {  return id}
+              }
+              catch (e) {
+                return rejectWithValue(e.response.data);
+            }
+            })
   const countriesSlice= createSlice({
     name:'discounts',
-    initialState : {countriesList:[], isLoading:false,addLoading:false, error:null},
+    initialState : {countriesList:[],cityadded:false,areaAdded:false,cityUpdated:false, isLoading:false,addLoading:false, error:null},
     reducers:{
+      clearstate:(state)=>{
+        state.cityadded= false
+        state.cityUpdated= false
+        state.error= false
 
+      }
     },
     extraReducers:{
          // ............. start getCountries ......................
@@ -156,23 +213,81 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
    //.......addCity .........................
     [ addCity.pending ] :(state,action)=>{
 
-              state.isLoading = true
+              // state.isLoading = true
               state.error = null
+              state.cityadded=false
               
             
          },
          [ addCity.fulfilled ] :(state,action)=>{
           state.isLoading = false
           state.error= null
-          state.countriesList.cities = {...state.countriesList.cities, ...action.payload}
+         
+          state.cityadded=true
+
+        const currentState = current(state)
+        const index = currentState.countriesList.findIndex(country => country.id == action.payload.country_id);                                            
+        const newArray = [...currentState.countriesList];     
+        newArray[index] = {...newArray[index], cities :[action.payload ,...newArray[index].cities]}
+        console.log(newArray)
+        console.log([...newArray[index].cities,action.payload])
+        state.countriesList=newArray;
+      
+
+
+
+
           },
           [ addCity.rejected ] :(state,action)=>{
                state.isLoading = false
-               state.error = action.payload
-              
-            
+               state.error = action.payload 
+               state.cityadded=false
              
           }, 
+
+          [ addArea.pending ] :(state,action)=>{
+
+            // state.isLoading = true
+            state.error = null
+            state.areaAdded=false
+            
+          
+       },
+       [ addArea.fulfilled ] :(state,action)=>{
+        state.isLoading = false
+        state.error= null
+       
+        state.areaAdded=true
+
+      const currentState = current(state)
+      const index = currentState.countriesList.findIndex(country => country.id == action.payload.country_id);                                            
+      const newArray = [...currentState.countriesList]; 
+      const cityindex = newArray[index].cities.findIndex(city => city.id == action.payload.city_id);
+      const newCityArray = [...currentState.countriesList[index].cities];     
+      newCityArray[cityindex] = {...newCityArray[cityindex], areas :[action.payload ,...newCityArray[cityindex].areas]}
+    
+       console.log(newCityArray)
+   
+      console.log(index)
+      console.log(newArray[index])
+      console.log(action.payload)
+
+      newArray[index] = {...newArray[index], cities :newCityArray}
+      console.log(newArray)
+     
+      state.countriesList=newArray;
+    
+
+
+
+
+        },
+        [ addArea.rejected ] :(state,action)=>{
+             state.isLoading = false
+             state.error = action.payload 
+             state.areaAdded=false
+           
+        }, 
      
        
     }

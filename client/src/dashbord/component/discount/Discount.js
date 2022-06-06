@@ -35,7 +35,7 @@ const Discount = ({setActiveIndex}) => {
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :
       <div className="box">  
-      {console.log(flashmsg,  updated)}
+      
          {flashmsg && error && <FlashMsg 
                       title={` ${Object.values(error)} !  `}
                       img={'/images/msgIcons/error.svg'}

@@ -28,7 +28,7 @@ const Login = () => {
     const[check,setCheck]=useState(false)
     const onSubmit= async( data )=> {
         
-        dispatch( login(data))
+        dispatch( login({...data, remember:check}))
        
         // setShowAlert(true)
         const timeId = setTimeout(() => {
@@ -57,7 +57,7 @@ const Login = () => {
              initialValues={{
                 email: '',
                 password: '',
-                remember:check
+               
                
                
               }}
