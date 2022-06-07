@@ -4,16 +4,19 @@ import {AiFillPlusCircle} from 'react-icons/ai'
 import {BiEditAlt} from 'react-icons/bi'
 import {RiDeleteBin5Line} from 'react-icons/ri'
 import { Link } from 'react-router-dom';
-const Areas = ({cityAreas}) => {
- 
+const Areas = ({cityAreas,countryId, cityId}) => {
+  const {countriesList} =useSelector((state)=>state.countries)
+  const selectedCountry=countriesList?countriesList.find((country)=>country.id==countryId):null
 
-  const renderedAreas = cityAreas&&cityAreas.map((area)=>{
+  const selectedCity=selectedCountry&&selectedCountry.cities.find((city)=>city.id==cityId)
+  
+  const renderedAreas = selectedCity&&selectedCity.areas.map((area)=>{
     return(
         <div className="category">
            {area.name}
             <span className="oposite" >
               <span className="delet icon"> <RiDeleteBin5Line /> </span>  
-              <span className="edit icon"> <BiEditAlt /> </span> 
+           <Link to='/dashbord/addresses/editearea' state={{area:area, countryId:countryId,cityId:cityId}}>  <span className="edit icon"> <BiEditAlt /> </span> </Link> 
             </span>
       </div>)
 
@@ -21,13 +24,13 @@ const Areas = ({cityAreas}) => {
   return (
     <div className="category-box">
      <div className="header">
-        Areas:&nbsp; {cityAreas&&cityAreas.length}
-       {cityAreas?
+        Areas:&nbsp; {selectedCity&&selectedCity.areas.length}
+       {selectedCity?
           <Link to="/dashbord/addresses/addarea"><span className="oposite add" > <AiFillPlusCircle /> </span></Link>
           : <span className="oposite add" > <AiFillPlusCircle /> </span>
        }
     </div>
-   { console.log(true&& {cityAreas})}
+   { console.log(true&& {selectedCity})}
     {cityAreas ? renderedAreas:'You dont select a city'}
   </div>
   )

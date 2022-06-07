@@ -31,7 +31,7 @@ const Counteries = ({getActiveCountry, setInfoFlashmsg,setFlashmsg, setDeleted})
                  {country.name}
                   <span className="oposite" >
                     <span className="delet icon" onClick={(e)=> {e.preventDefault();deleteCountry(country)}}><RiDeleteBin5Line /> </span>  
-                    <span className="edit icon"> <BiEditAlt /> </span> 
+                   <Link to='/dashbord/addresses/editeCountry' state={{country:country}}><span className="edit icon"> <BiEditAlt /> </span> </Link> 
                   </span>
             </div>)
 

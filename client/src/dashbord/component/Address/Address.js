@@ -14,6 +14,9 @@ import AddCountry from './AddCountry';
 import AddCity from './AddCity';
 import AddArea from './AddArea';
 import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
+import EditeCountry from './EditeCountry';
+import EditeCity from './EditeCity';
+import EditeArea from './EditeArea';
 const Address = ({setActiveIndex}) => {
   setActiveIndex()
   const dispatch = useDispatch()
@@ -103,7 +106,7 @@ const Address = ({setActiveIndex}) => {
                <Cities  countryCities={countryCities}  getActiveCity={getActiveCity} countryId={selectedCountry}  setDeleted={setDeleted} setInfoFlashmsg={setInfoFlashmsg}/>
             </Col>
             <Col  sm={6} md={4} lg={3}>
-               <Areas  cityAreas={cityAreas} setInfoFlashmsg={setInfoFlashmsg} setDeleted={setDeleted}/> 
+               <Areas cityAreas={cityAreas} countryId={selectedCountry} cityId={activeCity} setInfoFlashmsg={setInfoFlashmsg} setDeleted={setDeleted}/> 
             </Col>
           
         </Row>
@@ -111,6 +114,9 @@ const Address = ({setActiveIndex}) => {
            <Route path="/addCountry" element={<AddCountry  />} exact />
            <Route path="/addCity" element={<AddCity countryId={selectedCountry} />} exact />
            <Route path="/addarea" element={<AddArea countryId={selectedCountry} cityId={activeCity} />} exact />
+           <Route path="/editeCountry" element={<EditeCountry  />} exact />
+           <Route path="/editeCity" element={<EditeCity countryId={selectedCountry} />} exact />
+           <Route path="/editearea" element={<EditeArea countryId={selectedCountry} cityId={activeCity} />} exact />
            
            
         </Routes>
