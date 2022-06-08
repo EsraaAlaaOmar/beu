@@ -65,9 +65,7 @@ const Stuff = ({setActiveIndex}) => {
     <span className="title-text">Stuff</span>
     <div className="table-box">
         <div className="oposite">
-            <Link to='/dashbord/stuff'>
-              <button>Filter</button>
-            </Link>
+            
             <Link to='/dashbord/stuff/add'>
               <button onClick={() =>dispatch(clearstate())}>+ Add New</button>
             </Link>
@@ -75,7 +73,7 @@ const Stuff = ({setActiveIndex}) => {
         </div>
         <br/>
          
-          <StuffPagination maplist={adminsList} setInfoFlashmsg={setInfoFlashmsg} />
+          <StuffPagination maplist={adminsList} setInfoFlashmsg={setInfoFlashmsg} clearstate={clearstate} />
           <Routes>
                <Route path="/add" element={<AddStuff setFlashmsg={setFlashmsg} />} exact /> 
                <Route path="/edite" element={<EditeAdmin setFlashmsg={setFlashmsg} />} exact /> 

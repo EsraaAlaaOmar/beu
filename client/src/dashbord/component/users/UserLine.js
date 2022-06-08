@@ -1,10 +1,12 @@
 import React,{useState, useRef, useEffect} from 'react'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import {RiCheckboxBlankCircleLine, RiCheckboxCircleFill} from 'react-icons/ri'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 // use ref  function 
 function useOutsideAlerter(ref,setShowlist) {
+    const dispatch = useDispatch()
     useEffect(() =>{
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {

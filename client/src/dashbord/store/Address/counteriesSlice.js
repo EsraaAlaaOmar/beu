@@ -230,7 +230,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
             })
   const countriesSlice= createSlice({
     name:'discounts',
-    initialState : {countriesList:[],cityadded:false,areaAdded:false,cityUpdated:false, isLoading:false,addLoading:false, error:null},
+    initialState : {countriesList:[],countryAdded:false,countryupdated:false,cityadded:false,areaAdded:false,cityUpdated:false,areaUpdated:false, isLoading:false,addLoading:false, error:null},
     reducers:{
       clearstate:(state)=>{
         state.cityadded= false
