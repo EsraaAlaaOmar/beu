@@ -43,7 +43,7 @@ const Users = ({setActiveIndex}) => {
               />}
         
                {flashmsg && added && <FlashMsg 
-                    title={`discount Added successfully`}
+                    title={`User Added successfully`}
                     img={'/images/msgIcons/success.svg'}
                     setFlashmsg={setFlashmsg}
 
