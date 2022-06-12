@@ -93,7 +93,7 @@ const NewQuestion = () => {
               }}
              
             
-           >
+           > 
  {({errors, touched,setFieldTouched,  handleSubmit,setFieldValue})=> (
             <form onSubmit={(e)=>{e.preventDefault(); handleSubmit()}}  autoComplete="off">
         <div className='input-div'>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {editeDiscount} from '../../store/discountslice'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose} from "react-icons/ai"
-
+import moment from 'moment'
  //formik
 import { Formik, Field, Form } from 'formik';
 // yup validation
@@ -64,8 +64,8 @@ const removeError=(setFieldValue,setFieldTouched, name)=>{
       <Formik
              initialValues={{
                
-              start_at: location.state.discont.created_at,
-              end_at: location.state.discont.end_at,
+              start_at:  moment(location.state.discont.start_at).format('YYYY-MM-DD'),
+              end_at: moment(location.state.discont.end_atmoment).format('YYYY-MM-DD'),
               code: location.state.discont.code,
               limit:location.state.discont.limit, 
               percentage:location.state.discont.percentage.replace("%", ""),

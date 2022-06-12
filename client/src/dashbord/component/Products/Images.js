@@ -1,21 +1,27 @@
 import React,{useState} from 'react'
 import {Carousel} from 'react-bootstrap'
-import {AiFillCamera} from 'react-icons/ai'
+import {AiFillCamera,AiOutlineCloseCircle, AiFillEdit} from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import UploadImage from './UploadImage'
-const Images = ({colors,collectionId,addImg, galleries, clearstate}) => {
+const Images = ({colors,collectionId,addImg,updateAddImg, galleries={galleries} , clearstate, removeImage}) => {
     const dispatch = useDispatch()
-    const [viewd,setViewed] = useState(null)
+    // const [viewd,setViewed] = useState(null)
    const renderedColors=colors.map((color,index)=>{
-      return(<UploadImage color={color} index={index} setViewed={setViewed}  addImg={addImg} galleries={galleries} />)
+      return(<UploadImage color={color} index={index}  addImg={addImg}  />)
 
     })
-    const renderedImagesforCarousel= galleries.map(galary=>{
+    const renderedImagesforCarousel= galleries.map((galary,index)=>{
         return(  <Carousel.Item interval={1000}>
+          <span className="close" onClick={()=>removeImage(galary.image)}>  <AiOutlineCloseCircle /></span>
+         {!galary.imageUrl&& <span className='update-icon'>Update <br/> <div>
+            
+         <UploadImage color={galary.color_hex} id={galary.id} index={index} update={true} addImg={updateAddImg} />
+            </div> </span>}
+           {console.log(galary)}
             <img
             className="d-block w-100"
-            src={galary.imageUrl}
+            src={galary.imageUrl?galary.imageUrl:`https://thebeauwow.me/${galary.image}`}
             alt="first slide"
             
             />
@@ -73,7 +79,7 @@ const Images = ({colors,collectionId,addImg, galleries, clearstate}) => {
     <input type='submit' className='confrim' value='Confirm' />
                                 
                                 <Link to={`/dashbord/products/${collectionId}`}>
-                                    <button className='discard' onClick={() =>dispatch(clearstate()) } >Discard</button>
+                                     <button className='discard' onClick={() =>dispatch(clearstate()) } >Discard</button>
                                 </Link>
                             </div>
             

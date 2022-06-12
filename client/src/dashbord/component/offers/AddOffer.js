@@ -6,19 +6,44 @@ import { useSelector, useDispatch } from 'react-redux';
 import {addOffer} from '../../store/offerSlice'
 import{getCollections} from '../../store/collectionsSlice'
 import {getProducts} from '../../store/productSlice'
+import { FcCheckmark } from "react-icons/fc";
+import {AiOutlineClose} from "react-icons/ai"
+
+ //formik
+import { Formik, Field, Form } from 'formik';
+// yup validation
+import * as yup from 'yup';
+
 const AddOffer = () => {
+     // yup validation
+     let schema = yup.object().shape({
+        start_at: yup.date().min(new Date(),'Please choose future date').required('Start Date is required'),    
+        end_at: yup.date()    
+                    .when('start_at',
+                                  (start_at, schema) => {
+                                      if (start_at) {
+                                      const dayAfter = new Date(start_at.getTime() + 86400000);
+                                    
+                                          return schema.min(dayAfter, 'End date has to be after than start date');
+                                        }
+                                    
+                                        return schema;
+                                      
+                                  }).required('End Date is required'),
+        percentage: yup.number().typeError('percentage  must be a number').min(1,'Precentage must be a positive number').max(100,'precentage must be less than 100') .required(' percentage  is required'),
+       });
+       // end  yup 
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
-        start_at: '',
-        end_at: '',
-        percentage:'', 
+    
         products:[],
       
     
       
     })
-    const { start_at, end_at, percentage, products}=formData
+    const { products}=formData
 
 
      const addProduct=(newid)=>
@@ -30,10 +55,9 @@ const AddOffer = () => {
   //selecte  Collection  to see its products 
     const [selectedCollection,setSelectedCollection]= useState()
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
-    const onSubmit=async e=>{
-        e.preventDefault()
-        dispatch(addOffer(formData))
-        navigate('/offers')
+    const onSubmit=async ( data)=>{
+     
+        dispatch(addOffer({...data, products:products}))
      
     
 
@@ -46,13 +70,13 @@ const AddOffer = () => {
                <option key={collection.id} value={collection.id} >{collection.title}</option>
             )
    })
-   const {prodectAdded,productupdated, isLoading} =useSelector((state)=>state.product)
+   const { isLoading} =useSelector((state)=>state.product)
    const productdata =useSelector((state)=>state.product)
    const productsList =  productdata.products
-console.log(productsList)
+
   useEffect(() =>{
       if(selectedCollection)
-   { getProducts( selectedCollection)}
+   { dispatch(getProducts( selectedCollection))}
   
  
   },[selectedCollection])
@@ -61,6 +85,13 @@ console.log(productsList)
   
  
   },[dispatch])
+
+    //remove validation error 
+    const removeError=(setFieldValue,setFieldTouched, name)=>{
+        setFieldValue(name, '', false);
+        setFieldTouched(name, false,false)
+    
+      }
   return (
     <div className='addpage'>
         <div className='opacity'>
@@ -69,7 +100,29 @@ console.log(productsList)
                     <Col sm={12} md={6} lg={4}>
                         <div className='inputs'>
                         <h4>New Offer</h4>
-                        <form onSubmit={(e)=>onSubmit(e)}>
+                        <Formik
+             initialValues={{
+               
+                start_at: '',
+                end_at: '',
+                percentage:'', 
+             
+                
+               
+               
+              }}
+              validationSchema={schema}
+              onSubmit ={(values)=>{
+                onSubmit(values);
+             
+               
+             
+              }}
+             
+            
+           >
+ {({errors, touched,setFieldTouched,  handleSubmit,setFieldValue})=> (
+            <form onSubmit={(e)=>{e.preventDefault(); handleSubmit()}}  autoComplete="off">
                             <div className='input-div'>
                                 <label>Collection</label>
                                 
@@ -82,16 +135,28 @@ console.log(productsList)
                             </div>
                             <div className='input-div'>
                                 <label> Percentage</label>
-                                <input type='text' placeholder='Percentage' name='percentage' value={percentage} onChange={e=>onChange(e)} required/>
+                                < div className='input-field  '>
+                                <Field    placeholder='percentage' name='percentage'   />
+                                { touched.percentage && <div className='mark'>{errors.percentage ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'percentage')} /></span>: <FcCheckmark />}</div>}
+                                </div>
+                                {errors.percentage && touched.percentage && <><div className='error-text'> {errors.percentage}</div></> }
                                 
                             </div>
                             <div className='input-div'>
                                 <label> Start Date </label>
-                                <input type='text'  placeholder="Start Date" onFocus={(e)=>e.target.type='date'} name='start_at' value={start_at} onChange={e=>onChange(e)} required/>
+                                < div className='input-field  '>
+                <Field    placeholder='Start Date' onFocus={(e)=>e.target.type='date'} type='text' name='start_at'   />
+            </div>
+            {errors.start_at && touched.start_at && <><div className='error-text'> {errors.start_at}</div></> }
                             </div>
                             <div className='input-div'>
                                 <label>End Date </label>
-                                <input type='text' placeholder='End Date' onFocus={(e)=>e.target.type='date'} name='end_at' value={end_at} onChange={e=>onChange(e)} required />
+                                < div className='input-field  '>
+                <Field    placeholder='End Date' onFocus={(e)=>e.target.type='date'} type='text' name='end_at'   />
+            
+            </div>
+            {errors.end_at && touched.end_at && <><div className='error-text'> {errors.end_at}</div></> }
+           
                             </div>
                             <div className='buttons'>
                               
@@ -103,28 +168,34 @@ console.log(productsList)
                                 </Link>
                             </div>
                         </form>
+
+                        )}
+                        </Formik>
                         </div>
                       
 
                     </Col>
-                    <Col sm={12} md={6} lg={8}>
-                       {productsList && <div className='select'>
+                   {selectedCollection&& <Col sm={12} md={6} lg={8}>
+                   {isLoading ? <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+                       :productsList && <div className='select'>
                             <span className='black-title'>Products on  selected collection</span> 
                             <span className='yello-title'>&nbsp;  {productsList.length}  &nbsp; Product</span>
                             <Row>
-                                {productsList.map(product =>{
+                                {productsList.length>0?productsList.map(product =>{
                                     return(
                                         <Col sm={12} lg={6}>
                                             <SelectProduct product={product}  addProduct={addProduct}/>
                                         </Col>
                                     )
-                                })}
+                                }): 'No Products In Tis collection'
+
+                            }
                                 
                                 
                             </Row>
                         </div>
                     }
-                    </Col>
+                    </Col>}
 {console.log(products)}
                 </Row>
             

@@ -2,7 +2,7 @@ import React,{useState, useEffect, useRef} from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux';
 import {editeProduct} from '../../store/productSlice'
-import { Link ,useParams, useLocation, useNavigate} from 'react-router-dom'
+import { Link ,useParams, useLocation, useNavigate, Navigate} from 'react-router-dom'
 import Images from './Images';
 import{getSizes} from '../../store/sizesSlice'
 import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
@@ -47,20 +47,47 @@ const EditeProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
         unit_price:location.state.product.unit_price, 
         quantity:location.state.product.quantity,
         galleries : location.state.product.galleries,
+        update_galleries:[],
         sizes : selectedsizes,
+
       
         id : location.state.product.id,
         product_id:location.state.product.id
       
     })
     console.log(formData.sizes)
-    const { title, description, unit_price, quantity, galleries,sizes}=formData
+    const { title, description, unit_price, quantity, galleries, update_galleries, sizes}=formData
    //set colors array  
-    const [colors, setColors]=useState(galleries.map((galary) =>galary.color_hex))
-   
-    const renderedColors=galleries.map((galary) =><span className="color" style={{backgroundColor:galary.color_hex}}></span>)
+    const [colors, setColors]=useState([])
+    const selectedColors=location.state.product.galleries.map((galary) =>galary.color_hex)
+    
+   //rendered selected colors 
+   const renderedSelectedColors=selectedColors.map((color) =><span className="color" style={{backgroundColor:color}}></span>)
+   //rendered colors 
+   const renderedColors=colors.map((color) =><span className="color" style={{backgroundColor:color}}></span>)
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
+    //add image
     const addImg=data=>setFormData({...formData, galleries: [...galleries , data]})
+    //update-galary
+  //  const updateAddImg=data=>setFormData({...formData, update_galleries: [...update_galleries , data]})
+    const updateAddImg=(data)=>{
+        setFormData('')
+        const index =galleries.findIndex(galary => galary.id == data.gallery_id);                                                            
+        const newArray = [...galleries]; 
+        if(index)
+        {  newArray[index] = data;}
+        setFormData({...formData, galleries: newArray});
+    
+    console.log(data);
+    console.log(formData);
+        
+        }
+        
+    
+ //remove image
+      const removeImage=image=> setFormData({...formData, galleries: galleries.filter(g=>g.image!==image)})
+      console.log(formData.galleries)
+
     const onSubmit=async e=>{
         e.preventDefault()
        dispatch(editeProduct(formData))
@@ -84,7 +111,7 @@ const changeSizes=(e,size)=>{
     
 useEffect(() =>{
     dispatch(getSizes())
-  
+   
 
   },[dispatch])
 // call useref function
@@ -121,7 +148,7 @@ useOutsideAlerter(wrapperRef, navigate, collectionId);
                             <div className='input-div'>
                                 <label>Colors</label>
                                 <div className='colorList'>
-
+                                    {renderedSelectedColors}
                                     {renderedColors}               
                                     <span className='oposite' onClick={()=>document.getElementById("color").click()}>
                                         +
@@ -131,7 +158,7 @@ useOutsideAlerter(wrapperRef, navigate, collectionId);
                                 </div>
                                 { color &&<div className='add-color'>
                                     <span className='selected' style={{backgroundColor:color}}></span>
-                                     <button onClick={()=>setColors([...colors,color])}>Add</button>
+                                     <span className='add-button' onClick={()=>setColors([...colors,color])}>Add</span >
                                 </div>}
                                 
                                 <div>
@@ -170,15 +197,15 @@ useOutsideAlerter(wrapperRef, navigate, collectionId);
 
                     </Col>
                     <Col sm={12} md={6} lg={8}>
-                        <Images colors={colors} collectionId={collectionId} clearstate={clearstate} addImg={addImg} galleries={galleries}/>
+                        <Images colors={colors}  removeImage={removeImage} collectionId={collectionId} clearstate={clearstate} updateAddImg={updateAddImg} addImg={addImg} galleries={galleries}/>
                     </Col>
                    
                     </Row>
                     </form>
-                
+                    {productupdated && <Navigate to={`/dashbord/products/${collectionId}`} />}
               </div>
         </div>
-        {productupdated && navigate(`/dashbord/products/${collectionId}`)}
+     
     </div>
   )
 }

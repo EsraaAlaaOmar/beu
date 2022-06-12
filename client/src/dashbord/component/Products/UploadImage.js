@@ -1,13 +1,14 @@
 import React,{useState} from 'react'
 
-const UploadImage = ({color,index,galleries,addImg}) => {
+const UploadImage = ({color,index,addImg,id, update}) => {
     const [imgInfo, setImgInfo] = useState(
        { image:'',
         priority :'',
         color_hex:color,
-        imageUrl:''
+        imageUrl:'',
+        gallery_id:id
       }
-    )
+    ) 
     const {image, priority}=imgInfo
 console.log(imgInfo)
 
@@ -29,14 +30,14 @@ console.log(imgInfo)
 
                                         +
                                     </span>
-                                    <input type='number' className='priority' placeholder='Priority' min="1" name='priority' value={priority} onChange={e=>onChange(e)} required />
-                                    <input id={`color${index}`} className='none' type='file' name='image'  onChange={e=>imgChange(e)} required />
+                                    <input type='number' className='priority' placeholder='Priority' min="1" name='priority' value={priority} onChange={e=>onChange(e)}  />
+                                    <input id={`color${index}`} className='none' type='file' name='image'  onChange={e=>imgChange(e)}  />
                                 
 
                                 
                                 
                             </span>
-                            <button onClick={(e)=>addimage(e)}>Add</button>
+                            <button className='action' onClick={(e)=>addimage(e)}>{update?'Update' : 'Add'}</button>
                            
 
                     

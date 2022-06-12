@@ -10,7 +10,7 @@ const OffersProducts = () => {
   let renderedProducts = products.map((product)=>{
     return (
       <Col md={6} lg={4} >
-          <Box product={product}/>
+          <Box product={product} viewProducts={true}/>
         
         </Col>
     )
@@ -19,7 +19,7 @@ const OffersProducts = () => {
      <>
         <Nav/>
       <div className='box'>
-     Products
+      <span className="title-text">Offer Products</span> 
       <Row>
        
       {renderedProducts}

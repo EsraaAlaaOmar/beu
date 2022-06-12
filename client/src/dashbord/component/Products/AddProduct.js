@@ -58,12 +58,14 @@ const AddProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
     //add image 
     const addImg=data=>setFormData({...formData, galleries: [...galleries , data]})
+    //remove image
+    const removeImage=image=> setFormData({...formData, galleries: galleries.filter(g=>g.image!==image)})
     //submit
     const onSubmit=async e=>{
         e.preventDefault()
         dispatch(addProduct(formData))
         setErrorFlashmsg(true)
-       
+        
     
 
 
@@ -132,7 +134,7 @@ useEffect(() =>{
                                 </div>
                                 { color &&<div className='add-color'>
                                     <span className='selected' style={{backgroundColor:color}}></span>
-                                     <button onClick={()=>setColors([...colors,color])}>Add</button>
+                                     <span className='add-button' onClick={()=>setColors([...colors,color])}>Add</span >
                                 </div>}
                                 
                                 <div>
@@ -170,13 +172,13 @@ useEffect(() =>{
 
                     </Col>
                     <Col sm={12} md={6} lg={8}>
-                        <Images colors={colors} collectionId={collectionId} clearstate={clearstate} addImg={addImg} galleries={galleries}/>
+                        <Images colors={colors} removeImage={removeImage} collectionId={collectionId} clearstate={clearstate} addImg={addImg} galleries={galleries}/>
                     </Col>
                    
                     </Row>
                     </form>
                 
-              </div>
+              </div> 
         </div>
 {prodectAdded && navigate(`/dashbord/products/${collectionId}`)}
     </div>

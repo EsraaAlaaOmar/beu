@@ -5,6 +5,7 @@ const SelectProduct = ({product, addProduct}) => {
   const [number,setNumber]=useState(0)
    const [activeIndex,setActiveIndex]=useState(0)
    const [activecolor,setActivecolor]=useState(0)
+   const[selected,setSelected]=useState(false)
    const handleClick=(index) =>{
     setActiveIndex(index);
   }
@@ -13,27 +14,27 @@ const SelectProduct = ({product, addProduct}) => {
   }
   const sizes=['S', 'M', "L"]
   const colors=['red', 'yellow', 'black']
-   const renderedSizes=sizes.map((size,index)=>{  
-   const  className = activeIndex === index ? 'active' : '';  
-   return (
-    <span className={className} key={index} onClick={()=>handleClick( index)}>
-      {size}
-    </span>
-)
-   })
-   const renderedColors=colors.map((color,index)=>{  
-    const  className = activecolor === index ? 'active' : '';  
-    return (
-     <span className={className} style={{backgroundColor:color}} key={index} onClick={()=>handleColor( index)}>
+//    const renderedSizes=sizes.map((size,index)=>{  
+//    const  className = activeIndex === index ? 'active' : '';  
+//    return (
+//     <span className={className} key={index} onClick={()=>handleClick( index)}>
+//       {size}
+//     </span>
+// )
+//    })
+//    const renderedColors=colors.map((color,index)=>{  
+//     const  className = activecolor === index ? 'active' : '';  
+//     return (
+//      <span className={className} style={{backgroundColor:color}} key={index} onClick={()=>handleColor( index)}>
        
-     </span>
- )
-    })
+//      </span>
+//  )
+//     })
 
   return (
     <div className='box_component'>
         <img
-         src='https://img.freepik.com/free-photo/galaxy-system-millions-billions-stars-together-with-gas-dust_39386-369.jpg?w=1060'
+         src={product.galleries[0]&&`https://thebeauwow.me/${product.galleries[0].image}`}
           />
           <div className='box-title'>
           {product.title}
@@ -44,17 +45,17 @@ const SelectProduct = ({product, addProduct}) => {
               Price : {product.unit_price} $
           </p>
           <div className='yello'>
-              <div className='sizes'>Sizes : 
+              {/* <div className='sizes'>Sizes : 
                   &nbsp;
             {renderedSizes}
               
-              </div>
-              <div className='colors'> Colors : 
+              </div> */}
+              {/* <div className='colors'> Colors : 
                 {renderedColors}
-              </div>
+              </div> */}
               <div className='num'> <span onClick={()=>setNumber(number+1)} > +</span> {number} Items <span onClick={()=>setNumber(number-1)}> - </span></div>
           </div>
-           <button onClick={()=>addProduct(product.id)}>ADD</button>
+           {selected?<button onClick={()=>{setSelected(!selected); addProduct(product.id)}}>delet</button>:<button  onClick={()=>{setSelected(!selected); addProduct(product.id)}}>ADD</button>}
     </div>
   )
 }

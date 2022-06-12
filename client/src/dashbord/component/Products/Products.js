@@ -9,7 +9,7 @@ import Nav from '../reusable/Nav';
 import EditeProduct from './EditeProduct';
 import {getProducts, clearstate} from '../../store/productSlice'
 import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
-
+ 
 const Products = ({setActiveIndex}) => {
   setActiveIndex()
   const dispatch = useDispatch()

@@ -85,10 +85,11 @@ const response =await axios.post("https://thebeauwow.me/api/v1/admin/products/cr
 
     formData.append('product_id', productData.product_id);
     
-    for (let i = 0; i < productData.galleries.length; i++) {
-      formData.append(`galleries[${i}]image`, productData.galleries[i].image);
-      formData.append(`galleries[${i}]color_hex`, productData.galleries[i].color_hex);
-      formData.append(`galleries[${i}]priority`, productData.galleries[i].priority);
+    for (let i = 0; i < productData.update_galleries.length; i++) {
+      formData.append(`update_galleries[${i}]gallery_id`, productData.update_galleries[i].gallery_id);
+      formData.append(`update_galleries[${i}]image`, productData.update_galleries[i].image);
+      formData.append(`update_galleries[${i}]color_hex`, productData.update_galleries[i].color_hex);
+      formData.append(`update_galleries[${i}]priority`, productData.update_galleries[i].priority);
     }
     for (let i = 0; i < productData.sizes.length; i++) {
       formData.append(`sizes[${i}]size_id`, productData.sizes[i].id);
