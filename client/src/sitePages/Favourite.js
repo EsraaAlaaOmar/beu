@@ -1,20 +1,36 @@
 import React from 'react'
-import { Row,Col } from 'react-bootstrap'
+import { Row,Col, Dropdown, DropdownButton } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-
+import {MdOutlineChevronLeft} from 'react-icons/md'
 import Product from '../components/Product'
 
 const Favourite = () => {
     return (
         <div className='fav'>
            <div className='title'>
-               <div className='line right'></div>
-               Favourite Items
-               <div className='line'></div>
+            
+           FAVOURITE ITEMS
+               
            </div>
-
+           <Row>
+              <Col md={4} lg={3}>
+                    <div className='filter' onClick={()=>document.getElementById('dropdown-basic-button').click()}>
+                        
+                        filter <MdOutlineChevronLeft />
+                    </div>
+                  
+                    
+              </Col>
+           </Row>
+         
            <div className='products'>
           <Row>
+               <Col md={4} lg={3} > 
+                  <DropdownButton id="dropdown-basic-button" >
+                        <div>esraa</div>
+                        <span>alaa</span>
+                      </DropdownButton>
+                </Col>
                 <Col md={4} lg={3} > 
                   <Link to='/product'>
                       <Product  fav  productid={1}  img='/images/products/4.png'/>

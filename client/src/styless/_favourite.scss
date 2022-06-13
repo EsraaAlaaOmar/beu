@@ -1,35 +1,52 @@
 .clientSide{
     .fav{
     padding-top: 100px;
-    background-image: url("../backgrounds/RepeatGrid.png");
-    background-repeat: repeat;
-    background-size: cover;
+ 
    
     .title{
         margin: auto;
         margin-bottom: 50px;
-        font-size: 34px;
-        font-family: Alegreya;
-        font-style: italic;
+        font-size: 26px;
+        font-family: Adobe Arabic;
         font-weight: bold;
         position: relative;
         width: 255px;
         text-align: center;
-        .line{
-            height: 1.5px;
-            width: 117px;
-            background-color: #A35604;
-            margin-bottom: 30px;
-        }
-        .right{
-           position: absolute;
-           right: 0;
-        }
+       
     }
+    .filter{
+        cursor: pointer;
+        width: 90%;
+        margin:auto;
+        max-width: 500px;
+        padding-left: 16px;
+    }
+  
     .recommended{
         margin-top: 150px;
         .title{
             width: auto;
         }
+    }
+
+
+
+
+    .btn-primary{
+        background-color:#fff;
+    }
+    .btn-check:checked + .btn-primary, .btn-check:active + .btn-primary, .btn-primary:active, .btn-primary.active, .show > .btn-primary.dropdown-toggle{
+        background-color: #fff;
+        border-color: #fff;
+    }
+    .btn-check:focus + .btn-primary, .btn-primary:focus,.btn-check:checked + .btn-primary:focus, .btn-check:active + .btn-primary:focus, .btn-primary:active:focus, .btn-primary.active:focus, .show > .btn-primary.dropdown-toggle:focus{
+        box-shadow: none;
+        border-color: #fff;
+    }
+    .dropdown-menu.show{
+        // margin-top: -38px;
+        width: 90%;
+        max-width: 500px;
+        margin-left: 5%;
     }
 }}
