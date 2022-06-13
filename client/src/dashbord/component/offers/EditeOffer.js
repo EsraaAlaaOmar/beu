@@ -1,6 +1,6 @@
 import {React,useEffect, useState} from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import SelectProduct from '../reusable/SelectProduct'
 import { useSelector, useDispatch } from 'react-redux';
 import {editOffer} from '../../store/offerSlice'
@@ -32,6 +32,8 @@ const EditeOffer = () => {
             percentage: yup.number().typeError('percentage  must be a number').min(1,'Precentage must be a positive number').max(100,'precentage must be less than 100') .required(' percentage  is required'),
            });
            // end  yup
+
+   const {updated} =useSelector((state)=> state.offers)
     let location = useLocation()
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -202,7 +204,7 @@ const EditeOffer = () => {
                         </div>
                     }
                     </Col>}
-{console.log(add_products)}
+{updated&& <Navigate to='/dashbord/offers' />}
                 </Row>
             
             </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const Box = ({clearstate,product,editeLink='/collections',viewProducts, products=true}) => {
+const Box = ({clearstate,product,editeLink='/dashbord/collections',viewProducts, products=true}) => {
   const dispatch = useDispatch()
   const  productColors =product.galleries.length >0 && product.galleries.map(galary=>{
     return <span className="color" style={{backgroundColor:galary.color_hex}}></span>

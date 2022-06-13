@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import { ReactComponent as Logo } from '../../images/offers.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import { getOffers } from '../../store/offerSlice';
+import { getOffers,clearstate } from '../../store/offerSlice';
 import {Col, Row} from 'react-bootstrap'
 import {Link, Route, Routes} from 'react-router-dom'
 import Box from '../reusable/Box'
@@ -10,7 +10,7 @@ import Nav from '../reusable/Nav';
 import EditeOffer from './EditeOffer';
 const Offers = ({setActiveIndex}) => {
   setActiveIndex()
-  const {offersList,isLoading, error } =useSelector((state)=> state.offers)
+  const {offersList,isLoading,updated, error } =useSelector((state)=> state.offers)
   const dispatch = useDispatch()
   {console.log(offersList)}
   useEffect(() =>{
@@ -33,7 +33,7 @@ const Offers = ({setActiveIndex}) => {
                             <div className={`yello ${offer.status}`}>{offer.status}</div>
                             <div className='actions'>
                                <Link to='/dashbord/offerproducts'state={{offer:offer}} > <span>View Products</span></Link>
-                              <Link to='/dashbord/offers/edite' state={{ offer: offer }}><span> Edit </span></Link>
+                              <Link to='/dashbord/offers/edite' state={{ offer: offer }}><span onClick={() =>dispatch(clearstate())}> Edit </span></Link>
                                 <span>Delete</span>
 
                             </div>

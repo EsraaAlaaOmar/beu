@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react'
-import { Link, useNavigate,useLocation } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { Link, useNavigate,useLocation, Navigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import {editeCountry} from '../../store/Address/counteriesSlice'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose} from "react-icons/ai"
@@ -10,18 +10,18 @@ import { Formik, Field, Form } from 'formik';
 // yup validation
 import * as yup from 'yup';
 
-const EditeCountry = () => { // yup validation
+const EditeCountry = ({setFlashmsg}) => { // yup validation
     let location = useLocation()
     let schema = yup.object().shape({
       name:yup.string().required('Country name required'),
-      code: yup.number().typeError('code must be a number').required('code required'),
-      phone_code : yup.number().typeError('phone code must be a number').required('Phone code required'), 
+      code:yup.string().max(5,'phone code max 5 characters').required('country code required'),
+      phone_code: yup.string().max(5,'phone code max 5 characters').required('Phone code required'), 
       phone_length:yup.number().typeError('phone length must be a number'),
       
      });
 
      // end  yup 
-
+     const {countryupdated} =useSelector((state)=>state.countries)
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({
@@ -37,7 +37,7 @@ const EditeCountry = () => { // yup validation
     const onSubmit= values => {
        
        dispatch(editeCountry(values))
-        navigate("/dashbord/addresses")
+       setFlashmsg(true)
     } 
  //remove validation error 
   const removeError=(setFieldValue,setFieldTouched, name)=>{
@@ -118,6 +118,7 @@ const EditeCountry = () => { // yup validation
                 </Link>
                 
             </div>
+            {countryupdated &&  <Navigate  to='/dashbord/addresses' /> }
             </form>
              )}
              </Formik>

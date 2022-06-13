@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import { Link, useNavigate,useLocation } from 'react-router-dom'
+import React,{useState,useRef, useEffect} from 'react'
+import { Link, Navigate,useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import {updateQuestion} from'../../store/questionSlice'
 import { FcCheckmark } from "react-icons/fc";
@@ -8,6 +8,30 @@ import {AiOutlineClose} from "react-icons/ai"
 import { Formik, Field, Form } from 'formik';
 // yup validation
 import * as yup from 'yup';
+
+
+
+
+// use ref  function  to close when click outside white cox
+function useOutsideAlerter(ref,navigate) {
+  useEffect(() =>{
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        
+          navigate('/dashbord/questions')
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    
+  }}, [ref]);
+}
+
+
+//react function 
 const EditeQuestion = () => {
     // yup validation
     let schema = yup.object().shape({
@@ -23,14 +47,12 @@ const EditeQuestion = () => {
      });
 
      // end  yup 
+     const navigate = useNavigate()
      let location = useLocation()
-    const navigate = useNavigate()
     const dispatch = useDispatch()
+    const {updated } =useSelector((state)=> state.question)
     const [formData, setFormData] = useState({
-      question: '',
-      questionPriority: '',
-        name:'',
-        answers : [],
+   
       
      
     })
@@ -42,15 +64,18 @@ const EditeQuestion = () => {
        dispatch(updateQuestion({question:data.question,
         question_id:location.state.question.id,
          priority:data.questionPriority,
-         answers : [{
+         update_answers : [{
+          answer_id:data.answer1_id,
           answer:data.answer1,
           priority:data.prioritya1
         },
         {
+          answer_id:data.answer2_id,
           answer:data.answer2,
           priority:data.prioritya2
         },
         {
+          answer_id:data.answer3_id,
           answer:data.answer3,
           priority:data.prioritya3
         }
@@ -66,27 +91,33 @@ const EditeQuestion = () => {
     setFieldTouched(name, false,false)
 
   }
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, navigate);
   return (
     <div className='addpage add-question'>
     <div className='opacity'>
-      <div className='add'>
+      <div className='add' ref={wrapperRef}>
         <h4>Edite Question</h4>
+        {console.log( location.state.question)}
         <Formik
              initialValues={{
               
               question: location.state.question.question,
               questionPriority:location.state.question.questionPriority,
-              answer1:location.state.question.answer1
+              answer1_id:location.state.question.answers[0].id,
+              answer1:location.state.question.answers[0].answer
                       
                       ,
               prioritya1:location.state.question.prioritya1
                          ,
-              answer2:location.state.question.answer2
+              answer2_id:location.state.question.answers[1].id,
+              answer2:location.state.question.answers[1].answer
                  
               ,
               prioritya2: location.state.question.prioritya2
                          ,
-              answer3:location.state.question.answer3 ,
+              answer3_id:location.state.question.answers[2].id,
+              answer3:location.state.question.answers[2].answer ,
               prioritya3:location.state.question.prioritya3,
              
                 
@@ -171,6 +202,7 @@ const EditeQuestion = () => {
             </Link>
             
         </div>
+        {updated && <Navigate to='/dashbord/questions' />}
         </form>
          )}
       </Formik>

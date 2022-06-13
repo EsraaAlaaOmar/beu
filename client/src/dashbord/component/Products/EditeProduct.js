@@ -51,7 +51,7 @@ const EditeProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
         sizes : selectedsizes,
 
       
-        id : location.state.product.id,
+        id : id,
         product_id:location.state.product.id
       
     })
@@ -202,7 +202,7 @@ useOutsideAlerter(wrapperRef, navigate, collectionId);
                    
                     </Row>
                     </form>
-                    {productupdated && <Navigate to={`/dashbord/products/${collectionId}`} />}
+                   {productupdated && <Navigate to={`/dashbord/products/${collectionId}`} />}
               </div>
         </div>
      

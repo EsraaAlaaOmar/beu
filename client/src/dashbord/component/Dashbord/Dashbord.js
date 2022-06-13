@@ -33,6 +33,10 @@ const Dashbord = ({setActiveIndex}) => {
      
    
       <div className="box dashbord">
+      <div className='alert'>
+        This Page not implemented yet because no payment gateway integrated
+        the content below is just a demo content to show the screen design
+              </div>
           <div className="title-text">Dashboard</div>
         
         <Row>

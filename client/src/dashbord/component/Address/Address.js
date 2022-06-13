@@ -23,7 +23,7 @@ const Address = ({setActiveIndex}) => {
  
   // const {citiesList} =useSelector((state)=>state.cities)
   // const {AreasList} =useSelector((state)=>state.areas)
-  const {countriesList,isLoading,cityadded, citis,error} =useSelector((state)=>state.countries)
+  const {countriesList,isLoading,countryAdded,countryupdated,countryDeleted,cityadded,cityUpdated,areaAdded,areaUpdated, citis,error} =useSelector((state)=>state.countries)
   
   const[selectedCountry,setSelectedCountry] = useState('')
   const[countryCities,setCountryCities] = useState('')
@@ -35,14 +35,16 @@ const Address = ({setActiveIndex}) => {
   //deleted {country -city -area }data 
    const [deleted,setDeleted] = useState(null)
 
-   // dispatch delete request 
-    
+   // dispatch delete request  we hve three delete Area city Country
    const deleteRequest = (deleted)=>
    {deleted.type=='country'?
      dispatch(deleteCountry(deleted.id))
      :deleted.type=='city' 
-     ? dispatch(deleteCity(deleted.id))
-     :dispatch(deleteArea(deleted.id))} 
+     ? dispatch(deleteCity({id:deleted.id,countryId:selectedCountry}))
+     :dispatch(deleteArea({id:deleted.id,countryId:selectedCountry,cityId:activeCity}))
+    setFlashmsg(true)
+    
+    } 
 
  // error flashmsg state
  const[flashmsg,setFlashmsg] = useState(true)
@@ -85,6 +87,60 @@ const Address = ({setActiveIndex}) => {
 
                       icontype='error-icon'
               />}
+                 {flashmsg && countryAdded && <FlashMsg 
+                    title={`Country Added successfully`}
+                    img={'/images/msgIcons/success.svg'}
+                    setFlashmsg={setFlashmsg}
+
+                    icontype='success-icon'
+
+              />}
+                
+                {flashmsg && countryupdated && <FlashMsg 
+                     title={`Country has been updated successfully`}
+                     img={'/images/msgIcons/success.svg'}
+                     setFlashmsg={setFlashmsg}
+                     icontype='success-icon'
+              />}
+                  {flashmsg && countryDeleted && <FlashMsg 
+                    title={`Country deleted successfully`}
+                    img={'/images/msgIcons/success.svg'}
+                    setFlashmsg={setFlashmsg}
+
+                    icontype='success-icon'
+
+              />}
+                 {flashmsg && cityadded && <FlashMsg 
+                    title={`City Added successfully`}
+                    img={'/images/msgIcons/success.svg'}
+                    setFlashmsg={setFlashmsg}
+
+                    icontype='success-icon'
+
+              />}
+                
+                {flashmsg && cityUpdated && <FlashMsg 
+                     title={`A City  has been updated successfully`}
+                     img={'/images/msgIcons/success.svg'}
+                     setFlashmsg={setFlashmsg}
+                     icontype='success-icon'
+              />}
+                   {flashmsg && areaAdded && <FlashMsg 
+                    title={`Area Added successfully`}
+                    img={'/images/msgIcons/success.svg'}
+                    setFlashmsg={setFlashmsg}
+
+                    icontype='success-icon'
+
+              />}
+                   {flashmsg && areaUpdated && <FlashMsg 
+                    title={`an area updated successfully`}
+                    img={'/images/msgIcons/success.svg'}
+                    setFlashmsg={setFlashmsg}
+
+                    icontype='success-icon'
+
+              />}
                 {infoflashmsg&&<FlashMsg 
                             title={`You will delete ${deleted.type}   with name  ${deleted.name} !`}
                             img={'/images/msgIcons/info.svg'}
@@ -111,12 +167,12 @@ const Address = ({setActiveIndex}) => {
           
         </Row>
         <Routes>
-           <Route path="/addCountry" element={<AddCountry  />} exact />
-           <Route path="/addCity" element={<AddCity countryId={selectedCountry} />} exact />
-           <Route path="/addarea" element={<AddArea countryId={selectedCountry} cityId={activeCity} />} exact />
-           <Route path="/editeCountry" element={<EditeCountry  />} exact />
-           <Route path="/editeCity" element={<EditeCity countryId={selectedCountry} />} exact />
-           <Route path="/editearea" element={<EditeArea countryId={selectedCountry} cityId={activeCity} />} exact />
+           <Route path="/addCountry" element={<AddCountry  setFlashmsg={setFlashmsg} />} exact />
+           <Route path="/addCity" element={<AddCity countryId={selectedCountry}  setFlashmsg={setFlashmsg}/>} exact />
+           <Route path="/addarea" element={<AddArea countryId={selectedCountry} cityId={activeCity}  setFlashmsg={setFlashmsg}/>} exact />
+           <Route path="/editeCountry" element={<EditeCountry setFlashmsg={setFlashmsg} />} exact />
+           <Route path="/editeCity" element={<EditeCity countryId={selectedCountry} setFlashmsg={setFlashmsg}/>} exact />
+           <Route path="/editearea" element={<EditeArea countryId={selectedCountry} cityId={activeCity} setFlashmsg={setFlashmsg}/>} exact />
            
            
         </Routes>

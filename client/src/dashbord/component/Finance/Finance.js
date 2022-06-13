@@ -18,6 +18,10 @@ const Finance = ({setActiveIndex}) => {
     <>
        < Nav first_link='finance' second_link='Charts'  first_link_url='/dashbord/finance'   second_link_url='/dashbord/finance'/>
        <div className="box  dashbord ">  
+       <div className='alert'>
+        This Page not implemented yet because no payment gateway integrated
+        the content below is just a demo content to show the screen design
+              </div>
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
         <span className="title-text">Finance</span>
         <Row>

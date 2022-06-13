@@ -17,7 +17,10 @@ function useOutsideAlerter(ref,navigate) {
     
   }}, [ref]);
 }
-const ViewFeedBacks = () => {
+
+
+//react function 
+const ViewFeedBacks = ({setInfoFlashmsg}) => {
   const navigate = useNavigate()
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef, navigate);
@@ -30,6 +33,7 @@ console.log(location.state)
             <span className='answer'> {feedback.answer}</span>
           </div>
  })
+ 
   return (
     <div className='addpage add-question'>
     <div className='opacity'>
@@ -60,9 +64,9 @@ console.log(location.state)
                { renderedQuestionsandanswers}
 
             </div>
-            <Link to='/dashbord/feedback'>
-              <button className='discard'>Delete</button>
-            </Link>
+           
+              <button className='discard' onClick={()=>setInfoFlashmsg(true)}>Delete</button>
+            
        
 
         </div>

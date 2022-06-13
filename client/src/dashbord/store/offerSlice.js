@@ -71,8 +71,14 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
   
   const offersSlice= createSlice({
     name:'discounts',
-    initialState : {offersList:[], isLoading:false,addLoading:false, error:null},
+    initialState : {offersList:[],updated:false,created:false, isLoading:false,addLoading:false, error:null},
     reducers:{
+      clearstate:(state)=>{
+        state.created= false
+        state.updated= false
+        state.error= false
+
+      }
 
     },
     extraReducers:{
@@ -81,6 +87,7 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
 
             state.isLoading = true
             state.error = null
+            
             
           
        },
@@ -103,6 +110,8 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
 
             state.isLoading = true
             state.error = null
+            state.updated=false
+            state.created=false
             
           
        },
@@ -110,6 +119,9 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
         state.isLoading = false
         state.error= null
         state.offersList  = [...state.offersList, action.payload]
+        state.updated=false
+        state.created=true
+      
       
     
         
@@ -117,6 +129,9 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
         [ addOffer.rejected ] :(state,action)=>{
              state.isLoading = false
              state.error = action.payload
+             state.updated=false
+             state.created=false
+             
             
           
            
@@ -125,11 +140,14 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
 
           state.isLoading = true
           state.error = null
+          state.updated=false
+          state.created=false
        
         
      },
      [ editOffer.fulfilled ] :(state,action)=>{
-      state.isLoading = true;
+      state.isLoading = false;
+    
       state.error= null;
       console.log(action.payload)
       const index = state.offersList.findIndex(offer => offer.id == action.payload.offer_id);                                                            
@@ -137,13 +155,16 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
       if(index)
       {  newArray[index] = action.payload;}
      state.offersList=newArray ;
-  
+      state.updated=true
+      state.created=false
       
       },
 
       [ editOffer.rejected ] :(state,action)=>{
            state.isLoading = false
            state.error = action.payload
+           state.updated=false
+           state.created=false
        
          
       }, 
@@ -152,4 +173,6 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
 
 
 })
+
+export const {clearstate} = offersSlice.actions
 export default offersSlice.reducer

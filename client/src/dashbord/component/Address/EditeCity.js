@@ -3,7 +3,7 @@ import{editeCity} from '../../store/Address/counteriesSlice'
 import { Link, useNavigate,useLocation, Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
-const EditeCity = ({setCountryCities}) => {
+const EditeCity = ({setFlashmsg}) => {
   let location = useLocation()
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -25,6 +25,7 @@ const EditeCity = ({setCountryCities}) => {
     const onSubmit= async e => {
         e.preventDefault()
        dispatch(editeCity(formData))
+       setFlashmsg(true)
   
     }
   return (

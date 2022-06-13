@@ -76,8 +76,14 @@ catch (e) {
 })
 const questionSlice= createSlice({
     name:'discounts',
-    initialState : {questionList:[], isLoading:false,addLoading:false, error:null},
+    initialState : {questionList:[], isLoading:false,added:false, updated:false, error:null},
     reducers:{
+      clearstate:(state)=>{
+        state.added= false
+        state.updated= false
+        state.error= false
+
+      }
 
     },
     extraReducers:{
@@ -104,13 +110,15 @@ const questionSlice= createSlice({
         }, 
         [ addQuestion.pending ] :(state,action)=>{
 
-          state.addLoading = true
+          state.added = false
           state.error = null
+          state.updated=false
           
         
      },
      [ addQuestion.fulfilled ] :(state,action)=>{
-      state.addLoading = false
+      state.added = true
+      state.updated=false
       state.error= null
       state.questionList= [...state.questionList, action.payload]
       
@@ -119,7 +127,8 @@ const questionSlice= createSlice({
       
       },
       [ addQuestion.rejected ] :(state,action)=>{
-           state.addLoading = false
+           state.added = false
+           state.updated=false
            state.error = action.payload
          console.log(action)
          
@@ -128,18 +137,16 @@ const questionSlice= createSlice({
 
         state.isLoading = true
         state.error = null
+        state.added = false
+        state.updated=false
      
       
    },
    [ updateQuestion.fulfilled ] :(state,action)=>{
-    state.isLoading = true;
+    state.isLoading = false;
     state.error= null;
-    console.log(action.payload)
-    const index = state.questionList.findIndex(discount => discount.id == action.payload.discount_id);                                                            
-    const newArray = [...state.questionList]; 
-    if(index)
-    {  newArray[index] = action.payload;}
-   state.questionList=newArray ;
+    state.added = false
+    state.updated=true;
 
     
     },
@@ -147,11 +154,13 @@ const questionSlice= createSlice({
     [ updateQuestion.rejected ] :(state,action)=>{
          state.isLoading = false
          state.error = action.payload
-       console.log(action)
-       
+        state.added = false
+        state.updated=false
+        
     }, 
     }
 
 
 })
+export const {clearstate} = questionSlice.actions
 export default questionSlice.reducer

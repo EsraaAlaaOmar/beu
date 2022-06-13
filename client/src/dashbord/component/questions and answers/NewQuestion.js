@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React,{useState, useRef, useEffect} from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import {addQuestion} from'../../store/questionSlice'
 import { FcCheckmark } from "react-icons/fc";
@@ -8,6 +8,28 @@ import {AiOutlineClose} from "react-icons/ai"
 import { Formik, Field, Form } from 'formik';
 // yup validation
 import * as yup from 'yup';
+
+
+// use ref  function  to close when click outside white cox
+function useOutsideAlerter(ref,navigate) {
+  useEffect(() =>{
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        
+          navigate('/dashbord/questions')
+      }
+    }
+    // Bind the event listener
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener("mousedown", handleClickOutside);
+    
+  }}, [ref]);
+}
+
+
+//react function 
 const NewQuestion = () => {
     // yup validation
     let schema = yup.object().shape({
@@ -34,6 +56,10 @@ const NewQuestion = () => {
      
     })
     const {question,priority, email, password, confirm_password}=formData
+
+    // get added fro  state 
+    const {added } =useSelector((state)=> state.question)
+
     //const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
     const onSubmit= data => {
       
@@ -63,10 +89,13 @@ const NewQuestion = () => {
     setFieldTouched(name, false,false)
 
   }
+
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef, navigate);
   return (
     <div className='addpage add-question'>
     <div className='opacity'>
-      <div className='add'>
+      <div className='add' ref={wrapperRef}>
         <h4>New Question</h4>
         <Formik
              initialValues={{
@@ -159,6 +188,7 @@ const NewQuestion = () => {
             </Link>
             
         </div>
+        {added && <Navigate to='/dashbord/questions' />}
         </form>
          )}
       </Formik>

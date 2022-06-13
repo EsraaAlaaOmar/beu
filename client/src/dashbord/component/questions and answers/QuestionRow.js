@@ -1,7 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-
+import { useDispatch } from 'react-redux';
 // use ref  function 
 function useOutsideAlerter(ref,setShowlist) {
   useEffect(() =>{
@@ -18,9 +18,11 @@ function useOutsideAlerter(ref,setShowlist) {
     
   }}, [ref]);
 }
-const QuestionRow = ({question}) => {
-    const [showlist,setShowlist] =useState(false)
 
+//react fuction 
+const QuestionRow = ({question,setInfoFlashmsg,clearstate}) => {
+    const [showlist,setShowlist] =useState(false)
+    const dispatch = useDispatch()
            // close list when click any where
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef,setShowlist);
@@ -41,8 +43,8 @@ const QuestionRow = ({question}) => {
             <td>
            { showlist && <div className='hiddenlist' ref={wrapperRef}>
 
-            <Link to='/dashbord/questions/edite' state={{question:question}}> <div className='border-inlist'  >Edit Question</div> </Link>
-            <div className='delete-inlist'>Delete</div>
+            <Link to='/dashbord/questions/edite' state={{question:question}}> <div className='border-inlist' onClick={()=>dispatch(clearstate())} >Edit Question</div> </Link>
+            <div className='delete-inlist' onClick={()=>setInfoFlashmsg(true)}>Delete</div>
             </div>}
             <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span>
 

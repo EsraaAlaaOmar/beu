@@ -1,12 +1,12 @@
 import React,{useState} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import { Link, Navigate, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
 import { addArea } from '../../store/Address/counteriesSlice';
 
-const AddArea = ({cityId,countryId}) => {
+const AddArea = ({cityId,countryId,setFlashmsg}) => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  const {areaAdded} =useSelector((state)=>state.countries)
   const [formData, setFormData] = useState({
       name: '',
       country_id: countryId,  
@@ -18,6 +18,7 @@ const AddArea = ({cityId,countryId}) => {
   const onSubmit= async e => {
       e.preventDefault()
      dispatch( addArea(formData))
+     setFlashmsg(true)
     
   }
 
@@ -42,6 +43,7 @@ const AddArea = ({cityId,countryId}) => {
                 
             </div>
             </form>
+            {areaAdded&& <Navigate to='/dashbord/addresses' />}
           </div>
         </div>
 

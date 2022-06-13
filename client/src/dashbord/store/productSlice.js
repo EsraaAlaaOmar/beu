@@ -192,11 +192,11 @@ const productSlice= createSlice({
   state.isLoading = false
   state.productupdated=true
   state.error= null
-  const index = state.products.findIndex(product => product.id == action.payload.product_id);                                                            
-  const newArray = [...state.products]; 
-  if(index)
-  {  newArray[index] = action.payload;}
- state.products=newArray ;
+//   const index = state.products.findIndex(product => product.id == action.payload.product_id);                                                            
+//   const newArray = [...state.products]; 
+//   if(index)
+//   {  newArray[index] = action.payload;}
+//  state.products=newArray ;
 
 
   

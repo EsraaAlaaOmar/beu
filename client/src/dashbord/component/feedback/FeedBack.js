@@ -1,13 +1,13 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from '../Auth/Login'
 import Nav from '../reusable/Nav'
 import FeedbackRow from './FeedbackRow'
 import ViewFeedBacks from './ViewFeedBacks'
-
+ 
 import { useSelector, useDispatch } from 'react-redux';
 import {getFeedbacks} from'../../store/feedbackSlice'
-
+import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
 const FeedBack = ({setActiveIndex}) => {
    setActiveIndex()
    const dispatch = useDispatch()
@@ -16,8 +16,13 @@ const FeedBack = ({setActiveIndex}) => {
     
   
     },[dispatch])
+
+   //info flashmsg state
+   const[infoflashmsg,setInfoFlashmsg] = useState(false)
+
+
     const {feedbackList, isLoading, error } =useSelector((state)=> state.feedback)
-    const renderedFeedbackrow = feedbackList.map((feedback)=><FeedbackRow feedback={feedback}  key={feedback.id} />)
+    const renderedFeedbackrow = feedbackList.map((feedback)=><FeedbackRow setInfoFlashmsg={setInfoFlashmsg} feedback={feedback}  key={feedback.id} />)
   return (
     <>
 
@@ -27,6 +32,12 @@ const FeedBack = ({setActiveIndex}) => {
     :
          <div className="box">
             <div className="title-text">Feedback</div>
+              {infoflashmsg && <FlashMsg 
+                title="Delete Still Under Development !"
+                img={'/images/msgIcons/info.svg'}
+                setFlashmsg={setInfoFlashmsg}
+                icontype='info-icon'
+                />}
             <div className="table-box no-butons">
                   <table className='Table'>
                   <thead>
@@ -49,7 +60,7 @@ const FeedBack = ({setActiveIndex}) => {
                  
            </div>
            <Routes>
-             <Route path="/view" element={<ViewFeedBacks />} exact />
+             <Route path="/view" element={<ViewFeedBacks setInfoFlashmsg={setInfoFlashmsg} />} exact />
           </Routes>
 
         </div> }

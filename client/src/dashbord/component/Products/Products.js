@@ -28,14 +28,14 @@ const Products = ({setActiveIndex}) => {
     dispatch(getProducts(id ))
   
 
-  },[dispatch, prodectAdded])
+  },[dispatch, prodectAdded,productupdated])
   
   const renderedProducts=  products.map((product)=>{
-     let sizes = product.size? product.size.map(s=>{return( <span key={product.id}>   &nbsp; {s.size} </span>)}) : product.sizes.map(s=>{return( <>  &nbsp; {s.size} </>)})
+     let sizes = product.size? product.size.map(s=>{return( <span key={s.id}>   &nbsp; {s.size} </span>)}) : product.sizes.map(s=>{return( <>  &nbsp; {s.size} </>)})
     console.log(product.size)
     return(
     <Col sm={12} md={6} lg={4} >
-      <Box  products= {false} product={product}  clearstate={clearstate}editeLink={`/dashbord/products/${id}/edite/${product.id}`} />
+      <Box  key={product.id} products= {false} product={product}  clearstate={clearstate}editeLink={`/dashbord/products/${id}/edite/${product.id}`} />
   </Col>
     )
 

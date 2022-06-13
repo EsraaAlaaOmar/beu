@@ -15,7 +15,10 @@ const LandingPage = ({setActiveIndex}) => {
     <>
        <Nav  />
        <div className="box landingPage"> 
-   
+       <div className='alert'>
+        This Page not implemented yet 
+        the content below is just a demo content to show the screen design
+              </div>
           <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
           <span className="title-text">   Land Page</span>
           <Section1 />

@@ -194,35 +194,35 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
           }
           })
 
-        export const deleteCity=   createAsyncThunk ('city/delete',  async(id ,thunkAPI) =>{
+        export const deleteCity=   createAsyncThunk ('city/delete',  async(data ,thunkAPI) =>{
           const {rejectWithValue , getState} = thunkAPI
           const token= getState().auth.token
           try {
-            const body= JSON.stringify(id)
+            const body= JSON.stringify(data.id)
             const response = await axios.delete("https://thebeauwow.me/api/v1/admin/city/delete/", {
               headers: {
                 'Content-Type': 'application/json', 
                 'Authorization': `Bearer ${token}`,
               },data: body})
               if(response.status==200)
-            {  return id}
+            {  return data}
             }
             catch (e) {
               return rejectWithValue(e.response.data);
           }
           })
-          export const deleteArea=   createAsyncThunk ('area/delete',  async(id ,thunkAPI) =>{
+          export const deleteArea=   createAsyncThunk ('area/delete',  async(data ,thunkAPI) =>{
             const {rejectWithValue , getState} = thunkAPI
             const token= getState().auth.token
-            try {
-              const body= JSON.stringify(id)
+            try { 
+              const body= JSON.stringify(data.id)
               const response = await axios.delete("https://thebeauwow.me/api/v1/admin/area/delete/", {
                 headers: {
                   'Content-Type': 'application/json', 
                   'Authorization': `Bearer ${token}`,
                 },data: body})
                 if(response.status==200)
-              {  return id}
+              {  return data}
               }
               catch (e) {
                 return rejectWithValue(e.response.data);
@@ -230,12 +230,17 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
             })
   const countriesSlice= createSlice({
     name:'discounts',
-    initialState : {countriesList:[],countryAdded:false,countryupdated:false,cityadded:false,areaAdded:false,cityUpdated:false,areaUpdated:false, isLoading:false,addLoading:false, error:null},
+    initialState : {countriesList:[],countryAdded:false,countryupdated:false,countryDeleted:false,cityadded:false,areaAdded:false,cityUpdated:false,cityDeleted:false,areaUpdated:false,areaDeleted:false, isLoading:false,addLoading:false, error:null},
     reducers:{
       clearstate:(state)=>{
         state.cityadded= false
         state.cityUpdated= false
+        state.countryupdated= false
+        state.countryAdded= false
+        state.countryDeleted= false
         state.error= false
+        state.areaAdded=false
+        state.areaUpdated=false
 
       }
     },
@@ -268,6 +273,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
 
             state.isLoading = true
             state.error = null
+            state.countryAdded=false
             
           
        },
@@ -275,6 +281,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
         state.isLoading = false
         state.error= null
         state.countriesList  = [...state.countriesList, action.payload]
+        state.countryAdded=true
       
     
         
@@ -283,6 +290,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
              state.isLoading = false
              state.error = action.payload
              console.log(`esraa ${action.payload}`)
+             state.countryAdded=false
           
            
         }, 
@@ -291,6 +299,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
 
         state.isLoading = true
         state.error = null
+        state.countryDeleted= false
         
       
    },
@@ -299,6 +308,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
     state.error= null
     state.countriesList = state.countriesList.filter((country)=>country.id !== action.payload.country_id)
     
+    state.countryDeleted= true
   
 
     
@@ -307,6 +317,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
          state.isLoading = false
          state.error = action.payload
          console.log(`esraa ${action.payload}`)
+         state.countryDeleted= false
       
        
     }, 
@@ -348,6 +359,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
 
             state.isLoading = true
             state.error = null
+            state.countryupdated=false
          
           
        },
@@ -363,6 +375,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
        state.countriesList=newArray ;
        console.log(newArray)
        console.log(action.payload)
+       state.countryupdated=true
     
         
         },
@@ -370,7 +383,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
         [ editeCountry.rejected ] :(state,action)=>{
              state.isLoading = false
              state.error = action.payload
-           console.log(action)
+             state.countryupdated=false
            
         }, 
         [ editeCity.pending ] :(state,action)=>{
@@ -410,6 +423,40 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
            state.cityUpdated=false
          
       }, 
+      [ deleteCity.pending ] :(state,action)=>{
+
+        state.isLoading = true
+        state.error = null
+        state.cityDeleted= false
+        
+      
+   },
+   [ deleteCity.fulfilled ] :(state,action)=>{
+    state.isLoading = false
+    state.error= null
+   
+
+    const currentState = current(state)
+    const index = currentState.countriesList.findIndex(country => country.id == action.payload.countryId);  
+                                              
+    const newArray = [...currentState.countriesList];     
+    const newCitiesArray =newArray[index].cities.filter(city=>city.id!== action.payload.id.city_id)     
+     newArray[index] = {...newArray[index], cities :newCitiesArray}
+    console.log(action.payload)
+    console.log(newArray)
+    state.countriesList=newArray;
+    state.cityDeleted= true
+  
+
+    
+    },
+    [ deleteCity.rejected ] :(state,action)=>{
+         state.isLoading = false
+         state.error = action.payload
+         state.cityDeleted= false
+      
+       
+    }, 
 
           [ addArea.pending ] :(state,action)=>{
 
@@ -458,7 +505,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
 
           // state.isLoading = true
           state.error = null
-          state.areaAdded=false
+          state.areaUpdated=false
           
         
      },
@@ -466,7 +513,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
       state.isLoading = false
       state.error= null
      
-      state.areaAdded=true
+      state.areaUpdated=true
 
     const currentState = current(state)
     const index = currentState.countriesList.findIndex(country => country.id == action.payload.country_id);                                            
@@ -497,9 +544,44 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
       [ editeArea.rejected ] :(state,action)=>{
            state.isLoading = false
            state.error = action.payload 
-           state.areaAdded=false
+           state.areaUpdated=false
          
       }, 
+      [ deleteArea.pending ] :(state,action)=>{
+
+        state.isLoading = true
+        state.error = null
+        state.areaDeleted= false
+        
+      
+   },
+   [ deleteArea.fulfilled ] :(state,action)=>{
+    state.isLoading = false
+    state.error= null
+
+    state.areaDeleted= true
+  
+    const currentState = current(state)
+
+    const index = currentState.countriesList.findIndex(country => country.id == action.payload.countryId);                                            
+    const newArray = [...currentState.countriesList]; 
+    const cityindex = newArray[index].cities.findIndex(city => city.id == action.payload.cityId);
+    const newCityArray = [...currentState.countriesList[index].cities]; 
+    const newAreaArray=  newCityArray[cityindex].areas.filter(area => area.id !== action.payload.id.area_id)
+    newCityArray[cityindex] = {...newCityArray[cityindex], areas :newAreaArray}
+    newArray[index] = {...newArray[index], cities :newCityArray}
+    state.countriesList=newArray;
+    
+    },
+    [ deleteArea.rejected ] :(state,action)=>{
+         state.isLoading = false
+         state.error = action.payload
+         console.log(`esraa ${action.payload}`)
+         state.areaDeleted= false
+      
+       
+    }, 
+
      
        
     }
