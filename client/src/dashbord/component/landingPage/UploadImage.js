@@ -1,10 +1,15 @@
 import React,{useState,useCallback} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation ,useParams } from 'react-router-dom'
 import Cropper from 'react-easy-crop'
-
+import resizeImage from './CropImage'
+import {editeSection} from '../../store/LandingPageSlice'
+import { useDispatch, useSelector } from 'react-redux';
 const UploadImage = () => {
-
-  const [imageUrl,setImageUrl] = useState('https://img.freepik.com/free-photo/portrait-cheerful-middle-aged-35-woman-showing-thumbs-up-approval-likes-agree-praise-great-work-nice-job-recommending-smth-standing-against-white-background_176420-45725.jpg?t=st=1652347028~exp=1652347628~hmac=aae0584d838ad7f69a24358d78930a3a4b1e1ecd986e35b21844def401447838&w=996')
+  const {isLoading,sectionsList, error } =useSelector((state)=> state.landPage)
+  const dispatch = useDispatch()
+  const {id}=useParams()
+  let location = useLocation()
+  const [imageUrl,setImageUrl] = useState( location.state.img.image )
   //preview uploaded image
 
   const changeImage = e => {
@@ -12,15 +17,26 @@ const UploadImage = () => {
       if (file) {
      
         setImageUrl(URL.createObjectURL(file))
+        
       }
     }
 
   //return croped image data
   const [crop, setCrop] = useState({ x: 0, y: 0 })
   const [zoom, setZoom] = useState(1)
+  const[desigredWidth, setDesigredWidth] = useState(200)
+  const[desigredHeight, setDesigredHeight] = useState(200)
+
+  const[file,setFile]=useState(null)
+  console.log(file)
+  const callback=(dataURL)=> {console.log( dataURL)}
+  
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-    console.log(croppedArea, croppedAreaPixels)
-  }, [])
+  
+    resizeImage(imageUrl, croppedAreaPixels.width, croppedAreaPixels.height,croppedAreaPixels.x,croppedAreaPixels.y,desigredWidth,desigredHeight,setFile,callback);
+  
+  
+  }, [imageUrl])
   return (
     <div  className="upload-page addpage">
         <div className='opacity'></div>
@@ -32,7 +48,7 @@ const UploadImage = () => {
        <Cropper
           image={imageUrl}
           crop={crop}
-          cropSize=	{ {width: 200, height: 200 }}
+          cropSize=	{{width: desigredWidth, height: desigredHeight} }
           zoom={zoom}
           zoomWithScroll={true}
           aspect={4 / 3}
@@ -58,8 +74,11 @@ const UploadImage = () => {
 
       </div>
           <div className='buttons'>
-            <Link to='/dashbord/landingpage'> <button >Confirm</button></Link>  
-            <Link to='/dashbord/landingpage'>  <button className='discard'>Discard</button></Link> 
+            <button onClick={()=>dispatch(editeSection({section_id:id, 
+                                                        updategallery:{id:location.state.img.id,image:file} }))} >
+                                                          
+                                                          Confirm</button>
+           <Link to='/dashbord/landingpage'><button className='discard'>Discard</button></Link>
         </div>
       
       

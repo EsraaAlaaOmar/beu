@@ -2,7 +2,8 @@ import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import {BsFillCameraFill} from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-const Section6 = () => {
+import SectionImage from './SectionImage'
+const Section6 = ({data}) => {
   return (
     <div className="section-6 section">
         <div className='first-line'>Section 6 # Mood Board</div>
@@ -11,48 +12,13 @@ const Section6 = () => {
           <Row>
           
               <Col lg={3} md={6}>
-                <div className='img'>
-                 
-                  <div className='overlayer'>   </div>
-                  <div className='img-text'>
-                    <Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  
-                    <div>322* 408</div>
-                  </div>
-                    <img  alt='section 1 image'
-                    src='https://img.freepik.com/free-photo/portrait-cheerful-middle-aged-35-woman-showing-thumbs-up-approval-likes-agree-praise-great-work-nice-job-recommending-smth-standing-against-white-background_176420-45725.jpg?t=st=1652347028~exp=1652347628~hmac=aae0584d838ad7f69a24358d78930a3a4b1e1ecd986e35b21844def401447838&w=996'
-                    />
-                 
-                </div>
-            
+                 <SectionImage img={data&&data.galleries[0]} sectionId={data&&data.id}  />
               </Col>
               <Col lg={5} md={6}>
-                <div className='img'>
-                 
-                  <div className='overlayer'>   </div>
-                  <div className='img-text'>
-                    <Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  
-                    <div>322* 408</div>
-                  </div>
-                    <img  alt='section 1 image'
-                    src='https://img.freepik.com/free-photo/portrait-cheerful-middle-aged-35-woman-showing-thumbs-up-approval-likes-agree-praise-great-work-nice-job-recommending-smth-standing-against-white-background_176420-45725.jpg?t=st=1652347028~exp=1652347628~hmac=aae0584d838ad7f69a24358d78930a3a4b1e1ecd986e35b21844def401447838&w=996'
-                    />
-                 
-                </div>
-            
+              <SectionImage img={data&&data.galleries[1]} sectionId={data&&data.id}  />
               </Col>
               <Col lg={3} md={6}>
-                <div className='img'>
-                 
-                  <div className='overlayer'>   </div>
-                  <div className='img-text'>
-                    <Link to='/dashbord/landingpage/uploadimage'><BsFillCameraFill /></Link>  
-                    <div>322* 408</div>
-                  </div>
-                    <img  alt='section 1 image'
-                    src='https://img.freepik.com/free-photo/portrait-cheerful-middle-aged-35-woman-showing-thumbs-up-approval-likes-agree-praise-great-work-nice-job-recommending-smth-standing-against-white-background_176420-45725.jpg?t=st=1652347028~exp=1652347628~hmac=aae0584d838ad7f69a24358d78930a3a4b1e1ecd986e35b21844def401447838&w=996'
-                    />
-                 
-                </div>
+              <SectionImage img={data&&data.galleries[2]} sectionId={data&&data.id}  />
             
               </Col>
           

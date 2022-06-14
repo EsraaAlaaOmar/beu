@@ -15,6 +15,7 @@ import logedDetails from './logedDetailsSlice'
 import sell from './sellinbowslice'
 import feedback from './feedbackSlice'
 import question from './questionSlice'
+import landPage from './LandingPageSlice'
 export default   configureStore({
   reducer: {
       auth,
@@ -32,7 +33,8 @@ export default   configureStore({
       product,
       sell,
       feedback,
-      question
+      question, 
+      landPage
 
   },
 })

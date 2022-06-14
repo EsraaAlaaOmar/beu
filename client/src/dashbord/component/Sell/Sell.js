@@ -50,7 +50,7 @@ const Sell = ({setActiveIndex}) => {
             },
             {
               Header: 'ADDRESS',
-              accessor:`city.areas.name`,
+              accessor:`city.name`,
            
             },
             {
