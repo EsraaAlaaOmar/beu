@@ -1,5 +1,5 @@
 .loading{
-  
+     width: 100%;
     height:calc(100vh - 200px);
     background-color:#F6F6F6;;
     
@@ -8,14 +8,25 @@
      
       height: 50%;
   
-
-
+     width: 200px;
+     height: 200px;
+     
       position: absolute;
       margin: auto;
       top: 50%;
       left: calc(50% - 100px);
       -ms-transform: translateY(-50%);
       transform: translateY(-50%);
+      @media screen and (max-width: 1165px)  {
+        position:relative;
+      
+        margin: auto;
+        top: 0;
+        left:0;
+        -ms-transform:none;
+        transform:none;
+     
+      }
      
     }
 }

@@ -53,6 +53,7 @@ const Offers = ({setActiveIndex}) => {
   return (
     <>
       <Nav  first_link='Active' second_link='All'  first_link_url='/dashbord/offers'   second_link_url='/dashbord/offers' />
+      
       {isLoading ? 
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :
