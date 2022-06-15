@@ -1,11 +1,11 @@
 import React,{useState,useCallback} from 'react'
-import { Link, useLocation ,useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation ,useParams } from 'react-router-dom'
 import Cropper from 'react-easy-crop'
 import resizeImage from './CropImage'
 import {editeSection} from '../../store/LandingPageSlice'
 import { useDispatch, useSelector } from 'react-redux';
-const UploadImage = () => {
-  const {isLoading,sectionsList, error } =useSelector((state)=> state.landPage)
+const UploadImage = ({setFlashmsg}) => {
+  const {updated } =useSelector((state)=> state.landPage)
   const dispatch = useDispatch()
   const {id}=useParams()
   let location = useLocation()
@@ -14,9 +14,11 @@ const UploadImage = () => {
 
   const changeImage = e => {
       const [file] =e.target.files
+      console.log(e.target.files[0])
       if (file) {
      
         setImageUrl(URL.createObjectURL(file))
+        setFile(file[0])
         
       }
     }
@@ -31,12 +33,20 @@ const UploadImage = () => {
   console.log(file)
   const callback=(dataURL)=> {console.log( dataURL)}
   
-  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
   
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+  console.log(croppedAreaPixels)
     resizeImage(imageUrl, croppedAreaPixels.width, croppedAreaPixels.height,croppedAreaPixels.x,croppedAreaPixels.y,desigredWidth,desigredHeight,setFile,callback);
   
   
   }, [imageUrl])
+
+  //edite api function 
+  const editeFunction=()=>{
+    setFlashmsg(true)
+    dispatch(editeSection({section_id:id, 
+      updategallery:{id:location.state.img.id,image:file} }))
+  }
   return (
     <div  className="upload-page addpage">
         <div className='opacity'></div>
@@ -74,13 +84,12 @@ const UploadImage = () => {
 
       </div>
           <div className='buttons'>
-            <button onClick={()=>dispatch(editeSection({section_id:id, 
-                                                        updategallery:{id:location.state.img.id,image:file} }))} >
+            <button onClick={()=>editeFunction()} >
                                                           
                                                           Confirm</button>
            <Link to='/dashbord/landingpage'><button className='discard'>Discard</button></Link>
         </div>
-      
+        {updated && <Navigate to='/dashbord/landingpage' />}
       
       </div>
    

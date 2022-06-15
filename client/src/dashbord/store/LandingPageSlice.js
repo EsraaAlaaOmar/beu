@@ -57,7 +57,7 @@ export const editeSection = createAsyncThunk ('section/update',  async(editSecti
                'Authorization': `Bearer ${token}`,
   }}
 
-  formData.append('section_id',2);   //append the values with key, value pair
+  formData.append('section_id',editSectionData.section_id);   //append the values with key, value pair
 
     formData.append(`update_galleries[${editSectionData.section_id}]image`, editSectionData.updategallery.image ,'galary.jpeg');
     formData.append(`update_galleries[${editSectionData.section_id}]gallery_id`, editSectionData.updategallery.id);
@@ -169,5 +169,5 @@ const landPageSlice= createSlice({
 
 
 })
-// export const {clearstate} = landPageSlice.actions
+export const {clearstate} = landPageSlice.actions
 export default landPageSlice.reducer
