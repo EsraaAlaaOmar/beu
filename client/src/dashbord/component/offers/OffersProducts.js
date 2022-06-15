@@ -3,14 +3,16 @@ import { Col, Row } from 'react-bootstrap'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import Box from '../reusable/Box'
 import Nav from '../reusable/Nav'
+import {editOffer} from '../../store/offerSlice'
 
 const OffersProducts = () => {
     let location = useLocation()
+    
   let products = location.state.offer.products
   let renderedProducts = products.map((product)=>{
     return (
       <Col md={6} lg={4} >
-          <Box product={product} viewProducts={true}/>
+          <Box product={product} viewProducts={true} deleteFuction={editOffer} offer_id={location.state.offer.id}/>
         
         </Col>
     )

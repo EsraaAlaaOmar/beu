@@ -35,25 +35,32 @@ const EditeOffer = () => {
 
    const {updated} =useSelector((state)=> state.offers)
     let location = useLocation()
+      const offer= location.state.offer
     const dispatch = useDispatch()
     const navigate = useNavigate()
     {console.log(moment(location.state.offer.start_at).format('YYYY-MM-DD'))}
 
     const [formData, setFormData] = useState({
        
-        add_products:location.state.offer.products,
+        add_products:[],
    
     
       
     })
-    const { start_at, end_at, percentage, add_products}=formData
-    //const [products, setProducts] = useState()
-     //add new product to this offer 
-     const addProduct=(newid)=>
-     {let data={product_id : newid}
-      setFormData({...formData, products:[...add_products , data ] })
-       
-        }
+    const { add_products}=formData
+   //ADD PRODUCT TO LIST
+   const addProduct=(data)=>
+   {
+    setFormData({...formData, add_products:[...add_products , data ] })
+     
+      }
+//remove product from list
+  const removeProduct=(id)=>
+   {
+    setFormData({...formData, add_products:add_products.filter(product=>product.product_id!=id) })
+     
+      }
+   
     const {collectionsList} =useSelector((state)=>state.collections)
     //products state
     const { isLoading} =useSelector((state)=>state.product)
@@ -61,7 +68,7 @@ const EditeOffer = () => {
     const productsList =  productdata.products
 
 
-    const [selectedCollection,setSelectedCollection]= useState(collectionsList[0])
+    const [selectedCollection,setSelectedCollection]= useState(null)
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
     const onSubmit=async data=>{
     
@@ -164,10 +171,14 @@ const EditeOffer = () => {
             
             </div>
             {errors.end_at && touched.end_at && <><div className='error-text'> {errors.end_at}</div></> }
-           
+                    <div className='selected-products'>
+                      <Link to='/dashbord/offerproducts' state={{offer:offer}}>Edite Previous Offer Products</Link>
+                      {add_products.length>0 && <h5>products you want to add</h5>}
+                                 {add_products.map(product =><div>{product.title}</div>)}
+                     </div>
                             </div>
                             <div className='buttons'>
-                              
+                            
                                     <input   className='confrim' type='submit' value='Confirm' />
 
                                
@@ -192,7 +203,7 @@ const EditeOffer = () => {
                                 {productsList.length>0?productsList.map(product =>{
                                     return(
                                         <Col sm={12} lg={6}>
-                                            <SelectProduct product={product}  addProduct={addProduct}/>
+                                            <SelectProduct product={product}    addProduct={addProduct} removeProduct={removeProduct}/>
                                         </Col>
                                     )
                                 }): 'No Products In Tis collection'

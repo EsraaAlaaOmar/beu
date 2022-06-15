@@ -23,7 +23,7 @@ const LandingPage = ({setActiveIndex}) => {
     dispatch(getSections())
   
 
-  },[dispatch])
+  },[dispatch,updated])
   
   return (
     <>

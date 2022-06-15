@@ -1,6 +1,6 @@
 import {React,useEffect, useState} from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { Link,useNavigate } from 'react-router-dom'
+import { Link,Navigate,useNavigate } from 'react-router-dom'
 import SelectProduct from '../reusable/SelectProduct'
 import { useSelector, useDispatch } from 'react-redux';
 import {addOffer} from '../../store/offerSlice'
@@ -8,6 +8,7 @@ import{getCollections} from '../../store/collectionsSlice'
 import {getProducts} from '../../store/productSlice'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose} from "react-icons/ai"
+import _ from 'lodash';
 
  //formik
 import { Formik, Field, Form } from 'formik';
@@ -45,12 +46,19 @@ const AddOffer = () => {
     })
     const { products}=formData
 
-
-     const addProduct=(newid)=>
-     {let data={product_id : newid}
+//ADD PRODUCT TO LIST
+     const addProduct=(data)=>
+     {
       setFormData({...formData, products:[...products , data ] })
        
         }
+//remove product from list
+    const removeProduct=(id)=>
+     {
+      setFormData({...formData, products:products.filter(product=>product.product_id!=id) })
+       
+        }
+        
     const {collectionsList} =useSelector((state)=>state.collections)
   //selecte  Collection  to see its products 
     const [selectedCollection,setSelectedCollection]= useState()
@@ -71,6 +79,7 @@ const AddOffer = () => {
             )
    })
    const { isLoading} =useSelector((state)=>state.product)
+   const {created } =useSelector((state)=> state.offers)
    const productdata =useSelector((state)=>state.product)
    const productsList =  productdata.products
 
@@ -156,8 +165,15 @@ const AddOffer = () => {
             
             </div>
             {errors.end_at && touched.end_at && <><div className='error-text'> {errors.end_at}</div></> }
-           
+                      {/* selected products */}
+                      <div className='selected-products'>
+                                {products.length>0 && <h5>Selected Products</h5>}
+                                 {products.map(product =><div>{product.title}</div>)}
+
                             </div>
+                              
+                            </div>
+                            
                             <div className='buttons'>
                               
                                     <input   className='confrim' type='submit' value='Confirm' />
@@ -184,7 +200,7 @@ const AddOffer = () => {
                                 {productsList.length>0?productsList.map(product =>{
                                     return(
                                         <Col sm={12} lg={6}>
-                                            <SelectProduct product={product}  addProduct={addProduct}/>
+                                            <SelectProduct product={product}  addProduct={addProduct} removeProduct={removeProduct}/>
                                         </Col>
                                     )
                                 }): 'No Products In Tis collection'
@@ -196,6 +212,8 @@ const AddOffer = () => {
                         </div>
                     }
                     </Col>}
+                    {created&& <Navigate to='/dashbord/offers' />}
+
 {console.log(products)}
                 </Row>
             

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Box from '../reusable/Box'
 
-const SelectProduct = ({product, addProduct}) => {
+const SelectProduct = ({product, addProduct, removeProduct}) => {
   const [number,setNumber]=useState(0)
    const [activeIndex,setActiveIndex]=useState(0)
    const [activecolor,setActivecolor]=useState(0)
@@ -14,23 +14,15 @@ const SelectProduct = ({product, addProduct}) => {
   }
   const sizes=['S', 'M', "L"]
   const colors=['red', 'yellow', 'black']
-//    const renderedSizes=sizes.map((size,index)=>{  
-//    const  className = activeIndex === index ? 'active' : '';  
-//    return (
-//     <span className={className} key={index} onClick={()=>handleClick( index)}>
-//       {size}
-//     </span>
-// )
-//    })
-//    const renderedColors=colors.map((color,index)=>{  
-//     const  className = activecolor === index ? 'active' : '';  
-//     return (
-//      <span className={className} style={{backgroundColor:color}} key={index} onClick={()=>handleColor( index)}>
-       
-//      </span>
-//  )
-//     })
-
+  //select product function 
+  const select =() =>{
+    setSelected(!selected);
+     addProduct({product_id : product.id, title:product.title })
+  }
+  const deleteProduct =() =>{
+    setSelected(!selected);
+    removeProduct( product.id )
+  }
   return (
     <div className='box_component'>
         <img
@@ -55,7 +47,7 @@ const SelectProduct = ({product, addProduct}) => {
               </div> */}
               <div className='num'> <span onClick={()=>setNumber(number+1)} > +</span> {number} Items <span onClick={()=>setNumber(number-1)}> - </span></div>
           </div>
-           {selected?<button onClick={()=>{setSelected(!selected); addProduct(product.id)}}>delet</button>:<button  onClick={()=>{setSelected(!selected); addProduct(product.id)}}>ADD</button>}
+           {selected?<button onClick={()=>deleteProduct()}>delet</button>:<button  onClick={()=>select()}>ADD</button>}
     </div>
   )
 }

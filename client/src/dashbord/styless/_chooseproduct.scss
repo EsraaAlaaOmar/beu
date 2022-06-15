@@ -14,6 +14,29 @@
         padding:30px 15px;
         overflow-y: scroll;
         height: 85vh;
+
+        .selected-products{
+            margin-top:30px;
+            margin-top: 10px;
+            font-size: 18px;
+            color: gray;
+            padding-left:10px;
+            h5{
+                font-size:20px;
+                color: #000;
+                margin-left: -10px;
+             
+            }
+            a{
+                color:#0880ae;
+                
+                font-size: 16px;
+             
+                text-align: center;
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
     
         
     }
@@ -25,7 +48,8 @@
         padding:30px 15px;
         overflow-y: scroll;
         height: auto;
-    
+     
+     
         
     }
          
