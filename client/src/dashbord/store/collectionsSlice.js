@@ -29,7 +29,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
     const token= getState().auth.token
     try {
       const body= JSON.stringify(id)
-      const response = await axios.delete("https://thebeauwow.me/api/v1/admin/categories/delete/", {
+      const response = await axios.delete("https://thebeauwow.me/api/v1/admin/category/delete/", {
         headers: {
           'Content-Type': 'application/json', 
           'Authorization': `Bearer ${token}`,
@@ -162,37 +162,14 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
        
     
   //     },
-  //      //....... delete collection .........
-  //      [ deleteCollection.pending ] :(state,action)=>{
+       //....... delete collection .........
+       [ deleteCollection.pending ] :(state,action)=>{
 
-  //       state.isLoading = true
-  //       state.error = null
+        state.isLoading = true
+        state.error = null
         
       
-  //  },
-  //     [ editeProduct.pending ] :(state,action)=>{
-  //       state.isLoading = false
-  //       state.error= null
-  //     },
-  //    [ editeProduct.fulfilled ] :(state,action)=>{
-  //       const currentState = current(state)
-  //       state.isLoading = false
-  //       state.error= null
-  //       const index = currentState.collectionsList.findIndex(collection => collection.id == action.payload.category_id); 
-  //       const productIndex = currentState.collectionsList[index].products.findIndex(product => product.id == action.payload.product_id);       
-  //             {console.log(productIndex)}                          
-  //      const newArray = [...currentState.collectionsList]; 
-  //      newArray[index] = {...newArray[index], products : Object.assign([...newArray[index].products], {[productIndex]: action.payload})}
-  //      state.collectionsList=newArray;
-  //     },
-  //     [ editeProduct.rejected ] :(state,action)=>{
-  //       state.isLoading = false
-  //       state.error=action.payload
-       
-    
-  //     },
-
-
+   },
 
 
    [ deleteCollection.fulfilled ] :(state,action)=>{

@@ -10,6 +10,8 @@
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
     border-radius: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
     .inputs{ 
         padding:30px 15px;
         overflow-y: scroll;
@@ -41,7 +43,7 @@
         
     }
     @media screen and (max-width: 900px)  {
-    overflow:scroll;
+
     width: 85%;
     left:8%;
      .inputs{ 

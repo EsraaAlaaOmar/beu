@@ -14,15 +14,15 @@ const Images = ({colors,collectionId,addImg,updateAddImg, galleries={galleries} 
     const renderedImagesforCarousel= galleries.map((galary,index)=>{
         return(  <Carousel.Item interval={1000}>
           <span className="close" onClick={()=>removeImage(galary.image)}>  <AiOutlineCloseCircle /></span>
-         {!galary.imageUrl&& <span className='update-icon'>Update <br/> <div>
+         {
             
-         <UploadImage color={galary.color_hex} id={galary.id} index={index} update={true} addImg={updateAddImg} />
-            </div> </span>}
-           {console.log(galary)}
+       
+            }
+           
             <img
             className="d-block w-100"
-            src={galary.imageUrl?galary.imageUrl:`https://thebeauwow.me/${galary.image}`}
-            alt="first slide"
+            src={galary.imageUrl}
+            alt="slide"
             
             />
            

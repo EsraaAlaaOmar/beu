@@ -9,6 +9,7 @@ import Nav from '../reusable/Nav';
 import EditeProduct from './EditeProduct';
 import {getProducts, clearstate} from '../../store/productSlice'
 import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
+import ProductGalaries from './ProductGalaries';
  
 const Products = ({setActiveIndex}) => {
   setActiveIndex()
@@ -35,7 +36,7 @@ const Products = ({setActiveIndex}) => {
     console.log(product.size)
     return(
     <Col sm={12} md={6} lg={4} >
-      <Box  key={product.id} products= {false} product={product}  clearstate={clearstate}editeLink={`/dashbord/products/${id}/edite/${product.id}`} />
+      <Box  key={product.id} products= {false} product={product}  clearstate={clearstate}editeLink={`/dashbord/products/${id}/edite/${product.id}`} collectionid={id} />
   </Col>
     )
 
@@ -88,6 +89,7 @@ const Products = ({setActiveIndex}) => {
           <Routes>
               <Route path="/add" element={<AddProduct  setErrorFlashmsg={setFlashmsg} clearstate={clearstate}  collectionId={id}/>} exact /> 
               <Route path={`/edite/:id`}  element={<EditeProduct setErrorFlashmsg={setFlashmsg} clearstate={clearstate} collectionId={id} />} exact/>
+              <Route path={`/galaries/:productId`}  element={<ProductGalaries setErrorFlashmsg={setFlashmsg} collectionId={id} />} exact/>
           </Routes>
   </div>
    }

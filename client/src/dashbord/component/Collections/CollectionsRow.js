@@ -22,7 +22,7 @@ function useOutsideAlerter(ref,setShowlist) {
 }
 
 
-const CollectionsRow = ({collection}) => {
+const CollectionsRow = ({collection,deleteClicked}) => {
     const [showlist,setShowlist] =useState(false)
     const dispatch = useDispatch()
 
@@ -50,7 +50,7 @@ const CollectionsRow = ({collection}) => {
            { showlist && <div className='hiddenlist' ref={wrapperRef}>
           
                 <Link to={`/dashbord/products/${collection.id}`}> <div className='border-inlist' >View Products</div> </Link>
-                <div className='delete-inlist' onClick={()=>dispatch(deleteCollection({category_id:collection.id}))}>Delete</div>
+                <div className='delete-inlist' onClick={()=>deleteClicked({category_id:collection.id,title:collection.title})}>Delete</div>
             </div>}
             <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span></td>
 </tr>

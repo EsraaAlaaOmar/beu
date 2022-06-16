@@ -27,6 +27,16 @@
         transform:none;
      
       }
+      @media screen and (max-height:340px)  {
+        position:relative;
+      
+        margin: auto;
+        top: 0;
+        left:0;
+        -ms-transform:none;
+        transform:none;
+     
+      }
      
     }
 }

@@ -46,7 +46,7 @@ const EditeProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
         description : location.state.product.description,
         unit_price:location.state.product.unit_price, 
         quantity:location.state.product.quantity,
-        galleries : location.state.product.galleries,
+        add_galleries : [],
         update_galleries:[],
         sizes : selectedsizes,
 
@@ -56,7 +56,7 @@ const EditeProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
       
     })
     console.log(formData.sizes)
-    const { title, description, unit_price, quantity, galleries, update_galleries, sizes}=formData
+    const { title, description, unit_price, quantity, add_galleries, update_galleries, sizes}=formData
    //set colors array  
     const [colors, setColors]=useState([])
     const selectedColors=location.state.product.galleries.map((galary) =>galary.color_hex)
@@ -67,25 +67,25 @@ const EditeProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
    const renderedColors=colors.map((color) =><span className="color" style={{backgroundColor:color}}></span>)
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
     //add image
-    const addImg=data=>setFormData({...formData, galleries: [...galleries , data]})
-    //update-galary
-  //  const updateAddImg=data=>setFormData({...formData, update_galleries: [...update_galleries , data]})
-    const updateAddImg=(data)=>{
-        setFormData('')
-        const index =galleries.findIndex(galary => galary.id == data.gallery_id);                                                            
-        const newArray = [...galleries]; 
-        if(index)
-        {  newArray[index] = data;}
-        setFormData({...formData, galleries: newArray});
+    const addImg=data=>setFormData({...formData, add_galleries: [...add_galleries , data]})
     
-    console.log(data);
-    console.log(formData);
+// update  current galary
+    // const updateAddImg=(data)=>{
+    //     setFormData('')
+    //     const index =add_galleries.findIndex(galary => galary.id == data.gallery_id);                                                            
+    //     const newArray = [...galleries]; 
+    //     if(index)
+    //     {  newArray[index] = data;}
+    //     setFormData({...formData, galleries: newArray});
+    
+    // console.log(data);
+    // console.log(formData);
         
-        }
+    //     }
         
     
  //remove image
-      const removeImage=image=> setFormData({...formData, galleries: galleries.filter(g=>g.image!==image)})
+      const removeImage=image=> setFormData({...formData, add_galleries: add_galleries.filter(g=>g.image!==image)})
       console.log(formData.galleries)
 
     const onSubmit=async e=>{
@@ -197,7 +197,8 @@ useOutsideAlerter(wrapperRef, navigate, collectionId);
 
                     </Col>
                     <Col sm={12} md={6} lg={8}>
-                        <Images colors={colors}  removeImage={removeImage} collectionId={collectionId} clearstate={clearstate} updateAddImg={updateAddImg} addImg={addImg} galleries={galleries}/>
+                        <Images colors={colors}   collectionId={collectionId} removeImage={removeImage} clearstate={clearstate} addImg={addImg} galleries={add_galleries}/>
+                     {  console.log(add_galleries)}
                     </Col>
                    
                     </Row>
