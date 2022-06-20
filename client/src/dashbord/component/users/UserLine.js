@@ -53,8 +53,8 @@ const UserLine = ({user,multiple,all,setInfoFlashmsg}) => {
             <td>
                { showlist && <div className='hiddenlist' ref={wrapperRef}>
             
-                    <Link to='/dashbord/orders/add'> <div className='border-inlist' >Add Order</div> </Link>
-                    <div className='border-inlist' >View cart</div>
+                    <Link to='/dashbord/users/addorder'> <div className='border-inlist' >Add Order</div> </Link>
+                    <Link to='/dashbord/users/card'> <div className='border-inlist' >View cart</div></Link>
                     <div className='border-inlist' >View favourite</div>
                     <div className='border-inlist' >System rate</div>
                     <div className='delete-inlist' onClick={() =>setInfoFlashmsg(true)}>Delete</div>

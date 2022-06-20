@@ -18,31 +18,32 @@ function useOutsideAlerter(ref,setShowlist) {
     
   }}, [ref]);
 }
-const SellRow = () => {
+const SellRow = ({sell, setInfoFlashmsg}) => {
     const [showlist,setShowlist] =useState(false)
            // close list when click any where
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef,setShowlist);
   return (
              <tr>
-                       
-                        <td>USER</td>
-                        <td>BUSINESS NAME</td>
+        
+                      { console.log(sell)}
+                        <td>{sell && sell.full_name}</td>
+                        <td>{sell && sell.brand_name_english}</td>
                     
                     
-                        <td>ADDRESS</td>
-                        <td>EMAIL</td>
-                        <td>PHONE NUMBER</td>
+                        <td>{sell && sell.city.name}</td>
+                        <td>{sell && sell.email}</td>
+                        <td>{sell && sell.phone}</td>
                         
                         
-                        <td>LOGO</td>
+                        <td><img src={sell &&`https://thebeauwow.me${sell.logo}`}  /></td>
                         <td>FILES</td>
                         
                   <td>
                { showlist && <div className='hiddenlist' ref={wrapperRef}>
             
                 
-                    <div className='delete-inlist'>Delete</div>
+                    <div className='delete-inlist' onClick={() =>setInfoFlashmsg(true)}>Delete</div>
                 </div>}
                 <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span>
             

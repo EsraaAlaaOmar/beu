@@ -9,6 +9,9 @@ import Nav from '../reusable/Nav';
 import AddUser from './AddUser';
 import FilterUseres from './FilterUseres';
 import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
+import UserProducts from './UserProducts';
+import AddOrder from '../Orders/AddOrder';
+import UserFavourites from './UserFavourites';
 
 const Users = ({setActiveIndex}) => {
   setActiveIndex()
@@ -83,7 +86,10 @@ const Users = ({setActiveIndex}) => {
           </div>
           <Routes>
                <Route path="/add" element={<AddUser setFlashmsg={setFlashmsg} />} exact /> 
+               <Route path="/card" element={<UserProducts />} exact /> 
                <Route path="/filter" element={<FilterUseres />} exact /> 
+               <Route path="/addorder" element={<AddOrder />} exact />
+               <Route path="/favourite" element={<UserFavourites />} exact />
           </Routes>
         </div>}
       </>

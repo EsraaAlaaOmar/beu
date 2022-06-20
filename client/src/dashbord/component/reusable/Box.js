@@ -22,7 +22,7 @@ const Box = ({clearstate,product,editeLink='/dashbord/collections',viewProducts,
         
               
               <div>Price : {product.unit_price} $</div>
-              <div>Sizes :{product.sizes}</div>
+              <div>Sizes :{product.size.map(s=><span className='size'>{s.size}</span>)}</div>
               <div>Colors :{productColors}</div>
               
           </div>

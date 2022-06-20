@@ -12,7 +12,7 @@ const Welcome = ({name}) => {
        
            
         </div>
-        <img src='images/dashbordfile.svg' />
+        <img src='/images/dashbordfile.svg' />
 
     </div>
   )

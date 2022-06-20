@@ -91,7 +91,7 @@ const Dashbord = ({setActiveIndex}) => {
           
         
       </div>
-    <Login />    
+    
     
      
     </> 

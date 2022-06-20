@@ -1,9 +1,10 @@
 .dashbord-side{.choose-product{
+
     width: 65%;
     height:85%;
 
     background-color:#fff;
-  
+    
     position:absolute;
     top: 50%;
     left:17%;
@@ -12,6 +13,30 @@
     border-radius: 20px;
     overflow-y: auto;
     overflow-x: hidden;
+    .page-title{
+        margin:20px auto;
+        text-align: center;
+        .bold{
+            font-weight: bold;
+            font-size: 36px;
+        }
+        img{
+            width: 30px;
+           height: 30px;
+           border-radius: 50%;
+           margin: 0 10px;
+           vertical-align:sub
+        }
+        .name{
+            color: gray;
+            vertical-align:text-bottom;
+
+        }
+    }
+    .sentence{
+        color: #969B85;
+        margin-left: 50px;
+    }
     .inputs{ 
         padding:30px 15px;
         overflow-y: scroll;
@@ -56,6 +81,7 @@
     }
          
      }
+
    
     .order-details{
         padding:20px;
@@ -86,71 +112,72 @@
             color: #FFA200;
         }
      
-            .box_component{
-                max-width: 100%;      
-                width: 90%;
-                max-width: 300px;
-                min-width: 200px;
-                min-height: 350px;
-                margin: 30px auto;
-                background-color:#fff;
-                box-shadow: 0px 24px 48px #969B8559;
-                border-radius:6px;
-                .sizes{
-                    font-size: 18px;
-                    span{
-                        display: inline-block;
-                        width: 26px;
-                        height: 20px;
-                        margin:0 2px;
-                        margin-bottom: -5px;
-                        text-align: center;
-                        cursor: pointer;
-                    }
-
-                }
-                .colors{
-                    font-size: 18px;
-                    margin:7px 0;
-                   span{
-                    display: inline-block;
-                    width: 26px;
-                    height: 20px;
-                    margin:0 2px;
-                    margin-bottom: -5px;
-                    cursor: pointer;
-                   } 
-                }
-                .active{
-                    box-shadow: 0px 3px 6px #2D62ED;
-                    border: 1px solid #2D62ED;
-                    height:25px !important;
-                }
-                .num{
-                    font-size: 18px;
-                    margin: 10px 0;
-                    span{
-                        color: #000;
-                        display: inline-block;
-                        width: 25px;
-                        text-align: center;
-                        border: .25px solid #DBE2EA;
-                        font-weight: bold;
-                        cursor: pointer;
-                        margin:0 3px;
-                    }
-                }
-                button{
-                    width: 100px;
-                    height: 40px;
-                    background-color:#fff;
-                    color:#2D62ED;
-                    border: 1px solid #2D62ED;
-                    margin-left: 5px;
-                }
-            
-        }
+     
     }
+    .box_component{
+        max-width: 100%;      
+        width: 90%;
+        max-width: 300px;
+        min-width: 200px;
+        min-height: 350px;
+        margin: 30px auto;
+        background-color:#fff;
+        box-shadow: 0px 24px 48px #969B8559;
+        border-radius:6px;
+        .sizes{
+            font-size: 18px;
+            span{
+                display: inline-block;
+                width: 26px;
+                height: 20px;
+                margin:0 2px !important;
+                margin-bottom: -5px;
+                text-align: center;
+                cursor: pointer;
+            }
+
+        }
+        .colors{
+            font-size: 18px;
+            margin:7px 0;
+           span{
+            display: inline-block;
+            width: 26px;
+            height: 20px;
+            margin:0 2px;
+            margin-bottom: -5px;
+            cursor: pointer;
+           } 
+        }
+        .active{
+            box-shadow: 0px 3px 6px #2D62ED;
+            border: 1px solid #2D62ED;
+            height:25px !important;
+        }
+        .num{
+            font-size: 18px;
+            margin: 10px 0;
+            span{
+                color: #000;
+                display: inline-block;
+                width: 25px;
+                text-align: center;
+                border: .25px solid #DBE2EA;
+                font-weight: bold;
+                cursor: pointer;
+                margin:0 3px;
+            }
+        }
+        button{
+            width: 100px;
+            height: 40px;
+            background-color:#fff;
+            color:#2D62ED;
+            border: 1px solid #2D62ED;
+            margin-left: 5px;
+        }
+    
+}
     .add-dev{
         overflow-y: scroll;
         max-height: 84vh;
