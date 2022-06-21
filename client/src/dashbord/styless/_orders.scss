@@ -35,13 +35,33 @@
         margin-top: 39px;
         box-shadow: 0px 3px 6px #272D3B33;
         border-radius: 20px;
+        .show-products{
+            font-size: 24px;
+            cursor: pointer;
+            &:hover{
+                color: #a9a9a9;
+            }
+        }
         .single-product{
             width:100%;
             display: inline-block;
            margin-top: -70px;
            max-height: 600px;
            overflow: auto;
+        
              table{
+             
+                .close{
+                    position: absolute;
+                    right: -35px;
+                    top: 0px;
+                    font-size: 20px;
+                    cursor: pointer;
+                    &:hover{
+                        color: #a9a9a9;
+                    }
+                
+                }
                 th{
                     color: #a9a9a9;
                 }

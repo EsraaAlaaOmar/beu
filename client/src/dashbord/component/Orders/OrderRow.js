@@ -1,5 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react'
 import {BsThreeDotsVertical} from 'react-icons/bs'
+import  {IoCloseCircleOutline}  from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import ProductsList from './ProductsList';
 
@@ -45,8 +46,10 @@ const OrderRow = ({order}) => {
             {order.text}
    </td> */}
     <td style={{width:'50%'}}>
-    <div className='single-product'>
+    {showproducts ?<div className='single-product'>
+
       <table>
+         <span className='close' onClick={()=>setShowProducts(false)}> <IoCloseCircleOutline/> </span>
         <thead>
         <th>Image</th>
         <th > Quantity </th>
@@ -57,7 +60,7 @@ const OrderRow = ({order}) => {
       
       </table>
     
-    </div>
+    </div>:<div className='show-products' onClick={()=>{setShowProducts(true)}}>Show Products</div>}
  
       </td>
     {/* <td></td>
