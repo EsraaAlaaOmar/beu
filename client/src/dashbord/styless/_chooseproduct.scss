@@ -35,7 +35,7 @@
     }
     .sentence{
         color: #969B85;
-        margin-left: 50px;
+        margin-left: 20px;
     }
     .inputs{ 
         padding:30px 15px;
@@ -136,6 +136,12 @@
                 cursor: pointer;
             }
 
+        }
+        .oposite{
+            color: #F20A11;
+            width:20px;
+            height:17px;
+            margin-top: -20px;
         }
         .colors{
             font-size: 18px;

@@ -1,5 +1,7 @@
 import React,{useEffect} from 'react'
 import { useRef } from 'react';
+import { Col } from 'react-bootstrap';
+import ReactStars from "react-rating-stars-component";
 import { useNavigate } from 'react-router-dom';
 import FavouriteProduct from './FavouriteProduct';
 // use ref  function 
@@ -37,8 +39,20 @@ const UserFavourites = () => {
               <span className="name">Josh Brolin</span>
             </div>
           <div className="sentence">all controls are disabled for you in this page</div>
-            <FavouriteProduct />
+          <Col md={6} lg={4}>
+              <FavouriteProduct />
+          </Col>
             
+          <div className='rating'>
+                    <ReactStars
+                        count={5}
+                        onChange={'ratingChanged'}
+                        edit={false}
+                        value={4}
+                        size={24}
+                        activeColor="#ffd700"
+                    />
+                    </div>
          </div>
          </div>
     

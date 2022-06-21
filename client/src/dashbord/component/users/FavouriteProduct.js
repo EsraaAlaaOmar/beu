@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {BsHeart, BsFillHeartFill} from 'react-icons/bs'
 const FavouriteProduct = () => {
   return (
     <div className='box_component'>
@@ -10,7 +10,7 @@ const FavouriteProduct = () => {
           fffffffffffffff
           </div>
           <p>
-              price : 100 $
+              price : 100 $  <span className='oposite'><BsFillHeartFill /></span>
           </p>
     </div>
   )

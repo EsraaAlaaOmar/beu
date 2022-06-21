@@ -1,6 +1,7 @@
 import React,{useState,useEffect,useRef} from 'react'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+import ProductsList from './ProductsList';
 
 
 // use ref  function 
@@ -19,31 +20,51 @@ function useOutsideAlerter(ref,setShowlist) {
     
   }}, [ref]);
 }
-const OrderRow = ({user}) => {
+const OrderRow = ({order}) => {
     const [showlist,setShowlist] =useState(false)
+    const [showproducts,setShowProducts]= useState(false)
        // close list when click any where
    const wrapperRef = useRef(null);
    useOutsideAlerter(wrapperRef,setShowlist);
+
+   const renderedProducts = order.products.map(product =>{
+    return <ProductsList product={product} />
+   })
   return (
     <tr>
     <td className='align_dir'>
         <img 
-            src={user.img}
+            src={order.customer.avatar}
         />
-        <span>{user.name}</span>
+        <span>{order.customer.name}</span>
     </td>
-    <td>{user.id}</td>
-    <td className='align_dir'>
+    <td>{order.id}</td>
+    {/* <td className='align_dir'>
             <img src='https://img.freepik.com/free-photo/sport-running-shoes_1203-3414.jpg?w=996' />
             <br/>
-            {user.text}
-   </td>
-    <td>{user.id}</td>
-    <td>M</td>
-    <td><div className='color' style={{backgroundColor:'red'}}></div></td>
-    <td>Delivered</td>
-    <td>100$</td>
-    <td>visa </td>
+            {order.text}
+   </td> */}
+    <td style={{width:'50%'}}>
+    <div className='single-product'>
+      <table>
+        <thead>
+        <th>Image</th>
+        <th > Quantity </th>
+        <th> size</th>
+        <th > Color</th>
+          </thead>
+          {renderedProducts}
+      
+      </table>
+    
+    </div>
+ 
+      </td>
+    {/* <td></td>
+    <td></td> */}
+    <td>{order.order_status}</td>
+    <td>{order.total_price}$</td>
+    <td>{order.payment_option} </td>
     
           <td>
                 { showlist && <div className='hiddenlist' ref={wrapperRef}>
