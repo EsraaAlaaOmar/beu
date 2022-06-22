@@ -51,10 +51,7 @@ const Dashbord = ({setActiveIndex}) => {
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :
       <div className="box dashbord">
-      <div className='alert'>
-        This Page not implemented yet because no payment gateway integrated
-        the content below is just a demo content to show the screen design
-              </div>
+
           <div className="title-text">Dashboard</div>
         
         <Row>
@@ -96,7 +93,7 @@ const Dashbord = ({setActiveIndex}) => {
       
           </Col>
           <Col sm={12} lg={4}>
-          <Natural orderList={orderList}/>
+          {orderList.length>0 && <Natural orderList={orderList}/>}
           <Orders />
           <MonthlyIncome />
           </Col>
@@ -104,7 +101,7 @@ const Dashbord = ({setActiveIndex}) => {
 
       
   
-  <Transaction />
+  <Transaction order={orderList[0]} />
         
           
         

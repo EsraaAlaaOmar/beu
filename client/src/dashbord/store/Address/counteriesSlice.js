@@ -170,7 +170,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
               'Authorization': `Bearer ${token}`,
             }})
           
-           return response.data
+           return {...response.data,city}
           }
           catch (e) {
             return rejectWithValue(e.response.data);
@@ -187,7 +187,7 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
                 'Authorization': `Bearer ${token}`,
               }})
             
-             return area
+             return {...response.data,...area}
             }
             catch (e) {
               return rejectWithValue(e.response.data);
@@ -335,9 +335,10 @@ export const getCountries = createAsyncThunk ('address/get',  async(_ ,thunkAPI)
           state.error= null
          
           state.cityadded=true
+          
 
         const currentState = current(state)
-        const index = currentState.countriesList.findIndex(country => country.id == action.payload.country_id);                                            
+        const index = currentState.countriesList.findIndex(country => country.id == action.payload.city.country_id);                                           
         const newArray = [...currentState.countriesList];     
         newArray[index] = {...newArray[index], cities :[action.payload ,...newArray[index].cities]}
         console.log(newArray)

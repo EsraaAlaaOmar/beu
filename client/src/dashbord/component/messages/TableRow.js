@@ -37,7 +37,7 @@ const TableRow = ({user}) => {
         <span>{user.name}</span>
     </td>
     <td>{user.content}</td>
-    <td>{user.text}</td>
+    <td>No Response</td>
     <td></td>
     <td></td>
     <td></td>
