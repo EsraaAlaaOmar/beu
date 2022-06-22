@@ -60,7 +60,7 @@ const OrderRow = ({order}) => {
       
       </table>
     
-    </div>:<div className='show-products' onClick={()=>{setShowProducts(true)}}>Show Products</div>}
+    </div>:<div className='show-products' onClick={()=>{setShowProducts(true)}}>details ..</div>}
  
       </td>
     {/* <td></td>
@@ -71,7 +71,7 @@ const OrderRow = ({order}) => {
     
           <td>
                 { showlist && <div className='hiddenlist' ref={wrapperRef}>
-                   <Link to='/dashbord/products'> <div className='border-inlist' >View Order</div> </Link>
+            
                     <div className='delete-inlist'>Delete</div>
                 </div>}
                 <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span>

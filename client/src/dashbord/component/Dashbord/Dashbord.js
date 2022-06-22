@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
 import Sidebar from './Sidebar';
@@ -15,8 +15,9 @@ import Orders from './Orders';
 import Transaction from './Transaction';
 import MonthlyIncome from './MonthlyIncome';
 import Nav from '../reusable/Nav';
-import Login from '../Auth/Login'
-
+import { useDispatch } from 'react-redux';
+import {getOrders} from '../../store/orderSlice'
+import moment from 'moment'
 // const StyledPoint = styled.circle`
 //   fill: ${(props) => props.color};
 // `;
@@ -24,14 +25,31 @@ import Login from '../Auth/Login'
 
 
 const Dashbord = ({setActiveIndex}) => {
-  const {loggedIn} =useSelector((state)=> state.auth)
-  const {name } =useSelector((state)=> state.logedDetails)
   setActiveIndex()
+
+  const {userInfo} =useSelector((state)=> state.auth)
+  const {orderList, isLoading} =useSelector((state)=> state.orders)
+  
+  const dispatch = useDispatch()
+  useEffect(() =>{
+    dispatch(getOrders())
+  
+
+  },[dispatch])
+
+
+  //get earned this month
+  const  thisMonthOrders =orderList.filter(order=>moment(order.created_at).format('YYYY-MM') >= moment(new Date()).format('YYYY-MM') )
+   const earnedThisMonth= thisMonthOrders.reduce((accumulator, current) => accumulator + current.total_price, 0);
+   
   return (
  <>
       <Nav />
      
-   
+     
+      {isLoading ? 
+    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+    :
       <div className="box dashbord">
       <div className='alert'>
         This Page not implemented yet because no payment gateway integrated
@@ -41,13 +59,13 @@ const Dashbord = ({setActiveIndex}) => {
         
         <Row>
           <Col sm={12} lg={8}>
-          <Welcome name={name}/>
+          <Welcome name={userInfo&&userInfo.name}/>
           <Row>
             <Col sm={12} md={7}>
-              <LineChart />
+              <LineChart orderList={orderList} />
             </Col>
             <Col sm={12} md={5}>
-            <LinewCircle />
+            <LinewCircle  orderList={orderList}/>
             </Col>
           </Row>
           <Row>
@@ -56,7 +74,7 @@ const Dashbord = ({setActiveIndex}) => {
             </Col>
             <Col sm={12} md={5}>
                 <div className="earned">
-                  <div >$ 223K </div>
+                  <div >$ {earnedThisMonth} </div>
                   <p>Earned This Month</p>
                   <span className='arrow'> <BsFillArrowUpRightCircleFill /> </span>
                 </div>
@@ -78,7 +96,7 @@ const Dashbord = ({setActiveIndex}) => {
       
           </Col>
           <Col sm={12} lg={4}>
-          <Natural />
+          <Natural orderList={orderList}/>
           <Orders />
           <MonthlyIncome />
           </Col>
@@ -91,6 +109,7 @@ const Dashbord = ({setActiveIndex}) => {
           
         
       </div>
+}
     
     
      

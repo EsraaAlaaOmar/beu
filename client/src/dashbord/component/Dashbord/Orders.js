@@ -2,7 +2,13 @@ import React from 'react'
 import {MdKeyboardArrowUp, MdKeyboardArrowDown} from 'react-icons/md'
 import {BsFillArrowUpRightCircleFill} from 'react-icons/bs'
 import TodayOneOrder from './TodayOneOrder'
+import { useSelector } from 'react-redux'
+import moment from 'moment'
 const Orders = () => {
+  const {orderList} =useSelector((state)=> state.orders)
+  const  orders =orderList.filter(order=>moment(order.created_at).format('YYYY-MM-DD') == moment(new Date()).format('YYYY-MM-DD') )
+
+   const renderedOrders = orders.map(order=> <TodayOneOrder order={order} />)
   return (
     <div className='orders'>
       <span className='title'>
@@ -12,12 +18,7 @@ const Orders = () => {
          <div> <MdKeyboardArrowUp /></div>
          <div> <MdKeyboardArrowDown/> </div>
       </div>
-      <TodayOneOrder />
-      <TodayOneOrder />
-      <TodayOneOrder />
-      <TodayOneOrder />
-      <TodayOneOrder />
-      <TodayOneOrder />
+     { renderedOrders}
       <span className='arrow'> <BsFillArrowUpRightCircleFill /> </span>
     </div>
   )
