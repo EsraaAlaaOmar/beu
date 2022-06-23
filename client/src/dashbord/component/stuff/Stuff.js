@@ -28,7 +28,7 @@ const Stuff = ({setActiveIndex}) => {
  
     return (
     <>
-        <Nav  first_link='Active' second_link='All'   first_link_url='/dashbord/stuff'   second_link_url='/dashbord/stuff'/>
+        <Nav />
         {isLoading ? 
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :<div className="box">  

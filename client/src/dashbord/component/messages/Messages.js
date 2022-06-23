@@ -18,7 +18,7 @@ const Messages = ({setActiveIndex}) => {
   },[dispatch])
   return (
     <>
-       < Nav first_link='Active' second_link='All' first_link_url='/messages'   second_link_url='/messages' />
+       < Nav />
        {isLoading ? 
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :

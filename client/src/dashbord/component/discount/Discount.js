@@ -30,7 +30,7 @@ const Discount = ({setActiveIndex}) => {
   return (
     <>
     
-      <Nav  first_link='Active' second_link='All'   first_link_url='/dashbord/discount'   second_link_url='/dashbord/discount'/>
+      <Nav  />
       {isLoading ? 
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :

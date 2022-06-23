@@ -34,7 +34,7 @@ const Finance = ({setActiveIndex}) => {
    
   return (
     <>
-       < Nav first_link='finance' second_link='Charts'  first_link_url='/dashbord/finance'   second_link_url='/dashbord/finance'/>
+       < Nav />
        {isLoading ? 
         <div  className="box loading"> <img src='/images/loading.gif' /></div> 
         :

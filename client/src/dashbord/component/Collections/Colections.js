@@ -63,7 +63,7 @@ const data=filterTime == 'new'? filterWithTitle.reverse() :filterWithTitle
 
   return (
   <> 
-   <Nav  first_link='Newest' second_link='All'  first_link_url='/dashbord/collections'   second_link_url='/dashbord/collections' />
+   <Nav   />
    {isLoading ? 
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :<div className="box collections">  
