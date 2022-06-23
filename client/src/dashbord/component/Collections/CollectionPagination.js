@@ -27,18 +27,19 @@ const CollectionPagination = ({maplist, deleteClicked}) => {
     const {page,  pages} = state;
       //  let items = state.list.slice(page * perPage, (page + 1) * perPage);
       {console.log(maplist.results)}
-       const Collections = maplist.map((collection)=>{
+       const Collections =maplist.length>0? maplist.map((collection)=>{
         return (
         
               <>
                  <CollectionsRow collection={collection}  deleteClicked={deleteClicked} />
               </>
-         
+        
        
     
         )
-    })
-    ||  ''
+       
+    }) : <tr> <td>No Collections Found</td></tr>
+
 
     return (
         <>

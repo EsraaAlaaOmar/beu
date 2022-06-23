@@ -70,7 +70,7 @@ export const getOffers = createAsyncThunk ('offers/get',  async(_ ,thunkAPI) =>{
   })
   
   const offersSlice= createSlice({
-    name:'discounts',
+    name:'offers',
     initialState : {offersList:[],updated:false,created:false, isLoading:false,addLoading:false, error:null},
     reducers:{
       clearstate:(state)=>{

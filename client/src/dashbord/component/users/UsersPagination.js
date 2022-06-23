@@ -2,8 +2,10 @@ import React,{useState} from 'react'
 import {RiCheckboxBlankCircleLine, RiCheckboxCircleFill} from 'react-icons/ri'
 
 import UserLine from './UserLine'
-const UsersPagination =({maplist,multiple, setInfoFlashmsg,clearstate}) => {
-  const[all, setAll]=useState(false)  
+const UsersPagination =({maplist,multiple, setInfoFlashmsg,filterTime ,filterTitle ,clearstate}) => {
+  const[all, setAll]=useState(true) 
+  const [multipleusers,setMultipleUsers] = useState (maplist )
+  console.log(multipleusers)
   const [state, setState] =useState({
         list: maplist,
         perPage: 4,
@@ -27,23 +29,37 @@ const UsersPagination =({maplist,multiple, setInfoFlashmsg,clearstate}) => {
  
     const {page,  pages} = state;
        let items = state.list.slice(page * perPage, (page + 1) * perPage);
-       const users = maplist.map((user)=>{
+       
+       const filterWithTitle = maplist.filter((el) => {
+   
+        if (filterTitle === '') {
+            return el
+        }
+      
+        else {        
+            return ( el.name.toLowerCase().includes(filterTitle) )           
+        }
+      })
+      
+      const data=filterTime == 'new'? filterWithTitle.reverse() :filterWithTitle
+      
+      
+       const users =data.length>0 ? data.map((user)=>{
            
         return (
-        <UserLine multiple={multiple} user={user} all={all} setInfoFlashmsg={setInfoFlashmsg} />
+        <UserLine multiple={multiple} user={user} multipleusers={multipleusers} setMultipleUsers={setMultipleUsers} all={all} setInfoFlashmsg={setInfoFlashmsg} />
          
        
-    
+     
         )
-    })
-    ||  ''
+    }): <tr> <td>No users Found</td></tr>
 
     return (
         <>
           <table className='Table'>
             <thead>
             <tr className="head">
-                <th className="nospace">{multiple && <span className="check checked "  onClick={()=> setAll( !all )}> <RiCheckboxCircleFill /> </span>}</th>
+                <th className="nospace">{multiple && <span className="check checked "  onClick={()=> setAll( !all )}>{all? <RiCheckboxCircleFill onClick={()=> setMultipleUsers([])}/>: <RiCheckboxBlankCircleLine  onClick={()=> setMultipleUsers(maplist)}   />  }</span>}</th>
                 <th>Name</th>
                 <th></th>
                

@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React,{useEffect, useState} from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/order.svg';
 
@@ -9,6 +9,7 @@ import Nav from '../reusable/Nav'
 import {getOrders} from '../../store/orderSlice'
 import { useSelector, useDispatch } from 'react-redux';
 import OrderRow from './OrderRow';
+import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
 const Orders = ({setActiveIndex}) => {
   setActiveIndex()
   const dispatch = useDispatch()
@@ -19,7 +20,14 @@ const Orders = ({setActiveIndex}) => {
 
   },[dispatch])
 
-  const renderedOrders = orderList.map((order=><OrderRow  order={order}/>))
+  //info flashmsg state
+  const[infoflashmsg,setInfoFlashmsg] = useState(false)
+
+
+  const renderedOrders = orderList.map((order=><OrderRow  order={order} setInfoFlashmsg={setInfoFlashmsg}/>))
+
+
+
   return (
     <>
       <Nav  first_link='Active' second_link='All'  first_link_url='/dashbord/orders'   second_link_url='/dashbord/orders' />
@@ -28,20 +36,22 @@ const Orders = ({setActiveIndex}) => {
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :
       <div className="box">  
-      <div className='alert'>
-        This Page not implemented yet because no payment gateway integrated
-        the content below is just a demo content to show the screen design
-              </div>
           <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
           <span className="title-text">Orders</span>
           <div className="table-box">
+
+          {infoflashmsg && <FlashMsg 
+                title="Still Under Development !"
+                img={'/images/msgIcons/info.svg'}
+                setFlashmsg={setInfoFlashmsg}
+                icontype='info-icon'
+                />}
+
               <div className="oposite">
-                  <Link to='/dashbord/orders'>
-                    <button>Filter</button>
-                  </Link>
-                  <Link to='/dashbord/orders/add'>
-                    <button>+ Add New</button>
-                  </Link>
+                 
+                  {/* <Link to='/dashbord/orders/add'> */}
+                    <button onClick={()=>setInfoFlashmsg(true)}>+ Add New</button>
+                
 
               </div>
               <br/>

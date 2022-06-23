@@ -30,6 +30,18 @@ const Users = ({setActiveIndex}) => {
 
     //info flashmsg state
     const[infoflashmsg,setInfoFlashmsg] = useState(false)
+
+
+      //filter data 
+  const [filterTime,setFiLterTime]=useState()
+  const [filterTitle,setFilterTitle]=useState('')
+  const setFilterData=(time, title)=>{
+    setFiLterTime(time)
+    setFilterTitle(title)
+}
+
+
+
   
     return(
       <>
@@ -65,9 +77,9 @@ const Users = ({setActiveIndex}) => {
             <span className="title-text">Users</span>
             <div className="table-box">
                 <div className="oposite">
-                    <Link to='/dashbord/users'>
-                      <button onClick={()=>setMultiple(!multiple)}>Multiple</button>
-                    </Link>
+                    
+                   {! multiple&&  <button onClick={()=>setMultiple(!multiple)}>Multiple</button>}
+                    
                     <Link to='/dashbord/users/add'>
                       <button onClick={() =>dispatch(clearstate())}>
                         <span className='big-sizes'> + Add New</span>
@@ -81,13 +93,13 @@ const Users = ({setActiveIndex}) => {
                 </div>
                 <br/>
                 
-                  <UsersPagination maplist={usersList} multiple={multiple}  setInfoFlashmsg={setInfoFlashmsg} />
+                  <UsersPagination maplist={usersList} multiple={multiple} filterTime={filterTime} filterTitle={filterTitle}  setInfoFlashmsg={setInfoFlashmsg} />
 
           </div>
           <Routes>
                <Route path="/add" element={<AddUser setFlashmsg={setFlashmsg} />} exact /> 
                <Route path="/card" element={<UserProducts />} exact /> 
-               <Route path="/filter" element={<FilterUseres />} exact /> 
+               <Route path="/filter" element={<FilterUseres  setFilterData={setFilterData} />} exact /> 
                <Route path="/addorder" element={<AddOrder />} exact />
                <Route path="/favourite" element={<UserFavourites />} exact />
           </Routes>

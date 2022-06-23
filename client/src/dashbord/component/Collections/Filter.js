@@ -1,6 +1,6 @@
-import React,{useRef, useEffect} from 'react'
+import React,{useRef,useState, useEffect} from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, Navigate } from 'react-router-dom'
 // use ref  function 
 function useOutsideAlerter(ref,navigate) {
     useEffect(() =>{
@@ -9,7 +9,7 @@ function useOutsideAlerter(ref,navigate) {
           
             navigate('/dashbord/collections')
         }
-      }
+      } 
       // Bind the event listener
       document.addEventListener("mousedown", handleClickOutside);
       return () => {
@@ -18,10 +18,19 @@ function useOutsideAlerter(ref,navigate) {
       
     }}, [ref]);
   }
-const Filter = () => {
+const Filter = ({setFilterData}) => {
     const navigate = useNavigate()
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef, navigate);
+
+
+    // filter values
+    const [filter,setFilter] = useState(false)
+    const [time,setTime] = useState('old')
+    const [title,setTitle] = useState('')
+console.log(time)
+console.log(title)
+
   return (
     <div className='addpage filter'>
     <div className='opacity'>
@@ -31,17 +40,17 @@ const Filter = () => {
         <form>
             <div className='input-div'>
                 <label>Collection Title</label>
-                <input type='text' placeholder='Title' required/>
+                <input type='text' placeholder='Title' value={title} onChange={(e)=>setTitle(e.target.value)} />
             
             </div>
             <div className='choose'>
                 <Row>
                     <Col>
-                        <input id='new' type="radio" name="time" value="new" />
+                        <input id='new' type="radio" name="time" value="new" checked={time=='new'&&true}  onClick={e=>setTime('new')} />
                         <label for="new">&nbsp; Newest</label><br/>
                     </Col>
                     <Col>
-                        <input id='old' type="radio" name="time" value="old"/>
+                        <input id='old' type="radio" name="time" value="old" checked={time=='old'&&true}  onClick={e=>setTime('old')}/>
                         <label for="old">&nbsp; Oldest</label><br/>
                     </Col>
             
@@ -61,9 +70,9 @@ const Filter = () => {
                 </Row>
             </div>
             <div className='buttons'>
-                
-                    <input className='confrim' type='submit' value='Confirm' />
-            
+           {filter &&  <Navigate  to='/dashbord/collections' />}
+                    <input className='confrim' type='submit' value='Confirm' onClick={(e)=>{e.preventDefault(); setFilterData(time,title); setFilter(true)}} />
+    
                 <Link to='/dashbord/collections'>
                     <button className='discard'>Discard</button>
                 </Link>

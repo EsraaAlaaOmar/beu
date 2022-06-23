@@ -28,6 +28,10 @@ export const getAdmins = createAsyncThunk ('admins/get',  async(_ ,thunkAPI) =>{
       headers: { 'content-type': 'application/json',
                  'Authorization': `Bearer ${token}`,
     }}
+    if(editedadminData.oldEmail == editedadminData.email ){
+      delete editedadminData.email
+    
+    }
   try{
   
   let body= JSON.stringify(editedadminData)

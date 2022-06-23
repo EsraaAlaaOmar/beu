@@ -28,7 +28,7 @@ const DiscountPagination = ({maplist, setInfoFlashmsg,clearstate}) => {
  
     const {page,  pages} = state;
        let items = state.list.slice(page * perPage, (page + 1) * perPage);
-       const users = discountList.map((discont)=>{
+       const users =discountList.length>0 ? discountList.map((discont)=>{
         return (
         
               
@@ -38,7 +38,7 @@ const DiscountPagination = ({maplist, setInfoFlashmsg,clearstate}) => {
     
         )
     })
-    ||  ''
+    : <tr> <td>No Discounts Found</td></tr>
 
     return (
         <>

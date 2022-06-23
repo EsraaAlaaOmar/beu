@@ -37,6 +37,30 @@ const Colections = ({setActiveIndex}) => {
   const deleteRequest=(data)=>{
     dispatch(deleteCollection(data))
   }
+
+  //filter data 
+  const [filterTime,setFiLterTime]=useState()
+  const [filterTitle,setFilterTitle]=useState('')
+  const setFilterData=(time, title)=>{
+    setFiLterTime(time)
+    setFilterTitle(title)
+}
+
+const filterWithTitle = collectionsList.filter((el) => {
+   
+  if (filterTitle === '') {
+      return el
+  }
+
+  else {        
+      return ( el.title.toLowerCase().includes(filterTitle) )           
+  }
+})
+
+const data=filterTime == 'new'? filterWithTitle.reverse() :filterWithTitle
+
+
+
   return (
   <> 
    <Nav  first_link='Newest' second_link='All'  first_link_url='/dashbord/collections'   second_link_url='/dashbord/collections' />
@@ -67,10 +91,10 @@ const Colections = ({setActiveIndex}) => {
               </div>
               <br/>
               
-              <CollectionPagination maplist={collectionsList} deleteClicked={deleteClicked} />
+              <CollectionPagination maplist={ data} deleteClicked={deleteClicked} />
               <Routes>
                <Route path="/add" element={<AddCollection />} exact /> 
-               <Route path="/filter" element={<Filter />} exact />
+               <Route path="/filter" element={<Filter  setFilterData={setFilterData}/>} exact />
           </Routes>
 
     </div>

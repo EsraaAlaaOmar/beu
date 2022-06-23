@@ -8,7 +8,7 @@ const Orders = () => {
   const {orderList} =useSelector((state)=> state.orders)
   const  orders =orderList.filter(order=>moment(order.created_at).format('YYYY-MM-DD') == moment(new Date()).format('YYYY-MM-DD') )
 
-   const renderedOrders =orders.length > 0 ?orders.map(order=> <TodayOneOrder order={order} />):<div>No Orders Created todar</div>
+   const renderedOrders =orders.length > 0 ?orders.map(order=> <TodayOneOrder order={order} />):<div> &nbsp;	&nbsp; No Orders Created todar</div>
   return (
     <div className='orders'>
       <span className='title'>

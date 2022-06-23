@@ -15,7 +15,7 @@ const EditeAdmin = ({setFlashmsg}) => {
    
      let schema = yup.object().shape({
    
-        email: yup.string().email('Enter a Valid Email').required("Email is required"),
+        email: yup.string().email('Enter a Valid Email'),
         name: yup.string().required('Name is required'),    
         password: yup.string().min(5,'password at least 5 characters').max(10, 'password max 10 characters'),
         confirm_password:yup.string().oneOf([yup.ref('password'), null], 'Passwords must match'),
@@ -38,6 +38,7 @@ const EditeAdmin = ({setFlashmsg}) => {
   const {name, email, password,is_superuser, confirm_password}=formData
   const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
   const onCheckChange=e=>setFormData({...formData, [e.target.name]: e.target.checked})
+  console.log(is_superuser)
   const onSubmit= async (values) => {
 
     setFlashmsg(true)
@@ -64,9 +65,9 @@ const EditeAdmin = ({setFlashmsg}) => {
                 
                 name:location.state.user.name,
                 email:location.state.user.email,
+                oldEmail:location.state.user.email,
                 password:location.state.user.password,
                 confirm_password:location.state.user.confirm_password,
-              
                 admin_id:location.state.user.id,
                 id:location.state.user.id
             

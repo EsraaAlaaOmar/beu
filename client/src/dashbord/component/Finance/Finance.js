@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import {Row, Col} from 'react-bootstrap'
 import { ReactComponent as Logo } from '../../images/finance.svg';
 import {BsFillArrowUpRightCircleFill} from 'react-icons/bs'
-import Invoices from './Invoices';
-import Salaries from './Salaries';
+import { useDispatch, useSelector} from 'react-redux';
+import {getOrders} from '../../store/orderSlice'
+import moment from 'moment'
 import Nav from '../reusable/Nav';
 import Orders from '../Dashbord/Orders';
 import Natural from '../Dashbord/Natural';
@@ -12,16 +13,32 @@ import Statistics from '../Dashbord/Statistics';
 import LineChart from '../Dashbord/LineChart';
 import LinewCircle from '../Dashbord/LinewCircle';
 import Circle from '../Dashbord/Circle';
+
 const Finance = ({setActiveIndex}) => {
   setActiveIndex()
+
+  const {orderList, isLoading} =useSelector((state)=> state.orders)
+  
+  const dispatch = useDispatch()
+  useEffect(() =>{
+    dispatch(getOrders())
+  
+
+  },[dispatch])
+
+
+  
+  //get earned this month
+  const  thisMonthOrders =orderList.filter(order=>moment(order.created_at).format('YYYY-MM') >= moment(new Date()).format('YYYY-MM') )
+   const earnedThisMonth= thisMonthOrders.reduce((accumulator, current) => accumulator + current.total_price, 0);
+   
   return (
     <>
        < Nav first_link='finance' second_link='Charts'  first_link_url='/dashbord/finance'   second_link_url='/dashbord/finance'/>
+       {isLoading ? 
+        <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+        :
        <div className="box  dashbord ">  
-       <div className='alert'>
-        This Page not implemented yet because no payment gateway integrated
-        the content below is just a demo content to show the screen design
-              </div>
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
         <span className="title-text">Finance</span>
         <Row>
@@ -29,15 +46,15 @@ const Finance = ({setActiveIndex}) => {
               <Orders />
             </Col>
             <Col>
-             <LineChart />
+             <LineChart orderList={orderList}/>
              <div className="finance-sta">
-             <Statistics />
+             <Statistics orderList={orderList}/>
              </div>
             </Col>
             <Col>
-             <LinewCircle />
+             <LinewCircle orderList={orderList}/>
               <div className="earned">
-                  <div >$ 223K </div>
+                  <div >${earnedThisMonth}</div>
                   <p>Earned This Month</p>
                   <span className='arrow'> <BsFillArrowUpRightCircleFill /> </span>
                 </div>
@@ -49,7 +66,8 @@ const Finance = ({setActiveIndex}) => {
             </Col>
        
         </Row>
-    </div>
+       </div>
+      }
     </>
    
   )

@@ -71,6 +71,7 @@
     cursor: pointer;
     @media screen and (max-width: 1078px)  {
         display: block;
+       
          
      }
 }
@@ -85,6 +86,12 @@
     padding:10px 30px;
     @media screen and (max-width: 1078px)  {
         display: block;
+        max-width: 100%;
+        overflow: hidden;
+        .link{
+            width: 100vw;
+            display:block;
+        }
          
      }
     a{

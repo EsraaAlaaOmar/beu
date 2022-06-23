@@ -21,7 +21,7 @@ function useOutsideAlerter(ref,setShowlist) {
     
   }}, [ref]);
 }
-const OrderRow = ({order}) => {
+const OrderRow = ({order, setInfoFlashmsg}) => {
     const [showlist,setShowlist] =useState(false)
     const [showproducts,setShowProducts]= useState(false)
        // close list when click any where
@@ -55,12 +55,13 @@ const OrderRow = ({order}) => {
         <th > Quantity </th>
         <th> size</th>
         <th > Color</th>
+        <th>unit Price</th>
           </thead>
           {renderedProducts}
       
       </table>
     
-    </div>:<div className='show-products' onClick={()=>{setShowProducts(true)}}>details ..</div>}
+    </div>:<div className='show-products' onClick={()=>{setShowProducts(true)}}>Products ..</div>}
  
       </td>
     {/* <td></td>
@@ -72,7 +73,7 @@ const OrderRow = ({order}) => {
           <td>
                 { showlist && <div className='hiddenlist' ref={wrapperRef}>
             
-                    <div className='delete-inlist'>Delete</div>
+                    <div className='delete-inlist' onClick={() =>setInfoFlashmsg(true)}>Delete</div>
                 </div>}
                 <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span>
             </td>

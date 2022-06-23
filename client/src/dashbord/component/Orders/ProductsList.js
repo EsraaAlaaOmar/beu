@@ -7,6 +7,8 @@ const ProductsList = ({product}) => {
         <td >{product.quantity} </td>
         <td>{product.size}</td>
         <td> <div className='color' style={{backgroundColor:product.color_hex, padding:'0'}}> </div></td>
+        <td>{product.unit_price} $</td>
+
     </>
   )
 }
