@@ -11,7 +11,7 @@
    .logo{
     @media screen and (max-width: 638px)  {
         display: block;
-        margin: auto;
+        margin: 10px auto;
         font-size: 18px;
     }
     @media screen and (max-width: 1250px)  {
@@ -31,11 +31,16 @@
        margin-left: 50px;
        margin-top: -20px;
  
+ 
    }
    .dropdown{
     display:inline-block;
     border: none;
     padding:0 10px;
+    @media screen and (max-width: 500px)  {
+        
+     width:50%;
+    }
     
     button{
     background-color: #F2DACE;
@@ -103,6 +108,12 @@
             font-weight: 500;
             text-align: center;
             position: relative;
+            @media screen and (max-width: 500px)  {
+        
+                width:25%;
+                display: inline-block;
+               }
+               
             span{
                 position:absolute;
                 right:-5px;
