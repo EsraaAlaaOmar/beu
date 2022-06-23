@@ -23,7 +23,7 @@ const Login = () => {
           });
     
           // end  yup 
-    const {userInfo,login} =useSelector((state)=> state.auth)
+    const {userInfo} =useSelector((state)=> state.auth)
     const dispatch = useDispatch()
     const[check,setCheck]=useState(false)
     const onSubmit= async( data )=> {
