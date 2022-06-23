@@ -79,13 +79,13 @@ const Sidebar = ({showtoggle,active}) => {
 
          },
          {
-            icon:'/',
+            icon:'/images/dashbordsidebar/useres.svg',
             name:'Feedback',
             link:'/dashbord/feedback' ,
 
          },
          {
-            icon:'/',
+            icon:'/images/dashbordsidebar/collections.svg',
             name:'Sell in Beau',
             link:'/dashbord/sell' ,
 

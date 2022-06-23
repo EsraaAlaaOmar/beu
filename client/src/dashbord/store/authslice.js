@@ -99,12 +99,13 @@ const authSlice = createSlice({
         cookies.set("login",false)
         cookies.set("token",null)
         cookies.set("userDetails", null)
-        cookies.set("workshop", null)
-        //  cookies.set("workshop", null)
+        cookies.remove('userinfo')
+        cookies.set("userinfo", {})
+        
         localStorage.clear();
         state.token=null;
         state.loggedIn=false;
-     state.userInfo=false;
+         state.userInfo=null;
        
        
     
