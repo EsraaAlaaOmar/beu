@@ -79,6 +79,10 @@ export const deleteAdmin=   createAsyncThunk ('admin/delete',  async(id ,thunkAP
         state.updated= false
         state.error= false
 
+      },
+      clearstate:(state)=>{
+        state.error= false
+
       }
 
     },

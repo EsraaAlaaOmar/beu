@@ -4,13 +4,14 @@ import {FiCheckSquare} from 'react-icons/fi'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose} from "react-icons/ai";
 import {ImCheckboxUnchecked} from 'react-icons/im'
-import {login} from '../../dashbord/store/authslice'
+import {login, clearstate} from '../../dashbord/store/authslice'
 import { useSelector, useDispatch } from 'react-redux';
 
 //formik
 import { Formik, Field, Form } from 'formik';
 // yup validation
 import * as yup from 'yup';
+import FlashMsg from '../Flashmsgs/FlashMsg';
 
 const Login = () => {
 
@@ -21,13 +22,17 @@ const Login = () => {
             password: yup.string().min(5,'password at least 5 characters').max(10, 'password max 10 characters'),
            
           });
-    
+     
           // end  yup 
-    const {userInfo} =useSelector((state)=> state.auth)
+    const {isLoading,error,userInfo} =useSelector((state)=> state.auth)
     const dispatch = useDispatch()
+    
+  // error flashmsg state
+  const[flashmsg,setFlashmsg] = useState(true)
+
     const[check,setCheck]=useState(false)
     const onSubmit= async( data )=> {
-        
+        setFlashmsg(true)
         dispatch( login({...data, remember:check}))
        
         // setShowAlert(true)
@@ -50,73 +55,89 @@ const Login = () => {
   }
 
     return (
-        <div className='log_box'>
-                <div className='title'>Login</div>
+      <>
+            {isLoading ? 
+    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+    :
+    
+    <div className='log_box'>
+    
+    {flashmsg && error && <FlashMsg 
+                      title={` ${Object.values(error)} !  `}
+                      img={'/images/msgIcons/error.svg'}
+                      setFlashmsg={setFlashmsg}
 
-                <Formik
-             initialValues={{
-                email: '',
-                password: '',
-               
-               
-               
-              }}
-            
-            
-              validationSchema={schema}
-              onSubmit ={(values)=>{
-                onSubmit(values);
-                console.log(values);
-             
-              }}
-             
-            
-           >
-            {({errors, touched,setFieldTouched,  handleSubmit,setFieldValue})=> (
-            <form onSubmit={(e)=>{e.preventDefault(); handleSubmit()}}  autoComplete="off">
-                {/* <input placeholder='@ email' type='email' />
-                <br/> */}
-                <div className='input-div'>
-                <Field type='email' placeholder='handel@example.com'  name="email" autoComplete="off"   />
-                       { touched.email && <div className='mark'>{errors.email ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'email')} /></span>: <FcCheckmark />}</div>}
-                       {errors.email && touched.email && <><div className='error-text'> {errors.email}</div></> }
-                </div>
-                <div className='input-div'>
-                <Field type='password' placeholder='Type your password'  name="password" autoComplete="off"/>
-                        {touched.password && <div className='mark'>{errors.password  ? <span className='validation-error'><AiOutlineClose  onClick={()=> removeError(setFieldValue,setFieldTouched,'password')}/></span>: <FcCheckmark />}</div>} 
-                        {errors.password && touched.password && <div className='error-text'> {errors.password}</div> }
-                        
-                </div>
-                <div className='action'>
-                   <span className='remember' onClick={()=>setCheck(!check)}>
-                       <span className='icon'>{ check ?<FiCheckSquare /> :<ImCheckboxUnchecked />}</span>
-                       Remember Me !
-                       </span> 
-                       <Link to='/log/forget'>
-                       <span className='oposite'>
-                       Forget Password !
-                       </span>
-                       </Link>
-                </div>
-              
-                <div className='log_privacy'>
-                By signing up, you agree to our <br/><Link to='/'><span> privacy policy <span> &#38;  </span> terms of conditions</span></Link>
-                </div>
-                
-                <input className='submit' type='submit' value='Login' />
-            
-                
+                      icontype='error-icon'
+              />}
+    <div className='title'>Login</div>
 
-            </form>
-            )}
-                </Formik>
-                {userInfo&&userInfo.is_staff && <Navigate to='/dashbord' />}
-            <div className='option'>
-                    <Link to='/log/sign'>
-                    Don't have Account ? Signup
-                    </Link>
-            </div>
+    <Formik
+ initialValues={{
+    email: '',
+    password: '',
+   
+   
+   
+  }}
+
+
+  validationSchema={schema}
+  onSubmit ={(values)=>{
+    onSubmit(values);
+    console.log(values);
+ 
+  }}
+ 
+
+>
+{({errors, touched,setFieldTouched,  handleSubmit,setFieldValue})=> (
+<form onSubmit={(e)=>{e.preventDefault(); handleSubmit()}}  autoComplete="off">
+    {/* <input placeholder='@ email' type='email' />
+    <br/> */}
+    <div className='input-div'>
+    <Field type='email' placeholder='handel@example.com'  name="email" autoComplete="off"   />
+           { touched.email && <div className='mark'>{errors.email ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'email')} /></span>: <FcCheckmark />}</div>}
+           {errors.email && touched.email && <><div className='error-text'> {errors.email}</div></> }
     </div>
+    <div className='input-div'>
+    <Field type='password' placeholder='Type your password'  name="password" autoComplete="off"/>
+            {touched.password && <div className='mark'>{errors.password  ? <span className='validation-error'><AiOutlineClose  onClick={()=> removeError(setFieldValue,setFieldTouched,'password')}/></span>: <FcCheckmark />}</div>} 
+            {errors.password && touched.password && <div className='error-text'> {errors.password}</div> }
+            
+    </div>
+    <div className='action'>
+       <span className='remember' onClick={()=>setCheck(!check)}>
+           <span className='icon'>{ check ?<FiCheckSquare /> :<ImCheckboxUnchecked />}</span>
+           Remember Me !
+           </span> 
+           <Link to='/log/forget'>
+           <span className='oposite'>
+           Forget Password !
+           </span>
+           </Link>
+    </div>
+  
+    <div className='log_privacy'>
+    By signing up, you agree to our <br/><Link to='/'><span> privacy policy <span> &#38;  </span> terms of conditions</span></Link>
+    </div>
+    
+    <input className='submit' type='submit' value='Login' />
+
+    
+
+</form>
+)}
+    </Formik>
+    {userInfo&&userInfo.is_staff && <Navigate to='/dashbord' />}
+<div className='option'>
+        <Link to='/log/sign'>
+        Don't have Account ? Signup
+        </Link>
+</div>
+</div>}
+      </>
+       
+          
     )
 }
 

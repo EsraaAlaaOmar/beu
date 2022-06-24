@@ -35,6 +35,7 @@ const Finance = ({setActiveIndex}) => {
   return (
     <>
        < Nav />
+     
        {isLoading ? 
         <div  className="box loading"> <img src='/images/loading.gif' /></div> 
         :
@@ -68,6 +69,7 @@ const Finance = ({setActiveIndex}) => {
         </Row>
        </div>
       }
+
     </>
    
   )
