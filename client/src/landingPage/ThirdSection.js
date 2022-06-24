@@ -8,7 +8,7 @@ const ThirdSection = () => {
              <Row>
                  <Col md={7}>
                     <div className='img'>
-                    <img  src='/images/Landingpage/c2.png' />
+                    <img  src='/images/landingpage/c2.png' />
                         <div className='box'></div>
 
                     </div>
