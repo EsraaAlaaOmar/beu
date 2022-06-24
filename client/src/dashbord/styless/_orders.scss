@@ -43,41 +43,7 @@
                 color: #a9a9a9;
             }
         }
-        .single-product{
-            width:100%;
-            display: inline-block;
-           margin-top: -70px;
-           max-height: 600px;
-           overflow: auto;
-        
-             table{
-             
-                .close{
-                    position: absolute;
-                    right: -35px;
-                    top: 0px;
-                    font-size: 20px;
-                    cursor: pointer;
-                    &:hover{
-                        color: #a9a9a9;
-                    }
-                
-                }
-                th{
-                    color: #a9a9a9;
-                }
-             }
-            span{
-            
-                display: inline-block;
-                margin: auto;
-                width: 25%;
-                overflow: hidden;
-            }
-            .color{
-             width:22px !important;
-            }
-         }
+       
         
         @media screen and (max-width: 1210px)  {
             width:100%;

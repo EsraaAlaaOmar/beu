@@ -42,7 +42,7 @@ const OrderProducts = () => {
                <Link to={link} >    <span className='close'> <IoCloseCircleOutline/> </span></Link> 
                         
                  <h4>Products for Order {orderId} </h4>
-                    <table className='Table' style={{  border: 'solid 0.5px #272D3B33'}} >
+                    <table className='Table' style={{  borderTop: 'solid 0.5px #272D3B33', borderBottom: 'solid 0.5px #272D3B33', overflow:'auto' }} >
                  
                 <thead className="head">
                 <th>Image</th>

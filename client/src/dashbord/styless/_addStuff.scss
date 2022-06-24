@@ -30,7 +30,56 @@
         max-width:90vw;
             /* width */
 
-     
+            .table-box{
+                background-color:#fff;
+                width: 95%;
+                min-height: 390px;
+                margin-top: 39px;
+                box-shadow: 0px 3px 6px #272D3B33;
+                border-radius: 20px;
+                .show-products{
+                    font-size: 18px;
+                    cursor: pointer;
+                    color: #000;
+                    &:hover{
+                        color: #a9a9a9;
+                    }
+                }
+              table{
+               overflow: hidden;
+                tr{
+                    border-top: solid 0.5px #272D3B33;
+                   
+                }
+                th, td{ 
+                  padding: 0 !important;        
+                }
+              }
+                
+                @media screen and (max-width: 1210px)  {
+                    width:100%;
+                   
+                    overflow-x: scroll;
+        
+                    
+                }
+        
+                .big-sizes{
+                    @media screen and (max-width: 500px)  {
+                        display:none            
+                    }
+        
+                }
+                .small-sizes{
+                    display:none;
+                    @media screen and (max-width: 500px)  {
+                        display:block;            
+                    }
+        
+                }
+            
+               
+            }
 }
 h4{
     font-size: 26px;
@@ -232,52 +281,7 @@ h4{
         color: #a9a9a9 !important;
     }
 
-     .table-box{
-        background-color:#fff;
-        width: 95%;
-        min-height: 390px;
-        margin-top: 39px;
-        box-shadow: 0px 3px 6px #272D3B33;
-        border-radius: 20px;
-        .show-products{
-            font-size: 18px;
-            cursor: pointer;
-            color: #000;
-            &:hover{
-                color: #a9a9a9;
-            }
-        }
-      table{
-    
-        tr{
-            border-top: solid 0.5px #272D3B33;
-        }
-      }
-        
-        @media screen and (max-width: 1210px)  {
-            width:100%;
-           
-            overflow-x: scroll;
-
-            
-        }
-
-        .big-sizes{
-            @media screen and (max-width: 500px)  {
-                display:none            
-            }
-
-        }
-        .small-sizes{
-            display:none;
-            @media screen and (max-width: 500px)  {
-                display:block;            
-            }
-
-        }
-    
-       
-    }
+  
 
 }
 
