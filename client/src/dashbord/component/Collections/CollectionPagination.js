@@ -48,7 +48,9 @@ const CollectionPagination = ({maplist, deleteClicked}) => {
             <tr className="head">
                 <th>ID</th>
                 <th>Collection</th>
-                <th>Products</th>
+                <th>
+                  {/* Products */}
+                  </th>
                 <th></th>
                 <th></th>
                 <th></th>

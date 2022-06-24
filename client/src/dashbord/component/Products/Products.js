@@ -31,7 +31,7 @@ const Products = ({setActiveIndex}) => {
 
   },[dispatch, prodectAdded,productupdated])
   
-  const renderedProducts=  products.map((product)=>{
+  const renderedProducts= products.length>0 ? products.map((product)=>{
      let sizes = product.size? product.size.map(s=>{return( <span key={s.id}>   &nbsp; {s.size} </span>)}) : product.sizes.map(s=>{return( <>  &nbsp; {s.size} </>)})
     console.log(product.size)
     return(
@@ -40,7 +40,7 @@ const Products = ({setActiveIndex}) => {
   </Col>
     )
 
-  })
+  }): <div>No Products </div>
   
   return (
     <>

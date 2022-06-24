@@ -101,7 +101,7 @@ const EditeAdmin = ({setFlashmsg}) => {
                <div className='input-div'>
                    <label> User Email </label>
                    < div className='input-field  '>
-                   <Field    placeholder='Stuff Name' name='email'   />
+                   <Field    placeholder='Stuff Email' name='email'   />
                    { touched.email && <div className='mark'>{errors.email ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'email')} /></span>: <FcCheckmark />}</div>}
                </div>
                {errors.email && touched.email && <><div className='error-text'> {errors.email}</div></> } 

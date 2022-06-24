@@ -1,9 +1,9 @@
-import React,{useEffect} from 'react'
+import React,{useEffect, useState} from 'react'
 import { ReactComponent as Logo } from '../../images/contact.svg';
 import MessagePagination from './MessagePagination';
 import { useSelector, useDispatch } from 'react-redux';
 import{getMessages} from '../../store/messagesSlice'
-import useres from '../../data/users.json'
+import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
 import { Link } from 'react-router-dom';
 import Nav from '../reusable/Nav';
 const Messages = ({setActiveIndex}) => {
@@ -16,6 +16,10 @@ const Messages = ({setActiveIndex}) => {
   
 
   },[dispatch])
+   // error flashmsg state
+   const[flashmsg,setFlashmsg] = useState(true)
+   //info flashmsg
+  const[infoflashmsg,setInfoFlashmsg] = useState(false)
   return (
     <>
        < Nav />
@@ -23,13 +27,26 @@ const Messages = ({setActiveIndex}) => {
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :
      <div className="box"> 
+        {flashmsg && error && <FlashMsg 
+                      title={` ${Object.values(error)} !  `}
+                      img={'/images/msgIcons/error.svg'}
+                      setFlashmsg={setFlashmsg}
+
+                      icontype='error-icon'
+              />}
+      {infoflashmsg && <FlashMsg 
+                title="Still Under Development !"
+                img={'/images/msgIcons/info.svg'}
+                setFlashmsg={setInfoFlashmsg}
+                icontype='info-icon'
+                />}
        {error&& <div className='error-notify'>{error}</div>}  
         <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
         <span className="title-text"> User Messages</span>
         <div className="table-box no-butons">
           
            
-            <MessagePagination maplist={messagesList} />
+            <MessagePagination maplist={messagesList}  setInfoFlashmsg={setInfoFlashmsg}/>
 
 
     </div>

@@ -48,7 +48,7 @@ const[activeIndex,setActiveIndex] = useState(0)
 
       <Sidebar showtoggle={showSide} active={activeIndex}/>
 <Routes>
-     <Route path="/" element={<Dashbord setActiveIndex={()=>setActiveIndex(0)} />} exact /> 
+     <Route path="/*" element={<Dashbord setActiveIndex={()=>setActiveIndex(0)} />} exact /> 
      <Route path="/orders/*" element={<Orders setActiveIndex={()=>setActiveIndex(1)} />} exact />
      <Route path="/collections/*" element={<Collections setActiveIndex={()=>setActiveIndex(2)} />} exact />
      <Route path="/offersproducts" element={<Offersproducts setActiveIndex={()=>setActiveIndex(3)}/>} exact />

@@ -1,8 +1,8 @@
 import React,{useState, useEffect} from 'react'
-
+ 
 import ReactPaginate from 'react-paginate';
 import TableRow from './TableRow';
-const MessagePagination = ({maplist}) => {
+const MessagePagination = ({maplist, setInfoFlashmsg}) => {
     const [state, setState] =useState({
         list: maplist,
         perPage: 4,
@@ -15,20 +15,21 @@ const MessagePagination = ({maplist}) => {
         let page = event.selected;
         setState({page})
        }
+    //info flashmsg state
  
+
     const {page,  pages} = state;
        let items = state.list.slice(page * perPage, (page + 1) * perPage);
-       const users = maplist.map((user)=>{
+       const users =maplist.length>0 ? maplist.map((user)=>{
         return (
         
               
-          <TableRow user= {user}/>
+          <TableRow user= {user} setInfoFlashmsg={setInfoFlashmsg}/>
          
        
     
         )
-    })
-    ||  ''
+    })  : 'No messages found'
 
     return (
         <>

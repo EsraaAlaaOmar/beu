@@ -18,6 +18,8 @@ import Nav from '../reusable/Nav';
 import { useDispatch } from 'react-redux';
 import {getOrders} from '../../store/orderSlice'
 import moment from 'moment'
+import { Route, Routes } from 'react-router-dom';
+import OrderProducts from '../reusable/OrderProducts';
 // const StyledPoint = styled.circle`
 //   fill: ${(props) => props.color};
 // `;
@@ -48,7 +50,7 @@ const Dashbord = ({setActiveIndex}) => {
      
      
       {isLoading ? 
-    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+      <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :
       <div className="box dashbord">
 
@@ -108,7 +110,11 @@ const Dashbord = ({setActiveIndex}) => {
       </div>
 }
     
-    
+<Routes>
+                <Route path="/orderproduct" element={<OrderProducts />} exact /> 
+                
+
+        </Routes>
      
     </> 
   )

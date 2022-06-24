@@ -88,7 +88,7 @@ const AddUser = ({setFlashmsg}) => {
         <div className='input-div'>
             <label> User Name</label>
             < div className='input-field  '>
-                <Field    placeholder='Stuff Name' name='name'   />
+                <Field    placeholder='User Name' name='name'   />
                 { touched.name && <div className='mark'>{errors.name ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'name')} /></span>: <FcCheckmark />}</div>}
             </div>
             {errors.name && touched.name && <><div className='error-text'> {errors.name}</div></> } 
@@ -98,7 +98,7 @@ const AddUser = ({setFlashmsg}) => {
         <div className='input-div'>
             <label> User Email </label>
             < div className='input-field  '>
-                <Field    placeholder='Stuff Name' name='email'   />
+                <Field    placeholder='User Email' name='email'   />
                 { touched.email && <div className='mark'>{errors.email ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'email')} /></span>: <FcCheckmark />}</div>}
             </div>
             {errors.email && touched.email && <><div className='error-text'> {errors.email}</div></> } 

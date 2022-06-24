@@ -22,7 +22,7 @@ function useOutsideAlerter(ref,setShowlist) {
 }
 
 
-const TableRow = ({user}) => {
+const TableRow = ({user, setInfoFlashmsg}) => {
     const [showlist,setShowlist] =useState(false)
 
    // close list when click any where
@@ -45,8 +45,8 @@ const TableRow = ({user}) => {
     
     <td>
       { showlist && <div className='hiddenlist' ref={wrapperRef}>
-            <div className='border-inlist'>Add Response</div>
-            <div className='delete-inlist'>Delete</div>
+            <div className='border-inlist' onClick={() =>setInfoFlashmsg(true)}>Add Response</div>
+            <div className='delete-inlist'  onClick={() =>setInfoFlashmsg(true)}>Delete</div>
         </div>}
         <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span></td>
 </tr>

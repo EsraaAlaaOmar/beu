@@ -10,6 +10,7 @@ import {getOrders} from '../../store/orderSlice'
 import { useSelector, useDispatch } from 'react-redux';
 import OrderRow from './OrderRow';
 import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
+import OrderProducts from '../reusable/OrderProducts';
 const Orders = ({setActiveIndex}) => {
   setActiveIndex()
   const dispatch = useDispatch()
@@ -82,6 +83,8 @@ const Orders = ({setActiveIndex}) => {
         </div>
         <Routes>
                 <Route path="/add" element={<AddOrder />} exact /> 
+                <Route path="/products" element={<OrderProducts />} exact /> 
+
         </Routes>
     </div>
     }

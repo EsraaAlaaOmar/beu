@@ -66,7 +66,7 @@ const Navbar = () => {
             <div className='right'>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
-                <img src='/images/Landingpage/en.png' alt='Lang Icon' /> &nbsp;ENG
+                <img src='/images/Landingpage/En.png' alt='Lang Icon' /> &nbsp;ENG
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>

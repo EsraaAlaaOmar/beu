@@ -9,14 +9,19 @@ const OffersProducts = () => {
     let location = useLocation()
     
   let products = location.state.offer.products
-  let renderedProducts = products.map((product)=>{
+  let renderedProducts =products.length > 0 ? products.map((product)=>{
     return (
       <Col md={6} lg={4} >
           <Box product={product} viewProducts={true} deleteFuction={editOffer} offer_id={location.state.offer.id}/>
         
         </Col>
     )
-  }) 
+  }) :<>
+  <br/>
+  &nbsp;
+ 
+  <h5>&nbsp; No Products Selected for This offer </h5>
+  </>
    return(
      <>
         <Nav/>
