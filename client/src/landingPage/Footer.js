@@ -9,7 +9,7 @@ const Footer = () => {
     <Row>
       <Col md={3}>
       <div className='logo_section'>
-     <img  src='/images/landingpage/logo.png' />
+     <img  src='/images/Landingpage/logo.png' />
      <div className='text'>
           <ShowMoreText
                       /* Default options */

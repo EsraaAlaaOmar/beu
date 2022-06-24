@@ -6,7 +6,7 @@ const FirstSection = () => {
         <div className='firstsection'>
             <Row>
                 <Col lg={6}>
-                   <img  src='/images/landingpage/imsection1.png' />
+                   <img  src='/images/Landingpage/imsection1.png' />
                 </Col>
                 <Col lg={6}>
                 <div className='right_div' >
