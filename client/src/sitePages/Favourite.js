@@ -1,10 +1,13 @@
 import React from 'react'
 import { Row,Col, Dropdown, DropdownButton } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import {MdOutlineChevronLeft} from 'react-icons/md'
+import {MdOutlineChevronLeft,MdOutlineChevronRight} from 'react-icons/md'
 import Product from '../components/Product'
+import { useState } from 'react'
 
 const Favourite = () => {
+
+  const [filterItems, setFilterItems] = useState(false)
     return (
         <div className='fav'>
            <div className='title'>
@@ -14,9 +17,9 @@ const Favourite = () => {
            </div>
            <Row>
               <Col md={4} lg={3}>
-                    <div className='filter' onClick={()=>document.getElementById('dropdown-basic-button').click()}>
+                    <div className='filter'>
                         
-                        filter <MdOutlineChevronLeft />
+                     <span  onClick={()=>setFilterItems(!filterItems)}>   filter{filterItems? <MdOutlineChevronLeft /> : <MdOutlineChevronRight />}</span>
                     </div>
                   
                     
@@ -25,11 +28,8 @@ const Favourite = () => {
          
            <div className='products'>
           <Row>
-               <Col md={4} lg={3} > 
-                  <DropdownButton id="dropdown-basic-button" >
-                        <div>esraa</div>
-                        <span>alaa</span>
-                      </DropdownButton>
+                <Col>
+                 esraa ITEMS
                 </Col>
                 <Col md={4} lg={3} > 
                   <Link to='/product'>

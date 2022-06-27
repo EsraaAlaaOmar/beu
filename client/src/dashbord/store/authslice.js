@@ -168,7 +168,7 @@ const authSlice = createSlice({
            state.userInfo=action.payload
            let remember=action.payload.remember
           let date= new Date()
-          let expire =remember? new Date(new Date().setDate(date.getDate()+6)) : new Date(new Date().setDate(date.getDate()+1))
+          let expire =remember? new Date(new Date().setDate(date.getDate()+6)) : new Date(new Date().setDate(date.getDate()+1)) 
          console.log(action.payload)
          cookies.remove("login")
          cookies.remove("token")
