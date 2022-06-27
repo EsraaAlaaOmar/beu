@@ -48,7 +48,7 @@ useOutsideAlerter(wrapperRef, navigate,collectionId);
               </Row> 
                
             </div>
-            {console.log(product&&product.galleries)}
+         
       </div>
    </div>)
 
