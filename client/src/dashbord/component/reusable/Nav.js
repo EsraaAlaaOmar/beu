@@ -41,10 +41,7 @@ const Nav = ({first_link,first_link_url='/', second_link, second_link_url='/'}) 
   <div className="navbar">
 <div>{renderedLinks}</div>
  <div className="oposite">
-<div className="search-div">
-<span><FiSearch /></span>
-<input type="text" placeholder='Search' />
-</div>
+
 <div className='admin'>
 <span className="nk">
    {firstletters}
