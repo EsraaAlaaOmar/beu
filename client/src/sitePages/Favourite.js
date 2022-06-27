@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import {MdOutlineChevronLeft,MdOutlineChevronRight} from 'react-icons/md'
 import Product from '../components/Product'
 import { useState } from 'react'
+import FilterProducts from './FilterProducts'
 
 const Favourite = () => {
 
@@ -28,9 +29,12 @@ const Favourite = () => {
          
            <div className='products'>
           <Row>
-                <Col>
-                 esraa ITEMS
+              {filterItems && 
+                <Col md={4} lg={3}>
+                
+                  <FilterProducts />
                 </Col>
+                }
                 <Col md={4} lg={3} > 
                   <Link to='/product'>
                       <Product  fav  productid={1}  img='/images/products/4.png'/>

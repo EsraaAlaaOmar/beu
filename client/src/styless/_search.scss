@@ -32,4 +32,28 @@
 
    }
 
-}}
+}
+.filter-products{
+    .section{
+        width: 80%;
+        margin:auto;
+        .right{
+            float: right;
+        }
+        .toggle{
+            border-bottom: 1px solid #b8b8b8;
+            padding:10px 5px;
+            
+        }
+        .selectLine{
+            margin:5px 0;
+            font-size: 18px;
+            input{
+                margin-right:5px;
+            }
+        }
+    }
+}
+
+
+}
