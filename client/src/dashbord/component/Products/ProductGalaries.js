@@ -32,7 +32,7 @@ const ProductGalaries = ({collectionId}) => {
     const {products} =useSelector((state)=>state.product)
     const product = products.find(product=>product.id==productId)
 
-    const renderedGalaries= product.galleries.map((gallary)=>
+    const renderedGalaries= product&&product.galleries.map((gallary)=>
  {   return(
      <Col md={6}> <SingleGalaryImage galary={gallary} productId={productId} /></Col>
     )})
@@ -48,7 +48,7 @@ useOutsideAlerter(wrapperRef, navigate,collectionId);
               </Row> 
                
             </div>
-            {console.log(product.galleries)}
+            {console.log(product&&product.galleries)}
       </div>
    </div>)
 
