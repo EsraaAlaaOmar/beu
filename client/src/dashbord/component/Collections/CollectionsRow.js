@@ -50,6 +50,7 @@ const CollectionsRow = ({collection,deleteClicked}) => {
            { showlist && <div className='hiddenlist' ref={wrapperRef}>
           
                 <Link to={`/dashbord/products/${collection.id}`}> <div className='border-inlist' >View Products</div> </Link>
+                <Link to={`/dashbord/brands/${collection.id}`}> <div className='border-inlist' >View Brands</div> </Link>
                 <div className='delete-inlist' onClick={()=>deleteClicked({category_id:collection.id,title:collection.title})}>Delete</div>
             </div>}
             <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span></td>
