@@ -27,6 +27,7 @@ import FeedBack from './component/feedback/FeedBack';
 import QuestionswithAnswers from './component/questions and answers/QuestionswithAnswers';
 import Sell from './component/Sell/Sell';
 import OffersProducts from './component/offers/OffersProducts';
+import Brands from './component/Collections/Brands';
 function App() {
 const [showSide,setShowSide]=useState(false)
 const[activeIndex,setActiveIndex] = useState(0)
@@ -51,6 +52,7 @@ const[activeIndex,setActiveIndex] = useState(0)
      <Route path="/*" element={<Dashbord setActiveIndex={()=>setActiveIndex(0)} />} exact /> 
      <Route path="/orders/*" element={<Orders setActiveIndex={()=>setActiveIndex(1)} />} exact />
      <Route path="/collections/*" element={<Collections setActiveIndex={()=>setActiveIndex(2)} />} exact />
+     <Route path="/brands/:id/*" element={<Brands setActiveIndex={()=>setActiveIndex(2)} />} exact />
      <Route path="/offersproducts" element={<Offersproducts setActiveIndex={()=>setActiveIndex(3)}/>} exact />
      <Route path="/users/*" element={<Users setActiveIndex={()=>setActiveIndex(5)} />} exact />
      <Route path="/stuff/*" element={<Stuff setActiveIndex={()=>setActiveIndex(6)} />} exact />

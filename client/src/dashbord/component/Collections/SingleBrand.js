@@ -15,7 +15,7 @@ const SingleBrand = () => {
       <div className='actions'>
          { <span>View Products</span>}
  
-        {<Link to='/'> <span>Edit </span></Link>}
+         <span>Edit </span>
           <span >Delete</span>
 
       </div>
