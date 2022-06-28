@@ -1,11 +1,11 @@
 .clientSide{
     .fav{
-    padding-top: 100px;
+    padding-top: 50px;
  
    
     .title{
         margin: auto;
-        margin-bottom: 50px;
+       
         font-size: 26px;
         font-family: Adobe Arabic;
         font-weight: bold;
@@ -18,8 +18,11 @@
         cursor: pointer;
         width: 90%;
         margin:auto;
+        margin-top: -65px;
         max-width: 500px;
         padding-left: 16px;
+        font-weight: bold;
+        font-size: 18px;
     }
   
     .recommended{

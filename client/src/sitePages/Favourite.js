@@ -1,16 +1,30 @@
 import React from 'react'
 import { Row,Col, Dropdown, DropdownButton } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import {MdOutlineChevronLeft,MdOutlineChevronRight} from 'react-icons/md'
-import Product from '../components/Product'
+import {MdOutlineChevronLeft,MdOutlineChevronRight} from 'react-icons/md' 
+import {BsSearch} from 'react-icons/bs'
+import {AiFillCloseCircle} from 'react-icons/ai'
 import { useState } from 'react'
 import FilterProducts from './FilterProducts'
+import Product from '../components/Product'
 
 const Favourite = () => {
 
   const [filterItems, setFilterItems] = useState(false)
     return (
         <div className='fav'>
+          <div className='collections'>
+            <span className='collection-name'> ALL</span>
+            <span className='collection-name'> ABAYAS</span>
+            <span className='collection-name'> BAGS</span>
+            <span className='collection-name'> SHOES</span>
+            <span className='collection-name'> ACCESSORIES</span>
+            <span className='collection-name'> JEWELRY</span>
+            <span className='collection-name'> HOME DECOR</span>
+            
+            <input className='search' placeholder='search any item ..' /> 
+          </div>
+          
            <div className='title'>
             
            FAVOURITE ITEMS
@@ -20,11 +34,17 @@ const Favourite = () => {
               <Col md={4} lg={3}>
                     <div className='filter'>
                         
-                     <span  onClick={()=>setFilterItems(!filterItems)}>   filter{filterItems? <MdOutlineChevronLeft /> : <MdOutlineChevronRight />}</span>
-                    </div>
-                  
-                    
+                     <span  onClick={()=>setFilterItems(!filterItems)}>   Filter By &nbsp;{filterItems? <MdOutlineChevronRight />:<MdOutlineChevronLeft />  }</span>
+                    </div>                    
               </Col>
+             {filterItems&& <Col md={8} lg={8}>
+                <div className='category'>
+                       category  <span className='close'> <AiFillCloseCircle /></span>
+                </div>
+                <div className='category'>
+                       category  <span className='close'> <AiFillCloseCircle /></span>
+                </div>
+              </Col>}
            </Row>
          
            <div className='products'>
