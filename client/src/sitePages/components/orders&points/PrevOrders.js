@@ -33,7 +33,7 @@ const PrevOrders = () => {
         </div>
         <div className='status'>
           <div>Status : Recieved</div>
-          <Link to='/return'><div className='return'>Return</div> </Link>
+          <Link to='/log/returnorder'><div className='return'>Return</div> </Link>
           <div className='date'>1/1/2022</div>
         </div>
       </div>

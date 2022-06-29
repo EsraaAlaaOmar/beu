@@ -15,7 +15,7 @@
         margin: auto;
      
         width: 669px;
-        margin-top: 100px;
+        margin-top: 75px;
         background-color: #FDF3ED;
         padding:23px 0;
         padding-bottom: 35px;
@@ -187,6 +187,25 @@
                 color: #000;
                 text-decoration: underline;
                 margin-left: 5px;
+            }
+        }
+        .polices{
+            max-width: 90%;  
+            display: block;
+            margin:15px  auto;
+            margin-bottom: 0;
+            
+            text-align: center;
+            .link{
+                color:#C94D20;
+                text-decoration: underline;
+                
+            }
+            .icon{
+                color: #C94D20;
+                margin-right: 5px;
+                vertical-align: text-bottom;
+                cursor: pointer;
             }
         }
     }

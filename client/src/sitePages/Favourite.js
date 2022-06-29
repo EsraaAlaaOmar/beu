@@ -7,12 +7,15 @@ import {AiFillCloseCircle} from 'react-icons/ai'
 import { useState } from 'react'
 import FilterProducts from './FilterProducts'
 import Product from '../components/Product'
+import Navbar from '../landingPage/Navbar'
 
 const Favourite = () => {
 
   const [filterItems, setFilterItems] = useState(false)
     return (
-        <div className='fav'>
+      <>
+         <Navbar />
+         <div className='fav'>
           <div className='collections'>
             <span className='collection-name'> ALL</span>
             <span className='collection-name'> ABAYAS</span>
@@ -22,7 +25,10 @@ const Favourite = () => {
             <span className='collection-name'> JEWELRY</span>
             <span className='collection-name'> HOME DECOR</span>
             
-            <input className='search' placeholder='search any item ..' /> 
+        <span className='search'>
+             <input  placeholder='search any item ..' />   
+             <span className='icon'> <BsSearch /> </span>
+        </span>   
           </div>
           
            <div className='title'>
@@ -133,10 +139,11 @@ const Favourite = () => {
             </Row>
     
           </div>
-          <button className='load_more'>Load More</button>
-
+        
           </div>
         </div>
+      </>
+       
     )
 }
 

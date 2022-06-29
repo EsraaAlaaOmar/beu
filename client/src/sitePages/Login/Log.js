@@ -15,6 +15,8 @@ import PrivacyPolicy from '../components/staticPages/PrivacyPolicy'
 import LearnMore from '../components/staticPages/LearnMore'
 import Contactus from '../components/staticPages/Contactus'
 import TermsOfConditions from '../components/staticPages/TermsOfConditions'
+import ReturnForm from '../ReturnForm'
+
 const Log = () => {
     return (
         <>
@@ -35,6 +37,7 @@ const Log = () => {
             <Route path="/learnmore" element={<LearnMore />} exact />
             <Route path="/contactus" element={<Contactus />} exact />
             <Route path="/terms" element={<TermsOfConditions />} exact />
+            <Route path="/returnorder" element={<ReturnForm />} exact />
             
             </Routes>
         </div>

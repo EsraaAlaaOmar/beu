@@ -1,5 +1,5 @@
-.clientSide{.search{
-
+.clientSide{.search-page{
+margin-top: 50px;
     .search_input{
         position: relative;
         width: 40%;
@@ -46,25 +46,39 @@
 //collections names 
 .collections{
  padding-bottom:75px;
- 
+ padding-left: 10px;
  .collection-name{
     padding:  25px;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     font-style: italic;
+    cursor: pointer;
  }
 
 }
 .search{
     float: right;
-    background-color: #fff;
-    box-shadow: 0px 3px 6px #0000001C;
-    width: 380px;
-    height: 62px;
-    margin-right: 25px;
-    margin-top: -15px;
-    padding: 20px;
-    color: #0000001C !important;
+    // position: relative;
+    
+    input{
+        background-color: #fff;
+        box-shadow: 0px 3px 6px #0000001C;
+        width: 380px;
+        height: 62px;
+        margin-right: 25px;
+        margin-top: -15px;
+        padding: 20px;
+        color: #0000001C !important;
+       
+    }
+    ::placeholder{
+        color: rgb(158, 158, 158);
+    }
+    .icon{
+        position: absolute;
+        right: 40px ;
+        color: #C7AAA8;
+    }
  
 }
 .category{
