@@ -4,7 +4,10 @@ import { BsFillHeartFill, BsHeart, BsSearch } from 'react-icons/bs'
 
 import {FiShoppingCart} from 'react-icons/fi'
 import {MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown} from 'react-icons/md'
+import { Route, Routes } from 'react-router-dom'
 import Navbar from '../landingPage/Navbar'
+import Call from './components/Call'
+import ContactSection from './components/ContactSection'
 import ProductTitleBox from './ProductTitleBox'
 
 const ProductPage = () => {
@@ -133,9 +136,13 @@ const ProductPage = () => {
 
              </Row>
              </div>
-                
-           </div>
+             <ContactSection />
         
+           </div>
+           <Routes>
+           <Route path="/call" element={<Call />} exact />
+           </Routes>
+         
         </>
 
     )

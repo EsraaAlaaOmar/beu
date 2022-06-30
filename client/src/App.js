@@ -23,7 +23,7 @@ function App() {
           <Route path="/log/*" element={<Log />} exact />
           <Route path="/search" element={<Search />} exact />
           <Route path="/favourite" element={<Favourite />} exact />
-          <Route path="/product" element={<ProductPage />} exact />
+          <Route path="/product/*" element={<ProductPage />} exact />
           <Route path="/profile/*" element={<Profile />} exact />
           <Route path="/card" element={<Card />} exact />
           <Route path="/category" element={<Category />} exact />
