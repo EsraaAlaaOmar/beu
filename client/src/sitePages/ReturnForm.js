@@ -10,7 +10,7 @@ const ReturnForm = () => {
   return <div className='log_box'>
             <div className='title'>
                <div className='line right'></div>
-               RETURN REQUEST
+               Return Request
                <div className='line'></div>
            </div>
            <form>
