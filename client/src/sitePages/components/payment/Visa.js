@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {FiCheckSquare} from 'react-icons/fi'
 import {ImCheckboxUnchecked} from 'react-icons/im'
+import ContactSection from '../ContactSection';
 
 
 const Visa = () => {
@@ -44,6 +45,7 @@ const Visa = () => {
    </div>
    <input  className='confrim' type='submit' value='Confirm Checkout' />
    </form>
+   <ContactSection />
   </div>;
 };
 

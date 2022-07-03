@@ -7,10 +7,10 @@ import Search from './sitePages/Search';
 import Favourite from './sitePages/Favourite';
 import ProductPage from './sitePages/ProductPage';
 import Profile from './sitePages/Profile';
-import Card from './sitePages/Card';
 import Category from './sitePages/Category';
 import Submit from './sitePages/Submit';
-import Payment from './sitePages/components/staticPages/payment/Payment';
+import Payment from './sitePages/components/payment/Payment';
+import Cart from './sitePages/Cart/Cart';
 // import Dashbord from './dashbord/App'
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
           <Route path="/favourite" element={<Favourite />} exact />
           <Route path="/product/*" element={<ProductPage />} exact />
           <Route path="/profile/*" element={<Profile />} exact />
-          <Route path="/card" element={<Card />} exact />
+          <Route path="/Cart" element={<Cart />} exact />
           <Route path="/category" element={<Category />} exact />
           <Route path="/pay/*" element={<Payment />} exact />
           <Route path="/submitsuccess" element={<Submit title='Submitted Successfully' />} exact />

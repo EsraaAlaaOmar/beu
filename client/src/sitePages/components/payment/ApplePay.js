@@ -1,6 +1,7 @@
 import React from 'react';
 import {BsApple} from 'react-icons/bs'
 import { Link } from 'react-router-dom';
+import ContactSection from '../ContactSection';
 
 const ApplePay = () => {
   return <div>
@@ -13,7 +14,8 @@ const ApplePay = () => {
      <div className='cost'>
    Total Cost : 300 $
    </div>
-   <button><span> <BsApple /> </span>Confirm Checkout with Apple-pay</button>  
+   <button><span> <BsApple /> </span>Confirm Checkout with Apple-pay</button> 
+   <ContactSection/> 
   </div>;
 };
 

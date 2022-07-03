@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {FiCheckSquare} from 'react-icons/fi'
 import {ImCheckboxUnchecked} from 'react-icons/im'
 import {IoIosCheckmarkCircle} from 'react-icons/io'
+import ContactSection from '../ContactSection';
 
 const PayPal = () => {
 const[check,setCheck]=useState(true)
@@ -35,7 +36,7 @@ Total Cost : 300 $
 </div>
 <input  className='confrim' type='submit' value='Confirm Checkout' />
 </form>
-     
+     <ContactSection />
   </div>;
 };
 
