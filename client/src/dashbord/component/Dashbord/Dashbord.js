@@ -95,7 +95,7 @@ const Dashbord = ({setActiveIndex}) => {
       
           </Col>
           <Col sm={12} lg={4}>
-          {orderList.length>0 && <Natural orderList={orderList}/>}
+          {/* {orderList.length>0 && <Natural orderList={orderList}/>} */}
           <Orders />
           <MonthlyIncome />
           </Col>
