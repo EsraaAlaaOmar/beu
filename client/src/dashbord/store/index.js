@@ -17,6 +17,7 @@ import feedback from './feedbackSlice'
 import question from './questionSlice'
 import landPage from './LandingPageSlice'
 import orders from './orderSlice'
+import brand from './brandSlice'
 export default   configureStore({
   reducer: {
       auth,
@@ -36,7 +37,8 @@ export default   configureStore({
       feedback,
       question, 
       landPage, 
-      orders
+      orders,
+      brand
 
   },
 })

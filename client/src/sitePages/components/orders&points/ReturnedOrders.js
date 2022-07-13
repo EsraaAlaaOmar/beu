@@ -9,7 +9,7 @@ const ReturnedOrders = () => {
       <Link to='/profile/'>
             <div className='section '>
             <span>1</span> Current
-            </div>
+            </div> 
       </Link>
       <Link to='/profile/prev'>
             <div className='section '>

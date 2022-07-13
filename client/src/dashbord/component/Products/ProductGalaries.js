@@ -23,7 +23,7 @@ function useOutsideAlerter(ref,navigate,id) {
   }}, [ref]);
 }
 
-const ProductGalaries = ({collectionId}) => {
+const ProductGalaries = ({brandId}) => {
   let navigate= useNavigate()
     const location = useLocation()
     const dispatch = useDispatch()
@@ -38,7 +38,7 @@ const ProductGalaries = ({collectionId}) => {
     )})
     //use Ref func 
 const wrapperRef = useRef(null);
-useOutsideAlerter(wrapperRef, navigate,collectionId);
+useOutsideAlerter(wrapperRef, navigate,brandId);
   return (
     <div className='addpage'>
       <div className='opacity'>

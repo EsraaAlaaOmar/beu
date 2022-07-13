@@ -1,21 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const SingleBrand = () => {
+const SingleBrand = ({brand}) => {
   return (
     <div className='box_component'>
     <img
-     src={`https://img.freepik.com/free-vector/brand-word-lettering-typography-design-illustration-with-line-icons_9233-177.jpg?w=996`}
+     src={brand.image}
       />
       <div className='box-title'>
-      title
+      {brand.title}
       </div>
  
       
       <div className='actions'>
-         { <span>View Products</span>}
+       <Link to={`/dashbord/products/${brand.id}`}> { <span>View Products</span>} </Link> 
  
-         <span>Edit </span>
+         <Link to={`/dashbord/brands/1/edite`}>   <span>Edit </span> </Link>
           <span >Delete</span>
 
       </div>

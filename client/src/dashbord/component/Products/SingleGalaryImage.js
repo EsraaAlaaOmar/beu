@@ -18,10 +18,10 @@ const SingleGalaryImage = ({galary,productId}) => {
     console.log(gallary)
   return (
     <div className='box_component single-galary-image'>
-        <img src={`https://thebeauwow.me/${imageUrl}`} />
+        <img src={imageUrl}/>
         <span className="color" style={{backgroundColor:color_hex}}></span>
         <span>priority :{priority}</span>
-        <div className='changeClick' onClick={()=>setChange(!change)}>Change galary data </div>
+        <div className='changeClick' onClick={()=>setChange(!change)}>{change? 'hide change': 'Change' } galary data </div>
        {change&&<div className='change'> 
             <input type="file"   name={image}  onChange={(e)=>imgChange(e)}/>
             <input className="inline-block" type="color" name={color_hex}  onChange={(e)=>onChange(e)}/>

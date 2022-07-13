@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 let formData = new FormData(); 
 
-export const getProducts = createAsyncThunk ('products/get',  async(collectionId ,thunkAPI) =>{
+export const getProducts = createAsyncThunk ('products/get',  async(brandId ,thunkAPI) =>{
   const {rejectWithValue , getState} = thunkAPI
 ///................................................................
 
@@ -10,7 +10,7 @@ export const getProducts = createAsyncThunk ('products/get',  async(collectionId
 
 try{
   const token= getState().auth.token
-  let res = await axios.get(`https://thebeauwow.me/api/v1/admin/category/detail/${collectionId}/`,{
+  let res = await axios.get(`https://thebeauwow.me/api/v1/brand/detail/${brandId}/`,{
   headers: {
 'Content-Type': 'application/json', 
  'Authorization': `Bearer ${token}`,}
@@ -55,7 +55,7 @@ let galleries=[]
   }
 }
 try{
-const response =await axios.post("https://thebeauwow.me/api/v1/admin/products/create/", formData, config)
+const response =await axios.post("https://thebeauwow.me/api/v1/admin/product/create/", formData, config)
  console.log(response.data)
  console.log(productData)
    return {...productData, ...response.data}
@@ -114,7 +114,7 @@ const response =await axios.post("https://thebeauwow.me/api/v1/admin/products/cr
   }
 
   try{
-  const response = await axios.put("https://thebeauwow.me/api/v1/admin/products/update/", formData, config)
+  const response = await axios.put("https://thebeauwow.me/api/v1/admin/product/update/", formData, config)
   
    
     
@@ -205,12 +205,12 @@ const productSlice= createSlice({
   state.isLoading = false
   state.productupdated=true
   state.error= null
-//   const index = state.products.findIndex(product => product.id == action.payload.product_id);                                                            
-//   const newArray = [...state.products]; 
-//   if(index)
-//   {  newArray[index] = action.payload;}
-//  state.products=newArray ;
-
+const index = state.products.findIndex(product => product.id == action.payload.id);                                        
+const newArray = [...state.products];         
+newArray[index] = action.payload;
+state.products=newArray ;
+   
+    
 
   
   },

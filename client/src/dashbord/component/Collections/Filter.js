@@ -20,6 +20,7 @@ function useOutsideAlerter(ref,navigate) {
   }
 const Filter = ({setFilterData}) => {
     const navigate = useNavigate()
+    //use ref 
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef, navigate);
 

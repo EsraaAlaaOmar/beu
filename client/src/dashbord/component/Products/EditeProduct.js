@@ -8,12 +8,12 @@ import{getSizes} from '../../store/sizesSlice'
 import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
 
 // use ref  function 
-function useOutsideAlerter(ref,navigate,id) {
+function useOutsideAlerter(ref,navigate,brandId) {
     useEffect(() =>{
       function handleClickOutside(event) {
         if (ref.current && !ref.current.contains(event.target)) {
           
-            navigate(`/dashbord/products/${id}`)
+            navigate(`/dashbord/products/${brandId}`)
         }
       }
       // Bind the event listener
@@ -26,7 +26,7 @@ function useOutsideAlerter(ref,navigate,id) {
   }
 
 
-const EditeProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
+const EditeProduct = ({brandId,setErrorFlashmsg, clearstate}) => {
     let { id }  = useParams();
     let location = useLocation()
     let navigate= useNavigate()
@@ -36,12 +36,12 @@ const EditeProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
     const {productupdated, error} =useSelector((state)=> state.product)
     //page state
     const [color, setColor] = useState(null);
-    const selectedsizes =location.state.product.size.map(s=>({id: s.id}))
+    const selectedsizes =location.state.product.size&&location.state.product.size.map(s=>({id: s.id}))
 
      
       //form data state
     const [formData, setFormData] = useState({
-        category_id: collectionId,
+        category_id: brandId,
         title:location.state.product.title,
         description : location.state.product.description,
         unit_price:location.state.product.unit_price, 
@@ -59,10 +59,10 @@ const EditeProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
     const { title, description, unit_price, quantity, add_galleries, update_galleries, sizes}=formData
    //set colors array  
     const [colors, setColors]=useState([])
-    const selectedColors=location.state.product.galleries.map((galary) =>galary.color_hex)
+    const selectedColors=location.state.product.galleries&&location.state.product.galleries.map((galary) =>galary.color_hex)
     
    //rendered selected colors 
-   const renderedSelectedColors=selectedColors.map((color) =><span className="color" style={{backgroundColor:color}}></span>)
+   const renderedSelectedColors=selectedColors&&selectedColors.map((color) =><span className="color" style={{backgroundColor:color}}></span>)
    //rendered colors 
    const renderedColors=colors.map((color) =><span className="color" style={{backgroundColor:color}}></span>)
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
@@ -116,7 +116,7 @@ useEffect(() =>{
   },[dispatch])
 // call useref function
 const wrapperRef = useRef(null);
-useOutsideAlerter(wrapperRef, navigate, collectionId);
+useOutsideAlerter(wrapperRef, navigate, brandId);
   return (
         <div className='addpage'>
         <div className='opacity'>
@@ -173,7 +173,7 @@ useOutsideAlerter(wrapperRef, navigate, collectionId);
                            { 
                               sizsList.map(sizeitem=>{return(
                               <Col>
-                                 <input  className='check-box' type="checkbox" id={sizeitem.size} name={sizeitem.size} checked={sizes.find(s=>s.id == sizeitem.id) && true} onClick={(e)=>changeSizes(e,sizeitem)}/>
+                                 <input  className='check-box' type="checkbox" id={sizeitem.size} name={sizeitem.size} checked={sizes&&sizes.find(s=>s.id == sizeitem.id) && true} onClick={(e)=>changeSizes(e,sizeitem)}/>
                                  <label className='check-box-label' for={sizeitem.size}>{sizeitem.size}</label>
                               </Col>
                               
@@ -197,13 +197,13 @@ useOutsideAlerter(wrapperRef, navigate, collectionId);
 
                     </Col>
                     <Col sm={12} md={6} lg={8}>
-                        <Images colors={colors}   collectionId={collectionId} removeImage={removeImage} clearstate={clearstate} addImg={addImg} galleries={add_galleries}/>
+                        <Images colors={colors}   brandId={brandId} removeImage={removeImage} clearstate={clearstate} addImg={addImg} galleries={add_galleries}/>
                      {  console.log(add_galleries)}
                     </Col>
                    
                     </Row>
                     </form>
-                   {productupdated && <Navigate to={`/dashbord/products/${collectionId}`} />}
+                   {productupdated && <Navigate to={`/dashbord/products/${brandId}`} />}
               </div>
         </div>
      

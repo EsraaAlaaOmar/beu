@@ -16,12 +16,11 @@ const Products = ({setActiveIndex}) => {
   const dispatch = useDispatch()
   //get Api data from redux
   const {products,prodectAdded, error,productupdated, isLoading} =useSelector((state)=>state.product)
-  const {collectionsList} =useSelector((state)=>state.collections)
-  //get collection to find its  products
+  const {brandList} =useSelector((state)=>state.brand)
+  //get brand to find its  products
   let { id }  = useParams();
-  const collection = collectionsList.find(x => x.id == id)
+  const brand = brandList.find(x => x.id == id)
 
-  // error flashmsg state
   const[Flashmsg,setFlashmsg] = useState(true)
 
 
@@ -29,14 +28,14 @@ const Products = ({setActiveIndex}) => {
     dispatch(getProducts(id ))
   
 
-  },[dispatch, prodectAdded,productupdated])
+  },[dispatch, prodectAdded])
   
   const renderedProducts= products.length>0 ? products.map((product)=>{
-     let sizes = product.size? product.size.map(s=>{return( <span key={s.id}>   &nbsp; {s.size} </span>)}) : product.sizes.map(s=>{return( <>  &nbsp; {s.size} </>)})
-    console.log(product.size)
+    //  let sizes = product.size? product.size.map(s=>{return( <span key={s.id}>   &nbsp; {s.size} </span>)}) : product.sizes.map(s=>{return( <>  &nbsp; {s.size} </>)})
+    // console.log(product.size)
     return(
     <Col sm={12} md={6} lg={4} >
-      <Box  key={product.id} products= {false} product={product}  clearstate={clearstate}editeLink={`/dashbord/products/${id}/edite/${product.id}`} collectionid={id} />
+      <Box  key={product.id} products= {false} product={product}  clearstate={clearstate}editeLink={`/dashbord/products/${id}/edite/${product.id}`} brandId={id} />
   </Col>
     )
 
@@ -72,7 +71,7 @@ const Products = ({setActiveIndex}) => {
                      icontype='success-icon'
               />}
           <span className="icon"><Logo  style= {{fill:'#000'}} /></span>    
-          <span className="title-text"> Products on {collection?collection.title:'this collection'} <span className="prodcts-num">{products.length} <span>Product</span></span></span> 
+          <span className="title-text"> Products on {brand?brand.title:'this Brand'} <span className="prodcts-num">{products.length} <span>Product</span></span></span> 
           <div className="oposite">
                   
                     <Link to={`/dashbord/products/${id}/add`}>
@@ -88,8 +87,8 @@ const Products = ({setActiveIndex}) => {
           </div>
           <Routes>
               <Route path="/add" element={<AddProduct  setErrorFlashmsg={setFlashmsg} clearstate={clearstate}  collectionId={id}/>} exact /> 
-              <Route path={`/edite/:id`}  element={<EditeProduct setErrorFlashmsg={setFlashmsg} clearstate={clearstate} collectionId={id} />} exact/>
-              <Route path={`/galaries/:productId`}  element={<ProductGalaries setErrorFlashmsg={setFlashmsg} collectionId={id} />} exact/>
+              <Route path={`/edite/:id`}  element={<EditeProduct setErrorFlashmsg={setFlashmsg} clearstate={clearstate} brandId={id} />} exact/>
+              <Route path={`/galaries/:productId`}  element={<ProductGalaries setErrorFlashmsg={setFlashmsg} brandId={id} />} exact/>
           </Routes>
   </div>
    }

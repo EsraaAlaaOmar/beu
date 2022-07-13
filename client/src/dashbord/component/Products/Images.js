@@ -4,7 +4,7 @@ import {AiFillCamera,AiOutlineCloseCircle, AiFillEdit} from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import UploadImage from './UploadImage'
-const Images = ({colors,collectionId,addImg,updateAddImg, galleries={galleries} , clearstate, removeImage}) => {
+const Images = ({colors,brandId,addImg,updateAddImg, galleries={galleries} , clearstate, removeImage}) => {
     const dispatch = useDispatch()
     // const [viewd,setViewed] = useState(null)
    const renderedColors=colors.map((color,index)=>{
@@ -78,7 +78,7 @@ const Images = ({colors,collectionId,addImg,updateAddImg, galleries={galleries} 
                             
     <input type='submit' className='confrim' value='Confirm' />
                                 
-                                <Link to={`/dashbord/products/${collectionId}`}>
+                                <Link to={`/dashbord/products/${brandId}`}>
                                      <button className='discard' onClick={() =>dispatch(clearstate()) } >Discard</button>
                                 </Link>
                             </div>
