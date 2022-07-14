@@ -26,7 +26,7 @@ function useOutsideAlerter(ref,navigate,id) {
   }
 
 
-const AddProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
+const AddProduct = ({brandId,setErrorFlashmsg, clearstate}) => {
     
     let navigate =useNavigate()
     const dispatch = useDispatch()
@@ -38,7 +38,7 @@ const AddProduct = ({collectionId,setErrorFlashmsg, clearstate}) => {
     const [colors, setColors]=useState([])
    
     const [formData, setFormData] = useState({
-        category_id: collectionId,
+        brand_id : brandId,
         title: '',
         description : '',
         unit_price:'', 
@@ -92,7 +92,7 @@ useEffect(() =>{
   },[dispatch])
 // call useref function
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef, navigate, collectionId);
+  useOutsideAlerter(wrapperRef, navigate, brandId);
   return (
         <div className='addpage'>
         <div className='opacity'>
@@ -172,7 +172,7 @@ useEffect(() =>{
 
                     </Col>
                     <Col sm={12} md={6} lg={8}>
-                        <Images colors={colors} removeImage={removeImage} collectionId={collectionId} clearstate={clearstate} addImg={addImg} galleries={galleries}/>
+                        <Images colors={colors} removeImage={removeImage} brandId={brandId} clearstate={clearstate} addImg={addImg} galleries={galleries}/>
                     </Col>
                    
                     </Row>
@@ -180,7 +180,7 @@ useEffect(() =>{
                 
               </div> 
         </div>
-{prodectAdded && navigate(`/dashbord/products/${collectionId}`)}
+{prodectAdded && navigate(`/dashbord/products/${brandId}`)}
     </div>
   )
 }

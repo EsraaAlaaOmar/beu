@@ -1,7 +1,7 @@
 import React,{useEffect, useRef} from 'react'
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate,useParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate,useParams } from 'react-router-dom'
 import {getProducts} from '../../store/productSlice'
 import SingleGalaryImage from './SingleGalaryImage';
 import {Row,Col} from 'react-bootstrap'
@@ -29,7 +29,7 @@ const ProductGalaries = ({brandId}) => {
     const dispatch = useDispatch()
     const{productId}=useParams()
     const galleries= location.state.galleries
-    const {products} =useSelector((state)=>state.product)
+    const {productupdated, products} =useSelector((state)=> state.product)
     const product = products.find(product=>product.id==productId)
 
     const renderedGalaries= product&&product.galleries.map((gallary)=>
@@ -50,6 +50,7 @@ useOutsideAlerter(wrapperRef, navigate,brandId);
             </div>
          
       </div>
+      {productupdated && <Navigate to={`/dashbord/products/${brandId}`} />}
    </div>)
 
 

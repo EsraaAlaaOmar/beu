@@ -6,6 +6,7 @@ import SingleBrand from './SingleBrand'
 import {getBrands, clearstate} from'../../store/brandSlice'
 import { Col, Row } from 'react-bootstrap'
 import AddBrand from './AddBrand'
+import EditeBrrand from './EditeBrrand'
 
 
 
@@ -45,7 +46,7 @@ const Brands = ({setActiveIndex}) => {
       }
        <Routes>
                <Route path="/add" element={<AddBrand collectionId={id} />} exact /> 
-               <Route path="/Edite" element={<AddBrand collectionId={id} />} exact /> 
+               <Route path="/Edite" element={<EditeBrrand collectionId={id} />} exact /> 
           </Routes>
 
     </>

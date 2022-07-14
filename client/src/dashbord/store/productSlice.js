@@ -31,7 +31,7 @@ export const addProduct = createAsyncThunk ('product/add',  async(productData ,t
 //const token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQ2ODk0MzQ0LCJpYXQiOjE2NDYwMzAzNDQsImp0aSI6ImNlZGRmZjA0OTU2MDQ3NGZhNzAyOGM2MmJmNzJlNDRlIiwidXNlcl9pZCI6MX0.EJUZC1FE4XldJ8syppkdNHuuEyeDD8VeLHsOxUoM-lU'
 let galleries=[]
 
-  formData.append('category_id', productData.category_id);   //append the values with key, value pair
+  formData.append('brand_id', productData.brand_id);   //append the values with key, value pair
   formData.append('title', productData.title);
   formData.append('description', productData.description);
   formData.append('unit_price', productData.unit_price);
@@ -58,7 +58,7 @@ try{
 const response =await axios.post("https://thebeauwow.me/api/v1/admin/product/create/", formData, config)
  console.log(response.data)
  console.log(productData)
-   return {...productData, ...response.data}
+   return response.data
 
    
     
@@ -118,7 +118,7 @@ const response =await axios.post("https://thebeauwow.me/api/v1/admin/product/cre
   
    
     
-      return productData
+      return response.data
       }
    
     
@@ -131,13 +131,32 @@ const response =await axios.post("https://thebeauwow.me/api/v1/admin/product/cre
 
 })
 
+export const deleteProduct=   createAsyncThunk ('product/delete',  async(id ,thunkAPI) =>{
+  const {rejectWithValue , getState} = thunkAPI
+  const token= getState().auth.token
+  try {
+  
+    const response = await axios.delete(`https://thebeauwow.me/api/v1/admin/product/delete/${id}`, {
+      headers: {
+        'Content-Type': 'application/json', 
+        'Authorization': `Bearer ${token}`,
+      },})
+      if(response.status==200)
+    {  return id}
+    }
+    catch (e) {
+      return rejectWithValue(e.response.data);
+  }
+  })
+
 const productSlice= createSlice({
     name:'product',
-    initialState : { products:[], isLoading:false,prodectAdded:false, productupdated:false, error:null},
+    initialState : { products:[], isLoading:false,prodectAdded:false, productupdated:false,deleted:false, error:null},
     reducers:{
       clearstate:(state)=>{
         state.prodectAdded= false
         state.productupdated= false
+        state.deleted=false
         state.error= false
 
       }
@@ -173,6 +192,7 @@ const productSlice= createSlice({
         state.error = null
         state.prodectAdded=false
         state.productupdated=false
+    
    
    },
    [ addProduct.fulfilled ] :(state,action)=>{
@@ -180,7 +200,7 @@ const productSlice= createSlice({
     state.prodectAdded=true
     state.productupdated=false
     state.error= null
-    // state.products = [...state.products, action.payload]
+    state.products  = [ action.payload, ...state.products]
  
 
     
@@ -221,6 +241,33 @@ state.products=newArray ;
    
      
   },
+
+  [ deleteProduct.pending ] :(state,action)=>{
+
+    state.isLoading = true
+    state.error = null
+    state.deleted= false
+    
+  
+},
+[ deleteProduct.fulfilled ] :(state,action)=>{
+state.isLoading = false
+state.error= null
+state.products = state.products.filter((product)=>product.id !== action.payload)
+
+state.deleted= true
+
+
+
+},
+[ deleteProduct.rejected ] :(state,action)=>{
+     state.isLoading = false
+     state.error = action.payload
+     console.log(`esraa ${action.payload}`)
+     state.deleted= false
+  
+   
+}, 
     }
  
 

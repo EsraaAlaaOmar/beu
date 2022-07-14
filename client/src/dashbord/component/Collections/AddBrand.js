@@ -1,7 +1,7 @@
 import React,{useState, useEffect, useRef} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import {addCollection} from '../../store/collectionsSlice'
+import { useDispatch, useSelector } from 'react-redux';
+import {addBrand} from '../../store/brandSlice'
 import {AiFillCamera} from 'react-icons/ai'
 
 // use ref  function 
@@ -27,21 +27,22 @@ const AddCollection = ({collectionId}) => {
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({
        title:'',
-       image:''
+       image:null,
+       category_id:collectionId
      
     })
         //use ref 
         const wrapperRef = useRef(null);
         useOutsideAlerter(wrapperRef, navigate, collectionId);
     
-    
+    const {added} =useSelector((state)=> state.brand)
     const {title, image} =formData
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
     const imgChange=e=>setFormData({...formData, image: e.target.files[0]})
     const onSubmit= async e => {
         e.preventDefault()
-        dispatch(addCollection(formData))
-        navigate("/dashbord/collections")
+        dispatch(addBrand(formData))
+        
     }
   return (
     <div className='addpage'>
@@ -51,25 +52,26 @@ const AddCollection = ({collectionId}) => {
             <form  onSubmit = {e=>onSubmit(e)}>
             <div className='input-div'>
                 <label>Brand Title</label>
-                <input type='text' placeholder='Collection Title' name='title' value={title} onChange={e=>onChange(e)} required/>
+                <input type='text' placeholder='brand Title' name='title' value={title} onChange={e=>onChange(e)} required/>
             </div>
             <div className='input-div'>
                 <label> Brand photo </label>
-                <input className='none' id='collection_img' type='file'  placeholder='add photo'  name='image'  onChange={e=>imgChange(e)} required/>
+                <input className='none' id='collection_img' type='file'    name='image'  onChange={e=>imgChange(e)} required/>
                 <div className='img-box'>
-                    add photo
+                {!image?'add photo':'photo Added '}
                     <span className='oposite' onClick={()=>document.getElementById('collection_img').click()}><AiFillCamera /></span>
                 </div>
             </div>
             <div className='buttons'>
                
                     <input type='submit' className='confrim' value='Confirm' />
-                <Link to='/dashbord/brands'>
+                <Link to={`/dashbord/brands/${collectionId}`}>
                       <button className='discard'>Discard</button>
                 </Link>
-                
+                 
             </div>
             </form>
+            {added && navigate("/dashbord/brands/${collectionId}")}
           </div>
         </div>
 

@@ -33,7 +33,7 @@ const EditeProduct = ({brandId,setErrorFlashmsg, clearstate}) => {
     const dispatch = useDispatch()
     //Api data from redux
     const {sizsList} =useSelector((state)=> state.sizes)
-    const {productupdated, error} =useSelector((state)=> state.product)
+    const {productupdated} =useSelector((state)=> state.product)
     //page state
     const [color, setColor] = useState(null);
     const selectedsizes =location.state.product.size&&location.state.product.size.map(s=>({id: s.id}))
