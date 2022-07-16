@@ -1,7 +1,7 @@
 import React,{useState, useEffect, useRef} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import {addBrand} from '../../store/brandSlice'
+import {editeBrand} from '../../store/brandSlice'
 import {AiFillCamera} from 'react-icons/ai'
 
 // use ref  function 
@@ -22,26 +22,30 @@ function useOutsideAlerter(ref,navigate, collectionId) {
     }}, [ref]);
   }
 
-const EditeBrrand = ({collectionId}) => {
+const EditeBrrand = ({collectionId, setFlashmsg}) => {
     const navigate = useNavigate()
+    let location = useLocation()
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({
-       title:'',
-       image:null,
-       category_id:collectionId
+       title:location.state.brand.title,
+       oldImage:location.state.brand.image,
+       image:'',
+       category_id:collectionId,
+       brand_id:location.state.brand.id
      
     })
         //use ref 
         const wrapperRef = useRef(null);
         useOutsideAlerter(wrapperRef, navigate, collectionId);
     
-    const {added} =useSelector((state)=> state.brand)
+    const {updated} =useSelector((state)=> state.brand)
     const {title, image} =formData
     const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
     const imgChange=e=>setFormData({...formData, image: e.target.files[0]})
     const onSubmit= async e => {
         e.preventDefault()
-        dispatch(addBrand(formData))
+        dispatch(editeBrand(formData))
+        setFlashmsg(true)
         
     }
   return (
@@ -56,9 +60,9 @@ const EditeBrrand = ({collectionId}) => {
             </div>
             <div className='input-div'>
                 <label> Brand photo </label>
-                <input className='none' id='collection_img' type='file'    name='image'  onChange={e=>imgChange(e)} required/>
+                <input className='none' id='collection_img' type='file'    name='image'  onChange={e=>imgChange(e)} />
                 <div className='img-box'>
-                {!image?'add photo':'photo Added '}
+                {image=='' ?'Change photo':'photo Changed '}
                     <span className='oposite' onClick={()=>document.getElementById('collection_img').click()}><AiFillCamera /></span>
                 </div>
             </div>
@@ -71,7 +75,7 @@ const EditeBrrand = ({collectionId}) => {
                  
             </div>
             </form>
-            {added && navigate("/dashbord/brands/${collectionId}")}
+            {updated && navigate(`/dashbord/brands/${collectionId}`)}
           </div>
         </div>
 

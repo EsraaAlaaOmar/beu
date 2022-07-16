@@ -22,7 +22,7 @@ function useOutsideAlerter(ref,navigate, collectionId) {
     }}, [ref]);
   }
 
-const AddCollection = ({collectionId}) => {
+const AddBrand = ({collectionId, setFlashmsg}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [formData, setFormData] = useState({
@@ -42,6 +42,7 @@ const AddCollection = ({collectionId}) => {
     const onSubmit= async e => {
         e.preventDefault()
         dispatch(addBrand(formData))
+        setFlashmsg(true)
         
     }
   return (
@@ -71,7 +72,7 @@ const AddCollection = ({collectionId}) => {
                  
             </div>
             </form>
-            {added && navigate("/dashbord/brands/${collectionId}")}
+            {added && navigate(`/dashbord/brands/${collectionId}`)}
           </div>
         </div>
 
@@ -79,4 +80,4 @@ const AddCollection = ({collectionId}) => {
   )
 }
 
-export default AddCollection
+export default AddBrand

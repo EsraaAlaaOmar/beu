@@ -27,7 +27,7 @@ const token= getState().auth.token
 try {
   //const response = await fetch(`url`); //where you want to fetch data
   //Your Axios code part.
-  const body= JSON.stringify(brandData)
+
   formData.append('title', brandData.title);
   formData.append(`image`, brandData.image);
   formData.append(`category_id`, brandData.category_id);
@@ -37,7 +37,7 @@ try {
       'Content-Type': 'application/json', 
       'Authorization': `Bearer ${token}`,
     }})
-   return {...response.data , ...brandData }
+   return response.data 
   }
   catch (e) {
    
@@ -45,20 +45,24 @@ try {
 }
 })
 
-export const editeBrand = createAsyncThunk ('discount/update',  async(editedBrandData,thunkAPI) =>{
+export const editeBrand = createAsyncThunk ('brand/update',  async(editedBrandData,thunkAPI) =>{
   const {rejectWithValue , getState} = thunkAPI
   const token= getState().auth.token
+  let formData = new FormData(); 
   const config = {     
     headers: { 'content-type': 'application/json',
                'Authorization': `Bearer ${token}`,
   }}
 try{
 
-let body= JSON.stringify(editedBrandData)
-let response = await axios.put("https://thebeauwow.me/api/v1/admin/discounts/update/", body, config)
+  formData.append('title', editedBrandData.title);
+  formData.append(`image`, editedBrandData.image);
+  formData.append(`category_id`, editedBrandData.category_id);
+  formData.append(`brand_id `, editedBrandData.brand_id );
+let response = await axios.put("https://thebeauwow.me/api/v1/admin/brand/update/", formData, config)
 
   if(response.status == 200) {
-    return  ({...editedBrandData, ...response.data}) 
+    return response.data
   }
 
 
@@ -77,7 +81,7 @@ export const deleteBrand=   createAsyncThunk ('brand/delete',  async(id ,thunkAP
   const token= getState().auth.token
   try {
     const body= JSON.stringify(id)
-    const response = await axios.delete("https://thebeauwow.me/api/v1/admin/category/delete/", {
+    const response = await axios.delete(`https://thebeauwow.me/api/v1/admin/brand/delete/${id}`, {
       headers: {
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}`,
@@ -93,12 +97,13 @@ export const deleteBrand=   createAsyncThunk ('brand/delete',  async(id ,thunkAP
 
 const brandSlice= createSlice({
     name:'Brands',
-    initialState : {brandList:[], isLoading:false,added:false,updated:false, error:null},
+    initialState : {brandList:[], isLoading:false,added:false,updated:false,deleted:false, error:null},
     reducers:{
       clearstate:(state)=>{
         state.added= false
         state.updated= false
         state.error= false
+        state.deleted=false
 
       }
 
@@ -158,12 +163,10 @@ const brandSlice= createSlice({
     state.isLoading = false;
     state.error= null;
     state.updated=true
-    console.log(action.payload)
-    const index = state.brandList.findIndex(discount => discount.id == action.payload.discount_id);                                                            
-    const newArray = [...state.brandList]; 
-    if(index)
-    {  newArray[index] = action.payload;}
-   state.brandList=newArray ;
+    const index = state.brandList.findIndex(brand => brand.id == action.payload.id);                                        
+    const newArray = [...state.brandList];         
+    newArray[index] = action.payload;
+    state.brandList=newArray ;
 
     
     },
@@ -178,6 +181,7 @@ const brandSlice= createSlice({
 
       state.isLoading = true
       state.error = null
+      state.deleted=false
       
     
  },
@@ -186,7 +190,8 @@ const brandSlice= createSlice({
  [ deleteBrand.fulfilled ] :(state,action)=>{
   state.isLoading = false
   state.error= null
-  state.collectionsList  = state.collectionsList.filter((collection)=>collection.id != action.payload.category_id)
+  state.deleted=true
+  state.brandList  = state.brandList.filter((brand)=>brand.id != action.payload)
   
 
 
@@ -195,7 +200,7 @@ const brandSlice= createSlice({
   [ deleteBrand.rejected ] :(state,action)=>{
        state.isLoading = false
        state.error = action.payload
-       console.log(`esraa ${action.payload}`)
+       state.deleted=false
     
      
   }, 
