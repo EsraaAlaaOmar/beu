@@ -23,25 +23,56 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
   }
   
   })
+  export const editecollection = createAsyncThunk ('collections/update',  async(editedCollectionData,thunkAPI) =>{
+    const {rejectWithValue , getState} = thunkAPI
+    const token= getState().auth.token
+    let formData = new FormData(); 
+    const config = {     
+      headers: { 'content-type': 'application/json',
+                 'Authorization': `Bearer ${token}`,
+    }}
+  try{
+  
+    formData.append('title', editedCollectionData.title);
+    formData.append(`image`, editedCollectionData.image);
+    formData.append(`category_id`, editedCollectionData.category_id);
+    
+  let response = await axios.put("https://thebeauwow.me/api/v1/admin/category/update/", formData, config)
+  
+    if(response.status == 200) {
+      return response.data
+    }
+  
+  
+   
+  }
+  catch (e) {
+       
+   return rejectWithValue(e.response.data)
+  }
+  
+  
+  })
 
-  export const deleteCollection=   createAsyncThunk ('collections/delete',  async(id ,thunkAPI) =>{
+  export const deleteCollection=   createAsyncThunk ('collections/delete',  async(data ,thunkAPI) =>{
     const {rejectWithValue , getState} = thunkAPI
     const token= getState().auth.token
     try {
-      const body= JSON.stringify(id)
-      const response = await axios.delete("https://thebeauwow.me/api/v1/admin/category/delete/", {
+      const body= JSON.stringify(data)
+      const response = await axios.delete(`https://thebeauwow.me/api/v1/admin/category/delete/${data.category_id}`, {
         headers: {
           'Content-Type': 'application/json', 
           'Authorization': `Bearer ${token}`,
         },data: body})
         if(response.status==200)
-       return id 
-      }
+       return data
+      } 
       catch (e) {
      
        return rejectWithValue(e.response.data);
     }
     })
+
   export const addCollection = createAsyncThunk ('collections/add',  async(collectionData ,thunkAPI) =>{
     let formData = new FormData(); 
   const {rejectWithValue , getState} = thunkAPI
@@ -57,7 +88,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
         'Content-Type': 'application/json', 
         'Authorization': `Bearer ${token}`,
       }})
-     return {...response.data , ...collectionData }
+     return response.data
     }
     catch (e) {
      
@@ -68,8 +99,15 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
   
   const collectionsSlice= createSlice({
     name:'discounts',
-    initialState : {collectionsList:[],collection:{},collectionadded:false, isLoading:false,addLoading:false, error:null},
+    initialState : {collectionsList:[],collection:{},collectionadded:false,updated:false, isLoading:false,deleted:false,addLoading:false, error:null},
     reducers:{
+      clearstate:(state)=>{
+        state.collectionadded= false
+        state.updated= false
+        state.error= false
+        state.deleted=false
+
+      }
 
     },
     extraReducers:{
@@ -125,48 +163,40 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
          console.log(action)
          
       },
-      //veery important for update inside array
-  //     [ addProduct.pending ] :(state,action)=>{
-  //       state.isLoading = false
-  //       state.error= null
-  //     },
-  //     [ addProduct.fulfilled ] :(state,action)=>{
-  //           const currentState = current(state)
-  //       state.isLoading = false
-  //       state.error= null
-  //       const index = currentState.collectionsList.findIndex(collection => collection.id == action.payload.category_id);       
-  //       // console.log(currentState.collectionsList.map(collection => console.log(typeof collection.id)))                                   
-  //        const newArray = [...currentState.collectionsList]; 
-         
-  //       // console.log(typeof action.payload.category_id )
-  //       // console.log(index)
-  //       // console.log(currentState.collectionsList)
-       
-  //     //   if(index)
-  //     //   { let  esrray = {...newArray[index], products :[...newArray[index].products, action.payload]};
-  //     //   console.log(esrray)
-  //     // }
-  //     newArray[index] = {...newArray[index], products :[...newArray[index].products, action.payload]}
-  //       console.log(newArray)
-  //       console.log([...newArray[index].products,action.payload])
-  //       state.collectionsList=newArray;
-  //       // let collection= state.collectionsList.find((collection)=> collection.id === action.payload.category_id)
-  //       // state.collectionsList.find((collection)=> collection.id==action.payload.category_id).push(action.payload)
+      [ editecollection.pending ] :(state,action)=>{
 
-  //     //  state.products=[...state.products ,action.payload]
+        state.isLoading = true
+        state.error = null
+        state.updated=false
+     
+      
+   },
+   [ editecollection.fulfilled ] :(state,action)=>{
+    state.isLoading = false;
+    state.error= null;
+    state.updated=true
+    const index = state.collectionsList.findIndex(brand => brand.id == action.payload.id);                                        
+    const newArray = [...state.collectionsList];         
+    newArray[index] = action.payload;
+    state.collectionsList=newArray ;
+
     
-  //     },
-  //     [ addProduct.rejected ] :(state,action)=>{
-  //       state.isLoading = false
-  //       state.error=action.payload
+    },
+
+    [ editecollection.rejected ] :(state,action)=>{
+         state.isLoading = false
+         state.updated=false
+         state.error = action.payload
+       console.log(action)
        
-    
-  //     },
+    }, 
+
        //....... delete collection .........
        [ deleteCollection.pending ] :(state,action)=>{
 
         state.isLoading = true
         state.error = null
+        state.deleted=false
         
       
    },
@@ -175,6 +205,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
    [ deleteCollection.fulfilled ] :(state,action)=>{
     state.isLoading = false
     state.error= null
+    state.deleted=true
     state.collectionsList  = state.collectionsList.filter((collection)=>collection.id != action.payload.category_id)
     
   
@@ -184,6 +215,7 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
     [ deleteCollection.rejected ] :(state,action)=>{
          state.isLoading = false
          state.error = action.payload
+         state.deleted=false
          console.log(`esraa ${action.payload}`)
       
        
@@ -192,4 +224,5 @@ export const getCollections = createAsyncThunk ('collections/get',  async(_ ,thu
 
 
 })
+export const {clearstate} = collectionsSlice.actions
 export default collectionsSlice.reducer

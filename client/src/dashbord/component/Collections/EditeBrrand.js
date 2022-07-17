@@ -1,5 +1,5 @@
 import React,{useState, useEffect, useRef} from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate, useLocation, Navigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import {editeBrand} from '../../store/brandSlice'
 import {AiFillCamera} from 'react-icons/ai'
@@ -75,7 +75,7 @@ const EditeBrrand = ({collectionId, setFlashmsg}) => {
                  
             </div>
             </form>
-            {updated && navigate(`/dashbord/brands/${collectionId}`)}
+            {updated && <Navigate to={`/dashbord/brands/${collectionId}`} />}
           </div>
         </div>
 

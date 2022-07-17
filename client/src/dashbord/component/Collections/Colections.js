@@ -2,7 +2,7 @@ import React,{useEffect} from 'react'
 import { Link, Route, Routes } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../images/collections.svg';
 import { useSelector, useDispatch } from 'react-redux';
-import{getCollections, deleteCollection} from '../../store/collectionsSlice'
+import{getCollections, deleteCollection, clearstate} from '../../store/collectionsSlice'
 import collections from '../../data/collections.json'
 
 import CollectionPagination from './CollectionPagination'
@@ -11,20 +11,23 @@ import AddCollection from './AddCollection';
 import Filter from './Filter';
 import { useState } from 'react';
 import FlashMsg from '../../../sitePages/Flashmsgs/FlashMsg';
+import EditeCollection from './EditeCollection';
 
 const Colections = ({setActiveIndex}) => {
   setActiveIndex()
-  const {collectionsList, collectionadded,isLoading, error} =useSelector((state)=>state.collections)
+  const {collectionsList, collectionadded,updated,isLoading, error} =useSelector((state)=>state.collections)
   const dispatch = useDispatch()
 
   useEffect(() =>{
     dispatch(getCollections())
   
  
-  },[collectionadded])
+  },[dispatch])
    
   //info flashmsg state
   const[infoflashmsg,setInfoFlashmsg] = useState(false)
+
+  const[Flashmsg,setFlashmsg] = useState(true)
 
   const deleteClicked = (data)=>{
     setInfoFlashmsg(true)
@@ -67,6 +70,39 @@ const data=filterTime == 'new'? filterWithTitle.reverse() :filterWithTitle
    {isLoading ? 
     <div  className="box loading"> <img src='/images/loading.gif' /></div> 
     :<div className="box collections">  
+
+     
+{Flashmsg && error && <FlashMsg 
+                      title={`${ Object.keys(error)}  Error : ${Object.values(error)} !  `}
+                      img={'/images/msgIcons/error.svg'}
+                      setFlashmsg={setFlashmsg}
+
+                      icontype='error-icon'
+              />}
+               {Flashmsg && collectionadded && <FlashMsg 
+                    title={`collection Added successfully`}
+                    img={'/images/msgIcons/success.svg'}
+                    setFlashmsg={setFlashmsg}
+
+                    icontype='success-icon'
+
+              />}
+             
+               {Flashmsg && updated && <FlashMsg 
+                     title={`A Collection has been updated successfully`}
+                     img={'/images/msgIcons/success.svg'}
+                     setFlashmsg={setFlashmsg}
+                     icontype='success-icon'
+              />}
+                   {Flashmsg && deleted && <FlashMsg 
+                    title={`Collection with name  ${deleted.title}  deleted successfully`}
+                    img={'/images/msgIcons/success.svg'}
+                    setFlashmsg={setFlashmsg}
+
+                    icontype='success-icon'
+
+              />}
+
      {infoflashmsg&&<FlashMsg 
                             title={`You will delete collection   with name  ${deleted.title} !`}
                             img={'/images/msgIcons/info.svg'}
@@ -85,15 +121,16 @@ const data=filterTime == 'new'? filterWithTitle.reverse() :filterWithTitle
                   <button>Filter</button>
                   </Link>
                   <Link to='/dashbord/collections/add'>
-                  <button>+ Add New</button>
+                  <button onClick={() =>dispatch(clearstate())} > + Add New</button>
                   </Link>
 
               </div>
               <br/>
               
-              <CollectionPagination maplist={ data} deleteClicked={deleteClicked} />
+              <CollectionPagination maplist={ data} deleteClicked={deleteClicked} setFlashmsg={setFlashmsg}/>
               <Routes>
-               <Route path="/add" element={<AddCollection />} exact /> 
+               <Route path="/add" element={<AddCollection  setFlashmsg={setFlashmsg}/>} exact /> 
+               <Route path="/edite/:id" element={<EditeCollection setFlashmsg={setFlashmsg}/>} exact /> 
                <Route path="/filter" element={<Filter  setFilterData={setFilterData}/>} exact />
           </Routes>
 

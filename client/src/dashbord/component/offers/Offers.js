@@ -42,7 +42,7 @@ const Offers = ({setActiveIndex}) => {
                             </p> */}
                             <div className={`yello ${offer.status}`}>{offer.status}</div>
                             <div className='actions'>
-                               <Link to='/dashbord/offerproducts'state={{offer:offer}} > <span>Products</span></Link>
+                               <Link to='/dashbord/offerproducts'state={{offer:offer}} > <span onClick={() =>dispatch(clearstate())}>Products</span></Link>
                               <Link to='/dashbord/offers/edite' state={{ offer: offer }}><span onClick={() =>dispatch(clearstate())}> Edit </span></Link>
                                 <span onClick={()=>setInfoFlashmsg(true)}>Delete</span>
 

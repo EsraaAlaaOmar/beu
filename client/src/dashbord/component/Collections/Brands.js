@@ -57,7 +57,7 @@ const Brands = ({setActiveIndex}) => {
                       icontype='error-icon'
               />}
                {Flashmsg && added && <FlashMsg 
-                    title={`Product Added successfully`}
+                    title={`Brand Added successfully`}
                     img={'/images/msgIcons/success.svg'}
                     setFlashmsg={setFlashmsg}
 
@@ -66,7 +66,7 @@ const Brands = ({setActiveIndex}) => {
               />}
              
                {Flashmsg && updated && <FlashMsg 
-                     title={`A product has been updated successfully`}
+                     title={`A Brand has been updated successfully`}
                      img={'/images/msgIcons/success.svg'}
                      setFlashmsg={setFlashmsg}
                      icontype='success-icon'

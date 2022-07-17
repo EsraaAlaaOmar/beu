@@ -1,9 +1,8 @@
 import React,{useState,useEffect, useRef} from 'react'
-import { Link, Navigate, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-import {addCollection} from '../../store/collectionsSlice'
+import { Link, useNavigate , useLocation, Navigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import {editecollection} from '../../store/collectionsSlice'
 import {AiFillCamera} from 'react-icons/ai'
-import { useSelector } from 'react-redux';
 // use ref  function 
 function useOutsideAlerter(ref,navigate) {
   useEffect(() =>{
@@ -22,17 +21,19 @@ function useOutsideAlerter(ref,navigate) {
   }}, [ref]);
 }
 
-const AddCollection = ({setFlashmsg}) => {
+const EditeCollection = ({setFlashmsg}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const {collectionadded} =useSelector((state)=>state.collections)
+    let location = useLocation()
+    const {updated} =useSelector((state)=>state.collections)
     //use ref 
     const wrapperRef = useRef(null);
     useOutsideAlerter(wrapperRef, navigate);
     
     const [formData, setFormData] = useState({
-       title:'',
-       image:null
+        title:location.state.collection.title,
+        image:'',
+        category_id:location.state.collection.id,
      
     })
     const {title, image} =formData
@@ -40,15 +41,15 @@ const AddCollection = ({setFlashmsg}) => {
     const imgChange=e=>setFormData({...formData, image: e.target.files[0]})
     const onSubmit= async e => {
         e.preventDefault()
-        dispatch(addCollection(formData))
+        dispatch(editecollection(formData))
         setFlashmsg(true)
-     
+   
     }
   return (
     <div className='addpage'>
         <div className='opacity'>
           <div className='add'  ref={wrapperRef}>
-          <h4>New Collection</h4>
+          <h4>Edite Collection</h4>
             <form  onSubmit = {e=>onSubmit(e)}>
             <div className='input-div'>
                 <label>Collection Title</label>
@@ -56,9 +57,9 @@ const AddCollection = ({setFlashmsg}) => {
             </div>
             <div className='input-div'>
                 <label> collection photo </label>
-                <input className='none' id='collection_img' type='file'  placeholder='add photo'  name='image'  onChange={e=>imgChange(e)} required/>
+                <input className='none' id='collection_img' type='file'  placeholder='add photo'  name='image'  onChange={e=>imgChange(e)} />
                 <div className='img-box'>
-                {!image?'add photo':'photo Added '}
+                {image=='' ?'Change photo':'photo Changed '}
                     <span className='oposite' onClick={()=>document.getElementById('collection_img').click()}><AiFillCamera /></span>
                 </div>
             </div>
@@ -71,7 +72,7 @@ const AddCollection = ({setFlashmsg}) => {
                 
             </div>
             </form>
-            {  collectionadded &&   <Navigate to="/dashbord/collections" />}
+            {  updated &&   <Navigate to="/dashbord/collections" />}
           </div>
         </div>
 
@@ -79,4 +80,6 @@ const AddCollection = ({setFlashmsg}) => {
   )
 }
 
-export default AddCollection
+
+
+export default EditeCollection

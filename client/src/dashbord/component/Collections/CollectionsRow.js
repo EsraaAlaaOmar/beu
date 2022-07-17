@@ -2,7 +2,7 @@ import React,{useState,useEffect,useRef} from 'react'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import {useDispatch } from 'react-redux';
-import {deleteCollection} from '../../store/collectionsSlice'
+import {clearstate} from '../../store/collectionsSlice'
 
 // use ref  function 
 function useOutsideAlerter(ref,setShowlist) {
@@ -22,7 +22,7 @@ function useOutsideAlerter(ref,setShowlist) {
 }
 
 
-const CollectionsRow = ({collection,deleteClicked}) => {
+const CollectionsRow = ({collection,deleteClicked,setFlashmsg}) => {
     const [showlist,setShowlist] =useState(false)
     const dispatch = useDispatch()
 
@@ -49,11 +49,11 @@ const CollectionsRow = ({collection,deleteClicked}) => {
         <td>
            { showlist && <div className='hiddenlist' ref={wrapperRef}>
           
-                <Link to={`/dashbord/products/${collection.id}`}> <div className='border-inlist' >View Products</div> </Link>
+                <Link to={`/dashbord/collections/edite/${collection.id}`} state={{collection:collection}}> <div className='border-inlist' onClick={() =>dispatch(clearstate())}>Edite Collection</div> </Link>
                 <Link to={`/dashbord/brands/${collection.id}`}> <div className='border-inlist' >View Brands</div> </Link>
-                <div className='delete-inlist' onClick={()=>deleteClicked({category_id:collection.id,title:collection.title})}>Delete</div>
+                <div className='delete-inlist' onClick={()=>{setFlashmsg(true);dispatch(clearstate());deleteClicked({category_id:collection.id,title:collection.title})}}>Delete</div>
             </div>}
-            <span className='icon' onClick={()=>setShowlist(!showlist)} ref={wrapperRef}><BsThreeDotsVertical /></span></td>
+            <span className='icon' onClick={()=>{dispatch(clearstate()) ; setShowlist(!showlist)}} ref={wrapperRef}><BsThreeDotsVertical /></span></td>
 </tr>
   )
 }

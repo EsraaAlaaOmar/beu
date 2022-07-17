@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import CollectionsRow from './CollectionsRow';
-const CollectionPagination = ({maplist, deleteClicked}) => {
+const CollectionPagination = ({maplist, deleteClicked , setFlashmsg}) => {
 
     const [state, setState] =useState({
         list: maplist,
@@ -31,7 +31,7 @@ const CollectionPagination = ({maplist, deleteClicked}) => {
         return (
         
               <>
-                 <CollectionsRow collection={collection}  deleteClicked={deleteClicked} />
+                 <CollectionsRow collection={collection}  deleteClicked={deleteClicked} setFlashmsg={setFlashmsg}/>
               </>
         
        

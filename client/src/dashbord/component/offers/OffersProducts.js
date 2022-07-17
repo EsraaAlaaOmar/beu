@@ -1,13 +1,14 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate, useLocation, Navigate } from 'react-router-dom'
 import Box from '../reusable/Box'
 import Nav from '../reusable/Nav'
 import {editOffer} from '../../store/offerSlice'
+import { useSelector } from 'react-redux'
 
 const OffersProducts = () => {
     let location = useLocation()
-    
+    const {updated} =useSelector((state)=> state.offers)
   let products = location.state.offer.products
   let renderedProducts =products.length > 0 ? products.map((product)=>{
     return (
@@ -31,6 +32,7 @@ const OffersProducts = () => {
        
       {renderedProducts}
       </Row>
+      {updated&& <Navigate to='/dashbord/offers' />}
     </div>
     </>
   )
