@@ -31,9 +31,7 @@ const TableRow = ({user, setInfoFlashmsg}) => {
   return (
     <tr>
     <td className='align_dir'>
-        <img 
-            src={user.img}
-        />
+    
         <span>{user.name}</span>
     </td>
     <td>{user.content}</td>
