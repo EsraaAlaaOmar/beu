@@ -89,7 +89,25 @@ export const login = createAsyncThunk ('auth/login',
     }
 })
 
+export const userSignUp = createAsyncThunk ('user/register', 
+    async(data ,thunkAPI) =>{
+    const {rejectWithValue} = thunkAPI
+    try{
+      const body= JSON.stringify(data)
+      const response = await axios.post("https://thebeauwow.me/api/v1/customer/register/", body, {
+        headers: {
+          'Content-Type': 'application/json',
+          
+        }})
+        return response.data 
+       
+    }
+    catch (e) {
+      return rejectWithValue(e.response.data);
+  }
+   
 
+})
 
 const authSlice = createSlice({
     name: 'auth',
@@ -110,6 +128,11 @@ const authSlice = createSlice({
     
        
       },
+      clearstate:(state)=>{
+        state.error= false
+       
+
+      }
     }
     ,
     extraReducers:{
@@ -188,11 +211,47 @@ const authSlice = createSlice({
   
       },
 
+      [userSignUp.pending]:(state,action)=>{
+        state.loggedIn=false
+        state.isLoading = true
+        state.error = null
+
+    },
+    [userSignUp.fulfilled]:(state,action)=>{
+        state.loggedIn=true
+        state.isLoading = false
+        state.error= null
+        state.token=action.payload.access
+         state.userInfo=action.payload
+         let remember=action.payload.remember
+        let date= new Date()
+        let expire =remember? new Date(new Date().setDate(date.getDate()+6)) : new Date(new Date().setDate(date.getDate()+1)) 
+       console.log(action.payload)
+       cookies.remove("login")
+       cookies.remove("token")
+        cookies.set("token", action.payload.access, {expires : expire})
+        cookies.set("login", true,{expires :expire})
+        cookies.set("userinfo",action.payload,{expires : expire})
+       
+       
+     
+
+    },
+    [userSignUp.rejected]:(state,action)=>{
+        state.isLoading = false
+        state.loggedIn=false
+        state.error = action.payload
+        console.log(action.payload)
+
+    },
+
   
 
     }
   });
   export const { logOut } = authSlice.actions;
+  export const { clearstate } = authSlice.actions;
+
 
 
   export default authSlice.reducer

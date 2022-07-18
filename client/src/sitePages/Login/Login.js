@@ -3,6 +3,7 @@ import { Link, Navigate } from 'react-router-dom'
 import {FiCheckSquare} from 'react-icons/fi'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose} from "react-icons/ai";
+import { GrFormViewHide, GrFormView } from "react-icons/gr";
 import {ImCheckboxUnchecked} from 'react-icons/im'
 import {login, clearstate} from '../../dashbord/store/authslice'
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,14 +20,14 @@ const Login = () => {
         let schema = yup.object().shape({
    
             email: yup.string().email('Enter a Valid Email').required("Email is required"),
-            password: yup.string().min(5,'password at least 5 characters').max(10, 'password max 10 characters'),
+            password: yup.string().required('password is required').min(5,'password at least 5 characters').max(10, 'password max 10 characters'),
            
           });
      
           // end  yup 
     const {isLoading,error,userInfo} =useSelector((state)=> state.auth)
     const dispatch = useDispatch()
-    
+    const [showPassword,setShowPassword] = useState(false)
   // error flashmsg state
   const[flashmsg,setFlashmsg] = useState(true)
 
@@ -99,11 +100,15 @@ const Login = () => {
            { touched.email && <div className='mark'>{errors.email ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'email')} /></span>: <FcCheckmark />}</div>}
            {errors.email && touched.email && <><div className='error-text'> {errors.email}</div></> }
     </div>
+    
     <div className='input-div'>
-    <Field type='password' placeholder='Type your password'  name="password" autoComplete="off"/>
-            {touched.password && <div className='mark'>{errors.password  ? <span className='validation-error'><AiOutlineClose  onClick={()=> removeError(setFieldValue,setFieldTouched,'password')}/></span>: <FcCheckmark />}</div>} 
-            {errors.password && touched.password && <div className='error-text'> {errors.password}</div> }
-            
+               <Field    placeholder='●●●●●●●' name='password' type={showPassword?'text':'password'}   />
+                { touched.password ? <div className='mark'> 
+                    <span onClick={()=>{setShowPassword(!showPassword)}}>{showPassword?<GrFormView />:<GrFormViewHide />}</span>
+                     </div>:
+                        <span className='mark' onClick={()=>{setShowPassword(!showPassword)}}>{showPassword?<GrFormView />:<GrFormViewHide />}</span>
+                     }
+                         {errors.password && touched.password && <><div className='error-text'> {errors.password}</div></> }
     </div>
     <div className='action'>
        <span className='remember' onClick={()=>setCheck(!check)}>
@@ -129,7 +134,8 @@ const Login = () => {
 )}
     </Formik>
     {userInfo&&userInfo.is_staff && <Navigate to='/dashbord' />}
-<div className='option'>
+    {userInfo&&userInfo.is_customer && <Navigate to='/profile' />}
+<div className='option'  onClick={()=>dispatch(clearstate())}>
         <Link to='/log/sign'>
         Don't have Account ? Signup
         </Link>

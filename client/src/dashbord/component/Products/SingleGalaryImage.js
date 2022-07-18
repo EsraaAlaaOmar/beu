@@ -14,17 +14,18 @@ const SingleGalaryImage = ({galary,productId}) => {
     const {image,imageUrl, priority,color_hex, gallery_id}=gallary
     const[change,setChange] = useState(false)
     const onChange=e=>setGallary({...gallary, [e.target.name]: e.target.value})
+    const onColorChange=e=>setGallary({...gallary, color_hex: e.target.value})
     const imgChange=e=>setGallary({...gallary, image: e.target.files[0]})
     console.log(gallary)
   return (
     <div className='box_component single-galary-image'>
         <img src={imageUrl}/>
-        <span className="color" style={{backgroundColor:color_hex}}></span>
+        <span className="color" style={{backgroundColor:galary.color_hex}}></span> &nbsp;
         <span>priority :{priority}</span>
         <div className='changeClick' onClick={()=>setChange(!change)}>{change? 'hide change': 'Change' } galary data </div>
        {change&&<div className='change'> 
             <input type="file"   name={image}  onChange={(e)=>imgChange(e)}/>
-            <input className="inline-block" type="color" name={color_hex}  onChange={(e)=>onChange(e)}/>
+            <input className="inline-block" type="color" name={color_hex}  value={color_hex} onChange={(e)=>onColorChange(e)}/>
             <input  className="inline-block" placeholder="priority" name={priority}  onChange={(e)=>onChange(e)}/>
                 <button onClick={()=>dispatch(editeProduct({update_galleries:[gallary],product_id:productId}))}>Save</button>
                

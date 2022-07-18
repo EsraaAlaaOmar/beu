@@ -43,6 +43,10 @@
             border-radius: 34px;
             color: #000;
             padding-left: 30px;
+            @media screen and (max-width: 565px) {
+                  max-width: 80%;
+            }
+            
           
         }
         .input-div{
@@ -52,10 +56,12 @@
             margin: auto;
 
             .mark{
+                color: #b41212;
                 position: absolute;
                 right: 16px;
                 top: 7px;
                 background-color: transparent;
+                cursor: pointer;
             }
 
         }
