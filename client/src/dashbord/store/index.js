@@ -18,6 +18,7 @@ import question from './questionSlice'
 import landPage from './LandingPageSlice'
 import orders from './orderSlice'
 import brand from './brandSlice'
+import clientOrders from './clientSide/ordersSlice'
 export default   configureStore({
   reducer: {
       auth,
@@ -38,7 +39,8 @@ export default   configureStore({
       question, 
       landPage, 
       orders,
-      brand
+      brand, 
+      clientOrders
 
   },
 })
