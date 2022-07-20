@@ -4,10 +4,12 @@ import{BiSearch}from 'react-icons/bi'
 import {AiOutlineUser}from 'react-icons/ai'
 import {BsHeart} from 'react-icons/bs'
 import {FiShoppingCart} from 'react-icons/fi'
-import { Link } from 'react-router-dom'
+import { Link,Navigate } from 'react-router-dom'
 import { Dropdown } from 'react-bootstrap'
+import { useSelector } from 'react-redux'
 
 const Navbar = () => {
+    const {userInfo,loggedIn} =useSelector((state)=> state.auth)
     return (
         <div className='landnav' >
             <img className='logo' src='/images/Landingpage/navicon.png' />
@@ -111,6 +113,8 @@ const Navbar = () => {
             </div>
 
             <br/>
+            {userInfo&&!userInfo.is_customer && <Navigate to='/log/login' />}
+            {!loggedIn&& <Navigate to='/log/login' />}
         </div>
     )
 }

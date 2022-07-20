@@ -108,12 +108,59 @@ export const userSignUp = createAsyncThunk ('user/register',
    
 
 })
+export const editeUser = createAsyncThunk ('auth/update',  async(userData,thunkAPI) =>{
+  const {rejectWithValue , getState} = thunkAPI
+  const token= getState().auth.token
+  const config = {     
+    headers: { 'content-type': 'application/json',
+               'Authorization': `Bearer ${token}`,
+  }}
+try{
+  
+
+  
+  
+  if(userData.email == ''){
+      delete userData['email']
+    }
+    if(userData.new_password == ''){
+      delete userData['new_password']
+    }
+    if(userData.old_password == ''){
+      delete userData['old_password']
+    }
+let formData = new FormData(); 
+formData.append('avatar', userData.avatar);
+let body= JSON.stringify(userData)
+let response = 
+userData.avatar? 
+await axios.put("https://thebeauwow.me/api/v1/user/update/", formData, config)
+:await axios.put("https://thebeauwow.me/api/v1/user/update/", body, config)
+
+  if(response.status == 200) {
+    return  ({...userData, ...response.data}) 
+  }
+
+
+ 
+}
+catch (e) {
+     
+ return rejectWithValue(e.response.data)
+}
+
+
+})
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: { loggedIn: cookies.get("login")?cookies.get("login"):false, userInfo:cookies.get("userinfo")?cookies.get("userinfo"):null, isLoading:false, error:null, adminDetailsdata:{}, token:cookies.get("token")? cookies.get("token"):"",},
+    initialState: { loggedIn: cookies.get("login")?cookies.get("login"):false, userInfo:cookies.get("userinfo")?cookies.get("userinfo"):null, isLoading:false, error:null, adminDetailsdata:{}, token:cookies.get("token")? cookies.get("token"):"",updated:false},
     reducers:{
       logOut:(state)=>{
+        cookies.remove("login")
+        cookies.remove("token")
+        cookies.remove("userDetails")
+         cookies.remove("userinfo")
         cookies.set("login",false)
         cookies.set("token",null)
         cookies.set("userDetails", null)
@@ -121,7 +168,7 @@ const authSlice = createSlice({
         localStorage.clear();
         state.token=null;
         state.loggedIn=false;
-     state.userInfo=false;
+     state.userInfo=null;
      state.userDetails=false;
        
        
@@ -129,7 +176,8 @@ const authSlice = createSlice({
        
       },
       clearstate:(state)=>{
-        state.error= false
+        state.error= false;
+        state.updated=false;
        
 
       }
@@ -157,26 +205,7 @@ const authSlice = createSlice({
             
     
         },
-          // [userRegister.pending]:(state,action)=>{
-          //     state.loggedIn=false
-          //     state.isLoading = true
-          //     state.error = null
-      
-          // },
-          // [userRegister.fulfilled]:(state,action)=>{
-          //     state.loggedIn=false
-          //     state.isLoading = false
-          //     state.error= null
-           
-      
-          // },
-          // [userRegister.rejected]:(state,action)=>{
-          //     state.isLoading = false
-          //     state.loggedIn=false
-          //     state.error = action.payload
-              
-      
-          // },
+         
         [login.pending]:(state,action)=>{
           state.loggedIn=false
           state.isLoading = true
@@ -244,6 +273,33 @@ const authSlice = createSlice({
         console.log(action.payload)
 
     },
+    [editeUser.pending]:(state,action)=>{
+      state.isLoading = true
+      state.error = null
+      state.updated=false
+
+  },
+  [editeUser.fulfilled]:(state,action)=>{
+      state.isLoading = false
+      state.error= null
+       state.userInfo=action.payload
+      let date= new Date()
+      let expire =new Date(new Date().setDate(date.getDate()+6))  
+     cookies.remove("userinfo")
+     cookies.set("userinfo",action.payload,{expires : expire})
+     
+     state.updated=true
+     
+     
+   
+
+  },
+  [editeUser.rejected]:(state,action)=>{
+      state.isLoading = false
+      state.error = action.payload
+      
+      state.updated=false
+  },
 
   
 

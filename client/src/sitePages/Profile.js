@@ -5,6 +5,7 @@ import {FaRegEdit} from 'react-icons/fa';
 import {IoIosLogOut} from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import {getOrders} from '../dashbord/store/clientSide/ordersSlice'
+import {clearstate,editeUser, logOut} from '../dashbord/store/authslice'
 import { Link, Route, Routes } from 'react-router-dom';
 import Navbar from '../landingPage/Navbar';
 import EdieProfile from './components/EdieProfile';
@@ -15,7 +16,11 @@ import Points from './components/orders&points/Points';
 const Profile = () => {
     const dispatch = useDispatch()
     const {ordersList, isLoading, error}=useSelector((state)=> state.clientOrders)
-    const {userInfo} =useSelector((state)=> state.auth)
+    
+    const {userInfo,updated} =useSelector((state)=> state.auth)
+    const authState = useSelector((state)=> state.auth)
+    const authLoading = authState.isLoading
+    const imgChange=e=>dispatch(editeUser({avatar: e.target.files[0]}))
     useEffect(() =>{
         dispatch(getOrders())
       
@@ -37,19 +42,10 @@ const Profile = () => {
            <div>{location.country.name}, &nbsp; {location.city.name}, &nbsp;{location.area.name}, &nbsp;{location.street_name}</div>
         </>)
     })
-    //   .reduce((value, object) => {
-    //     if (value[object.x]) {
-    //       value[object.x].y += object.y; 
-    //       value[object.x].count++;
-      
-    //   } else {
-    //       value[object.x] = { ...object , count : 1
-    //       };
-    //     }
-    //     return value;
-    //   }
     return <>
      <Navbar />
+     { authLoading ?<div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>  
+      : 
      <div className='profile'>
       
       <Container>
@@ -59,18 +55,19 @@ const Profile = () => {
               <div className='first_col'>
                   <div className='img'>
                       <img
-                       src={userInfo.avatar}
+                       src={userInfo&&userInfo.avatar}
                       />
-                      <span> <AiFillCamera /></span>
-                      <div className='name'>{userInfo.name.charAt(0).toUpperCase() + userInfo.name.slice(1)}</div>
+                      <span onClick={()=>document.getElementById('upload').click()}> <AiFillCamera /></span>
+                      <input id='upload' type='file' style={{display: 'none'}} onChange={(e)=>imgChange(e)} />
+                      <div className='name'>{userInfo&&userInfo.name.charAt(0).toUpperCase() + userInfo.name.slice(1)}</div>
 
                   </div>
                   <div className='main_info'>
                   <span>
-                  {userInfo.email}
+                  {userInfo&&userInfo.email}
                   </span>
                   <Link to='/profile/edite'>
-                    <span className='icon'>
+                    <span className='icon' onClick={()=>dispatch(clearstate())}>
                         <FaRegEdit />
                     </span>
                   </Link>
@@ -80,7 +77,7 @@ const Profile = () => {
               </div>
               <div className='account_actions'>
               <span className='reset' > <Link to='/log/resetcode'>Reset Password</Link></span>
-                    <span className='icon'>
+                    <span className='icon' onClick={()=>dispatch(logOut())}>
                     Logout <IoIosLogOut />
                     </span>
               </div>
@@ -106,7 +103,8 @@ const Profile = () => {
                <Routes> 
                   <Route path="/edite" element={<EdieProfile />} exact />
                </Routes>
-  </div>
+     </div>
+     }
     </>
  
 };

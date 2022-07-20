@@ -32,7 +32,7 @@ const SignUp = () => {
 
     const dispatch = useDispatch()
     // redux state
-    const {isLoading,error,userInfo} =useSelector((state)=> state.auth)
+    const {error} =useSelector((state)=> state.auth)
     const [showPassword,setShowPassword] = useState(false)
     const [confShowPassword,setConfShowPassword] = useState(false)
     
@@ -107,9 +107,9 @@ const SignUp = () => {
                          {errors.password && touched.password && <><div className='error-text'> {errors.password}</div></> }
                 </div>
                <div className='input-div'>
-               <Field    placeholder='Confirm Password' name='confirm_password' type={confShowPassword?'text':'confirm_password'}   />
+               <Field    placeholder='Confirm Password' name='confirm_password' type={confShowPassword?'text':'password'}   />
                 { touched.password ? <div className='mark'> 
-                    <span onClick={()=>{setShowPassword(!showPassword)}}>{confShowPassword?<GrFormView />:<GrFormViewHide />}</span>
+                    <span onClick={()=>{setShowPassword(!confShowPassword)}}>{confShowPassword?<GrFormView />:<GrFormViewHide />}</span>
                      </div>:
                         <span className='mark' onClick={()=>{setConfShowPassword(!confShowPassword)}}>{confShowPassword?<GrFormView />:<GrFormViewHide />}</span>
                      }
