@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Col, Row } from 'react-bootstrap'
 
 import {BsSearch} from 'react-icons/bs'
-
+import {GrFormPrevious, GrFormNext} from 'react-icons/gr'
 import {MdOutlineChevronLeft,MdOutlineChevronRight} from 'react-icons/md'
 
 import Navbar from '../landingPage/Navbar'
@@ -99,6 +99,11 @@ const Search = () => {
              
             </Row>
 
+          </div>
+          <div className='pagination'>
+            <span className='ch-page'><GrFormPrevious />  Previous</span>
+            <span className='space'></span>
+            <span className='ch-page'> Next <GrFormNext /> </span>
           </div>
         
         </div>

@@ -39,6 +39,16 @@ margin-top: 50px;
 
 
    }
+   .pagination{
+    display: flex;
+    .ch-page{
+        flex-grow: 1;
+        text-align: center;
+    }
+    .space{
+        flex-grow: 8;
+    }
+   }
    
 
 }
