@@ -3,14 +3,14 @@ import React from 'react'
 import {BsHeart,BsFillHeartFill} from 'react-icons/bs'
 import {FiShoppingCart} from 'react-icons/fi'
 import { AiFillPlusCircle } from 'react-icons/ai'
-const ProductInfo = ({fav}) => {
+const ProductInfo = ({fav,product}) => {
     return (
         <div className='product_info'>
             <div>
-            Product title goes here ..
+            {product&&product.title}
             </div>
             <div className='last-line'>
-            150 $
+            {product&&product.unit_price}
             <span className='oposite_direction' >
             { fav ? <span> <BsFillHeartFill /> </span>:<span> <BsHeart /> </span>}
               <span> <FiShoppingCart />  <span className='add'><AiFillPlusCircle/></span> </span>

@@ -22,7 +22,7 @@ const Log = () => {
         <>
        
           <div className='log'>
-          <Navbar />
+          <Navbar navigate={false} />
             <Routes>
             <Route path="/sign" element={<SignUp />} exact />
             <Route path="/login" element={<Login />} exact />

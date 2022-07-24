@@ -19,7 +19,7 @@ import landPage from './LandingPageSlice'
 import orders from './orderSlice'
 import brand from './brandSlice'
 import clientOrders from './clientSide/ordersSlice'
-import clientProducts from './clientSide/ordersSlice'
+import clientProducts from './clientSide/clientProducts'
 export default   configureStore({
   reducer: {
       auth,

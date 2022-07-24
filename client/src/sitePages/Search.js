@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Col, Row } from 'react-bootstrap'
 
 import {BsSearch} from 'react-icons/bs'
@@ -9,8 +9,33 @@ import Navbar from '../landingPage/Navbar'
 import Product from '../components/Product'
 import { Link } from 'react-router-dom'
 import FilterProducts from './FilterProducts'
+import {getClientProducts} from '../dashbord/store/clientSide/clientProducts'
+import { useDispatch, useSelector } from 'react-redux'
 const Search = () => {
+  const dispatch= useDispatch()
   const [filterItems, setFilterItems] = useState(false)
+  const [pagenum,setPagenum] = useState(1)
+  const pageSize =filterItems?11:12
+  
+  useEffect(() =>{
+    dispatch(getClientProducts({page_size:pageSize,
+      page:pagenum}))
+  
+
+  },[dispatch, pagenum,pageSize])
+  const {products,count, isLoading, error}=useSelector((state)=> state.clientProducts)
+  const maxpagenum =Math.ceil(count/pageSize)
+  console.log(maxpagenum)
+  const renderedProducts = products&&products.map(product=>{
+    return(
+      <Col md={4} lg={3} >  
+                  <Link to='/product'>
+                     <Product img={product.galleries[0]&&product.galleries[0].image} product={product}/>
+                  </Link>
+       </Col>
+    )
+
+  })
     return (
       <>
          <Navbar />
@@ -48,62 +73,28 @@ const Search = () => {
                   <FilterProducts />
                 </Col>
                 }
-                <Col md={4} lg={3} >  
-                <Link to='/product'>
-                  <Product  productid={1} sale img='/images/products/4.png'/>
-                 </Link>
-                </Col>
-                <Col md={4} lg={3} >  
-                  <Link to='/product'>
-                    <Product productid={2} img='/images/products/5.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3} >  
-                  <Link to='/product'>
-                    <Product productid={3} img='/images/products/6.png' />
-                  </Link>
-                </Col>
-
-                <Col md={4} lg={3} >  
-                  <Link to='/product'>
-                    <Product  productid={1} sale img='/images/products/1.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3} >  
-                  <Link to='/product'>
-                     <Product productid={2} img='/images/products/2.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3} >  
-                  <Link to='/product'>
-                    <Product productid={3} img='/images/products/3.png' />
-                  </Link>
-                </Col>
-             
-
-                <Col md={4} lg={3} >  
-                  <Link to='/product'>
-                     <Product  productid={1} sale img='/images/products/4.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3} >  
-                  <Link to='/product'>
-                    <Product productid={2} img='/images/products/5.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3} >  
-                  <Link to='/product'>
-                    <Product productid={3} img='/images/products/6.png' />
-                  </Link>
-                </Col>
+           { renderedProducts}
              
             </Row>
 
           </div>
           <div className='pagination'>
-            <span className='ch-page'><GrFormPrevious />  Previous</span>
-            <span className='space'></span>
-            <span className='ch-page'> Next <GrFormNext /> </span>
+            <div className='ch-page'>
+              <div className='button' onClick={() =>pagenum!==1&& setPagenum(pagenum-1)} >
+                     
+                     <span><GrFormPrevious />  </span>
+                      Previous
+              </div>
+            </div>
+            
+            <div className='space'> Page {pagenum} of {maxpagenum} </div>
+            <div className='ch-page'>
+              <div className='button' onClick={() =>pagenum<maxpagenum&& setPagenum(pagenum+1)}>
+              Next
+              <span> <GrFormNext /> </span>
+              </div>
+            </div>
+
           </div>
         
         </div>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 let formData = new FormData(); 
 
-export const getProducts = createAsyncThunk ('products/get',  async(brandId ,thunkAPI) =>{
+export const getClientProducts = createAsyncThunk ('clientproducts/get',  async(data ,thunkAPI) =>{
   const {rejectWithValue , getState} = thunkAPI
 ///................................................................
 
@@ -10,13 +10,15 @@ export const getProducts = createAsyncThunk ('products/get',  async(brandId ,thu
 
 try{
   const token= getState().auth.token
-  let res = await axios.get(`https://thebeauwow.me/api/v1/brand/detail/${brandId}/`,{
+  let  body= JSON.stringify(data)
+  let res = await axios.get(`https://thebeauwow.me/api/v1/products/`, { params:data },{
   headers: {
 'Content-Type': 'application/json', 
- 'Authorization': `Bearer ${token}`,}
+ 'Authorization': `Bearer ${token}`}
 
 })
-  return res.data.results
+
+  return res.data
 }
 catch(e){
   return rejectWithValue(e.response.data)
@@ -25,8 +27,8 @@ catch(e){
 })
 
 const productSlice= createSlice({
-    name:'product',
-    initialState : { products:[], isLoading:false,prodectAdded:false, productupdated:false,deleted:false, error:null},
+    name:'clientproducts',
+    initialState : { products:[],count:0, isLoading:false,prodectAdded:false, productupdated:false,deleted:false, error:null},
     reducers:{
       clearstate:(state)=>{
         state.prodectAdded= false
@@ -38,7 +40,7 @@ const productSlice= createSlice({
     },
     extraReducers:{
      
-      [ getProducts.pending ] :(state,action)=>{
+      [ getClientProducts.pending ] :(state,action)=>{
 
           state.isLoading = true
           state.error = null
@@ -46,15 +48,16 @@ const productSlice= createSlice({
           
      
      },
-     [ getProducts.fulfilled ] :(state,action)=>{
+     [ getClientProducts.fulfilled ] :(state,action)=>{
       state.isLoading = false
       
       state.error= null
-      state.products = action.payload
+      state.products = action.payload.results
+      state.count = action.payload.count
   
       
       },
-      [ getProducts.rejected ] :(state,action)=>{
+      [ getClientProducts.rejected ] :(state,action)=>{
            state.isLoading = false
            state.error = action.payload
           

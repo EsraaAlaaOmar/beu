@@ -8,7 +8,7 @@ import { Link,Navigate } from 'react-router-dom'
 import { Dropdown } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 
-const Navbar = () => {
+const Navbar = ({navigate=true}) => {
     const {userInfo,loggedIn} =useSelector((state)=> state.auth)
     return (
         <div className='landnav' >
@@ -113,8 +113,8 @@ const Navbar = () => {
             </div>
 
             <br/>
-            {userInfo&&!userInfo.is_customer && <Navigate to='/log/login' />}
-            {!loggedIn&& <Navigate to='/log/login' />}
+            {navigate&&userInfo&&!userInfo.is_customer && <Navigate to='/log/login' />}
+            {navigate&&!loggedIn&& <Navigate to='/log/login' />}
         </div>
     )
 }
