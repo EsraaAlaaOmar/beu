@@ -1,74 +1,28 @@
 .firstsection{
-  
-    img{
-        margin: auto;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        width: 70%;
-        height: 600px;
-        display: block;
-        float: $oposite_direction;
-    }
-    .right_div{
-        min-height: 600px;
-        width: 100%;
-        background-image: url("../../backgrounds/landingpage/section1.png");
-        background-repeat:no-repeat ;
-        background-size: 100% 100%;
-        background-position: top top;
-        padding-top: 60px;
-        padding-left: 28px;
-        height: auto;
-       
-        div{
-             padding: 5px;
-             padding-left: 10px;
-            width: 110px;
-           
-            margin-bottom: 35px;
-            font-size: 24px;
-            font-style: italic;
+    background-image: url("../../backgrounds/landingpage/fs.png");
+    padding:100px 50px;
+        img{
+            width: 405px;
+            height: 502px;
+            max-width: 90%;
+            display: block;
+            margin:20px auto;
+        }
+        .in-toutch{
+            position:absolute;
+            bottom:0px;
+            left: calc(50% - 140px);
+            background-color: #FDF3ED;
+            padding:15px 50px;
+            text-align:center;
+            font-family: Adobe Arabic;
             font-weight: bold;
-            border: solid 1px #A3560499;
-            border-right: none;
+            color: #000;
+            div{
+              font-weight: normal;
+            }
+        }
 
-        }
-        p{
-            
-            width: 438px;
-            height: 258px;
-            overflow: hidden;
-            font-size: 25px;
-            font-weight: 500;
-            color: #010101;
-            &:hover{
-                cursor: pointer;
-                overflow: visible;
-                height: auto;
-            }
-         
-            
-        }
-        button{
-            border: none;
-            outline: none;
-            background-color: #C97B5F;
-           // width: 488px;
-           padding: 5px 40px;
-            min-height: 50px;
-            margin: auto;
-            margin-top: 50px;
-            margin-bottom: 200px;
-            color: #e9dad0;
-            font-size: 22px;
-            font-family: 'Alegreya';
-            span{
-                color: #000;
-                font-weight: bold;
-                margin-left: 10px;
-            }
-            
-        }
+   
     
     }
-}

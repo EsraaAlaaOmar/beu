@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react'
 import { Col, Row } from 'react-bootstrap';
 import {useDispatch, useSelector } from 'react-redux';
 import{getCountries,deleteCountry, deleteCity,deleteArea } from '../../store/Address/counteriesSlice'
-import{getCities} from '../../store/Address/CitiesSlice'
-import{getAreas} from '../../store/Address/areaSlice'
 import { ReactComponent as Logo } from '../../images/address.svg';
 import Nav from '../reusable/Nav';
 import Areas from './Areas';

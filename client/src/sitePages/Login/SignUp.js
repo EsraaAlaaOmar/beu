@@ -32,7 +32,7 @@ const SignUp = () => {
 
     const dispatch = useDispatch()
     // redux state
-    const {error} =useSelector((state)=> state.auth)
+    const {error,isLoading} =useSelector((state)=> state.auth)
     const [showPassword,setShowPassword] = useState(false)
     const [confShowPassword,setConfShowPassword] = useState(false)
     
@@ -51,6 +51,12 @@ const SignUp = () => {
 
   }
     return (
+        
+     <>
+      {isLoading ? 
+        <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div> 
+        :
+      
         <div className='log_box'>
             <div className='title'>SIGN UP</div>
            
@@ -132,6 +138,9 @@ const SignUp = () => {
                 </Link>
            </div>
         </div>
+          }
+     </>
+                    
     )
 }
 

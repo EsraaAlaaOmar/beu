@@ -1,18 +1,20 @@
 import React from 'react'
-
+import {addFav,deletefav} from '../dashbord/store/clientSide/favouriteSlice'
+import { useDispatch } from 'react-redux'
 import {BsHeart,BsFillHeartFill} from 'react-icons/bs'
 import {FiShoppingCart} from 'react-icons/fi'
 import { AiFillPlusCircle } from 'react-icons/ai'
 const ProductInfo = ({fav,product}) => {
+    const dispatch= useDispatch()
     return (
         <div className='product_info'>
             <div>
             {product&&product.title}
             </div>
             <div className='last-line'>
-            {product&&product.unit_price}
+            {product&&product.unit_price}$
             <span className='oposite_direction' >
-            { fav ? <span> <BsFillHeartFill /> </span>:<span> <BsHeart /> </span>}
+            <span onClick={()=>dispatch(fav? deletefav({product_id:product.id}):addFav({product_id:product.id}))}>{ fav ? <span> <BsFillHeartFill /> </span>:<span> <BsHeart /> </span>}</span>
               <span> <FiShoppingCart />  <span className='add'><AiFillPlusCircle/></span> </span>
              
             </span>

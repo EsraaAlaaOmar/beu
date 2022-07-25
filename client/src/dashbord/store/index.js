@@ -8,8 +8,6 @@ import collections from './collectionsSlice'
 import messages from './messagesSlice'
 import sizes from './sizesSlice'
 import countries from './Address/counteriesSlice'
-import cities from './Address/CitiesSlice'
-import areas from './Address/areaSlice'
 import product from './productSlice'
 import logedDetails from './logedDetailsSlice'
 import sell from './sellinbowslice'
@@ -20,6 +18,7 @@ import orders from './orderSlice'
 import brand from './brandSlice'
 import clientOrders from './clientSide/ordersSlice'
 import clientProducts from './clientSide/clientProducts'
+import favourite from './clientSide/favouriteSlice'
 export default   configureStore({
   reducer: {
       auth,
@@ -32,8 +31,6 @@ export default   configureStore({
       messages, 
       sizes, 
       countries,
-      cities, 
-      areas,
       product,
       sell,
       feedback,
@@ -42,7 +39,8 @@ export default   configureStore({
       orders,
       brand, 
       clientOrders,
-      clientProducts
+      clientProducts, 
+      favourite
 
   },
 })

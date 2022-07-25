@@ -24,20 +24,20 @@ const Search = () => {
 
   },[dispatch, pagenum,pageSize])
   const {products,count, isLoading, error}=useSelector((state)=> state.clientProducts)
+  const {favAdded}=useSelector((state)=> state.favourite)
   const maxpagenum =Math.ceil(count/pageSize)
   console.log(maxpagenum)
   const renderedProducts = products&&products.map(product=>{
     return(
       <Col md={4} lg={3} >  
-                  <Link to='/product'>
                      <Product img={product.galleries[0]&&product.galleries[0].image} product={product}/>
-                  </Link>
        </Col>
     )
 
   })
     return (
-      <>
+    <>
+        {isLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:<>
          <Navbar />
          <div className='search-page'>
           <div className='collections'>
@@ -99,7 +99,9 @@ const Search = () => {
         
         </div>
       
-      </>
+      </>}
+    </>
+    
      
     )
 }

@@ -1,0 +1,35 @@
+.clientSide{
+.discover{
+    text-align: center;
+    font-family:Adobe Arabic;
+    padding:50px;
+    padding-bottom: 0;
+    .title{
+      font-size: 34px;
+      font-weight: bold;
+    }
+    .collections{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    
+        div{
+            background-color:#FFEBDF;
+            margin: 10px;
+            padding: 5px 20px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+    }
+    .discover-line{
+        height:2px;
+        background-color: gray;
+        width:80%;
+        margin: auto;
+        margin-top: -10px;
+
+
+    }
+}
+}

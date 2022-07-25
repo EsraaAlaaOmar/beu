@@ -58,7 +58,7 @@ const Login = () => {
     return (
       <>
             {isLoading ? 
-    <div  className="box loading"> <img src='/images/loading.gif' /></div> 
+    <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div> 
     :
     
     <div className='log_box'>

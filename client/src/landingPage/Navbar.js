@@ -102,7 +102,7 @@ const Navbar = ({navigate=true}) => {
                         
                     </div>
                 </Link>
-                <Link to='/card'>
+                <Link to='/cart'>
                     <div className='icon-div'>
                         <FiShoppingCart /><span>3</span>
                         <div>Cart (3)</div>

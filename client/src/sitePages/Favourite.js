@@ -1,18 +1,41 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Row,Col, Dropdown, DropdownButton } from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {MdOutlineChevronLeft,MdOutlineChevronRight} from 'react-icons/md' 
 import {BsSearch} from 'react-icons/bs'
 import {AiFillCloseCircle} from 'react-icons/ai'
 import { useState } from 'react'
+import {getFavourites} from '../dashbord/store/clientSide/favouriteSlice'
 import FilterProducts from './FilterProducts'
 import Product from '../components/Product'
 import Navbar from '../landingPage/Navbar'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Favourite = () => {
-
+  const dispatch= useDispatch()
+  const {favList,favAdded, isLoading, error}=useSelector((state)=> state.favourite)
   const [filterItems, setFilterItems] = useState(false)
+
+  useEffect(() =>{
+    dispatch(getFavourites())
+  
+
+  },[dispatch])
+   console.log(favList)
+  const renderedFavourites= favList&&favList.map(product=>{
+    return(
+      <Col md={4} lg={3} >  
+                  
+                     <Product fav={true} img={product.galleries[0]&&product.galleries[0].image} product={product}/>
+                
+       </Col>
+    )
+
+  })
     return (
+    
+      <>
+      { isLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div> : 
       <>
          <Navbar />
          <div className='fav'>
@@ -61,60 +84,12 @@ const Favourite = () => {
                   <FilterProducts />
                 </Col>
                 }
-                <Col md={4} lg={3} > 
-                  <Link to='/product'>
-                      <Product  fav  productid={1}  img='/images/products/4.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3}> 
-                  <Link to='/product'>
-                       <Product  fav productid={1} img='/images/products/5.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3}> 
-                 <Link to='/product'>
-                     <Product  fav productid={3} img='/images/products/6.png' />
-                  </Link>
-                </Col>
-
-                <Col md={4} lg={3} > 
-                  <Link to='/product'>
-                    <Product  fav  productid={1}  img='/images/products/1.png'/>
-                  
-                  </Link>
-                </Col>
-                <Col md={4} lg={3}> 
-                  <Link to='/product'>
-                      <Product  fav productid={1} img='/images/products/2.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3}> 
-                  <Link to='/product'>
-                      <Product  fav productid={3} img='/images/products/3.png' />
-                  </Link>
-                </Col>
-             
-
-                <Col md={4} lg={3} > 
-                   <Link to='/product'>
-                      <Product  fav  productid={1}  img='/images/products/4.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3}> 
-                  <Link to='/product'>
-                    <Product  fav productid={1} img='/images/products/5.png'/>
-                  </Link>
-                </Col>
-                <Col md={4} lg={3}> 
-                  <Link to='/product'>
-                       <Product  fav productid={3} img='/images/products/6.png' />
-                  </Link>
-                </Col>
+                { renderedFavourites}
              
             </Row>
     
           </div>
-          <div className='recommended'>
+          {/* <div className='recommended'>
           <div className='title'>Recommended For You</div>
           <div className='products'>
           <Row>
@@ -140,9 +115,11 @@ const Favourite = () => {
     
           </div>
         
-          </div>
+          </div> */}
         </div>
+      </> }
       </>
+   
        
     )
 }
