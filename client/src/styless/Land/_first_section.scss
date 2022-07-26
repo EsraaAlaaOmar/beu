@@ -1,6 +1,9 @@
 .firstsection{
     background-image: url("../../backgrounds/landingpage/fs.png");
     padding:100px 50px;
+    .row{
+        position: relative;
+    }
         img{
             width: 405px;
             height: 502px;
@@ -10,7 +13,7 @@
         }
         .in-toutch{
             position:absolute;
-            bottom:0px;
+            bottom:50px;
             left: calc(50% - 140px);
             background-color: #FDF3ED;
             padding:15px 50px;

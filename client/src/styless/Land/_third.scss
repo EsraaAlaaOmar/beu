@@ -1,66 +1,42 @@
-.third{
-    margin-bottom: 50px;
-    .img{
-        position: relative;
-    img{
-        margin: auto;
-        width: 75%;
-        height: 350px;
-        height: 675px;
-        display: block;
-        z-index: 99;
-    }
-    .box{
-        position: absolute;
-        top: -30px;
-        left: 70px;
-        z-index: -1;
-        width: 383px;
-        height: 579px;
-        border: solid 1px #C97B5F;
-    }
-    }
-    .text{
-        background-repeat:no-repeat ;
-        background-size: 100% 100%;
-        max-width: 100%;
-        background-image: url("../../backgrounds/landingpage/sec3.png");
-        background-repeat:no-repeat ;
-        background-size: 100% 100%;
-       padding:50px  20px;
-       width: 506px;
-     //  margin: auto;
-       margin-top: 100px;
+.clientSide{
+    .third{
+        background-color: #FDF3ED;
+        width: 100%;
+        min-height: 500px;
+        padding-top: 100px;
+        padding-bottom: 200px;
+        text-align: center;
         .title{
-            font-family: Alegreya;
-            font-style: italic;
-            font-weight: bold;
-            font-size: 34px;
+         font-family: Adobe Caslon Pro;
+         font-size: 41px;
+         font-weight: 500;
+         margin-bottom: 30px;
         
-            }
-            p{
-                margin: 15px 0;
-                width: 438px;
-                max-width: 100%;
-                height: 258px;
-                overflow: hidden;
-                font-size: 25px;
-                font-weight: 500;
-                &:hover{
-                    overflow: visible;
-                    height: auto;
-                    
+        }
+        .boxs{
+            font-family: Adobe Arabic;
+            .box{
+                width: 241px;
+                height: 380px;
+                margin:30px auto;
+                img{
+                    width:calc( 100% - 70px);
+                    height: 220px;
+                    margin: 35px;
+                    margin-bottom: 20px;
                 }
-            
+                .box-title{
+                   font-size: 19px;
+                   font-weight: 500;
+
+                }
+                .box-secondLine{
+                    font-size: 18px;
+                    font-style: italic;
+                }
+            }
         }
-        .white{
-            color: #fff;
-            font-family: Alegreya;
-            font-style: italic;
-            font-size: 30px;
-            font-weight: bold;
-            margin-top: 20px;
-            cursor: pointer;
-        }
+
+    
     }
 }

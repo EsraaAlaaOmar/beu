@@ -6,6 +6,8 @@ import ThirdSection from './ThirdSection';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import Discover from './Discover';
+import SecondSection from './SecondSection';
+import FifthSection from './FifthSection';
 const Land = () => {
     return (
         <div>
@@ -13,8 +15,10 @@ const Land = () => {
             <LandHeader />
             <FirstSection />
             <Discover />
-            <Products />
+            <SecondSection />
             <ThirdSection />
+            <FifthSection />
+            <Products />
             <Footer />
 
         </div>

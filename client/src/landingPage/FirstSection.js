@@ -15,8 +15,7 @@ const FirstSection = () => {
                 <Col lg={4}>
                    <img  src='/images/Landingpage/C2.png' />
                 </Col>
-            </Row>
-            <Link to='/log/sign'>
+                <Link to='/log/sign'>
                 <div className='in-toutch'>
                     LETS GET IN TOUCH!
                     <div>Sign Up Now</div>
@@ -24,6 +23,8 @@ const FirstSection = () => {
                 </div>
             
             </Link>
+            </Row>
+         
           
             
         </div>

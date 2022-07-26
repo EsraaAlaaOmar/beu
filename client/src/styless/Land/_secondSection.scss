@@ -1,0 +1,65 @@
+.clientSide{
+    .second-section{
+        padding-top: 100px;
+
+        .col,.col-md-5,.col-md-7{
+          padding: 0;
+          height: 709px;
+          position: relative;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .center-img{
+            width: 334px;
+            height: 425px;
+            display: block;
+            margin: auto;
+        }
+        .col-md-7{
+           padding-top: 100px;
+        }
+        .text{
+            text-align: center;
+            .title{
+                font-family: Calibri;
+                font-size: 24px;
+                font-weight: 700;
+                margin: 25px 0;
+                
+            }
+            .button{
+                background-color:#DCB4A7 ;
+                width: 192px;
+                margin: auto;
+                padding:10px 0;
+                color: #1E1E1C;
+                font-weight: 500;
+            }
+         
+        }
+        .visit{
+            position: absolute;
+            left:calc(50% - 115px);
+            bottom: 25px;
+            text-align: center;
+            background-color: #fdf3ed8f;
+            padding: 10px;
+            font-weight: bold;
+            font-family: Adobe Arabic;
+            font-family: Adobe Arabic;
+            
+
+           
+        }
+        .pink{
+            width: 100%;
+            height: 55px;
+            background-color: #F3D9D6;
+            z-index: 10000000;
+        }
+    }
+
+
+}
