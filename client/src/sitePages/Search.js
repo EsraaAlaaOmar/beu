@@ -4,26 +4,30 @@ import { Col, Row } from 'react-bootstrap'
 import {BsSearch} from 'react-icons/bs'
 import {GrFormPrevious, GrFormNext} from 'react-icons/gr'
 import {MdOutlineChevronLeft,MdOutlineChevronRight} from 'react-icons/md'
-
 import Navbar from '../landingPage/Navbar'
 import Product from '../components/Product'
 import { Link } from 'react-router-dom'
 import FilterProducts from './FilterProducts'
-import {getClientProducts} from '../dashbord/store/clientSide/clientProducts'
+import {getClientProducts,getFilteredProducts} from '../dashbord/store/clientSide/clientProducts'
 import { useDispatch, useSelector } from 'react-redux'
 const Search = () => {
   const dispatch= useDispatch()
   const [filterItems, setFilterItems] = useState(false)
   const [pagenum,setPagenum] = useState(1)
   const pageSize =filterItems?11:12
+  const [filterData,setFilterData] =useState()
   
+  const {products,count, isLoading, error}=useSelector((state)=> state.clientProducts)
+ 
   useEffect(() =>{
-    dispatch(getClientProducts({page_size:pageSize,
+    filterItems?
+    dispatch(getFilteredProducts(filterData))
+    :dispatch(getClientProducts({page_size:pageSize,
       page:pagenum}))
   
 
-  },[dispatch, pagenum,pageSize])
-  const {products,count, isLoading, error}=useSelector((state)=> state.clientProducts)
+  },[dispatch, pagenum,pageSize,filterItems])
+
   const {favAdded}=useSelector((state)=> state.favourite)
   const maxpagenum =Math.ceil(count/pageSize)
   console.log(maxpagenum)
@@ -70,7 +74,7 @@ const Search = () => {
           {filterItems && 
             <Col md={4} lg={3} > 
                 
-                  <FilterProducts />
+                  <FilterProducts setFilterData={setFilterData}  />
                 </Col>
                 }
            { renderedProducts}
@@ -78,7 +82,7 @@ const Search = () => {
             </Row>
 
           </div>
-          <div className='pagination'>
+        {!filterItems &&  <div className='pagination'>
             <div className='ch-page'>
               <div className='button' onClick={() =>pagenum!==1&& setPagenum(pagenum-1)} >
                      
@@ -95,7 +99,7 @@ const Search = () => {
               </div>
             </div>
 
-          </div>
+          </div>}
         
         </div>
       
