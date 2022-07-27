@@ -8,6 +8,7 @@ import Navbar from './Navbar';
 import Discover from './Discover';
 import SecondSection from './SecondSection';
 import FifthSection from './FifthSection';
+import SixSection from './SixSection';
 const Land = () => {
     return (
         <div>
@@ -18,7 +19,7 @@ const Land = () => {
             <SecondSection />
             <ThirdSection />
             <FifthSection />
-            <Products />
+            <SixSection />
             <Footer />
 
         </div>

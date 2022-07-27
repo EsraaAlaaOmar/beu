@@ -1,3 +1,4 @@
+.clientSide{
 .firstsection{
     background-image: url("../../backgrounds/landingpage/fs.png");
     padding:100px 50px;
@@ -25,7 +26,27 @@
               font-weight: normal;
             }
         }
+        a{
+            text-decoration: none;
+        }
+        .button{
+            background-color:#DCB4A7;
+            color: #000;
+            text-decoration: none;
+            width: 307px;
+            padding:25px 0;
+            margin:70px  auto;
+            text-align: center;
+            font-weight: 500;
+        
+        }
 
    
     
     }
+.six{
+    background-image: url("../../backgrounds/landingpage/sec6.png");
+    background-repeat: no-repeat;
+    background-size:100% 100% ;
+}
+}

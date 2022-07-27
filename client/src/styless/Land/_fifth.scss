@@ -1,18 +1,58 @@
 .clientSide{
     .fifth{
-        background-image: url("../../backgrounds/landingpage/slide.png");
-        background-repeat: no-repeat;
-        background-size:100% 100% ;
-        height: 700px;
-        margin-top: -100px;
-        position: relative;
-        .slider{
-            background-image: url("../../backgrounds/landingpage/slide-left.png");
-            width: 24%;
-            height: 460px;
-            position:absolute;
-            left: 10%;
-            top: 26%;
+        background-color: #FDF3ED;
+        padding-bottom: 50px;
+        .background{
+            background-image: url("../../backgrounds/landingpage/slide.png");
+            background-repeat: no-repeat;
+            background-size:100% 100% ;
+            height: 700px;
+            margin-top: -100px;
+            position: relative;
+            .slider{
+                background-image: url("../../backgrounds/landingpage/slide-left.png");
+                width: 24%;
+                height: 460px;
+                position:absolute;
+                left: 10%;
+                top: 26%;
+                padding: 20px ;
+                overflow-y:hidden;
+                overflow-x: hidden;
+                &:hover{
+                    overflow-y: auto;
+                }
+                .carousel-indicators{
+                    display: none;
+                }
+            } 
+            .question{
+                font-family: Adobe Arabic;
+                font-size: 24px;
+                font-style: italic;
+                margin-bottom: 10px;
+                font-weight: bold;
+
+            }
+            .answer{
+                font-family: Alegreya;
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+        a{
+            text-decoration: none;
+        }
+        .button{
+            background-color:#DCB4A7;
+            color: #000;
+            text-decoration: none;
+            width: 307px;
+            padding:25px 0;
+            margin:70px  auto;
+            text-align: center;
+            font-weight: 500;
+        
         }
     }
 
