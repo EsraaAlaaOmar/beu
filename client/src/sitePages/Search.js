@@ -9,6 +9,7 @@ import Product from '../components/Product'
 import { Link } from 'react-router-dom'
 import FilterProducts from './FilterProducts'
 import {getClientProducts,getFilteredProducts} from '../dashbord/store/clientSide/clientProducts'
+import {getClientBrands} from '../dashbord/store/clientSide/clientbrands'
 import { useDispatch, useSelector } from 'react-redux'
 const Search = () => {
   const dispatch= useDispatch()
@@ -18,19 +19,22 @@ const Search = () => {
   const [filterData,setFilterData] =useState()
   
   const {products,count, isLoading, error}=useSelector((state)=> state.clientProducts)
+  const {brands}=useSelector((state)=> state.clientbrands)
  
   useEffect(() =>{
-    filterItems?
-    dispatch(getFilteredProducts(filterData))
-    :dispatch(getClientProducts({page_size:pageSize,
-      page:pagenum}))
-  
 
-  },[dispatch, pagenum,pageSize,filterItems])
+   
+    !filterItems&& dispatch(getClientProducts({page_size:pageSize,
+      page:pagenum}))
+      !filterItems&& dispatch(getClientBrands())
+     
+
+  },[dispatch, pagenum,pageSize])
 
   const {favAdded}=useSelector((state)=> state.favourite)
   const maxpagenum =Math.ceil(count/pageSize)
   console.log(maxpagenum)
+  //products 
   const renderedProducts = products&&products.map(product=>{
     return(
       <Col md={4} lg={3} >  
@@ -39,20 +43,13 @@ const Search = () => {
     )
 
   })
+
     return (
     <>
         {isLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:<>
          <Navbar />
          <div className='search-page'>
-          <div className='collections'>
-            <span className='collection-name'> ALL</span>
-            <span className='collection-name'> ABAYAS</span>
-            <span className='collection-name'> BAGS</span>
-            <span className='collection-name'> SHOES</span>
-            <span className='collection-name'> ACCESSORIES</span>
-            <span className='collection-name'> JEWELRY</span>
-            <span className='collection-name'> HOME DECOR</span>
-            
+         <div className='collections'>  
         <span className='search'>
              <input  placeholder='search any item ..' />   
              <span className='icon'> <BsSearch /> </span>
@@ -74,7 +71,7 @@ const Search = () => {
           {filterItems && 
             <Col md={4} lg={3} > 
                 
-                  <FilterProducts setFilterData={setFilterData}  />
+                  <FilterProducts setFilterData={setFilterData} getFilteredProducts={getFilteredProducts} brands={brands}  />
                 </Col>
                 }
            { renderedProducts}

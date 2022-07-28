@@ -40,13 +40,7 @@ const Favourite = () => {
          <Navbar />
          <div className='fav'>
           <div className='collections'>
-            <span className='collection-name'> ALL</span>
-            <span className='collection-name'> ABAYAS</span>
-            <span className='collection-name'> BAGS</span>
-            <span className='collection-name'> SHOES</span>
-            <span className='collection-name'> ACCESSORIES</span>
-            <span className='collection-name'> JEWELRY</span>
-            <span className='collection-name'> HOME DECOR</span>
+           
             
         <span className='search'>
              <input  placeholder='search any item ..' />   
@@ -61,19 +55,12 @@ const Favourite = () => {
            </div>
            <Row>
               <Col md={4} lg={3}>
-                    <div className='filter'>
+                    {/* <div className='filter'>
                         
                      <span  onClick={()=>setFilterItems(!filterItems)}>   Filter By &nbsp;{filterItems? <MdOutlineChevronRight />:<MdOutlineChevronLeft />  }</span>
-                    </div>                    
+                    </div>                     */}
               </Col>
-             {filterItems&& <Col md={8} lg={8}>
-                <div className='category'>
-                       category  <span className='close'> <AiFillCloseCircle /></span>
-                </div>
-                <div className='category'>
-                       category  <span className='close'> <AiFillCloseCircle /></span>
-                </div>
-              </Col>}
+           
            </Row>
          
            <div className='products'>

@@ -71,6 +71,9 @@ a{
           
            font-weight: normal;
            margin-top: 5px;
+           .oldprice{
+            text-decoration: line-through;
+           }
            .oposite_direction{
                float: $oposite_direction;
                color: #C19C82;

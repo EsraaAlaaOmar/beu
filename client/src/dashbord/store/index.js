@@ -18,6 +18,7 @@ import orders from './orderSlice'
 import brand from './brandSlice'
 import clientOrders from './clientSide/ordersSlice'
 import clientProducts from './clientSide/clientProducts'
+import clientbrands from './clientSide/clientbrands'
 import favourite from './clientSide/favouriteSlice'
 export default   configureStore({
   reducer: {
@@ -40,6 +41,7 @@ export default   configureStore({
       brand, 
       clientOrders,
       clientProducts, 
+      clientbrands,
       favourite
 
   },

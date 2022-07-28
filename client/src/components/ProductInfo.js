@@ -12,7 +12,8 @@ const ProductInfo = ({fav,product}) => {
             {product&&product.title}
             </div>
             <div className='last-line'>
-            {product&&product.unit_price}$
+            <span className={product&&product.offer && 'oldprice'}>{product&&product.unit_price}$</span>  &nbsp;
+            {product&&product.offer && product.price_in_offer+'$'}
             <span className='oposite_direction' >
             <span onClick={()=>dispatch(fav? deletefav({product_id:product.id}):addFav({product_id:product.id}))}>{ fav ? <span> <BsFillHeartFill /> </span>:<span> <BsHeart /> </span>}</span>
               <span> <FiShoppingCart />  <span className='add'><AiFillPlusCircle/></span> </span>
