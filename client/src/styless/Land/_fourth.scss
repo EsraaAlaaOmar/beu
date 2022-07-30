@@ -1,0 +1,57 @@
+.clientSide{
+    .fourth-sec{
+        background-image: url("../../backgrounds/landingpage/sec6.png");
+        background-repeat: no-repeat;
+        background-size:100% 100% ;
+        height: 800px;
+        margin-top: -100px;
+        .center-div{
+            width: 644px;
+            height:100%;
+            margin: auto;
+            background-color: #fff;
+            padding:25px 50px;
+            text-align: center;
+            .text{
+                font-family: Alegreya;
+                font-size:20px;
+                font-style: italic;
+                span{
+                    margin: 5px 0;
+                    font-family: Adobe Arabic;
+                    font-style: normal;
+                    font-size: 33px;
+                }
+            }
+            .images{
+                position: relative;
+                .top{
+                    position: absolute;
+                    width: 266px;
+                    height: 348px;
+                    left: calc(50% - 133px);
+                    top: 0;
+                    z-index: 2;
+                    opacity: 0.5;
+                }
+                .left{
+                    position: absolute;
+                    width: 236px;
+                    height: 234px;
+                    right: calc(50% - 133px + 118px);
+                    top: 300px;
+                    z-index: 3;
+                   
+                }
+                .right{  
+                    position: absolute;
+                    width: 315px;
+                    height: 412px;
+                    top: 100px;
+                    z-index: 1;
+                }
+            }
+        }
+    
+    }
+}

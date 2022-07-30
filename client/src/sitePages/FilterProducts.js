@@ -33,8 +33,8 @@ const FilterProducts = ({setFilterData,getFilteredProducts,brands}) => {
 }
 const renderedBrands =brands&& brands.map(brand=>{
  return  <div className='selectLine'>  
-            <input type="radio" id="collection1" name='brand_id' value={brand.id}  onChange={e=>onChange(e)} />
-            <label for="collection1"> {brand.title} </label>
+            <input type="radio" id={brand.id} name='brand_id' value={brand.id}  onChange={e=>onChange(e)} />
+            <label for={brand.id}> {brand.title} </label>
         </div>
 })
   return (

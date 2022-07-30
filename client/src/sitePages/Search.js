@@ -11,8 +11,13 @@ import FilterProducts from './FilterProducts'
 import {getClientProducts,getFilteredProducts} from '../dashbord/store/clientSide/clientProducts'
 import {getClientBrands} from '../dashbord/store/clientSide/clientbrands'
 import { useDispatch, useSelector } from 'react-redux'
+import FlashMsg from './Flashmsgs/FlashMsg'
 const Search = () => {
   const dispatch= useDispatch()
+  
+  // error flashmsg state
+  const[flashmsg,setFlashmsg] = useState(true)
+
   const [filterItems, setFilterItems] = useState(false)
   const [pagenum,setPagenum] = useState(1)
   const pageSize =filterItems?11:12
@@ -35,19 +40,29 @@ const Search = () => {
   const maxpagenum =Math.ceil(count/pageSize)
   console.log(maxpagenum)
   //products 
-  const renderedProducts = products&&products.map(product=>{
+  const renderedProducts = products.length > 0 ?products.map(product=>{
     return(
       <Col md={4} lg={3} >  
                      <Product img={product.galleries[0]&&product.galleries[0].image} product={product}/>
        </Col>
     )
 
-  })
+  }) : 'No products found'
 
     return (
     <>
         {isLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:<>
          <Navbar />
+         
+         {flashmsg && error && <FlashMsg 
+                      title={` ${Object.values(error)} !  `}
+                      img={'/images/msgIcons/error.svg'}
+                      setFlashmsg={setFlashmsg}
+
+                      icontype='error-icon'
+              />}
+        {console.log(error)}
+        
          <div className='search-page'>
          <div className='collections'>  
         <span className='search'>

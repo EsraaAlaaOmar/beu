@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import {MdSort} from 'react-icons/md'
 import{BiSearch}from 'react-icons/bi'
 import {AiOutlineUser}from 'react-icons/ai'
@@ -7,9 +7,17 @@ import {FiShoppingCart} from 'react-icons/fi'
 import { Link,Navigate } from 'react-router-dom'
 import { Dropdown } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
-
+import {getCard} from '../dashbord/store/clientSide/cardSlice'
+import { useDispatch } from 'react-redux'
 const Navbar = ({navigate=true}) => {
+    const dispatch= useDispatch()
     const {userInfo,loggedIn} =useSelector((state)=> state.auth)
+    const {CardList,CardAdded,CardDeleted} =useSelector((state)=> state.card)
+
+    useEffect(() =>{
+        dispatch(getCard())
+      },[dispatch,CardAdded,CardDeleted])
+    
     return (
         <div className='landnav' >
             <img className='logo' src='/images/Landingpage/navicon.png' />
@@ -104,8 +112,8 @@ const Navbar = ({navigate=true}) => {
                 </Link>
                 <Link to='/cart'>
                     <div className='icon-div'>
-                        <FiShoppingCart /><span>3</span>
-                        <div>Cart (3)</div>
+                        <FiShoppingCart /><span>{CardList.length}</span>
+                        <div>Cart </div>
                         
                     </div>
                 </Link>

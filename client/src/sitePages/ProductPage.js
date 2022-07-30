@@ -4,68 +4,78 @@ import { BsFillHeartFill, BsHeart, BsSearch } from 'react-icons/bs'
 
 import {FiShoppingCart} from 'react-icons/fi'
 import {MdOutlineKeyboardArrowUp, MdOutlineKeyboardArrowDown} from 'react-icons/md'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes,useLocation } from 'react-router-dom'
 import Navbar from '../landingPage/Navbar'
 import Call from './components/Call'
 import ContactSection from './components/ContactSection'
 import ProductTitleBox from './ProductTitleBox'
-
+import { useDispatch, useSelector } from 'react-redux'
+import {addToCard} from '../dashbord/store/clientSide/cardSlice'
+import {addFav} from '../dashbord/store/clientSide/favouriteSlice'
 const ProductPage = () => {
-    const[number,setNumber]=useState(1)
+  const dispatch= useDispatch()
+  const {CardAdded} =useSelector((state)=> state.card)
+    let location = useLocation()
     const[size,setSize] =useState(false)
     const[color,setColor] =useState(false)
     const[fav,setFav]=useState(false)
+    const [nav,setNav] = useState(false)
+    const [data,setData] = useState({
+      product_id:location.state.product.id,
+      quantity:1,
+      size_id:'',
+      color_hex:''
+    })
+    const {product_id, quantity, size_id, color_hex}=data
+    const onChange=e=>setData({...data, [e.target.name]: e.target.value})
+    const plusQuantity =()=>setData({...data, quantity: quantity+1})
+    const minusQuantity =()=>setData({...data, quantity: quantity-1})
+console.log(data)
+    const renderedImages= location.state.product.galleries.map(gallary =>{
+      return( <Col md={6} lg={4}>
+        <img src={gallary.image} />
+      </Col>)
+    })
+    const renderedSizes = location.state.product.size.map(size =>{
+      return(
+          <div className='option' >
+             <input type="radio" id={size.id} name="size_id" value={size.id} onChange={(e)=>onChange(e)} />
+            <label for={size.id}>S</label>
+        </div>
+    )
+    })
+    const renderedColors= location.state.product.galleries.map(gallary =>{
+      return(  
+        <div className='option'>
+          <input type="radio" id={gallary.color_hex} name="color_hex" value={gallary.color_hex} onChange={(e)=>onChange(e)}/>
+          <label className='color' for={gallary.color_hex} style={{backgroundColor:gallary.color_hex}}></label>
+      </div>
+    )
+    })
     return (
         <>
            <Navbar />
            <div className='productPage'>
             <div className='collections'>
-                <span className='collection-name'> ALL</span>
-                <span className='collection-name'> ABAYAS</span>
-                <span className='collection-name'> BAGS</span>
-                <span className='collection-name'> SHOES</span>
-                <span className='collection-name'> ACCESSORIES</span>
-                <span className='collection-name'> JEWELRY</span>
-                <span className='collection-name'> HOME DECOR</span>
-                
+             
             <span className='search'>
                 <input  placeholder='search any item ..' />   
                 <span className='icon'> <BsSearch /> </span>
             </span>   
             </div>
              <Row>
+               {renderedImages}
                 <Col md={6} lg={4}>
-                  <img src='/images/products/6.png'  />
-                </Col>
-                <Col>
-                  <img src='/images/products/6.png'  />
-                </Col>
-                <Col>
+                {console.log(location.state.product)}
                   <div className='product-info'>
-                    <div className='text'>Product title goes here</div>
-                    <div className='text'>that's a helping text that's a helping text</div>
-                    <div className='text'>that's a helping text that's a helping text</div>
-
-                  
-
-                    
+                    <div className='text'>{ location.state.product.title}</div>
+                    <div className='text'>{ location.state.product.description}</div>                    
                     <div className='property'>
                       <div className='toggle' onClick={() =>setSize(!size)}>
                         Size <span className='oposite'>{size?<MdOutlineKeyboardArrowUp />:<MdOutlineKeyboardArrowDown />}</span>
                        </div>
                        {size && <div className='list'>
-                        <div className='option' >
-                          <input type="radio" id="S" name="fav_language" value="S"/>
-                            <label for="S">S</label>
-                        </div>
-                        <div className='option'>
-                          <input type="radio" id="M" name="fav_language" value="M"/>
-                            <label for="M">M</label>
-                        </div>
-                        <div className='option'>
-                          <input type="radio" id="L" name="fav_language" value="L"/>
-                            <label for="L">L</label>
-                        </div>
+                       {renderedSizes}
                        
 
                        </div>}
@@ -77,19 +87,7 @@ const ProductPage = () => {
                         Color <span className='oposite'>{color?<MdOutlineKeyboardArrowUp />:<MdOutlineKeyboardArrowDown />}</span>
                        </div>
                        {color && <div className='list'>
-                        <div className='option' >
-                          <input type="radio" id="color1" name="fav_language" value="color1"/>
-                            <label className='color' for="color1"></label>
-                        </div>
-                        <div className='option' >
-                          <input type="radio" id="color2" name="fav_language" value="color2"/>
-                            <label className='color' for="color2" style={{backgroundColor:'pink'}}></label>
-                        </div>
-                        <div className='option'>
-                          <input type="radio" id="color3" name="fav_language" value="color3"/>
-                            <label className='color' for="color3" style={{backgroundColor:'red'}}></label>
-                        </div>
-                       
+                        {renderedColors}
 
                        </div>}
 
@@ -97,13 +95,14 @@ const ProductPage = () => {
                     </div>
                     <div className='property'>
                     <div className='toggle num'> 
-                        <span className='change-num' onClick={()=>setNumber(number+1)}>+ </span> 
-                        {number} items
-                        <span className='change-num' onClick={()=>number>0&&setNumber(number-1)}>- </span>
+                        <span className='change-num' onClick={()=>plusQuantity()}>+ </span> 
+                        {quantity} items
+                        <span className='change-num' onClick={()=>quantity>0&&minusQuantity()}>- </span>
                          </div>
                     </div>
-                    <div className='action'><span className='icon'><FiShoppingCart /></span>Add To Cart</div>
-                    <div className='action fav'>{fav?<span className='icon'><BsFillHeartFill /></span>:<span className='icon'><BsHeart/></span> }ADD TO FAVOURITE</div>
+                    <div className='text'>{ location.state.product.unit_price * quantity} $</div>
+                    <div className='action' onClick={()=>{setNav(true);dispatch(addToCard(data))}}><span className='icon'><FiShoppingCart /></span>Add To Cart</div>
+                    <div className='action fav' onClick={()=>dispatch(addFav({product_id:location.state.product.id}))}>fav?<span className='icon'><BsFillHeartFill /></span>:<span className='icon'><BsHeart/></span> }ADD TO FAVOURITE</div>
 
                   </div>
                 
@@ -142,6 +141,8 @@ const ProductPage = () => {
            <Routes>
            <Route path="/call" element={<Call />} exact />
            </Routes>
+
+           {nav && CardAdded && <Navigate to='/cart' />}
          
         </>
 

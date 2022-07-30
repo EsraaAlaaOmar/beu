@@ -9,6 +9,7 @@ import Discover from './Discover';
 import SecondSection from './SecondSection';
 import FifthSection from './FifthSection';
 import SixSection from './SixSection';
+import FourthSection from './FourthSection';
 const Land = () => {
     return (
         <div>
@@ -18,6 +19,7 @@ const Land = () => {
             <Discover />
             <SecondSection />
             <ThirdSection />
+            <FourthSection />
             <FifthSection />
             <SixSection />
             <Footer />

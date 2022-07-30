@@ -26,7 +26,7 @@ catch(e){
 
 })
 
-export const getFilteredProducts = createAsyncThunk ('clientproducts/get',  async(data ,thunkAPI) =>{
+export const getFilteredProducts = createAsyncThunk ('filterproducts/get',  async(data ,thunkAPI) =>{
   const {rejectWithValue , getState} = thunkAPI
 ///................................................................
 
@@ -65,7 +65,7 @@ const productSlice= createSlice({
     },
     extraReducers:{
      
-      [ getClientProducts.pending ] :(state,action)=>{
+      [ getClientProducts.pending ] :(state)=>{
 
           state.isLoading = true
           state.error = null
@@ -75,7 +75,6 @@ const productSlice= createSlice({
      },
      [ getClientProducts.fulfilled ] :(state,action)=>{
       state.isLoading = false
-      
       state.error= null
       state.products = action.payload.results
       state.count = action.payload.count
@@ -92,7 +91,7 @@ const productSlice= createSlice({
 
       [ getFilteredProducts.pending ] :(state,action)=>{
 
-        state.isLoading = true
+        // state.isLoading = true
         state.filter=false
         state.error = null
        

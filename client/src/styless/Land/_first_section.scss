@@ -2,6 +2,7 @@
 .firstsection{
     background-image: url("../../backgrounds/landingpage/fs.png");
     padding:100px 50px;
+    // background-color: #FDF3ED;
     .row{
         position: relative;
     }
@@ -38,6 +39,11 @@
             margin:70px  auto;
             text-align: center;
             font-weight: 500;
+            &:hover{
+                background-color: #fff;
+                border: 2px solid #000;
+            }
+        
         
         }
 
@@ -45,8 +51,10 @@
     
     }
 .six{
+    background-color: #fff;
     background-image: url("../../backgrounds/landingpage/sec6.png");
     background-repeat: no-repeat;
     background-size:100% 100% ;
+
 }
 }
