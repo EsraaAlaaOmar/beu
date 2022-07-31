@@ -25,15 +25,28 @@ catch(e){
 }
 
 })
-
+export const addFeedback = createAsyncThunk ('clientfeedbacks/add',  async(feedbackdata ,thunkAPI) =>{
+    const {rejectWithValue , getState} = thunkAPI
+    const token= getState().auth.token
+    try {
+      const body= JSON.stringify(feedbackdata)
+      const response = await axios.post("https://thebeauwow.me/api/v1/feedback/create/", body, {
+        headers: {
+          'Content-Type': 'application/json', 
+          'Authorization': `Bearer ${token}`,
+        }})
+       
+       return response.data
+      }
+      catch (e) {
+        return rejectWithValue(e.response.data);
+    }
+    })
 const clientFeedbackslice= createSlice({
     name:'clientfeedbacks',
-    initialState : { questions:[], isLoading:false, error:null},
+    initialState : { questions:[],feedbackAdded:false, isLoading:false, error:null},
     reducers:{
-      clearstate:(state)=>{
-        state.error= false
-
-      }
+ 
     },
     extraReducers:{
      
@@ -49,7 +62,7 @@ const clientFeedbackslice= createSlice({
       state.isLoading = false
       
       state.error= null
-      state.questions = action.payload.results
+      state.questions = action.payload
      
   
       
@@ -61,10 +74,33 @@ const clientFeedbackslice= createSlice({
        
          
       }, 
+                   //.......addFeedback .........................
+                   [ addFeedback.pending ] :(state,action)=>{
+    
+                    state.cardLoading = true
+                    state.error = null
+                    state.feedbackAdded=false
+                    
+                  
+               },
+               [ addFeedback.fulfilled ] :(state,action)=>{
+               
+                state.feedbackAdded=true
+              
+            
+                
+                },
+                [ addFeedback.rejected ] :(state,action)=>{
+                     state.cardLoading = false
+                     state.error = action.payload
+                     state.feedbackAdded=false
+                  
+                   
+                }, 
 
     }
  
 
 })
-export const {clearstate} = clientFeedbackslice.actions
+
 export default clientFeedbackslice.reducer
