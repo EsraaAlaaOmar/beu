@@ -30,7 +30,7 @@
            text-align: center;
            font-style: normal;
        }
-        input{
+        input,.logo{
             border: none;
             outline: none;
             background-color: #fff;
@@ -48,6 +48,38 @@
             }
             
           
+        }
+        .row{
+            width: 382px;
+            max-width: 100%;
+            margin: 10px auto;
+        .col-sm-6{
+            padding: 0;
+            margin: 0;
+            .input-div{
+                width:100%;
+            }
+        }
+         
+
+        }
+        .logo{
+            height:auto;
+            padding:10px 20px  ;
+            position: relative;
+            padding-right: 27px;
+            margin: 10px auto;
+            .icon{
+                position: absolute;
+                right: 15px;
+                top: 20%;
+                color: #54525266;
+                cursor: pointer;
+
+            }
+        }
+        .file{
+            display: none;
         }
         .input-div{
             position: relative;
@@ -81,6 +113,26 @@
             padding: 15px 20px;
             color: #000;
             font-size: 16px;
+        }
+        .sell-texarea{
+            max-width:100%;
+            width: 382px;
+            min-height: 163px;
+            background-color: #fff;
+            margin:10px auto;
+            border-radius: 34px;
+            padding-top: 10px;
+            .title{
+                font-size: 16px !important;
+             
+                color: #010101;
+            }
+            .icon{
+                vertical-align:text-bottom;
+                color: #C94D20;
+                margin-left: 10px;
+                cursor: pointer;
+            }
         }
         .action{
             margin: auto;

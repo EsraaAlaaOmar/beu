@@ -17,6 +17,7 @@ import Contactus from '../components/staticPages/Contactus'
 import TermsOfConditions from '../components/staticPages/TermsOfConditions'
 import ReturnForm from '../ReturnForm'
 import Feedback from '../Feedback'
+import SellInBeau from '../SellInBeau'
 
 const Log = () => {
     return (
@@ -40,6 +41,7 @@ const Log = () => {
             <Route path="/terms" element={<TermsOfConditions />} exact />
             <Route path="/returnorder" element={<ReturnForm />} exact />
             <Route path="/feedback" element={<Feedback />} exact />
+            <Route path="/sell" element={<SellInBeau />} exact />
             
             </Routes>
         </div>

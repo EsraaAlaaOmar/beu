@@ -29,7 +29,7 @@ export const addFeedback = createAsyncThunk ('clientfeedbacks/add',  async(feedb
     const {rejectWithValue , getState} = thunkAPI
     const token= getState().auth.token
     try {
-      const body= JSON.stringify(feedbackdata)
+      const body= JSON.stringify({feedbacks:feedbackdata})
       const response = await axios.post("https://thebeauwow.me/api/v1/feedback/create/", body, {
         headers: {
           'Content-Type': 'application/json', 
