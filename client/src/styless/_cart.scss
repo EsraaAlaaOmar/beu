@@ -37,6 +37,7 @@
         margin: 25px 0;
         input{
           background-color: #fff;
+          color: #000;
           width: 578px;
           height: 46px;
           max-width: 100%;
@@ -167,6 +168,23 @@
     .price-dev{
       border-bottom: 1px solid #FCF3EE;
       padding-bottom: 20px;
+    }
+    .dropdown-list{
+      margin: -10px 0;
+      
+      width: 578px;
+      max-width: 100%;
+      background-color: #e3a793;;
+      border-radius: 12px;
+      .dropdown-item{
+       cursor: pointer;
+       color: #fff;
+       border-bottom: solid 1px #fff;
+       padding: 10px;
+       &:hover{
+        color: #000;
+       }
+      }
     }
   
   }

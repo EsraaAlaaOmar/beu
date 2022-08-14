@@ -4,22 +4,55 @@ import ContactSection from '../components/ContactSection'
 import ProductInCart from './ProductInCart'
 import {getCard, editeCard,deleteFromCard} from '../../dashbord/store/clientSide/cardSlice'
 import {applyDiscount} from '../../dashbord/store/clientSide/discountSlice'
+import {getAddresses} from '../../dashbord/store/clientSide/adressesSlice'
 import { useDispatch,useSelector } from 'react-redux'
+import DropDownList from './DropDownList'
 
 const Cart = () => {
      const dispatch= useDispatch()
      const {CardList,cardLoading,totalPrice,edited,CardDeleted} =useSelector((state)=> state.card)
-     const {afterApplying} =useSelector((state)=> state.clientdiscount)
+     const {afterApplying,discountLoading} =useSelector((state)=> state.clientdiscount)
+     const {addresses} =useSelector((state)=> state.clientaddresses)
+
      const [discountCode,setDiscountCode] = useState()
+
+     const [selectedCountry, setSelectedCountry] =useState(null)
+     const [selectedCity, setSelectedCity] =useState(null)
+     const [selectedArea, setSelectedArea] =useState(null)
+
+     const [showCountry,setShowCountry] =useState(false)
+     const [showCity,setShowCity] =useState(false)
+     const [showArea,setShowArea] =useState(false)
+
+     const [formData, setFormData] = useState({
+      name: '',
+      phone: '',  
+      street_name: '',
+      nearest_landmark:''  
+  })
+
+  const {name, phone , street_name ,  nearest_landmark}=formData
+  const onChange=e=>setFormData({...formData, [e.target.name]: e.target.value})
+
+const onSubmit= async e => {
+      e.preventDefault()
+     dispatch( getAddresses({...formData,area_id:selectedArea.id}))
+   
+    
+  }
+
      useEffect(() =>{
             dispatch(getCard())
         },[dispatch,edited,CardDeleted])
+        useEffect(() =>{
+         dispatch(getAddresses())
+     },[dispatch])
        
 const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart product={product} editeCard={editeCard} deleteFromCard={deleteFromCard}/>)
 :'No Products Added to Card'
   return (
      <>
-      {cardLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:
+      {cardLoading || discountLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:
       <div className='cart'>
       <Row>
           <Col md={6}>
@@ -28,31 +61,38 @@ const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart 
               SHIPPING INFORMATION
 
               </div>
-              <div className='input'>
-                   <input  placeholder='Custommer name'/>
-              </div>
-              <div className='input'>
-                   <input  placeholder='Country'/>
-              </div>
-              <div className='input'>
-                   <input placeholder='City' />
-              </div>
-              <div className='input'>
-                  <input  placeholder='Area'/>
-              </div>
-              <div className='input'>
-                  <input  placeholder='Street'/>
-              </div>
-              <div className='input'>
-                  <input  placeholder='Landmark'/>
-              </div>
-              <div className='input'>
-                   <input  placeholder='Phone number'/>
-              </div>
-           
-              <div className='submit'>
-                   <input type='submit' value='Continue To Payment' />
-              </div>
+              <form  onSubmit = {e=>onSubmit(e)}>
+                     <div className='input'>
+                           <input  placeholder='Custommer name' name='name' value={name} onChange={onChange}/>
+                     </div>
+                  
+                     <div className='input' onClick={()=>setShowCountry(!showCountry)}>
+                           <input  placeholder={selectedCountry?selectedCountry.name :'Country'} disabled={true}  />
+                     </div>
+                    {showCountry&& <DropDownList  list={addresses} setSelected={setSelectedCountry}/>}
+                     {console.log(formData)}
+                     <div className='input'  onClick={()=>setShowCity(!showCity)}>
+                     <input  placeholder={selectedCity?selectedCity.name :'City'} disabled={true} />
+                     </div>
+                    {showCity && <DropDownList  list={selectedCountry?selectedCountry.cities:[]} setSelected={setSelectedCity}/>}
+                     <div className='input'  onClick={()=>setShowArea(!showArea)}>
+                           <input    placeholder={selectedArea?selectedArea.name :'Area'}/>
+                     </div>
+                     {showArea && <DropDownList  list={selectedCity?selectedCity.areas:[]} setSelected={setSelectedArea}/>}
+                     <div className='input'>
+                           <input  placeholder='Street' name='street_name' value={street_name} onChange={onChange}/>
+                     </div>
+                     <div className='input'>
+                           <input  placeholder='Landmark' name='nearest_landmark' value={nearest_landmark} onChange={onChange}/>
+                     </div>
+                     <div className='input'>
+                           <input type='tel' placeholder='Phone number' name='phone' value={phone} onChange={onChange}/>
+                     </div>
+                  
+                     <div className='submit'>
+                           <input type='submit' value='Continue To Payment' />
+                     </div>
+              </form>
                  <ContactSection />
            </div>
           </Col>

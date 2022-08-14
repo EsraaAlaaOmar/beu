@@ -23,6 +23,7 @@ import favourite from './clientSide/favouriteSlice'
 import card from './clientSide/cardSlice'
 import clientFeedback from './clientSide/clientFeedbackSlice'
 import clientdiscount from './clientSide/discountSlice'
+import clientaddresses from './clientSide/adressesSlice'
 export default   configureStore({
   reducer: {
       auth,
@@ -48,7 +49,8 @@ export default   configureStore({
       favourite, 
       card,
       clientFeedback,
-      clientdiscount
+      clientdiscount,
+      clientaddresses
 
   },
 })

@@ -25,9 +25,9 @@ catch(e){
 
 })
 
-const brandslice= createSlice({
+const discountSlice= createSlice({
     name:'applydiscount',
-    initialState : { afterApplying:null, isLoading:false, error:null},
+    initialState : { afterApplying:null, discountLoading:false, error:null},
     reducers:{
       clearstate:(state)=>{
         state.error= false
@@ -38,14 +38,14 @@ const brandslice= createSlice({
      
       [ applyDiscount.pending ] :(state,action)=>{
 
-          state.isLoading = true
+          state.discountLoading = true
           state.error = null
          
           
      
      },
      [ applyDiscount.fulfilled ] :(state,action)=>{
-      state.isLoading = false
+      state.discountLoading = false
       
       state.error= null
       state.afterApplying = action.payload.price_in_discount
@@ -54,7 +54,7 @@ const brandslice= createSlice({
       
       },
       [ applyDiscount.rejected ] :(state,action)=>{
-           state.isLoading = false
+           state.discountLoading = false
            state.error = action.payload
           
        
@@ -65,5 +65,5 @@ const brandslice= createSlice({
  
 
 })
-export const {clearstate} = brandslice.actions
-export default brandslice.reducer
+export const {clearstate} = discountSlice.actions
+export default discountSlice.reducer
