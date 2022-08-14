@@ -12,6 +12,7 @@ import {getClientProducts,getFilteredProducts} from '../dashbord/store/clientSid
 import {getClientBrands} from '../dashbord/store/clientSide/clientbrands'
 import { useDispatch, useSelector } from 'react-redux'
 import FlashMsg from './Flashmsgs/FlashMsg'
+import {getFavourites} from '../dashbord/store/clientSide/favouriteSlice'
 const Search = () => {
   const dispatch= useDispatch()
   
@@ -24,6 +25,7 @@ const Search = () => {
   const [filterData,setFilterData] =useState()
   
   const {products,count, isLoading, error}=useSelector((state)=> state.clientProducts)
+  const {favList}=useSelector((state)=> state.favourite)
   const {brands}=useSelector((state)=> state.clientbrands)
  
   useEffect(() =>{
@@ -32,7 +34,7 @@ const Search = () => {
     !filterItems&& dispatch(getClientProducts({page_size:pageSize,
       page:pagenum}))
       !filterItems&& dispatch(getClientBrands())
-     
+      dispatch(getFavourites())
 
   },[dispatch, pagenum,pageSize])
 
@@ -41,9 +43,10 @@ const Search = () => {
   console.log(maxpagenum)
   //products 
   const renderedProducts = products.length > 0 ?products.map(product=>{
+    const favstatus =  favList.findIndex(p=>p.id === product.id)
     return(
       <Col md={4} lg={3} >  
-                     <Product img={product.galleries[0]&&product.galleries[0].image} product={product}/>
+                     <Product img={product.galleries[0]&&product.galleries[0].image} product={product} fav={favstatus!==-1}/>
        </Col>
     )
 
