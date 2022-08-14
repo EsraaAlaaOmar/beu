@@ -11,6 +11,8 @@
             position: relative;
             .slider{
                 background-image: url("../../backgrounds/landingpage/slide-left.png");
+                background-repeat:no-repeat ;
+                background-size: cover;
                 width: 24%;
                 height: 460px;
                 position:absolute;

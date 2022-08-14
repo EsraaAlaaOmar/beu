@@ -76,7 +76,7 @@ const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart 
                      </div>
                     {showCity && <DropDownList  list={selectedCountry?selectedCountry.cities:[]} setSelected={setSelectedCity}/>}
                      <div className='input'  onClick={()=>setShowArea(!showArea)}>
-                           <input    placeholder={selectedArea?selectedArea.name :'Area'}/>
+                           <input    placeholder={selectedArea?selectedArea.name :'Area'} disabled={true}/>
                      </div>
                      {showArea && <DropDownList  list={selectedCity?selectedCity.areas:[]} setSelected={setSelectedArea}/>}
                      <div className='input'>

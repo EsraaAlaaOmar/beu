@@ -24,6 +24,7 @@ import card from './clientSide/cardSlice'
 import clientFeedback from './clientSide/clientFeedbackSlice'
 import clientdiscount from './clientSide/discountSlice'
 import clientaddresses from './clientSide/adressesSlice'
+import clientLanding from './clientSide/landingSlice'
 export default   configureStore({
   reducer: {
       auth,
@@ -50,7 +51,8 @@ export default   configureStore({
       card,
       clientFeedback,
       clientdiscount,
-      clientaddresses
+      clientaddresses,
+      clientLanding
 
   },
 })

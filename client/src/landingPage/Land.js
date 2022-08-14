@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import LandHeader from './LandHeader';
 import FirstSection from './FirstSection';
 import Products from './Products';
@@ -10,21 +10,34 @@ import SecondSection from './SecondSection';
 import FifthSection from './FifthSection';
 import SixSection from './SixSection';
 import FourthSection from './FourthSection';
+import {getClientLanding} from '../dashbord/store/clientSide/landingSlice'
+import { useDispatch, useSelector } from 'react-redux';
 const Land = () => {
+    const dispatch= useDispatch()
+
+    const {sections , isLoading} =useSelector((state)=> state.clientLanding)
+    
+    useEffect(() =>{
+        dispatch(getClientLanding())
+    },[dispatch])
     return (
-        <div>
+        <>
+         {isLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:
+         <div>
             <Navbar />
             <LandHeader />
-            <FirstSection />
+            <FirstSection section={sections[0]} />
             <Discover />
-            <SecondSection />
+            <SecondSection  section={sections[1]} />
             <ThirdSection />
             <FourthSection />
             <FifthSection />
-            <SixSection />
+            <SixSection  section={sections[3]} />
             <Footer />
 
-        </div>
+        </div>}
+        </>
+        
     )
 }
 

@@ -9,7 +9,7 @@ const FifthSection = () => {
               <Carousel />
           </div>
       </div>
-      <Link to='/'>
+      <Link to='/log/feedback'>
         <div className='button'>Tell Us How We're Doing !</div>
       </Link> 
     </div>
