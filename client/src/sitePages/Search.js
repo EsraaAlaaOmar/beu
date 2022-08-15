@@ -25,7 +25,7 @@ const Search = () => {
   const [filterData,setFilterData] =useState()
   
   const {products,count, isLoading, error}=useSelector((state)=> state.clientProducts)
-  const {favList}=useSelector((state)=> state.favourite)
+  const {favList,favAdded , favDeleted}=useSelector((state)=> state.favourite)
   const {brands}=useSelector((state)=> state.clientbrands)
  
   useEffect(() =>{
@@ -36,11 +36,10 @@ const Search = () => {
       !filterItems&& dispatch(getClientBrands())
       dispatch(getFavourites())
 
-  },[dispatch, pagenum,pageSize])
+  },[dispatch, pagenum,pageSize,favAdded,favDeleted])
 
-  const {favAdded}=useSelector((state)=> state.favourite)
   const maxpagenum =Math.ceil(count/pageSize)
-  console.log(maxpagenum)
+
   //products 
   const renderedProducts = products.length > 0 ?products.map(product=>{
     const favstatus =  favList.findIndex(p=>p.id === product.id)

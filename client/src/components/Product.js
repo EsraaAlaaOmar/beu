@@ -5,7 +5,7 @@ import ProductInfo from './ProductInfo'
 const Product = ({product, img,fav}) => {
     return (
         <div className='product'>
-            <Link to='/product' state={{product:product}}>
+            <Link to='/product' state={{product:product,fav:fav}}>
                     <div className='img_div'>
                      <img  src={img} />  
                     </div>

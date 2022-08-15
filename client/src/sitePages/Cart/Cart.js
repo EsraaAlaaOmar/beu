@@ -7,6 +7,7 @@ import {applyDiscount} from '../../dashbord/store/clientSide/discountSlice'
 import {getAddresses} from '../../dashbord/store/clientSide/adressesSlice'
 import { useDispatch,useSelector } from 'react-redux'
 import DropDownList from './DropDownList'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
      const dispatch= useDispatch()
@@ -90,9 +91,14 @@ const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart 
                      </div>
                   
                      <div className='submit'>
-                           <input type='submit' value='Continue To Payment' />
+                           <input type='submit' value='Add delivery Location' />
+                           <Link to='/pay'>
+                                    <button className='submit'> Continue To Payment</button>
+                              </Link>
                      </div>
+                     
               </form>
+             
                  <ContactSection />
            </div>
           </Col>

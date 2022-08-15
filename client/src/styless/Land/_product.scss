@@ -78,9 +78,14 @@ a{
                float: $oposite_direction;
                color: #C19C82;
                font-size: 18px;
+               a{
+                color: #C19C82;
+               }
                span{
                    position: relative;
                    margin: 3px;
+                   cursor: pointer;
+                  
                    .add{
                        font-size: 10px;
                        position: absolute;

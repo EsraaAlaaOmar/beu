@@ -47,15 +47,26 @@
       }
       .submit{
         text-align: center;
-        margin-top: 120px;
-        margin-bottom: 70px;
+        margin-top: 50px;
+        margin-bottom: 30px;
         width: 578px;
         max-width: 100%;
-        input{
+        a{
+          text-decoration: none;
+          color: #000;
+        }
+        input,button{
           color: #000;
           background-color:#DCB4A7;
           padding:10px 50px;
           font-weight: 500;
+          max-width: 260px;
+          display: block;
+          margin: 40px auto;
+         
+        }
+        button{
+          background-color: #54525257;
         }
       }
     }

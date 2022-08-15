@@ -11,7 +11,7 @@ import ContactSection from './components/ContactSection'
 import ProductTitleBox from './ProductTitleBox'
 import { useDispatch, useSelector } from 'react-redux'
 import {addToCard} from '../dashbord/store/clientSide/cardSlice'
-import {addFav} from '../dashbord/store/clientSide/favouriteSlice'
+import {addFav, deletefav} from '../dashbord/store/clientSide/favouriteSlice'
 const ProductPage = () => {
   const dispatch= useDispatch()
   const {CardAdded} =useSelector((state)=> state.card)
@@ -102,7 +102,7 @@ console.log(data)
                     </div>
                     <div className='text'>{ location.state.product.unit_price * quantity} $</div>
                     <div className='action' onClick={()=>{setNav(true);dispatch(addToCard(data))}}><span className='icon'><FiShoppingCart /></span>Add To Cart</div>
-                    <div className='action fav' onClick={()=>dispatch(addFav({product_id:location.state.product.id}))}>fav?<span className='icon'><BsFillHeartFill /></span>:<span className='icon'><BsHeart/></span> }ADD TO FAVOURITE</div>
+                    <div className='action fav' onClick={()=>dispatch(location.state.fav? deletefav({product_id:location.state.product.id}):addFav({product_id:location.state.product.id}))}>{location.state.fav?<span className='icon'><BsFillHeartFill /> Remove From FAVOURITE</span>:<span className='icon'><BsHeart/> ADD TO FAVOURITE</span> }</div>
 
                   </div>
                 
