@@ -54,7 +54,7 @@ const Search = () => {
     return (
     <>
         {isLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:<>
-         <Navbar />
+         <Navbar navigate={false}/>
          
          {flashmsg && error && <FlashMsg 
                       title={` ${Object.values(error)} !  `}

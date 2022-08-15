@@ -24,7 +24,7 @@ const Land = () => {
         <>
          {isLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:
          <div>
-            <Navbar />
+            <Navbar navigate={false}/>
             <LandHeader />
             <FirstSection section={sections[0]} />
             <Discover />
