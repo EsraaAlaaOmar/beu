@@ -11,6 +11,7 @@ import Category from './sitePages/Category';
 import Submit from './sitePages/Submit';
 import Payment from './sitePages/components/payment/Payment';
 import Cart from './sitePages/Cart/Cart';
+import BrandProducts from './sitePages/BrandProducts';
 // import Dashbord from './dashbord/App'
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/Cart" element={<Cart />} exact />
           <Route path="/category" element={<Category />} exact />
           <Route path="/pay/*" element={<Payment />} exact />
+          <Route path="/brandproducts/:id" element={<BrandProducts/>} exact />
           <Route path="/submitsuccess" element={<Submit title='Submitted Successfully' />} exact />
           <Route path="/thanking" element={<Submit 
             title='Thank you for your message'

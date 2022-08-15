@@ -9,12 +9,12 @@ export const getClientLanding = createAsyncThunk ('clientLanding/get',  async(_,
 
 
 try{
-  const token= getState().auth.token
+
 
   let res = await axios.get(`https://thebeauwow.me/api/v1/customer/sections/`,{
   headers: {
 'Content-Type': 'application/json', 
- 'Authorization': `Bearer ${token}`}
+}
 
 })
 

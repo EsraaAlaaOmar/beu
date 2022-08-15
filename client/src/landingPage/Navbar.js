@@ -8,19 +8,27 @@ import { Link,Navigate } from 'react-router-dom'
 import { Dropdown } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import {getCard} from '../dashbord/store/clientSide/cardSlice'
+import {getClientBrands} from '../dashbord/store/clientSide/clientbrands'
 import { useDispatch } from 'react-redux'
 const Navbar = ({navigate=true}) => {
     const dispatch= useDispatch()
     const {userInfo,loggedIn} =useSelector((state)=> state.auth)
     const {CardList,CardAdded,CardDeleted} =useSelector((state)=> state.card)
+    const {brands} =useSelector((state)=> state.clientbrands)
 
     useEffect(() =>{
         dispatch(getCard())
       },[dispatch,CardAdded,CardDeleted])
-    
+      useEffect(() =>{
+        dispatch(getClientBrands())
+      },[dispatch])
+    const renderedNew = brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedSale = brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedGifts = brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedAll = brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
     return (
         <div className='landnav' >
-            <img className='logo' src='/images/Landingpage/navicon.png' />
+            <img className='logo' src='/images/Landingpage/navicon.png' alt='logo'/>
             <div className='dropdowns'>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
@@ -28,10 +36,7 @@ const Navbar = ({navigate=true}) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Perfumes</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Abayas</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                    {renderedNew}
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown>
@@ -40,10 +45,7 @@ const Navbar = ({navigate=true}) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Perfumes</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Abayas</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                    {renderedSale}
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown>
@@ -52,10 +54,7 @@ const Navbar = ({navigate=true}) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Perfumes</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Abayas</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                   {renderedGifts}
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown>
@@ -64,10 +63,7 @@ const Navbar = ({navigate=true}) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Perfumes</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Abayas</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Accessories</Dropdown.Item>
+                    {renderedAll}
                 </Dropdown.Menu>
             </Dropdown>
 

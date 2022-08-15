@@ -3,18 +3,31 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 
 export const getClientBrands = createAsyncThunk ('clientbrands/get',  async(_,thunkAPI) =>{
-  const {rejectWithValue , getState} = thunkAPI
+  const {rejectWithValue } = thunkAPI
 ///................................................................
-
-
-
 try{
-  const token= getState().auth.token
-
   let res = await axios.get(`https://thebeauwow.me/api/v1/brands/`,{
   headers: {
 'Content-Type': 'application/json', 
- 'Authorization': `Bearer ${token}`}
+}
+
+})
+
+  return res.data
+}
+catch(e){
+  return rejectWithValue(e.response.data)
+}
+
+})
+export const getBrandProducts = createAsyncThunk ('clientbrands/getproducts',  async(brandId,thunkAPI) =>{
+  const {rejectWithValue } = thunkAPI
+///................................................................
+try{
+  let res = await axios.get(`https://thebeauwow.me/api/v1/brand/detail/${brandId}`,{
+  headers: {
+'Content-Type': 'application/json', 
+}
 
 })
 
@@ -26,9 +39,10 @@ catch(e){
 
 })
 
+
 const brandslice= createSlice({
     name:'clientbrands',
-    initialState : { brands:[], isLoading:false, error:null},
+    initialState : { brands:[],products:[] ,isLoading:false, error:null},
     reducers:{
       clearstate:(state)=>{
         state.error= false
@@ -39,7 +53,7 @@ const brandslice= createSlice({
      
       [ getClientBrands.pending ] :(state,action)=>{
 
-          state.isLoading = true
+          // state.isLoading = true
           state.error = null
          
           
@@ -61,6 +75,30 @@ const brandslice= createSlice({
        
          
       }, 
+      [ getBrandProducts.pending ] :(state,action)=>{
+
+        state.isLoading = true
+        state.error = null
+       
+        
+   
+   },
+   [ getBrandProducts.fulfilled ] :(state,action)=>{
+    state.isLoading = false
+    
+    state.error= null
+    state.products = action.payload.results
+   
+
+    
+    },
+    [ getBrandProducts.rejected ] :(state,action)=>{
+         state.isLoading = false
+         state.error = action.payload
+        
+     
+       
+    }, 
 
     }
  
