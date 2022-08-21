@@ -12,10 +12,16 @@ import ProductTitleBox from './ProductTitleBox'
 import { useDispatch, useSelector } from 'react-redux'
 import {addToCard} from '../dashbord/store/clientSide/cardSlice'
 import {addFav, deletefav} from '../dashbord/store/clientSide/favouriteSlice'
+import FlashMsg from './Flashmsgs/FlashMsg'
 const ProductPage = () => {
   const dispatch= useDispatch()
   const {CardAdded} =useSelector((state)=> state.card)
+  const {loggedIn} =useSelector((state)=> state.auth)
+
     let location = useLocation()
+
+    // error flashmsg state
+    const[flashmsg,setFlashmsg] = useState(false)
     const[size,setSize] =useState(false)
     const[color,setColor] =useState(false)
     const[fav,setFav]=useState(false)
@@ -54,10 +60,16 @@ console.log(data)
     })
     return (
         <>
-           <Navbar />
+           <Navbar navigate={false}/>
            <div className='productPage'>
             <div className='collections'>
-             
+            {flashmsg && !loggedIn && <FlashMsg 
+                      title={`you must loggin to add products to cart !  `}
+                      img={'/images/msgIcons/error.svg'}
+                      setFlashmsg={setFlashmsg}
+
+                      icontype='error-icon'
+              />}
             <span className='search'>
                 <input  placeholder='search any item ..' />   
                 <span className='icon'> <BsSearch /> </span>
@@ -101,7 +113,7 @@ console.log(data)
                          </div>
                     </div>
                     <div className='text'>{ location.state.product.unit_price * quantity} $</div>
-                    <div className='action' onClick={()=>{setNav(true);dispatch(addToCard(data))}}><span className='icon'><FiShoppingCart /></span>Add To Cart</div>
+                    <div className='action' onClick={()=>{setFlashmsg(true);setNav(true);dispatch(addToCard(data))}}><span className='icon'><FiShoppingCart /></span>Add To Cart</div>
                     <div className='action fav' onClick={()=>dispatch(location.state.fav? deletefav({product_id:location.state.product.id}):addFav({product_id:location.state.product.id}))}>{location.state.fav?<span className='icon'><BsFillHeartFill /> Remove From FAVOURITE</span>:<span className='icon'><BsHeart/> ADD TO FAVOURITE</span> }</div>
 
                   </div>

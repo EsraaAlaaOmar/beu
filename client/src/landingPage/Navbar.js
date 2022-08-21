@@ -22,13 +22,13 @@ const Navbar = ({navigate=true}) => {
       useEffect(() =>{
         dispatch(getClientBrands())
       },[dispatch])
-    const renderedNew = brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
-    const renderedSale = brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
-    const renderedGifts = brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
-    const renderedAll = brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedNew =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedSale =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedGifts =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedAll =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
     return (
         <div className='landnav' >
-            <img className='logo' src='/images/Landingpage/navicon.png' alt='logo'/>
+           <Link to='/'><img className='logo' src='/images/Landingpage/navicon.png' alt='logo'/></Link> 
             <div className='dropdowns'>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
@@ -76,7 +76,7 @@ const Navbar = ({navigate=true}) => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1"> <img src='/images/Landingpage/en.png' alt='navicon' /> &nbsp; ENG</Dropdown.Item>
+                    <Dropdown.Item href="#/action-1">  <img src='../images/Landingpage/En.png' alt='Lang Icon' />  &nbsp; ENG</Dropdown.Item>
                     <Dropdown.Item href="#/action-2">العربية</Dropdown.Item>
                     
                 </Dropdown.Menu>

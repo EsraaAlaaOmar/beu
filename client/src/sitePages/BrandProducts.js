@@ -31,7 +31,7 @@ const BrandProducts = () => {
           <>
           { isLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif'  alt='loading'/></div> : 
           <div>
-             <Navbar />
+             <Navbar navigate={false} />
              <div className='fav'>
               <div className='collections'>
                

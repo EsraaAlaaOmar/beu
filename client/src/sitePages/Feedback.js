@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import FeedbackRow from './components/FeedbackRow'
 import {getClientquestions,addFeedback} from '../dashbord/store/clientSide/clientFeedbackSlice'
 import FlashMsg from './Flashmsgs/FlashMsg'
+import { Navigate } from 'react-router-dom'
 
 const Feedback = () => {
     const dispatch = useDispatch()
     const [lastfeedback, setLastFeedback] = useState([])
     const {isLoading,error,questions} =useSelector((state)=> state.clientFeedback)
-
+    const {userInfo,loggedIn} =useSelector((state)=> state.auth)
     
   const[Flashmsg,setFlashmsg] = useState(true)
  const addAnswer = (value) => {
@@ -48,7 +49,9 @@ console.log(lastfeedback)
            {renderedQuestions}
         
            <button className='submit' onClick={()=>dispatch(addFeedback(lastfeedback))}>Submit </button>
-
+           {userInfo&&!userInfo.is_customer && <Navigate to='/log/login' />}
+            {!loggedIn&& <Navigate to='/log/login' />}
+      
     </div>
 }
 </>

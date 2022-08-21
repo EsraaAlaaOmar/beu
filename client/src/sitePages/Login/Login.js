@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate,useNavigate } from 'react-router-dom'
 import {FiCheckSquare} from 'react-icons/fi'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose} from "react-icons/ai";
@@ -15,7 +15,7 @@ import * as yup from 'yup';
 import FlashMsg from '../Flashmsgs/FlashMsg';
 
 const Login = () => {
-
+  const navigate = useNavigate();
         // yup validation
         let schema = yup.object().shape({
    
@@ -134,7 +134,7 @@ const Login = () => {
 )}
     </Formik>
     {userInfo&&userInfo.is_staff && <Navigate to='/dashbord' />}
-    {userInfo&&userInfo.is_customer && <Navigate to='/profile' />}
+    {userInfo&&userInfo.is_customer && navigate(-1)} 
 <div className='option'  onClick={()=>dispatch(clearstate())}>
         <Link to='/log/sign'>
         Don't have Account ? Signup

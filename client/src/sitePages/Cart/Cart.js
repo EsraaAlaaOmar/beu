@@ -7,10 +7,11 @@ import {applyDiscount} from '../../dashbord/store/clientSide/discountSlice'
 import {getAddresses} from '../../dashbord/store/clientSide/adressesSlice'
 import { useDispatch,useSelector } from 'react-redux'
 import DropDownList from './DropDownList'
-import { Link } from 'react-router-dom'
+import { Link,Navigate } from 'react-router-dom'
 
 const Cart = () => {
      const dispatch= useDispatch()
+     const {userInfo,loggedIn} =useSelector((state)=> state.auth)
      const {CardList,cardLoading,totalPrice,edited,CardDeleted} =useSelector((state)=> state.card)
      const {afterApplying,discountLoading} =useSelector((state)=> state.clientdiscount)
      const {addresses} =useSelector((state)=> state.clientaddresses)
@@ -134,6 +135,8 @@ const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart 
           </div>
           </Col>
       </Row>
+      {userInfo&&!userInfo.is_customer && <Navigate to='/log/login' />}
+            {!loggedIn&& <Navigate to='/log/login' />}
       
   </div>}
      </>
