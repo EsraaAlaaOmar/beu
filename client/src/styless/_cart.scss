@@ -41,7 +41,7 @@
           width: 578px;
           height: 46px;
           max-width: 100%;
-          padding-left: 20px;
+          padding:0 20px;
           border-radius: 34px;
         }
       }
@@ -95,7 +95,7 @@
         }
       }
       .info{
-        margin-left: 20px;
+        margin-inline-start: 20px;
         display: inline-block;
         vertical-align: middle;
         .poroduct_title{

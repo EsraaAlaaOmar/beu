@@ -43,7 +43,7 @@ const Profile = () => {
         </>)
     })
     return <>
-     <Navbar />
+     <Navbar  />
      { authLoading ?<div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>  
       : 
      <div className='profile'>
@@ -67,7 +67,7 @@ const Profile = () => {
                   {userInfo&&userInfo.email}
                   </span>
                   <Link to='/profile/edite'>
-                    <span className='icon' onClick={()=>dispatch(clearstate())}>
+                    <span className='icon oposite' onClick={()=>dispatch(clearstate())}>
                         <FaRegEdit />
                     </span>
                   </Link>
@@ -76,7 +76,7 @@ const Profile = () => {
                {AdressesAndPhone}
               </div>
               <div className='account_actions'>
-              <span className='reset' > <Link to='/log/resetcode'>Reset Password</Link></span>
+              <span className='reset oposite' > <Link to='/log/resetcode'>Reset Password</Link></span>
                     <span className='icon' onClick={()=>dispatch(logOut())}>
                     Logout <IoIosLogOut />
                     </span>

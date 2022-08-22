@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import {MdSort} from 'react-icons/md'
 import{BiSearch}from 'react-icons/bi'
 import {AiOutlineUser}from 'react-icons/ai'
@@ -15,7 +15,7 @@ const Navbar = ({navigate=true}) => {
     const {userInfo,loggedIn} =useSelector((state)=> state.auth)
     const {CardList,CardAdded,CardDeleted} =useSelector((state)=> state.card)
     const {brands} =useSelector((state)=> state.clientbrands)
-
+    const [lang,setLang] =useState('en')
     useEffect(() =>{
         dispatch(getCard())
       },[dispatch,CardAdded,CardDeleted])
@@ -72,12 +72,13 @@ const Navbar = ({navigate=true}) => {
             <div className='right'>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
-                <img src='../images/Landingpage/En.png' alt='Lang Icon' /> &nbsp;ENG
+
+                {lang==='en' ?<><img src='../images/Landingpage/En.png' alt='Lang Icon' /> &nbsp; ENG</> :<>العربية</>}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">  <img src='../images/Landingpage/En.png' alt='Lang Icon' />  &nbsp; ENG</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">العربية</Dropdown.Item>
+                    <Dropdown.Item href="#/action-1" onClick={()=> {document.querySelector('html').setAttribute("lang", "en"); setLang('en')}}>  <img src='../images/Landingpage/En.png' alt='Lang Icon' />  &nbsp; ENG</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2"onClick={()=> {document.querySelector('html').setAttribute("lang", "ar");setLang('ar')}}>العربية</Dropdown.Item>
                     
                 </Dropdown.Menu>
             </Dropdown>

@@ -59,10 +59,13 @@
         div{
             margin-top: 10px;
         }
+        .icon{
+            float: $oposite_direction;
         
     }
+}
     .icon{
-        float: $oposite_direction;
+       
         vertical-align: top;
         color: #A35604;
         cursor: pointer;

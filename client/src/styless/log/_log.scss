@@ -42,7 +42,7 @@
             margin-top: 10px;
             border-radius: 34px;
             color: #000;
-            padding-left: 30px;
+            padding:0 30px;
             @media screen and (max-width: 565px) {
                   max-width: 80%;
             }
@@ -90,7 +90,7 @@
             .mark{
                 color: #b41212;
                 position: absolute;
-                right: 16px;
+                right: 30px;
                 top: 7px;
                 background-color: transparent;
                 cursor: pointer;

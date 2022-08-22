@@ -92,16 +92,18 @@
         }
     }
     .right{
-        float: $oposite_direction;
-        // margin-right: 30px;
+        float:right;
+        display:block;
         font-size: 18px;
         vertical-align: text-bottom;
         margin-top:10px;
+     
         @media screen and (max-width: 1250px)  {
             float: none;
             margin: auto;
             margin-top:10px;
         }
+      
         button{
             margin-top: -7px;
         }
@@ -143,4 +145,47 @@
         }
     }
   
+  
 }
+body{
+
+    :lang(ar) {
+        direction: rtl;
+       
+        .oposite, .right, .oposite_direction{
+                float: left !important;
+            }
+         
+            
+            .input-div .mark{
+                right:unset !important; 
+                left: 30px;
+            }
+        
+            
+        // expactitions 
+        //remove float in small sizes
+        .landnav{
+            .right{
+                @media screen and (max-width: 1250px)  {
+                    float: none !important;
+                }
+            }
+
+            
+        }
+        //search icon 
+
+        .clientSide .search
+        {
+            float: left;
+             .icon{
+            right:unset !important;  
+            left: 30px;
+
+        }
+    }
+         
+     }
+}
+

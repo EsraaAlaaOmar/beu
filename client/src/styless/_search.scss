@@ -83,7 +83,8 @@ margin-top: 50px;
 }
 .search{
     float: right;
-    // position: relative;
+    position: relative;
+   
     
     input{
         background-color: #fff;
@@ -93,7 +94,7 @@ margin-top: 50px;
         margin-right: 25px;
         margin-top: -15px;
         padding: 20px;
-        color: #0000001C !important;
+        color: #000 !important;
        
     }
     ::placeholder{
