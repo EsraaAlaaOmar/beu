@@ -2,7 +2,7 @@ import React from 'react'
 import { Row,Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const FirstSection = ({section}) => {
+const FirstSection = ({section, enLanguage}) => {
     return (
     
         <div className='firstsection'>
@@ -19,8 +19,11 @@ const FirstSection = ({section}) => {
                 </Col>
                 <Link to='/log/sign'>
                 <div className='in-toutch'>
-                    LETS GET IN TOUCH!
-                    <div>Sign Up Now</div>
+                    {enLanguage?'LETS GET IN TOUCH!':'انشئ حساب لتري احدث المنتجات'}
+                    <div>
+                    {enLanguage?'Sign Up Now':'انشاء حساب'}
+                      
+                        </div>
 
                 </div>
             

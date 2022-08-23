@@ -2,7 +2,7 @@ import React from 'react'
 import { Row,Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-const SixSection = ({section}) => {
+const SixSection = ({section,enLanguage}) => {
     return (
         <div className='firstsection six'>
             <Row>
@@ -17,7 +17,9 @@ const SixSection = ({section}) => {
                 </Col>
             </Row>
             <Link to='/log/sell'>
-               <div className='button'>Sell At The Beau Wow</div>
+               <div className='button'>
+                 {enLanguage?'Sell At The Beau Wow':'اعرض منتجاتك للبيع'}
+              </div>
             
             </Link>
          

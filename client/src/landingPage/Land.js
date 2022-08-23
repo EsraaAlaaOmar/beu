@@ -16,7 +16,7 @@ const Land = () => {
     const dispatch= useDispatch()
 
     const {sections , isLoading} =useSelector((state)=> state.clientLanding)
-    
+    const {enLanguage} =useSelector((state)=> state.lang)
     useEffect(() =>{
         dispatch(getClientLanding())
     },[dispatch])
@@ -25,15 +25,15 @@ const Land = () => {
          {isLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:
          <div>
             <Navbar navigate={false}/>
-            <LandHeader />
-            <FirstSection section={sections[0]} />
-            <Discover />
-            <SecondSection  section={sections[1]} />
-            <ThirdSection />
+            {/* <LandHeader  /> */}
+            <FirstSection section={sections[0]} enLanguage={enLanguage} />
+            <Discover  enLanguage={enLanguage}/>
+            <SecondSection  section={sections[1]}  enLanguage={enLanguage}/>
+            <ThirdSection  enLanguage={enLanguage}/>
             <FourthSection />
-            <FifthSection />
-            <SixSection  section={sections[3]} />
-            <Footer />
+            <FifthSection  enLanguage={enLanguage}/>
+            <SixSection  section={sections[3]}  enLanguage={enLanguage} />
+            <Footer  enLanguage={enLanguage}/>
 
         </div>}
         </>

@@ -25,6 +25,7 @@ import clientFeedback from './clientSide/clientFeedbackSlice'
 import clientdiscount from './clientSide/discountSlice'
 import clientaddresses from './clientSide/adressesSlice'
 import clientLanding from './clientSide/landingSlice'
+import lang from './clientSide/LanguageSlice'
 export default   configureStore({
   reducer: {
       auth,
@@ -52,7 +53,8 @@ export default   configureStore({
       clientFeedback,
       clientdiscount,
       clientaddresses,
-      clientLanding
+      clientLanding,
+      lang
 
   },
 })

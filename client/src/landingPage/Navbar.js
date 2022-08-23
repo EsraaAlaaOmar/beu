@@ -9,12 +9,15 @@ import { Dropdown } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import {getCard} from '../dashbord/store/clientSide/cardSlice'
 import {getClientBrands} from '../dashbord/store/clientSide/clientbrands'
+import {changeLanguage} from '../dashbord/store/clientSide/LanguageSlice'
 import { useDispatch } from 'react-redux'
 const Navbar = ({navigate=true}) => {
     const dispatch= useDispatch()
     const {userInfo,loggedIn} =useSelector((state)=> state.auth)
     const {CardList,CardAdded,CardDeleted} =useSelector((state)=> state.card)
     const {brands} =useSelector((state)=> state.clientbrands)
+    const {enLanguage} =useSelector((state)=> state.lang)
+   
     const [lang,setLang] =useState('en')
     useEffect(() =>{
         dispatch(getCard())
@@ -22,6 +25,10 @@ const Navbar = ({navigate=true}) => {
       useEffect(() =>{
         dispatch(getClientBrands())
       },[dispatch])
+      useEffect(() =>{
+        dispatch( changeLanguage())
+    
+      },[lang])
     const renderedNew =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
     const renderedSale =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
     const renderedGifts =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
@@ -32,7 +39,7 @@ const Navbar = ({navigate=true}) => {
             <div className='dropdowns'>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
-                  New In
+                 {enLanguage? 'New In':' الاحدث' }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -41,7 +48,8 @@ const Navbar = ({navigate=true}) => {
             </Dropdown>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
-                Sale
+                
+                {enLanguage? 'Sale':'خصومات' }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -50,7 +58,8 @@ const Navbar = ({navigate=true}) => {
             </Dropdown>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
-                Gifts
+                
+                {enLanguage? 'Gifts':'الهدايا' }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -59,7 +68,8 @@ const Navbar = ({navigate=true}) => {
             </Dropdown>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
-                Shop All
+               
+                {enLanguage? ' Shop All':'الجميع' }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -88,20 +98,27 @@ const Navbar = ({navigate=true}) => {
                 <Link to='/profile'>
                     <div className='icon-div'>
                         <AiOutlineUser />
-                        <div>My Account</div>
+                        <div>
+                           {enLanguage? 'My Account':'حسابي' }    
+                        </div>
                     </div>
                 </Link>
                 <Link to='/favourite'>
                     <div className='icon-div'>
                         <BsHeart />
-                        <div>Favourite</div>
+                        <div>
+                           {enLanguage? 'Favourite':'المفضلة' }    
+                        </div>
+                        
                         
                     </div>
                 </Link>
                 <Link to='/search'>
                     <div className='icon-div'>
                         <BiSearch />
-                       <div>Search</div>
+                        <div>
+                           {enLanguage? 'Search':'بحث' }    
+                         </div>
                         
                         
                         
@@ -110,7 +127,9 @@ const Navbar = ({navigate=true}) => {
                 <Link to='/cart'>
                     <div className='icon-div'>
                         <FiShoppingCart /><span>{CardList.length}</span>
-                        <div>Cart </div>
+                        <div>
+                           {enLanguage? 'Cart':'السلة' }    
+                         </div>
                         
                     </div>
                 </Link>

@@ -3,10 +3,13 @@ import { Col, Row } from 'react-bootstrap'
 import {BsFillArrowRightCircleFill} from 'react-icons/bs'
 import ThirdBox from './ThirdBox'
 
-const ThirdSection = () => {
+const ThirdSection = ({enLanguage}) => {
     return (
         <div className='third'>
-             <div className='title'>See Whats Popular</div>
+             <div className='title'>
+                {enLanguage?'See Whats Popular': 'الاكثر رواجا'}
+                
+             </div>
              <div className='boxs'>
                 <Row>
                     <Col lg={3} md={4} sm={6}>
