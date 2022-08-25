@@ -18,7 +18,7 @@ const SixSection = ({section,enLanguage}) => {
             </Row>
             <Link to='/log/sell'>
                <div className='button'>
-                 {enLanguage?'Sell At The Beau Wow':'اعرض منتجاتك للبيع'}
+                 {enLanguage ?'Sell At The Beau Wow':'اعرض منتجاتك للبيع'}
               </div>
             
             </Link>

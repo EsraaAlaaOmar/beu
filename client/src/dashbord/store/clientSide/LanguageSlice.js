@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk ,current } from "@reduxjs/toolkit";
 
 const langSlice= createSlice({
-    name:'Addresses',
+    name:'language',
     initialState : { enLanguage:true},
     reducers:{
         changeLanguage:(state)=> {

@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useRef} from 'react'
 import {MdSort} from 'react-icons/md'
 import{BiSearch}from 'react-icons/bi'
 import {AiOutlineUser}from 'react-icons/ai'
@@ -24,22 +24,30 @@ const Navbar = ({navigate=true}) => {
       },[dispatch,CardAdded,CardDeleted])
       useEffect(() =>{
         dispatch(getClientBrands())
-      },[dispatch])
-      useEffect(() =>{
-        dispatch( changeLanguage())
+      }, [dispatch])
+      const didMountRef = useRef(false);
+
+    useEffect(() => {
+        if (didMountRef.current) { 
+         return   dispatch( changeLanguage())
+          }
+          didMountRef.current = true;
+        
+       
     
-      },[lang])
-    const renderedNew =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
-    const renderedSale =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
-    const renderedGifts =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
-    const renderedAll =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+      }, [lang])
+    console.log(lang)
+    const renderedNew =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`/brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedSale =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`/brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedGifts =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`/brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedAll =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`/brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
     return (
         <div className='landnav' >
            <Link to='/'><img className='logo' src='/images/Landingpage/navicon.png' alt='logo'/></Link> 
             <div className='dropdowns'>
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
-                 {enLanguage? 'New In':' الاحدث' }
+                 {enLanguage ? 'New In':' الاحدث' }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -49,7 +57,7 @@ const Navbar = ({navigate=true}) => {
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
                 
-                {enLanguage? 'Sale':'خصومات' }
+                {enLanguage ? 'Sale':'خصومات' }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -59,7 +67,7 @@ const Navbar = ({navigate=true}) => {
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
                 
-                {enLanguage? 'Gifts':'الهدايا' }
+                {enLanguage ? 'Gifts':'الهدايا' }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -69,7 +77,7 @@ const Navbar = ({navigate=true}) => {
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
                
-                {enLanguage? ' Shop All':'الجميع' }
+                {enLanguage ? ' Shop All':'الجميع' }
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -83,12 +91,12 @@ const Navbar = ({navigate=true}) => {
             <Dropdown>
                 <Dropdown.Toggle  id="dropdown-basic">
 
-                {lang==='en' ?<><img src='../images/Landingpage/En.png' alt='Lang Icon' /> &nbsp; ENG</> :<>العربية</>}
+                {enLanguage ?<><img src='../images/Landingpage/En.png' alt='Lang Icon' /> &nbsp; ENG</> :<>العربية</>}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1" onClick={()=> {document.querySelector('html').setAttribute("lang", "en"); setLang('en')}}>  <img src='../images/Landingpage/En.png' alt='Lang Icon' />  &nbsp; ENG</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2"onClick={()=> {document.querySelector('html').setAttribute("lang", "ar");setLang('ar')}}>العربية</Dropdown.Item>
+                    <Dropdown.Item onClick={()=> { !enLanguage && document.querySelector('html').setAttribute("lang", "en"); !enLanguage && setLang('en')}}>  <img src='../images/Landingpage/En.png' alt='Lang Icon' />  &nbsp; ENG</Dropdown.Item>
+                    <Dropdown.Item onClick={()=> {enLanguage && document.querySelector('html').setAttribute("lang", "ar"); enLanguage && setLang('ar')}}>العربية</Dropdown.Item>
                     
                 </Dropdown.Menu>
             </Dropdown>
@@ -99,7 +107,7 @@ const Navbar = ({navigate=true}) => {
                     <div className='icon-div'>
                         <AiOutlineUser />
                         <div>
-                           {enLanguage? 'My Account':'حسابي' }    
+                           {enLanguage ? 'My Account':'حسابي' }    
                         </div>
                     </div>
                 </Link>
@@ -107,7 +115,7 @@ const Navbar = ({navigate=true}) => {
                     <div className='icon-div'>
                         <BsHeart />
                         <div>
-                           {enLanguage? 'Favourite':'المفضلة' }    
+                           {enLanguage ? 'Favourite':'المفضلة' }    
                         </div>
                         
                         
@@ -117,7 +125,7 @@ const Navbar = ({navigate=true}) => {
                     <div className='icon-div'>
                         <BiSearch />
                         <div>
-                           {enLanguage? 'Search':'بحث' }    
+                           {enLanguage ? 'Search':'بحث' }    
                          </div>
                         
                         
@@ -128,7 +136,7 @@ const Navbar = ({navigate=true}) => {
                     <div className='icon-div'>
                         <FiShoppingCart /><span>{CardList.length}</span>
                         <div>
-                           {enLanguage? 'Cart':'السلة' }    
+                           {enLanguage ? 'Cart':'السلة' }    
                          </div>
                         
                     </div>

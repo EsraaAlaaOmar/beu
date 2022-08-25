@@ -19,9 +19,9 @@ const FirstSection = ({section, enLanguage}) => {
                 </Col>
                 <Link to='/log/sign'>
                 <div className='in-toutch'>
-                    {enLanguage?'LETS GET IN TOUCH!':'انشئ حساب لتري احدث المنتجات'}
+                    {enLanguage ?'LETS GET IN TOUCH!':'انشئ حساب لتري احدث المنتجات'}
                     <div>
-                    {enLanguage?'Sign Up Now':'انشاء حساب'}
+                    {enLanguage ?'Sign Up Now':'انشاء حساب'}
                       
                         </div>
 

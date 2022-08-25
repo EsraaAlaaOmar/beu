@@ -7,7 +7,7 @@ const ThirdSection = ({enLanguage}) => {
     return (
         <div className='third'>
              <div className='title'>
-                {enLanguage?'See Whats Popular': 'الاكثر رواجا'}
+                {enLanguage ?'See Whats Popular': 'الاكثر رواجا'}
                 
              </div>
              <div className='boxs'>

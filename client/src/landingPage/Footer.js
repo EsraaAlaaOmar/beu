@@ -19,20 +19,20 @@ const Footer = ({enLanguage}) => {
      <Col>
       
        <div className='link'>
-         <Link to='/'>  {enLanguage?'DELIVERY AND RETURNS':'التسليم والإسترجاع'}</Link>
+         <Link to='/'>  {enLanguage ?'DELIVERY AND RETURNS':'التسليم والإسترجاع'}</Link>
        </div>
        <div className='link'>
-         <Link to='/'> {enLanguage?'Terms of Conditions':'الأحكام والشروط'} </Link>
+         <Link to='/'> {enLanguage ?'Terms of Conditions':'الأحكام والشروط'} </Link>
        </div>
       
 
      </Col>
     <Col>
     <div className='link'>
-         <Link to='/log/learnmore'> {enLanguage?'Privacy Policy':'سياسة الخصوصية'}</Link>
+         <Link to='/log/learnmore'> {enLanguage ?'Privacy Policy':'سياسة الخصوصية'}</Link>
        </div>
        <div className='link'>
-         <Link to='/log/aboutus'>{enLanguage?'About Us':'نحن'} </Link>
+         <Link to='/log/aboutus'>{enLanguage ?'About Us':'نحن'} </Link>
        </div>
        
      
@@ -40,11 +40,11 @@ const Footer = ({enLanguage}) => {
      </Col>
     <Col>
         <div className='link'>
-            <Link to='/search'>{enLanguage?'Newest':'الاجدد'} </Link>
+            <Link to='/search'>{enLanguage ?'Newest':'الاجدد'} </Link>
        </div>
       
        <div className='link'>
-         <Link to='/log/contactus'>{enLanguage?'Contact Us':'اتصل بنا'} </Link>
+         <Link to='/log/contactus'>{enLanguage ?'Contact Us':'اتصل بنا'} </Link>
        </div>
       
 

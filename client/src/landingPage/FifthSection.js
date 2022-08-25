@@ -11,7 +11,7 @@ const FifthSection = ({enLanguage}) => {
       </div>
       <Link to='/log/feedback'>
         <div className='button'>
-        {enLanguage?  <>Tell Us How We're Doing !</>:' اخبرنا عن رأيك بنا'}
+        {enLanguage ?  <>Tell Us How We're Doing !</>:' اخبرنا عن رأيك بنا'}
         
           </div>
       </Link> 
