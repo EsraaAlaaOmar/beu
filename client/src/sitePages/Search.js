@@ -67,10 +67,10 @@ const Search = () => {
         
          <div className='search-page'>
          <div className='collections'>  
-        <span className='search'>
+        {/* <span className='search'>
              <input  placeholder='search any item ..' />   
              <span className='icon'> <BsSearch /> </span>
-        </span>   
+        </span>    */}
         </div>
           <Row>
         

@@ -41,11 +41,11 @@ const Favourite = () => {
          <div className='fav'>
           <div className='collections'>
            
-            
+{/*             
         <span className='search'>
              <input  placeholder='search any item ..' />   
              <span className='icon'> <BsSearch /> </span>
-        </span>   
+        </span>    */}
           </div>
           
            <div className='title'>
