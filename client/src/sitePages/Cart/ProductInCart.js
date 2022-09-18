@@ -10,18 +10,18 @@ const ProductInCart = ({product,editeCard,deleteFromCard}) => {
   return <div className='product_in_cart'>
             <div className='img'>
                <img   src= {product&&product.product.galleries[0].image}/> 
-               <span className='delete' onClick={()=>dispatch(deleteFromCard({product_id:product&&product.product.id}))}><MdDeleteSweep /></span>
-
+             
             </div>
            
-            
+         
+
           
           <div className='info'>
             {console.log(product)}
                 <div className='poroduct_title'> {product&&product.product.title}</div>
                 <div className='property'>Color : <span className='color-box' style={{backgroundColor:product&&product.color_hex}}></span></div>
                 <div className='property'>Size : {product&&product.size}</div>
-           
+                <span className='delete' onClick={()=>dispatch(deleteFromCard({product_id:product&&product.product.id}))}><MdDeleteSweep /></span>
           </div>
           <div className='oposite'>
             <div>
