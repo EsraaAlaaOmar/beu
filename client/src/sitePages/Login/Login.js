@@ -54,7 +54,9 @@ const Login = () => {
     setFieldTouched(name, false,false)
 
   }
-
+  window.onpopstate = () => {
+    navigate(-2);
+  }
     return (
       <>
             {isLoading ? 
