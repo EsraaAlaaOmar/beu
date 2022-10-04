@@ -70,10 +70,10 @@ console.log(data)
 
                       icontype='error-icon'
               />}
-            <span className='search'>
+            {/* <span className='search'>
                 <input  placeholder='search any item ..' />   
                 <span className='icon'> <BsSearch /> </span>
-            </span>   
+            </span>    */}
             </div>
              <Row>
                {renderedImages}
@@ -113,7 +113,7 @@ console.log(data)
                          </div>
                     </div>
                     <div className='text'>{ location.state.product.unit_price * quantity} $</div>
-                    <div className='action' onClick={()=>{setFlashmsg(true);setNav(true);dispatch(addToCard(data))}}><span className='icon'><FiShoppingCart /></span>Add To Cart</div>
+                    <div className='action' onClick={()=>{setFlashmsg(true);setNav(true);dispatch(addToCard(data))}}><span className='icon'><FiShoppingCart /></span>{CardAdded?'Remove from Cart':'Add To Cart'}</div>
                     <div className='action fav' onClick={()=>dispatch(location.state.fav? deletefav({product_id:location.state.product.id}):addFav({product_id:location.state.product.id}))}>{location.state.fav?<span className='icon'><BsFillHeartFill /> Remove From FAVOURITE</span>:<span className='icon'><BsHeart/> ADD TO FAVOURITE</span> }</div>
 
                   </div>
@@ -122,8 +122,8 @@ console.log(data)
              </Row>
              <div className='paragraphs'>
                   <div className='header'>
-                     <span className='active'>DETAILS</span>
-                     <span>DELIVERY & RETURNS</span>
+                     <span id='details' className='active' onClick={(e)=>{e.target.classList.add('active'); document.getElementById("delivery-returns").classList.remove('active') } }>DETAILS</span>
+                     <span id='delivery-returns' onClick={(e)=>{e.target.classList.add('active'); document.getElementById("details").classList.remove('active') } }>DELIVERY & RETURNS</span>
                   </div>
              
           
@@ -154,7 +154,7 @@ console.log(data)
            <Route path="/call" element={<Call />} exact />
            </Routes>
 
-           {nav && CardAdded && <Navigate to='/cart' />}
+           {/* {nav && CardAdded && <Navigate to='/cart' />} */}
          
         </>
 

@@ -20,7 +20,7 @@ export const addDeliveryLocation = createAsyncThunk ('deliveryLocation/add',  as
 })
 const deliveryLocationSlice = createSlice({
     name: 'deliveryLocation',
-    initialState: { CardList: [], added: false, error: null },
+    initialState: { CardList: [], locationAdded: false, deliveryError: null },
     reducers: {
  
     },
@@ -29,22 +29,22 @@ const deliveryLocationSlice = createSlice({
                       [ addDeliveryLocation.pending ] :(state,action)=>{
     
                        
-                        state.error = null
-                        state.added=false
+                        state.deliveryError = null
+                        state.locationAdded=false
                         
                       
                    },
                    [ addDeliveryLocation.fulfilled ] :(state,action)=>{
                    
-                    state.added=true
+                    state.locationAdded=true
                   
                 
                     
                     },
                     [ addDeliveryLocation.rejected ] :(state,action)=>{
                       
-                         state.error = action.payload
-                         state.added=false
+                         state.deliveryError = action.payload
+                         state.locationAdded=false
                       
                        
                     }, 

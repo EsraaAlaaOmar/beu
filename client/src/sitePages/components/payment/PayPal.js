@@ -11,9 +11,16 @@ const[check,setCheck]=useState(true)
         <form>
 
 <div className='header'>
-      <Link to='/pay'>visa</Link>
-     <Link to='/pay/paypal'>paypal</Link>
-     <Link to='/pay/applepay'>pay</Link>
+   <Link to='/pay'>
+      <img src='/images/payment/visa.png' />
+    </Link>
+     <Link to='/pay/paypal'>
+     <img className='active' src='/images/payment/paypal.png' />
+     </Link>
+     <Link to='/pay/applepay'>
+      <img src='/images/payment/pay.png' />
+     </Link>
+
 
 </div>
 <div className='body'>

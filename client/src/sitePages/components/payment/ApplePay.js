@@ -6,9 +6,15 @@ import ContactSection from '../ContactSection';
 const ApplePay = () => {
   return <div>
       <div className='header'>
-    <Link to='/pay'>visa</Link>
-     <Link to='/pay/paypal'>paypal</Link>
-     <Link to='/pay/applepay'>pay</Link>
+    <Link to='/pay'>
+      <img src='/images/payment/visa.png' />
+    </Link>
+     <Link to='/pay/paypal'>
+     <img src='/images/payment/paypal.png' />
+     </Link>
+     <Link to='/pay/applepay'>
+      <img className='active' src='/images/payment/pay.png' />
+     </Link>
 
    </div>
      <div className='cost'>

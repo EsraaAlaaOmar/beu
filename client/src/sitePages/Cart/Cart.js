@@ -9,14 +9,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import {addDeliveryLocation} from '../../dashbord/store/clientSide/deliveryLocationSlice'
 import DropDownList from './DropDownList'
 import { Link,Navigate } from 'react-router-dom'
+import FlashMsg from '../Flashmsgs/FlashMsg'
 
 const Cart = () => {
      const dispatch= useDispatch()
      const {userInfo,loggedIn} =useSelector((state)=> state.auth)
+     const {locationAdded,deliveryError} =useSelector((state)=> state.deliveryLocation)
      const {CardList,cardLoading,totalPrice,edited,CardDeleted} =useSelector((state)=> state.card)
      const {afterApplying,discountLoading} =useSelector((state)=> state.clientdiscount)
      const {addresses} =useSelector((state)=> state.clientaddresses)
-
+  
+    const [flashmsg,setFlashmsg] = useState(false)
+    const[showForm, setShowForm] =useState(true)
      const [discountCode,setDiscountCode] = useState()
 
      const [selectedCountry, setSelectedCountry] =useState(null)
@@ -39,7 +43,7 @@ const Cart = () => {
 
 const onSubmit= async e => {
       e.preventDefault()
-     dispatch( addDeliveryLocation({...formData,area_id:selectedArea.id}))
+     dispatch( addDeliveryLocation({...formData,area_id:selectedArea&&selectedArea.id}))
    
     
   }
@@ -47,15 +51,20 @@ const onSubmit= async e => {
      useEffect(() =>{
             dispatch(getCard())
         },[dispatch,edited,CardDeleted])
+        
         useEffect(() =>{
          dispatch(getAddresses())
      },[dispatch])
-       
+       // useEffect hide form
+       useEffect(() =>{
+            locationAdded&& setShowForm(false)
+        },[locationAdded])
 const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart product={product} editeCard={editeCard} deleteFromCard={deleteFromCard}/>)
 :'No Products Added to Card'
   return (
      <>
-      {cardLoading || discountLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>:
+      {/* {cardLoading || discountLoading ? <div  className="clientloading loading"> <img src='/images/client_loading.gif' /></div>: */}
+
       <div className='cart'>
       <Row>
           <Col md={6}>
@@ -64,7 +73,16 @@ const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart 
               SHIPPING INFORMATION
 
               </div>
-              <form  onSubmit = {e=>onSubmit(e)}>
+              {flashmsg && deliveryError && <FlashMsg 
+                      title={`Please fill all fields  `}
+                      img={'/images/msgIcons/error.svg'}
+                      setFlashmsg={setFlashmsg}
+
+                      icontype='error-icon'
+              />}
+             {
+              showForm  ?
+             <form  onSubmit = {e=>onSubmit(e)}>
                      <div className='input'>
                            <input  placeholder='Custommer name' name='name' value={name} onChange={onChange}/>
                      </div>
@@ -93,14 +111,15 @@ const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart 
                      </div>
                   
                      <div className='submit'>
-                           <input type='submit' value='Add delivery Location' />
+                         <input type='submit' value='Add delivery Location' onClick={()=>setFlashmsg(true)} />
                            <Link to='/pay'>
                                     <button className='submit'> Continue To Payment</button>
                               </Link>
                      </div>
                      
               </form>
-             
+              :<div className='submit'> <input type='submit' value='Edite delivery Location'  onClick={()=>{setFlashmsg(true); setShowForm(true)}}/></div>  
+             }
                  <ContactSection />
            </div>
           </Col>
@@ -125,12 +144,12 @@ const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart 
                  </div>}
                  <div className='priceLine'>
                   <span className='name'>Shipping Cost </span>
-                  <span className='price'> 150 $</span>
+                  <span className='price'> 0 $</span>
                  </div>
              </div>
              <div className='priceLine bold'>
                   <span className='name'>Total Cost </span>
-                  <span className='price'> {afterApplying? afterApplying+150 :totalPrice +150} $</span>
+                  <span className='price'> {afterApplying? afterApplying :totalPrice } $</span>
            </div>
 
           </div>
@@ -139,7 +158,8 @@ const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart 
       {userInfo&&!userInfo.is_customer && <Navigate to='/log/login' />}
             {!loggedIn&& <Navigate to='/log/login' />}
       
-  </div>}
+  </div>
+  {/* } */}
      </>
     
   )

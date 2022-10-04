@@ -28,10 +28,10 @@ const ProductInCart = ({product,editeCard,deleteFromCard}) => {
                 {product&&product.unit_price} $
             </div>
            <div className='number'>
-                            <span className='action' onClick={()=>{dispatch(editeCard({product_id:product&&product.product.id,quantity:number+1}))}}> <FiPlusSquare /></span>
+                            <span className='action' onClick={()=>{dispatch(editeCard({product_id:product&&product.product.id,quantity:number+1})); setNumber(number+1)}}> <FiPlusSquare /></span>
                             <span className='num'>{number}</span>
                             <span className='items'> items</span>
-                            <span className='action' onClick={()=>{dispatch(editeCard({product_id:product&&product.product.id,quantity:number-1}))}}><FiMinusSquare /></span>
+                            <span className='action' onClick={()=>{dispatch(editeCard({product_id:product&&product.product.id,quantity:number-1})); number>0 && setNumber(number-1)}}><FiMinusSquare /></span>
                         
 
           </div>
