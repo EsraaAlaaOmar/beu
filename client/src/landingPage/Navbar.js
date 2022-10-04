@@ -14,14 +14,14 @@ import { useDispatch } from 'react-redux'
 const Navbar = ({navigate=true}) => {
     const dispatch= useDispatch()
     const {userInfo,loggedIn} =useSelector((state)=> state.auth)
-    const {CardList,CardAdded,CardDeleted} =useSelector((state)=> state.card)
+    const {CardList,CardAdded,CardDeleted,error} =useSelector((state)=> state.card)
     const {brands} =useSelector((state)=> state.clientbrands)
     const {enLanguage} =useSelector((state)=> state.lang)
    
     const [lang,setLang] =useState('en')
     useEffect(() =>{
         dispatch(getCard())
-      },[dispatch,CardAdded,CardDeleted])
+      },[dispatch,CardAdded,CardDeleted,loggedIn])
       useEffect(() =>{
         dispatch(getClientBrands())
       }, [dispatch])
@@ -134,7 +134,7 @@ const Navbar = ({navigate=true}) => {
                 </Link>
                 <Link to='/cart'>
                     <div className='icon-div'>
-                        <FiShoppingCart /><span>{CardList.length}</span>
+                        <FiShoppingCart /><span>{!error ? CardList.length : 0}</span>
                         <div>
                            {enLanguage ? 'Cart':'السلة' }    
                          </div>
@@ -145,8 +145,8 @@ const Navbar = ({navigate=true}) => {
             </div>
 
             <br/>
-            {navigate&&userInfo&&!userInfo.is_customer && <Navigate to='/log/login' />}
-            {navigate&&!loggedIn&& <Navigate to='/log/login' />}
+            {/* {navigate&&userInfo&&!userInfo.is_customer && <Navigate to='/log/login' />}
+            {navigate&&!loggedIn&& <Navigate to='/log/login' />} */}
         </div>
     )
 }

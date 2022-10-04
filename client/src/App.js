@@ -12,8 +12,11 @@ import Submit from './sitePages/Submit';
 import Payment from './sitePages/components/payment/Payment';
 import Cart from './sitePages/Cart/Cart';
 import BrandProducts from './sitePages/BrandProducts';
+import PrivateRoute from './PrivateRoute';
+import { useSelector } from 'react-redux';
 // import Dashbord from './dashbord/App'
 function App() {
+  const {userInfo, loggedIn} =useSelector((state)=> state.auth)
   return (
   
 
@@ -23,10 +26,19 @@ function App() {
        
           <Route path="/log/*" element={<Log />} exact />
           <Route path="/search" element={<Search />} exact />
-          <Route path="/favourite" element={<Favourite />} exact />
+        <Route path="/favourite" element={
+          <PrivateRoute notUser={(userInfo&&!userInfo.is_customer) || !loggedIn}>
+                     <Favourite />
+          </PrivateRoute>
+          } exact />
           <Route path="/product/*" element={<ProductPage />} exact />
-          <Route path="/profile/*" element={<Profile />} exact />
-          <Route path="/Cart" element={<Cart />} exact />
+          <Route path="/profile/*" element={ <PrivateRoute notUser={(userInfo&&!userInfo.is_customer) || !loggedIn}>
+             <Profile />
+          </PrivateRoute>} exact />
+        <Route path="/Cart" element={
+           <PrivateRoute notUser={(userInfo&&!userInfo.is_customer) || !loggedIn}>
+             <Cart />
+          </PrivateRoute> } exact />
           <Route path="/category" element={<Category />} exact />
           <Route path="/pay/*" element={<Payment />} exact />
           <Route path="/brandproducts/:id" element={<BrandProducts/>} exact />

@@ -54,9 +54,9 @@ const Login = () => {
     setFieldTouched(name, false,false)
 
   }
-  window.onpopstate = () => {
-    navigate(-2);
-  }
+  // window.onpopstate = () => {
+  //   navigate(-2);
+  // }
     return (
       <>
             {isLoading ? 
@@ -136,7 +136,7 @@ const Login = () => {
 )}
     </Formik>
     {userInfo&&userInfo.is_staff && <Navigate to='/dashbord' />}
-    {userInfo&&userInfo.is_customer && navigate(-1)} 
+    {userInfo&&userInfo.is_customer } 
 <div className='option'  onClick={()=>dispatch(clearstate())}>
         <Link to='/log/sign'>
         Don't have Account ? Signup

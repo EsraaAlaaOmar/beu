@@ -5,7 +5,8 @@ import ProductInCart from './ProductInCart'
 import {getCard, editeCard,deleteFromCard} from '../../dashbord/store/clientSide/cardSlice'
 import {applyDiscount} from '../../dashbord/store/clientSide/discountSlice'
 import {getAddresses} from '../../dashbord/store/clientSide/adressesSlice'
-import { useDispatch,useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import {addDeliveryLocation} from '../../dashbord/store/clientSide/deliveryLocationSlice'
 import DropDownList from './DropDownList'
 import { Link,Navigate } from 'react-router-dom'
 
@@ -38,7 +39,7 @@ const Cart = () => {
 
 const onSubmit= async e => {
       e.preventDefault()
-     dispatch( getAddresses({...formData,area_id:selectedArea.id}))
+     dispatch( addDeliveryLocation({...formData,area_id:selectedArea.id}))
    
     
   }
@@ -71,16 +72,16 @@ const renderedProducts = CardList.length>0?CardList.map(product=><ProductInCart 
                      <div className='input' onClick={()=>setShowCountry(!showCountry)}>
                            <input  placeholder={selectedCountry?selectedCountry.name :'Country'} disabled={true}  />
                      </div>
-                    {showCountry&& <DropDownList  list={addresses} setSelected={setSelectedCountry}/>}
+                    {showCountry&& <DropDownList  setHide={setShowCountry} list={addresses} setSelected={setSelectedCountry}/>}
                      {console.log(formData)}
                      <div className='input'  onClick={()=>setShowCity(!showCity)}>
                      <input  placeholder={selectedCity?selectedCity.name :'City'} disabled={true} />
                      </div>
-                    {showCity && <DropDownList  list={selectedCountry?selectedCountry.cities:[]} setSelected={setSelectedCity}/>}
+                    {showCity && <DropDownList   setHide={setShowCity} list={selectedCountry?selectedCountry.cities:[]} setSelected={setSelectedCity}/>}
                      <div className='input'  onClick={()=>setShowArea(!showArea)}>
                            <input    placeholder={selectedArea?selectedArea.name :'Area'} disabled={true}/>
                      </div>
-                     {showArea && <DropDownList  list={selectedCity?selectedCity.areas:[]} setSelected={setSelectedArea}/>}
+                     {showArea && <DropDownList  setHide={setShowArea}  list={selectedCity?selectedCity.areas:[]} setSelected={setSelectedArea}/>}
                      <div className='input'>
                            <input  placeholder='Street' name='street_name' value={street_name} onChange={onChange}/>
                      </div>

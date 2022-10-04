@@ -16,7 +16,7 @@ const CurrentOrders = ({orders}) => {
               </Link>
               <Link to='/profile/prev'>
                     <div className='section '>
-                    <span>2</span> Previous
+                    <span>0</span> Previous
                     </div>
               </Link>
               <Link to='/profile/returned'>

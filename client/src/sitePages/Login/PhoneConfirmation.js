@@ -11,11 +11,13 @@ const PhoneConfirmation = () => {
                 </p>
             <form>
                 <input placeholder='6 digit numbers' type='text' />
-                <div className='time'>
+       {/*
+         <div className='time'>
                 01:23
                 <span>Resend</span>
 
                 </div>
+*/}
                
                 <Link to='/log/mailconfirmation'>
                    <input className='submit' type='submit' value='Continue' />

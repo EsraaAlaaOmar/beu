@@ -13,11 +13,13 @@ const ForgetConfirmation = () => {
              
             
               
-                <div className='time'>
+       {/*
+         <div className='time'>
                 01:23
                 <span>Resend</span>
 
                 </div>
+*/}
                 <Link to='/log/resetpassword'>
                    <input className='submit' type='submit' value='Confirm' />
                 </Link>
