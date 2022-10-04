@@ -266,6 +266,22 @@
                 cursor: pointer;
             }
         }
+        .col-sm-4{
+            
+            input{
+                width:20px;
+                margin: 0;
+                display: inline-block;
+                cursor: pointer;
+            }
+            label{
+                vertical-align:top;
+                margin-top: 14px;
+                font-size: 12px;
+                margin-inline-start: 3px;
+                font-weight: 500;
+            }
+        }
     }
     .forget{
         .submit{

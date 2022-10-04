@@ -1,9 +1,11 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose, AiFillFileZip} from "react-icons/ai";
 import {BsCameraFill} from "react-icons/bs"
 import {BsCheck2Square} from "react-icons/bs"
 import {RiCheckboxBlankLine} from "react-icons/ri"
+import{useDispatch,useSelector} from 'react-redux'
+import {sell} from '../dashbord/store/clientSide/sellSlice'
 //formik
 import { useField,Formik, Field, Form } from 'formik';
 // yup validation
@@ -28,7 +30,7 @@ const SellInBeau = () => {
        });
  
        // end  yup 
-       const onSubmit = (data)=>console.log(data)
+    
 
           //remove validation error 
    const removeError=(setFieldValue,setFieldTouched, name)=>{
@@ -36,6 +38,25 @@ const SellInBeau = () => {
     setFieldTouched(name, false,false)
 
   }
+
+
+  const {brands} =useSelector((state)=> state.clientbrands)
+  const dispatch = useDispatch()
+  // logo 
+  const [logo, setLogo] = useState()
+  const imgChange=e=>setLogo( e.target.files[0])
+
+// files
+const [files, setFiles] = useState()
+const filesChange=e=>setFiles(e.target.files)
+
+const renderedBrands = brands.map(brand=> <Col sm={4}>
+
+<input type="checkbox" id={brand.id} name="brand" value={brand.title} />
+<label for={brand.id}>{brand.title}</label><br/>
+</Col>
+)
+const onSubmit = (data)=>{dispatch(sell({...data,files:files, logo:logo})); console.log(data)}
   return (
     <div className='log_box'>
           <div className='title'>SELL AT BEAU WOW</div>
@@ -93,7 +114,7 @@ const SellInBeau = () => {
                 </div>
 
                 <div className='logo'>Logo<span className='icon' onClick={()=>document.getElementById('image').click()}><BsCameraFill /></span></div>
-                <input id='image' type='file' className='file' />
+                <input id='image' type='file' className='file' onChange={(e)=>imgChange(e)}/>
 
 
                 <div className='input-div'>
@@ -123,9 +144,9 @@ const SellInBeau = () => {
                 </Row>
                 <div className='sell-texarea'>
                     <div className='title'>Categories of your products? Select all that apply</div>
+                    
                     <Row>
-                        <Col sm={4}><span className='icon'><RiCheckboxBlankLine /></span> abaya </Col>
-                        <Col sm={4}><span className='icon'><BsCheck2Square /></span> abaya </Col>
+                    {renderedBrands}
                     </Row>
                 </div>
                 <div className='input-div'>
@@ -134,9 +155,11 @@ const SellInBeau = () => {
                             {errors.social_media && touched.social_media && <><div className='error-text'> {errors.social_media}</div></> }
                 </div>
                 
-                <div className='logo'>Do you have any files or images that you would like to share with us? (you can upload multiple files)
-                <span className='icon'onClick={()=>document.getElementById('file').click()}><AiFillFileZip /></span></div>
-                <input id='file' type='file' className='file' />
+                <div className='logo' >Do you have any files or images that you would like to share with us? (you can upload multiple files)
+                    <span className='icon'onClick={()=>document.getElementById('file').click()}><AiFillFileZip /></span>
+                    <input id='file' type='file' multiple  onChange={(e)=>filesChange(e)}/>
+                </div>
+              
 
 
                 <div className='input-div'>
