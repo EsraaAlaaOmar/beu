@@ -20,7 +20,10 @@ export const sell = createAsyncThunk ('clinetSell/add',  async(sellData ,thunkAP
     formData.append('country_id', sellData.country_id);
     formData.append('city_id', sellData.city_id);
     // formData.append('files', sellData.files);
-    formData.append('categories', sellData.categories);
+  
+    for (let i = 0; i < sellData.categories.length; i++) {
+      formData.append(`categories[${i}]category_id`, sellData.categories[i].value);
+    }
     for (let i = 0; i < sellData.files.length; i++) {
         formData.append(`files[${i}]file`, sellData.files[i]);
       }
@@ -48,3 +51,44 @@ export const sell = createAsyncThunk ('clinetSell/add',  async(sellData ,thunkAP
   
   
   })
+  
+const clientSellslice= createSlice({
+  name:'clientSell',
+  initialState : {  created:false,sellLoading:false, error:null},
+  reducers:{
+   
+  },
+  extraReducers:{
+   
+    [ sell.pending ] :(state,action)=>{
+
+        state.sellLoading = true
+        state.error = null
+        state.created = false
+        
+   
+   },
+   [ sell.fulfilled ] :(state,action)=>{
+    state.sellLoading = false
+    
+    state.error= null
+    state.created = true
+   
+
+    
+    },
+    [ sell.rejected ] :(state,action)=>{
+         state.sellLoading = false
+         state.error = action.payload
+         state.created = false
+        
+     
+       
+    }, 
+
+  }
+
+
+})
+
+export default clientSellslice.reducer

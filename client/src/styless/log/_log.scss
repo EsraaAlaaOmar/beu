@@ -49,6 +49,22 @@
             
           
         }
+        .select-sell{
+            border: none;
+            outline: none;
+            background-color: #fff;
+            width: 382px;
+            max-width: 80%;
+            height: 46px;
+            display: block;
+            margin: auto;
+            margin-top: 10px;
+            border-radius: 34px;
+            color: #000;
+            padding:0 30px;
+            
+
+        }
         .row{
             min-width: 382px;
             max-width: 100%;
@@ -266,22 +282,14 @@
                 cursor: pointer;
             }
         }
-        .col-sm-4{
-            
-            input{
-                width:20px;
-                margin: 0;
-                display: inline-block;
-                cursor: pointer;
-            }
-            label{
-                vertical-align:top;
-                margin-top: 14px;
-                font-size: 12px;
-                margin-inline-start: 3px;
-                font-weight: 500;
-            }
+    
+    .css-1s2u09g-control{
+        border-color: hsl(22deg 100% 87%);
+        &:hover{
+            border-color: hsl(22deg 100% 87%) !important; 
         }
+    }
+
     }
     .forget{
         .submit{

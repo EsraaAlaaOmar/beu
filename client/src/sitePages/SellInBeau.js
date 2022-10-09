@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import { FcCheckmark } from "react-icons/fc";
 import {AiOutlineClose, AiFillFileZip} from "react-icons/ai";
 import {BsCameraFill} from "react-icons/bs"
@@ -6,12 +6,20 @@ import {BsCheck2Square} from "react-icons/bs"
 import {RiCheckboxBlankLine} from "react-icons/ri"
 import{useDispatch,useSelector} from 'react-redux'
 import {sell} from '../dashbord/store/clientSide/sellSlice'
+import { MultiSelect } from "react-multi-select-component";
+import Select from 'react-select';
+import {getAddresses} from '../dashbord/store/clientSide/adressesSlice'
+
 //formik
 import { useField,Formik, Field, Form } from 'formik';
 // yup validation
 import * as yup from 'yup';
 import { Col, Row } from 'react-bootstrap';
-
+import FlashMsg from './Flashmsgs/FlashMsg';
+const options =brands=> brands.map(brand=>{
+    return  { label: brand.title, value:brand.id }
+  }
+  )
 const SellInBeau = () => {
       // yup validation
       const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
@@ -39,8 +47,9 @@ const SellInBeau = () => {
 
   }
 
-
+  const {addresses} =useSelector((state)=> state.clientaddresses)
   const {brands} =useSelector((state)=> state.clientbrands)
+  const {error,sellLoading,created} =useSelector((state)=> state.clientSell)
   const dispatch = useDispatch()
   // logo 
   const [logo, setLogo] = useState()
@@ -50,17 +59,30 @@ const SellInBeau = () => {
 const [files, setFiles] = useState()
 const filesChange=e=>setFiles(e.target.files)
 
-const renderedBrands = brands.map(brand=> <Col sm={4}>
 
-<input type="checkbox" id={brand.id} name="brand" value={brand.title} />
-<label for={brand.id}>{brand.title}</label><br/>
-</Col>
-)
-const onSubmit = (data)=>{dispatch(sell({...data,files:files, logo:logo})); console.log(data)}
-  return (
+
+ // error flashmsg state
+ const[flashmsg,setFlashmsg] = useState(true)
+
+ 
+
+const [selectedCountry, setSelectedCountry] = useState(null);
+
+const [selectedOption, setSelectedOption] = useState(null);
+
+console.log(options)
+
+
+const onSubmit = (data)=>{dispatch(sell({...data,files:files, logo:logo, categories:selectedOption, country_id:selectedCountry })); console.log(data)}
+
+const renderedCountries = addresses.length>0 && addresses.map(country => <option value={country.id} key={country.id}  >{country.name}</option>) 
+const renderedCities = selectedCountry?addresses.find(country=>country.id == selectedCountry).cities.map(city=><option value={city.id}>{city.name}</option>): <option>you dont Select a country</option>
+useEffect(() =>{
+    dispatch(getAddresses())
+},[dispatch]) 
+return (
     <div className='log_box'>
           <div className='title'>SELL AT BEAU WOW</div>
-
           <Formik
         initialValues={{
             full_name:'',
@@ -86,17 +108,27 @@ const onSubmit = (data)=>{dispatch(sell({...data,files:files, logo:logo})); cons
         
 
         >
+
         {({errors, touched,setFieldTouched,  handleSubmit,setFieldValue})=> (
         <form onSubmit={(e)=>{e.preventDefault(); handleSubmit()}}  autoComplete="off">
 
               
-    {/* {flashmsg && error && <FlashMsg
+{flashmsg && error && <FlashMsg 
                       title={` ${Object.values(error)} !  `}
                       img={'/images/msgIcons/error.svg'}
                       setFlashmsg={setFlashmsg}
 
                       icontype='error-icon'
-              />} */}
+              />}
+                 {flashmsg && created && <FlashMsg 
+                    title={`Created successfully`}
+                    img={'/images/msgIcons/success.svg'}
+                    setFlashmsg={setFlashmsg}
+
+                    icontype='success-icon'
+
+              />}
+
                 <div className='input-div'>
                         <Field type='text' placeholder={`What's your name`}  name="full_name" autoComplete="off"   />
                         { touched.full_name && <div className='mark'>{errors.full_name ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'full_name')} /></span>: <FcCheckmark />}</div>}
@@ -131,13 +163,22 @@ const onSubmit = (data)=>{dispatch(sell({...data,files:files, logo:logo})); cons
                 <Row>
                     <Col sm={6}>
                         <div className='input-div'>
-                            <Field type='number'  placeholder='Country'   autoComplete="off"   />
+                        
+                            <Field as='select' name='country' className='select-sell'  placeholder='Country'   autoComplete="off" onChange={(e)=>setSelectedCountry(e.target.value)}  >
+                                <option disabled>Choose a County</option>
+                                {renderedCountries}
+                            </Field>
                            
                         </div>
                     </Col>
                     <Col sm={6}>
                         <div className='input-div'>
-                            <Field type='text'  placeholder='City' autoComplete="off" value=''   />
+                           
+                        <Field as='select' name='city_id' className='select-sell'  placeholder='city'   autoComplete="off"   >
+                        <option disabled>Choose a City</option>
+                                {renderedCities}
+                            </Field>
+                           
                            
                         </div>
                     </Col>
@@ -146,9 +187,18 @@ const onSubmit = (data)=>{dispatch(sell({...data,files:files, logo:logo})); cons
                     <div className='title'>Categories of your products? Select all that apply</div>
                     
                     <Row>
-                    {renderedBrands}
+                   
+                    <Select
+                        isMulti={true}
+                            defaultValue={selectedOption}
+                            onChange={setSelectedOption}
+                            options={options(brands)}
+                            name ='categories'
+                        />
                     </Row>
                 </div>
+            
+          
                 <div className='input-div'>
                             <Field as='textarea' className='sell-texarea'  placeholder='@ social_media'  name="social_media" autoComplete="off"   />
                             { touched.social_media && <div className='mark'>{errors.social_media ?  <span className='validation-error'><AiOutlineClose onClick={()=> removeError(setFieldValue,setFieldTouched,'social_media')} /></span>: <FcCheckmark />}</div>}
@@ -173,7 +223,7 @@ const onSubmit = (data)=>{dispatch(sell({...data,files:files, logo:logo})); cons
           
               
                {/* <Link to='/log/phoneconfirmation'> */}
-                   <input className='submit' type='submit' value='Signup' />
+                   <input className='submit' type='submit' value='Submit' />
            
                
 
