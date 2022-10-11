@@ -4,7 +4,7 @@ import{BiSearch}from 'react-icons/bi'
 import {AiOutlineUser}from 'react-icons/ai'
 import {BsHeart} from 'react-icons/bs'
 import {FiShoppingCart} from 'react-icons/fi'
-import { Link,Navigate } from 'react-router-dom'
+import { Link,Navigate ,useNavigate} from 'react-router-dom'
 import { Dropdown } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import {getCard} from '../dashbord/store/clientSide/cardSlice'
@@ -12,7 +12,8 @@ import {getClientBrands} from '../dashbord/store/clientSide/clientbrands'
 import {changeLanguage} from '../dashbord/store/clientSide/LanguageSlice'
 import { useDispatch } from 'react-redux'
 const Navbar = ({navigate=true}) => {
-    const dispatch= useDispatch()
+    const dispatch = useDispatch()
+    const navigat = useNavigate()
     const {userInfo,loggedIn} =useSelector((state)=> state.auth)
     const {CardList,CardAdded,CardDeleted,error} =useSelector((state)=> state.card)
     const {brands} =useSelector((state)=> state.clientbrands)
@@ -37,10 +38,10 @@ const Navbar = ({navigate=true}) => {
     
       }, [lang])
     console.log(lang)
-    const renderedNew =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`/brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
-    const renderedSale =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`/brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
-    const renderedGifts =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`/brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
-    const renderedAll =  brands.map(brand=>  <Dropdown.Item  key={brand.id}><Link to={`/brandproducts/${brand.id}`}>{brand.title}</Link></Dropdown.Item>)
+    const renderedNew =  brands.map(brand=>  <Dropdown.Item  key={brand.id} onClick={()=>navigat(`/brandproducts/${brand.id}`)}>{brand.title}</Dropdown.Item>)
+    const renderedSale =  brands.map(brand=>   <Dropdown.Item  key={brand.id} onClick={()=>navigat(`/brandproducts/${brand.id}`)}>{brand.title}</Dropdown.Item>)
+    const renderedGifts =  brands.map(brand=>   <Dropdown.Item  key={brand.id} onClick={()=>navigat(`/brandproducts/${brand.id}`)}>{brand.title}</Dropdown.Item>)
+    const renderedAll =  brands.map(brand=>   <Dropdown.Item  key={brand.id} onClick={()=>navigat(`/brandproducts/${brand.id}`)}>{brand.title}</Dropdown.Item>)
     return (
         <div className='landnav' >
            <Link to='/'><img className='logo' src='/images/Landingpage/navicon.png' alt='logo'/></Link> 
