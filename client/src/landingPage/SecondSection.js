@@ -1,5 +1,6 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 const SecondSection = ({section,enLanguage}) => {
   return (
@@ -20,10 +21,13 @@ const SecondSection = ({section,enLanguage}) => {
                    
                      {enLanguage ?'DISCOVER WHATS ON DISCOUNT ..':'اكتشف المنتجات التي يوجد عليها خصم'}
                 </div>
-                <div className='button'>
-                    
-                      {enLanguage ?'  SHOP THE SALE':'تسوق بالخصم'}
-                </div>
+            <Link to='/productoffers'>
+                  <div className='button'>
+                        
+                        {enLanguage ?'  SHOP THE SALE':'تسوق بالخصم'}
+                  </div>
+            </Link> 
+           
 
             </div>
             </Col>

@@ -28,6 +28,7 @@ import clientLanding from './clientSide/landingSlice'
 import lang from './clientSide/LanguageSlice'
 import deliveryLocation  from './clientSide/deliveryLocationSlice'
 import clientSell from './clientSide/sellSlice'
+import clientContact from './clientSide/clientContactslice'
 export default   configureStore({
   reducer: {
       auth,
@@ -57,7 +58,8 @@ export default   configureStore({
       clientaddresses,
       clientLanding,
       deliveryLocation,  
-      clientSell,
+    clientSell,
+    clientContact,
       lang,
       
 

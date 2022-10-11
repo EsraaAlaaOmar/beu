@@ -10,11 +10,13 @@ const ProductInfo = ({fav,product}) => {
     return (
         <div className='product_info'>
             <div>
-            {product&&product.title}
+                {product && product.title}
+              { product.quantity < 6 && <span className='oposite_direction_quantity'>{ product.quantity} left in the stock</span>}
             </div>
             <div className='last-line'>
             <span className={product&&product.offer && 'oldprice'}>{product&&product.unit_price}$</span>  &nbsp;
             {product&&product.offer && product.price_in_offer+'$'}
+            
             <span className='oposite_direction' >
             <span onClick={()=>dispatch(fav? deletefav({product_id:product.id}):addFav({product_id:product.id}))}>{ fav ? <span> <BsFillHeartFill /> </span>:<span> <BsHeart /> </span>}</span>
             <Link to='/product' state={{product:product,fav:fav}} >

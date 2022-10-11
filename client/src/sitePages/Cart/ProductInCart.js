@@ -6,7 +6,8 @@ import { useDispatch } from 'react-redux'
 
 const ProductInCart = ({product,editeCard,deleteFromCard}) => {
   const dispatch= useDispatch()
-  const[number,setNumber]=useState(product&&product.quantity)
+  const [number, setNumber] = useState(product && product.quantity)
+  console.log(product )
   return <div className='product_in_cart'>
             <div className='img'>
                <img   src= {product&&product.product.galleries[0].image}/> 
@@ -26,12 +27,13 @@ const ProductInCart = ({product,editeCard,deleteFromCard}) => {
           <div className='oposite'>
             <div>
                 {product&&product.unit_price} $
-            </div>
+      </div>
+      
            <div className='number'>
-                            <span className='action' onClick={()=>{dispatch(editeCard({product_id:product&&product.product.id,quantity:number+1})); setNumber(number+1)}}> <FiPlusSquare /></span>
+                            <span className='action' onClick={()=>{ number<product.product.quantity && dispatch(editeCard({product_id:product&&product.product.id,quantity:number+1}));  number<product.product.quantity  && setNumber(number+1)}}> <FiPlusSquare /></span>
                             <span className='num'>{number}</span>
                             <span className='items'> items</span>
-                            <span className='action' onClick={()=>{dispatch(editeCard({product_id:product&&product.product.id,quantity:number-1})); number>0 && setNumber(number-1)}}><FiMinusSquare /></span>
+                            <span className='action' onClick={()=>{ number>0 && dispatch(editeCard({product_id:product&&product.product.id,quantity:number-1})); number>0 && setNumber(number-1)}}><FiMinusSquare /></span>
                         
 
           </div>

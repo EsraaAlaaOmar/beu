@@ -14,6 +14,7 @@ import Cart from './sitePages/Cart/Cart';
 import BrandProducts from './sitePages/BrandProducts';
 import PrivateRoute from './PrivateRoute';
 import { useSelector } from 'react-redux';
+import OffersPage from './sitePages/OffersPage';
 // import Dashbord from './dashbord/App'
 function App() {
   const {userInfo, loggedIn} =useSelector((state)=> state.auth)
@@ -25,7 +26,8 @@ function App() {
           <Route path="/" element={<Land />} exact />
        
           <Route path="/log/*" element={<Log />} exact />
-          <Route path="/search" element={<Search />} exact />
+        <Route path="/search" element={<Search />} exact />
+        <Route path="/productoffers" element={<OffersPage />} exact />
         <Route path="/favourite" element={
           <PrivateRoute notUser={(userInfo&&!userInfo.is_customer) || !loggedIn}>
                      <Favourite />
